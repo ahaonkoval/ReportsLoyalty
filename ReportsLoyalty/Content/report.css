@@ -1,0 +1,35 @@
+﻿
+.x-grid-row .x-grid-cell {
+    font: normal 12px/15px tahoma,arial,verdana,sans-serif;
+    background-color:rgba(199, 231, 237, 0.38);
+}
+
+.x-grid-row-run .x-grid-cell {
+    font: normal 12px/15px tahoma,arial,verdana,sans-serif;
+    background-color:rgba(237, 233, 199, 0.38);
+}
+
+
+.menu_is_run
+{ 
+    font-size: 12px; 
+    font-weight: bold; 
+    color: cadetblue; 
+}
+
+.menu_is_not_run
+{ 
+    font-size: 12px; 
+    font-weight: 100; 
+    color: cadetblue; 
+}
+
+.combo_box
+{ 
+    font-size: 8px; 
+    font-weight: bold; 
+    color: cadetblue; 
+}
+
+body {
+}

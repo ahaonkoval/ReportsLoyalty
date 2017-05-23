@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="yes"?>
+<UsersDS xmlns="http://tempuri.org/UsersDS.xsd">
+  <Users>
+    <id>1</id>
+    <UserName>all</UserName>
+    <Password>123</Password>
+    <Role>1</Role>    
+  </Users>
+  <Users>
+    <id>2</id>
+    <UserName>admin</UserName>
+    <Password>wxfor7q</Password>
+    <Role>1</Role>    
+  </Users>  
+  <Users>
+    <id>3</id>
+    <UserName>manager</UserName>
+    <Password>P3PW7rl</Password>
+    <Role>2</Role>    
+  </Users>    
+  <Users>
+    <id>4</id>
+    <UserName>store</UserName>
+    <Password>HbZz3Ba</Password>
+    <Role>3</Role>    
+  </Users>      
+</UsersDS>
