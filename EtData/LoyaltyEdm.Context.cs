@@ -57,16 +57,6 @@ namespace EtData
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<p_get_trade_with_extra_points_Result>("p_get_trade_with_extra_points", campaign_idParameter, dateParameter, market_idParameter);
         }
     
-        [DbFunction("LoyaltyEntities", "t_get_campaigns")]
-        public virtual IQueryable<tf_campaigns> t_get_campaigns(Nullable<bool> isRun)
-        {
-            var isRunParameter = isRun.HasValue ?
-                new ObjectParameter("isRun", isRun) :
-                new ObjectParameter("isRun", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<tf_campaigns>("[LoyaltyEntities].[t_get_campaigns](@isRun)", isRunParameter);
-        }
-    
         public virtual ObjectResult<UPLOAD_CONTROL> p_get_daily_upload_control(Nullable<System.DateTime> date, Nullable<int> market_id)
         {
             var dateParameter = date.HasValue ?
@@ -78,6 +68,26 @@ namespace EtData
                 new ObjectParameter("market_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UPLOAD_CONTROL>("p_get_daily_upload_control", dateParameter, market_idParameter);
+        }
+    
+        [DbFunction("LoyaltyEntities", "t_get_campaigns")]
+        public virtual IQueryable<tf_campaigns> t_get_campaigns(Nullable<bool> isRun)
+        {
+            var isRunParameter = isRun.HasValue ?
+                new ObjectParameter("isRun", isRun) :
+                new ObjectParameter("isRun", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<tf_campaigns>("[LoyaltyEntities].[t_get_campaigns](@isRun)", isRunParameter);
+        }
+    
+        [DbFunction("LoyaltyEntities", "t_get_campaign_customers")]
+        public virtual IQueryable<tf_campaign_customers> t_get_campaign_customers(Nullable<long> campaign_id)
+        {
+            var campaign_idParameter = campaign_id.HasValue ?
+                new ObjectParameter("campaign_id", campaign_id) :
+                new ObjectParameter("campaign_id", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<tf_campaign_customers>("[LoyaltyEntities].[t_get_campaign_customers](@campaign_id)", campaign_idParameter);
         }
     }
 }

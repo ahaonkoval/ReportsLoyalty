@@ -74,6 +74,22 @@ Ext.define('campaigns_mk', {
     }, {
         name: 'depart_name',
         type: 'string'
+    }, {
+        name: 'customers_qty',
+        type: 'int'
+    }, {
+        name: 'customers_qty_control',
+        type: 'int'
+    }, {
+        name: 'customers_grp',
+        type: 'string',
+        convert: function (v, record) {
+            if (v == null) {
+                var customers_qty = record.get('customers_qty');
+                var customers_qty_control = record.get('customers_qty_control')
+                return customers_qty.toString() + '/' + customers_qty_control.toString();
+            }
+        }
     }]
 });
 
@@ -166,12 +182,47 @@ var createColumns = function (finish, start) {
             width: 70
             //filter true
             //renderer: Ext.util.Format.dateRenderer('m/d/Y')
+        }, {
+            text: 'Відгук',
+            width: 70,
+            xtype: 'widgetcolumn',
+            dataIndex: 'progress',
+            widget: {
+                width: 50,
+                textAlign: 'right',
+                xtype: 'button',
+                //iconCls: 'x-grid-row-run',
+                //menu: [{
+                //    text: 'Завантажити',
+                //    //handler: function (a, b, c) {
+                //    //    alert();
+                //    //    //var rec = btn.getWidgetRecord();
+                //    //    //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
+                //    //}
+                //}],
+                //iconCls: 'widget-grid-user',
+                handler: function (btn) {
+                    var rec = btn.getWidgetRecord();
+                    //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
+                    Ext.MessageBox.prompt('Увага', 'Введіть ID розсилки:', function (mp) { });
+                }
+            }
+        }, {
+            text: 'Учасники',
+            width: 90,
+            xtype: 'widgetcolumn',
+            dataIndex: 'customers_grp',
+            widget: {
+                width: 70,
+                textAlign: 'right',
+                xtype: 'button',
+                handler: function (btn) {
+                    var rec = btn.getWidgetRecord();
+                    winCustomers.Show();
+                    //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
+                }
+            }
         }
-        //, {
-        //    dataIndex: 'margin_markets',
-        //    text: 'Маржа по маркету'
-        //    // this column's filter is defined in the filters feature config
-        //}
     ];
 
     return columns.slice(start || 0, finish);
@@ -182,7 +233,7 @@ var grid = Ext.create('Ext.grid.Panel', {
     stateId: 'stateful-filter-grid',
     border: false,
     store: store,
-    columns: createColumns(5),
+    columns: createColumns(7),
     plugins: 'gridfilters',
     loadMask: true,
     //features: [filters],

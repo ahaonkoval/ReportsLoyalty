@@ -70,6 +70,7 @@
     <Compile Include="campaign_types.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Customers.cs" />
     <Compile Include="Dict.cs" />
     <Compile Include="dict_markets.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
@@ -103,6 +104,9 @@
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="tf_campaigns.cs">
+      <DependentUpon>LoyaltyEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tf_campaign_customers.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="UPLOAD_CONTROL.cs">

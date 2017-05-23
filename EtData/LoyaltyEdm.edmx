@@ -265,6 +265,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="t_get_campaign_customers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="calc">
+          <Parameter Name="campaign_id" Type="bigint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="number" Type="bigint" />
+                <Property Name="name1" Type="nvarchar" MaxLength="50" />
+                <Property Name="name2" Type="varchar" MaxLength="50" />
+                <Property Name="name3" Type="varchar" MaxLength="50" />
+                <Property Name="gender" Type="varchar" MaxLength="3" Nullable="false" />
+                <Property Name="barcode" Type="varchar" MaxLength="13" Nullable="false" />
+                <Property Name="mobile_phone" Type="varchar" MaxLength="30" />
+                <Property Name="control_group" Type="bit" Nullable="false" />
+                <Property Name="delivery_channel" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="t_get_campaigns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="calc">
           <Parameter Name="isRun" Type="bit" Mode="In" />
           <ReturnType>
@@ -286,6 +304,8 @@
                 <Property Name="group_id_1" Type="bigint" />
                 <Property Name="markmo_id" Type="bigint" />
                 <Property Name="number" Type="bigint" />
+                <Property Name="customers_qty" Type="int" />
+                <Property Name="customers_qty_control" Type="int" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -430,12 +450,15 @@
             <End Role="campaign_types" EntitySet="campaign_types" />
             <End Role="campaigns_mk" EntitySet="campaigns_mk" />
           </AssociationSet>
-          <FunctionImport Name="t_get_campaigns" IsComposable="true" ReturnType="Collection(LoyaltyModel.tf_campaigns)">
-          <Parameter Name="isRun" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <FunctionImport Name="p_get_daily_upload_control" ReturnType="Collection(LoyaltyModel.UPLOAD_CONTROL)">
             <Parameter Name="date" Mode="In" Type="DateTime" />
             <Parameter Name="market_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="t_get_campaigns" IsComposable="true" ReturnType="Collection(LoyaltyModel.tf_campaigns)">
+          <Parameter Name="isRun" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="t_get_campaign_customers" IsComposable="true" ReturnType="Collection(LoyaltyModel.tf_campaign_customers)">
+            <Parameter Name="campaign_id" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="dict_markets">
@@ -710,24 +733,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="tf_campaigns">
-          <Property Type="Int64" Name="id" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="date_start" Nullable="true" Precision="10" />
-          <Property Type="DateTime" Name="date_end" Nullable="true" Precision="10" />
-          <Property Type="DateTime" Name="created" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="is_run" Nullable="false" />
-          <Property Type="Int64" Name="type_id" Nullable="true" />
-          <Property Type="Decimal" Name="margin_markets" Nullable="true" Precision="18" Scale="3" />
-          <Property Type="Decimal" Name="margin_lavel_0" Nullable="true" Precision="18" Scale="3" />
-          <Property Type="Decimal" Name="margin_lavel_1" Nullable="true" Precision="18" Scale="3" />
-          <Property Type="Decimal" Name="margin_lavel_2" Nullable="true" Precision="18" Scale="3" />
-          <Property Type="Decimal" Name="margin_lavel_3" Nullable="true" Precision="18" Scale="3" />
-          <Property Type="Int64" Name="group_id_0" Nullable="true" />
-          <Property Type="Int64" Name="group_id_1" Nullable="true" />
-          <Property Type="Int64" Name="markmo_id" Nullable="true" />
-          <Property Type="Int64" Name="number" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="UPLOAD_CONTROL">
           <Property Type="String" Name="city" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="customers_qty" Nullable="true" Precision="18" Scale="2" />
@@ -748,6 +753,37 @@
           <Property Type="Decimal" Name="qty_sell_record_qty" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="diff_qty_sell_record_qty" Nullable="true" Precision="19" Scale="2" />
           <Property Type="Int32" Name="is_alert_qty_sell_record_qty" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="tf_campaigns">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="date_start" Nullable="true" Precision="10" />
+          <Property Type="DateTime" Name="date_end" Nullable="true" Precision="10" />
+          <Property Type="DateTime" Name="created" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="is_run" Nullable="false" />
+          <Property Type="Int64" Name="type_id" Nullable="true" />
+          <Property Type="Decimal" Name="margin_markets" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="margin_lavel_0" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="margin_lavel_1" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="margin_lavel_2" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="margin_lavel_3" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="Int64" Name="group_id_0" Nullable="true" />
+          <Property Type="Int64" Name="group_id_1" Nullable="true" />
+          <Property Type="Int64" Name="markmo_id" Nullable="true" />
+          <Property Type="Int64" Name="number" Nullable="true" />
+          <Property Type="Int32" Name="customers_qty" Nullable="true" />
+          <Property Type="Int32" Name="customers_qty_control" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="tf_campaign_customers">
+          <Property Type="Int64" Name="number" Nullable="true" />
+          <Property Type="String" Name="name1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="name2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="name3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="gender" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="barcode" Nullable="false" MaxLength="13" />
+          <Property Type="String" Name="mobile_phone" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="control_group" Nullable="false" />
+          <Property Type="String" Name="delivery_channel" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -958,28 +994,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="t_get_campaigns" FunctionName="Хранилище LoyaltyModel.t_get_campaigns">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LoyaltyModel.tf_campaigns">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="date_start" ColumnName="date_start" />
-                <ScalarProperty Name="date_end" ColumnName="date_end" />
-                <ScalarProperty Name="created" ColumnName="created" />
-                <ScalarProperty Name="is_run" ColumnName="is_run" />
-                <ScalarProperty Name="type_id" ColumnName="type_id" />
-                <ScalarProperty Name="margin_markets" ColumnName="margin_markets" />
-                <ScalarProperty Name="margin_lavel_0" ColumnName="margin_lavel_0" />
-                <ScalarProperty Name="margin_lavel_1" ColumnName="margin_lavel_1" />
-                <ScalarProperty Name="margin_lavel_2" ColumnName="margin_lavel_2" />
-                <ScalarProperty Name="margin_lavel_3" ColumnName="margin_lavel_3" />
-                <ScalarProperty Name="group_id_0" ColumnName="group_id_0" />
-                <ScalarProperty Name="group_id_1" ColumnName="group_id_1" />
-                <ScalarProperty Name="markmo_id" ColumnName="markmo_id" />
-                <ScalarProperty Name="number" ColumnName="number" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="p_get_daily_upload_control" FunctionName="Хранилище LoyaltyModel.p_get_daily_upload_control">
             <ResultMapping>
               <ComplexTypeMapping TypeName="LoyaltyModel.UPLOAD_CONTROL">
@@ -1002,6 +1016,45 @@
                 <ScalarProperty Name="qty_sell_record_qty" ColumnName="qty_sell_record_qty" />
                 <ScalarProperty Name="diff_qty_sell_record_qty" ColumnName="diff_qty_sell_record_qty" />
                 <ScalarProperty Name="is_alert_qty_sell_record_qty" ColumnName="is_alert_qty_sell_record_qty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="t_get_campaigns" FunctionName="Хранилище LoyaltyModel.t_get_campaigns">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoyaltyModel.tf_campaigns">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date_start" ColumnName="date_start" />
+                <ScalarProperty Name="date_end" ColumnName="date_end" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="is_run" ColumnName="is_run" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="margin_markets" ColumnName="margin_markets" />
+                <ScalarProperty Name="margin_lavel_0" ColumnName="margin_lavel_0" />
+                <ScalarProperty Name="margin_lavel_1" ColumnName="margin_lavel_1" />
+                <ScalarProperty Name="margin_lavel_2" ColumnName="margin_lavel_2" />
+                <ScalarProperty Name="margin_lavel_3" ColumnName="margin_lavel_3" />
+                <ScalarProperty Name="group_id_0" ColumnName="group_id_0" />
+                <ScalarProperty Name="group_id_1" ColumnName="group_id_1" />
+                <ScalarProperty Name="markmo_id" ColumnName="markmo_id" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="customers_qty" ColumnName="customers_qty" />
+                <ScalarProperty Name="customers_qty_control" ColumnName="customers_qty_control" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="t_get_campaign_customers" FunctionName="Хранилище LoyaltyModel.t_get_campaign_customers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoyaltyModel.tf_campaign_customers">
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="name1" ColumnName="name1" />
+                <ScalarProperty Name="name2" ColumnName="name2" />
+                <ScalarProperty Name="name3" ColumnName="name3" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+                <ScalarProperty Name="control_group" ColumnName="control_group" />
+                <ScalarProperty Name="delivery_channel" ColumnName="delivery_channel" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

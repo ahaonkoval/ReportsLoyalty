@@ -133,6 +133,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="codejs\win_customers.js" />
     <Content Include="codejs\frm_campaigns_edit.js" />
     <Content Include="codejs\win_upload_status.js" />
     <Content Include="codejs\win_campaign_details_0.js" />
@@ -6415,6 +6416,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DictController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="crm_wizardDataSet.Designer.cs">

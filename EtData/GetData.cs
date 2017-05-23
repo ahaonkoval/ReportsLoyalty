@@ -19,11 +19,14 @@ namespace EtData
 
         public Dict Dict;
 
+        public Customers Customers;
+
         public GetData()
         {
             Le = new EtData.LoyaltyEntities();
             Campaigns = new EtData.Campaigns(Le);
             Dict = new EtData.Dict(Le);
+            Customers = new EtData.Customers(Le);
         }
 
         public void Dispose()

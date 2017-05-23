@@ -13,27 +13,46 @@ namespace EtData
         public Campaigns(EtData.LoyaltyEntities le) {
             Le = le;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<v_campaigns_mk_run> GetCampaignsRuns()
         {
             return Le.v_campaigns_mk_run.ToList();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetCampaignNameById(int id)
         {
             return Le.v_campaigns_mk_run.Where(m => m.id == id).First().name;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public DateTime? GetStartDateById(int id)
         {
             return Le.v_campaigns_mk_run.Where(m => m.id == id).First().date_start;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public DateTime? GetEndDateById(int id)
         {
             return Le.v_campaigns_mk_run.Where(m => m.id == id).First().date_end;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isRun"></param>
+        /// <returns></returns>
         public IEnumerable<tf_campaigns> GetCampaigns(bool isRun)
         {
             return Le.t_get_campaigns(isRun);
@@ -46,7 +65,11 @@ namespace EtData
             //    return Le.v_campaigns_mk;
             //}
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isRun"></param>
+        /// <returns></returns>
         public int GetCampaignsCount(bool isRun)
         {
             return Le.t_get_campaigns(isRun).Count();
@@ -59,7 +82,11 @@ namespace EtData
             //}
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetCurrentGroupNameById(int id)
         {
             // TODO: собрать все группы в одну строку
@@ -81,13 +108,22 @@ namespace EtData
             }
             return sb.ToString(); 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetCurrentDepartamentNameById(int id)
         {
             var cmp = Le.campaigns_mk.Where(w => w.id == id).FirstOrDefault();
             return Le.v_fgroups.Where(o => o.fgroup_id == cmp.group_id_0).FirstOrDefault().name;            
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="campaign_id"></param>
+        /// <param name="level_id"></param>
+        /// <returns></returns>
         public decimal GetCampaignMarginByLevelId(long campaign_id, int level_id)
         {
             decimal o = 0;
@@ -111,7 +147,11 @@ namespace EtData
             }
             return o;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetGroupsIdsByCampaignId(long id)
         {
             var campaign_groups = Le.campaign_groups.Where(w => w.campaign_id == id).OrderBy(o => o.id);
@@ -129,12 +169,19 @@ namespace EtData
             }
             return sb.ToString();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<campaign_types> GetCampaignTypes()
         {
             return Le.campaign_types.ToList();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmp"></param>
+        /// <returns></returns>
         public EtData.Models.Cmp SetCampaign(EtData.Models.Cmp cmp)
         {
             if (cmp.campaign_id > -1)
