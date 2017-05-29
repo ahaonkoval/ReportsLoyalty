@@ -11,7 +11,7 @@ namespace EtData
 {
     using System;
     
-    public partial class tf_campaigns
+    public partial class t_get_campaigns_Result
     {
         public long id { get; set; }
         public string name { get; set; }

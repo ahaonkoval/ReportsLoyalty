@@ -260,6 +260,29 @@ namespace EtData
             }            
             return cmp;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<campaigns_terms> GetCampaignsTerms(long id)
+        {
+            List<campaigns_terms> t = Le.campaigns_terms.Where(w => w.campaign_id == id).ToList();
+            return t;
+        }
+
+        public void CreateTerm(Models.Term t)
+        {
+            campaigns_terms term = new campaigns_terms {
+                campaign_id = t.campaign_id,
+                short_comment = t.campaign_terms_short,
+                description = t.campaign_terms_details,
+                created = DateTime.Now
+            };
+
+            Le.campaigns_terms.Add(term);
+            Le.SaveChanges();
+        }
 
     }
 }

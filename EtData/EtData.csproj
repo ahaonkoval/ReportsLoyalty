@@ -55,6 +55,9 @@
     <Compile Include="campaigns_mk.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="campaigns_terms.cs">
+      <DependentUpon>LoyaltyEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="campaign_articul.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
@@ -98,6 +101,7 @@
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cmp.cs" />
+    <Compile Include="Models\Term.cs" />
     <Compile Include="Models\UPLControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="p_get_trade_with_extra_points_Result.cs">

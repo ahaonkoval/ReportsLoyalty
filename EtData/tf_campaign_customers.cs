@@ -20,7 +20,8 @@ namespace EtData
         public string gender { get; set; }
         public string barcode { get; set; }
         public string mobile_phone { get; set; }
-        public bool control_group { get; set; }
+        public string control_group { get; set; }
         public string delivery_channel { get; set; }
+        public string market_name { get; set; }
     }
 }

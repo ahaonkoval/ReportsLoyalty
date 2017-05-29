@@ -1,4 +1,5 @@
 ﻿var win_campaigns = null;
+var wCustomers = null;
 
 Ext.define('campaigns_mk', {
     extend: 'Ext.data.Model',
@@ -89,6 +90,35 @@ Ext.define('campaigns_mk', {
                 var customers_qty_control = record.get('customers_qty_control')
                 return customers_qty.toString() + '/' + customers_qty_control.toString();
             }
+        }
+    }, {
+        name: 'max_term_date',
+        type: 'date',
+        convert: function (v, record) {
+            if (v != null) {
+                if (v.toString().indexOf('/') > -1) {
+
+                    var dot = new Date(parseInt(v.substr(6)));
+
+                    //var dateObj = new Date();
+                    var month = dot.getUTCMonth() + 1; //months from 1-12
+                    var day = dot.getUTCDate();
+                    var year = dot.getUTCFullYear();
+
+                    //var rtn = year + "/" + month + "/" + day;
+                    if (day.toString().length == 1) day = '0' + day.toString();
+                    if (month.toString().length == 1) month = '0' + month.toString();
+
+                    var rtn = day + '.' + month + '.' + year;
+                    return rtn;
+                    //return new Date(parseInt(v.substr(6)));
+                } else {
+                    return v;
+                }
+                
+            } else {
+                return '';
+            }            
         }
     }]
 });
@@ -191,16 +221,6 @@ var createColumns = function (finish, start) {
                 width: 50,
                 textAlign: 'right',
                 xtype: 'button',
-                //iconCls: 'x-grid-row-run',
-                //menu: [{
-                //    text: 'Завантажити',
-                //    //handler: function (a, b, c) {
-                //    //    alert();
-                //    //    //var rec = btn.getWidgetRecord();
-                //    //    //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
-                //    //}
-                //}],
-                //iconCls: 'widget-grid-user',
                 handler: function (btn) {
                     var rec = btn.getWidgetRecord();
                     //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
@@ -218,8 +238,27 @@ var createColumns = function (finish, start) {
                 xtype: 'button',
                 handler: function (btn) {
                     var rec = btn.getWidgetRecord();
-                    winCustomers.Show();
-                    //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
+                    var hidden_campaign_id = Ext.getCmp('hidden_campaign_id');
+                    hidden_campaign_id.setValue(rec.get('id'));
+                    var campaign_id = rec.get('id');
+                    getCustomers(campaign_id);
+                }
+            }
+        }, {
+            text: 'Умови кампанії',
+            width: 120,
+            xtype: 'widgetcolumn',
+            //format: 'd.m.Y',
+            dataIndex: 'max_term_date',
+            widget: {
+                width: 100,
+                textAlign: 'center',
+                xtype: 'button',
+                //format: 'd.m.Y',
+                handler: function (btn) {
+                    var rec = btn.getWidgetRecord();
+                    var campaign_id = rec.get('id');
+                    get_campaigns_terms(campaign_id)
                 }
             }
         }
@@ -233,7 +272,7 @@ var grid = Ext.create('Ext.grid.Panel', {
     stateId: 'stateful-filter-grid',
     border: false,
     store: store,
-    columns: createColumns(7),
+    columns: createColumns(8),
     plugins: 'gridfilters',
     loadMask: true,
     //features: [filters],
@@ -305,6 +344,11 @@ var win_campaigns_show = function () {
                                                     });
                                                 }
                                             }
+                                        }, {
+                                            id: 'hidden_campaign_id',
+                                            xtype: 'hiddenfield',
+                                            name: 'hidden_campaign_id',
+                                            value: ''
                                         }
                                     ]
                                 }
@@ -354,8 +398,9 @@ var win_campaigns_show = function () {
         params: { isRun: Ext.getCmp('cisRun').getValue() }
     });
 };
-
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 Ext.override(Ext.Window, {
     closeAction: 'hide'
 })
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 

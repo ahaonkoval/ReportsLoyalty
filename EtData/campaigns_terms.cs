@@ -12,11 +12,12 @@ namespace EtData
     using System;
     using System.Collections.Generic;
     
-    public partial class dict_markets
+    public partial class campaigns_terms
     {
-        public int id { get; set; }
-        public string short_name { get; set; }
-        public string name { get; set; }
-        public string market_name { get; set; }
+        public long campaigns_terms_id { get; set; }
+        public Nullable<long> campaign_id { get; set; }
+        public System.DateTime created { get; set; }
+        public string short_comment { get; set; }
+        public string description { get; set; }
     }
 }

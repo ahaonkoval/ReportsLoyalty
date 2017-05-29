@@ -4,24 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="34c16dad78fb44c484279f552c59e876" Name="Diagram1" DisplayType="true" ZoomLevel="98">
-        <EntityTypeShape EntityType="LoyaltyModel.dict_markets" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="LoyaltyModel.markmo_types" Width="1.625" PointX="2.875" PointY="6.125" />
-        <EntityTypeShape EntityType="LoyaltyModel.markmos1" Width="1.5" PointX="0.5" PointY="4.875" />
-        <EntityTypeShape EntityType="LoyaltyModel.campaigns_mk" Width="1.875" PointX="2.875" PointY="0.5" />
-        <EntityTypeShape EntityType="LoyaltyModel.v_campaigns_mk" Width="1.875" PointX="5.375" PointY="5" />
-        <EntityTypeShape EntityType="LoyaltyModel.v_campaigns_mk_run" Width="1.875" PointX="8" PointY="0.5" />
-        <EntityTypeShape EntityType="LoyaltyModel.campaign_articul" Width="1.875" PointX="4.375" PointY="10.625" />
-        <EntityTypeShape EntityType="LoyaltyModel.campaign_groups" Width="2" PointX="8.5" PointY="5.5" />
-        <EntityTypeShape EntityType="LoyaltyModel.campaign_participant" Width="2" PointX="7.75" PointY="8.5" />
-        <EntityTypeShape EntityType="LoyaltyModel.campaign_sub_groups" Width="1.5" PointX="10" PointY="8.5" />
+      <Diagram DiagramId="34c16dad78fb44c484279f552c59e876" Name="Diagram1" DisplayType="true" ZoomLevel="111">
+        <EntityTypeShape EntityType="LoyaltyModel.campaign_articul" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="LoyaltyModel.campaign_groups" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="LoyaltyModel.campaign_participant" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="LoyaltyModel.campaign_sub_groups" Width="1.5" PointX="5.25" PointY="9.125" />
+        <EntityTypeShape EntityType="LoyaltyModel.campaign_types" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="LoyaltyModel.campaigns_mk" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="LoyaltyModel.markmo_types" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LoyaltyModel.markmos1" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LoyaltyModel.dict_markets" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="LoyaltyModel.v_campaigns_mk" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="LoyaltyModel.v_campaigns_mk_run" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LoyaltyModel.v_fgroups" Width="1.5" PointX="9.75" PointY="5.75" />
         <AssociationConnector Association="LoyaltyModel.FK_campaign_articul_campaigns_mk" />
         <AssociationConnector Association="LoyaltyModel.FK_campaign_groups_campaigns_mk" />
         <AssociationConnector Association="LoyaltyModel.FK_participant_campaign_campaigns_mk" />
         <AssociationConnector Association="LoyaltyModel.FK_campaign_groups_sub_campaigns_mk" />
-        <EntityTypeShape EntityType="LoyaltyModel.v_fgroups" Width="1.75" PointX="10.375" PointY="0.5" />
-        <EntityTypeShape EntityType="LoyaltyModel.campaign_types" Width="1.875" PointX="0.75" PointY="9.875" />
         <AssociationConnector Association="LoyaltyModel.FK_campaigns_mk_campaign_types" />
+        <EntityTypeShape EntityType="LoyaltyModel.campaigns_terms" Width="2" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

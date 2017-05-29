@@ -46,6 +46,34 @@ namespace ReportsLoyalty.Controllers
             return response;
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetCampaignsTerms(long id)
+        {
+            using (GetData data = new GetData())
+            {
+                var queryparams = Request.GetQueryNameValuePairs();
+                var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+                var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+                var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+                //var campaign_id = queryparams.Where(w => w.Key == "campaign_id").FirstOrDefault();
+
+                var campaign_terms = data.Campaigns.GetCampaignsTerms(id).Where(
+                        w => w.campaigns_terms_id >= start && w.campaigns_terms_id <= (start + limit)
+                    ).OrderBy(o => o.campaigns_terms_id);
+
+                int campaigns_count = data.Campaigns.GetCampaignsTerms(id).Count();
+
+                var response = new HttpResponseMessage();
+                var str = new JavaScriptSerializer().Serialize(campaign_terms);
+                //str = string.Format("\"data\":{0}", str); campaigns.Count().ToString()
+                str = string.Format("\"total\": \"{0}\", \"data\":{1}", campaigns_count.ToString(), str);
+                str = "{" + str + "}";
+                response.Content = new StringContent(str, Encoding.UTF8, "application/json");
+                return response;
+            }
+        }
+
         // GET: api/Campaign/5
         public string Get(int id)
         {
@@ -83,5 +111,6 @@ namespace ReportsLoyalty.Controllers
 
             return cmp.campaign_id;
         }
+
     }
 }

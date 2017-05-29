@@ -15,6 +15,7 @@
     <script type="text/javascript" src="codejs/win_campaign_details.js"></script>
     <script type="text/javascript" src="codejs/win_upload_status.js"></script>
     <script type="text/javascript" src="codejs/win_customers.js"></script>
+    <script type="text/javascript" src="codejs/win_campaigns_terms.js"></script>
 
     <link rel="stylesheet" type="text/css" href="Content/report.css"/>
     <link rel="stylesheet" type="text/css" href="scripts/ext/classic/theme-crisp/resources/theme-crisp-all.css" />

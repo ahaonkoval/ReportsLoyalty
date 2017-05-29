@@ -21,22 +21,26 @@ namespace ReportsLoyalty.Controllers
             var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
 
             var campaign_id = queryparams.Where(w => w.Key == "campaign_id").FirstOrDefault();
-
-            using (GetData data = new GetData())
+            var response = new HttpResponseMessage();
+            if (campaign_id.Value != null)
             {
-                var customers = data.Customers.GetCustomersCampaign(Convert.ToInt64(campaign_id)).Where(
-                    w => w.number >= start && w.number <= (start + limit)
-                ).OrderBy(o => o.number);
+                using (GetData data = new GetData())
+                {
+                    var customers = data.Customers.GetCustomersCampaign(Convert.ToInt64(campaign_id.Value)).Where(
+                        w => w.number >= start && w.number <= (start + limit)
+                    ).OrderBy(o => o.number);
 
-                int count = data.Customers.GetCustomersCampaign(Convert.ToInt64(campaign_id)).Count();
-                var response = new HttpResponseMessage();
-                var str = new JavaScriptSerializer().Serialize(customers.ToList());
-                str = string.Format("\"total\": \"{0}\", \"data\":{1}", count.ToString(), str);
-                str = "{" + str + "}";
-                response.Content = new StringContent(str, Encoding.UTF8, "application/json");
+                    int count = data.Customers.GetCustomersCampaign(Convert.ToInt64(campaign_id.Value)).Count();
+                    
+                    var str = new JavaScriptSerializer().Serialize(customers.ToList());
+                    str = string.Format("\"total\": \"{0}\", \"data\":{1}", count.ToString(), str);
+                    str = "{" + str + "}";
+                    response.Content = new StringContent(str, Encoding.UTF8, "application/json");
 
-                return response;
-            }
+                    return response;
+                }
+            } else { return response; }
+
         }
     }
 }
