@@ -196,7 +196,64 @@ var getCustomers = function winCustomers(campaign_id) {
             flex: 1,
             layout: 'fit',
             items: [
-                grid_customers(campaign_id)
+                {
+                    xtype: 'tabpanel',
+                    fullscreen: true,
+                    defaults: {
+                        styleHtmlContent: true
+                    },
+                    items: [
+                        {
+                            title: 'Список учасників',
+                            layout: 'fit',
+                            items: [
+                                grid_customers(campaign_id)
+                            ]
+                            //iconCls: 'home',
+                            
+                        },
+                        {
+                            title: 'На вигрузку',
+                            border: false,
+                            //iconCls: 'user',
+                            loadMask: true,
+                            //html: 'Contact Screen'
+                            layout: 'fit',
+                            items: [
+                                {
+                                    xtype: 'panel',
+                                    id: 'participant_list_conteiner',
+                                    loadMask: true,
+                                    layout: 'fit'                                    
+                                }
+                            ]
+                        }
+                    ],
+                    listeners: {
+                        'tabchange': function (tabPanel, tab) {
+                            var url = 'pages/customers/participant_list.aspx?'
+                            url = url + 'campaign_id=' + campaign_id;
+
+                            Ext.getCmp('participant_list_conteiner').removeAll(true);
+
+                            dynamicPanel = new Ext.Component({
+                                xtype: 'box',
+                                layout: 'fit',
+                                showMask: true,
+                                loadMask: true,
+                                border: false,
+                                autoEl: {
+                                    tag: 'iframe',
+                                    src: url
+                                }
+                            });
+                            Ext.getCmp('participant_list_conteiner').add(dynamicPanel);
+
+                        }
+                    }
+                }
+
+                //grid_customers(campaign_id)
             ]
         }],
         buttons: [{

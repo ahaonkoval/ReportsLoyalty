@@ -149,6 +149,7 @@
     <Content Include="pages\basic_indicators.aspx" />
     <Content Include="pages\BirthDayChildrenUPL.aspx" />
     <Content Include="pages\BirthDayUPL.aspx" />
+    <Content Include="pages\customers\participant_list.aspx" />
     <Content Include="pages\extra_points\extra_point_indicators.aspx" />
     <Content Include="pages\personal_offers\daily_personal_offers.aspx" />
     <Content Include="pages\profile_participant\profile_participant.aspx" />
@@ -6388,6 +6389,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\a1.pubxml" />
     <None Include="Properties\PublishProfiles\loyalty_rep.pubxml" />
+    <None Include="Properties\PublishProfiles\reports.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -6464,6 +6466,13 @@
     </Compile>
     <Compile Include="pages\BirthDayUPL.aspx.designer.cs">
       <DependentUpon>BirthDayUPL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\customers\participant_list.aspx.cs">
+      <DependentUpon>participant_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\customers\participant_list.aspx.designer.cs">
+      <DependentUpon>participant_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\personal_offers\daily_personal_offers.aspx.cs">
       <DependentUpon>daily_personal_offers.aspx</DependentUpon>
@@ -6662,6 +6671,7 @@
     <Folder Include="Views\Dict\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="reports\customers\participant_list.rdlc" />
     <EmbeddedResource Include="reports\profile_participant\is_not_sms_sent.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators_diagrams.rdlc" />

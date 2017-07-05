@@ -2,6 +2,9 @@
 var campaigns_terms_model = Ext.define('campaigns_terms_model', {
     extend: 'Ext.data.Model',
     fields: [{
+        name: 'number',
+        type: 'int'
+    }, {
         name: 'campaigns_terms_id',
         type: 'int'
     }, {
@@ -51,10 +54,17 @@ var store_campaigns_terms = function (campaign_id) {
         },
         remoteSort: false,
         sorters: [{
-            property: 'campaigns_terms_id',
+            property: 'number',
             direction: 'ASC'
         }],
         pageSize: 50
+        //listeners: {
+        //    load: function () {
+        //        //this.grid.getSelectionModel().setSelected(0);//.selectFirstRow();
+        //        //this.grid.getSelectionModel().select(0);//.selectFirstRow();
+        //    },
+        //    scope: this
+        //}
     })
 };
 
@@ -62,14 +72,21 @@ var createColumns_terms = function (finish, start) {
 
     var columns = [
         {
+            dataIndex: 'number',
+            text: 'ID',
+            width: 35
+        },
+        {
             dataIndex: 'created',
             text: 'Створено',
             xtype: 'datecolumn',
-            width: 90
+            flex: 1
+            //width: 90
         }, {
             dataIndex: 'short_comment',            
             text: 'Короткий комментар',
-            flex: 1
+            //flex: 1
+            visible: false
         }
     ];
 
@@ -89,6 +106,10 @@ var grid_campaigns_terms = function (campaign_id) {
         columns: createColumns_terms(2),
         plugins: 'gridfilters',
         loadMask: true,
+        selModel: {
+            mode: 'SINGLE'
+        },
+        multiSelect: true,
         //features: this.filters,
         //dockedItems: [dctItm],
         dockedItems: [Ext.create('Ext.toolbar.Paging', {
@@ -110,10 +131,24 @@ var grid_campaigns_terms = function (campaign_id) {
         },
         listeners: {
             selectionchange: function (view, selections, options) {
-                //console.log(view, selections, options);
-                var record = selections[0].getData();
-                var cmp = Ext.getCmp('current_campaign_terms_details').setValue(record.description);
+                if (selections.length > 0) {
+                    var record = selections[0].getData();
+                    Ext.getCmp('current_campaign_terms_details').setHtml(record.description);
+                    Ext.getCmp('current_campaign_terms_short').setHtml(record.short_comment);
+                } else {
+                    Ext.getCmp('current_campaign_terms_details').setHtml('');
+                    Ext.getCmp('current_campaign_terms_short').setHtml('');
+                }
 
+            },
+            render: function (component) {
+                if (this.store.isLoading() || this.store.getCount() == 0) {
+                    this.store.on('load', function () {
+                        this.getSelectionModel().select(0);
+                    }, this, { single: true });
+                } else {
+                    this.getSelectionModel().select(0);
+                }
             }
         }
     })
@@ -124,7 +159,7 @@ var get_campaigns_terms = function winCustomers(campaign_id) {
         //id: 'win_customers',
         title: 'Умови проходження кампанії',
         width: 1000,
-        height: 800,
+        height: 700,
         modal: true,
         closable: true,
         layout: {
@@ -145,31 +180,42 @@ var get_campaigns_terms = function winCustomers(campaign_id) {
                 align: 'stretch'
             },
             items: [{
+                xtype: 'panel',
+                border: true,
+                width: 400,
+                layout: 'fit',
+                padding: 5,
+                items: [
+                    grid_campaigns_terms(campaign_id)]
+            }, {
+                xtype: 'panel',
+                border: false,
+                flex: 1,
+                layout: {
+                    type: 'vbox',
+                    pack: 'start',
+                    align: 'stretch'
+                },
+                padding: 5,
+                items: [{
                     xtype: 'panel',
-                    border: true,
-                    width: 400,
-                    layout: 'fit',
-                    padding: 5,
-                    items:[ grid_campaigns_terms(campaign_id) ]
-                }, {
-                    xtype: 'panel',
-                    border: false,
-                    flex: 1,
-                    layout: 'fit',
-                    padding: 5,
-                    items: [
-                         {
-                            id: 'current_campaign_terms_details',
-                            xtype: 'textareafield',
-                            //fieldLabel: 'Детальний опис:',
-                            grow: true,
-                            name: 'terms',
-                            anchor: '100%',
-                            readOnly: true
-                         }
-                    ]
-                }
-                
+                    autoScroll: true,
+                    title: 'Короткий коментар: ',
+                    id: 'current_campaign_terms_short',
+                    height: 100
+                },
+                {
+                    id: 'current_campaign_terms_details',
+                    xtype: 'panel',//'textareafield',
+                    title: 'Детальний опис:',
+                    //grow: true,
+                    //name: 'terms',
+                    anchor: '100%',
+                    readOnly: true,
+                    flex: 1
+                }]
+            }
+
             ]
         }],
         buttons: [{
@@ -190,8 +236,13 @@ var get_campaigns_terms = function winCustomers(campaign_id) {
                 }
             }
         }]
-    })
+    });
+
     win_campaigns_terms.show();
+
+    Ext.getCmp('current_campaign_terms_details').setHtml('');
+    Ext.getCmp('current_campaign_terms_short').setHtml('');
+   
 };
 
 var get_win_add_terms = function (campaign_id) {
@@ -256,8 +307,8 @@ var get_win_add_terms = function (campaign_id) {
                         jsonData: term,
                         headers: { 'Content-Type': 'application/json; charset=utf-8' },
                         success: function (a) {
-                            grid_campaigns_terms.getStore().load();
-                            //Ext.getCmp('grid_campaign_terms').getStore().load();
+                            //grid_campaigns_terms.getStore().load();
+                            Ext.getCmp('grid_campaign_terms').getStore().load();
                             Ext.getCmp('campaign_terms_short').setValue('');
                             Ext.getCmp('campaign_terms_details').setValue('');
                             win_add_terms.close();
