@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using EtData;
+using System.Text.RegularExpressions;
 
 namespace ReportsLoyalty.pages.personal_offers
 {
@@ -20,12 +21,12 @@ namespace ReportsLoyalty.pages.personal_offers
             var ctrl = Request.QueryString["ctrl"].ToString();
 
             DateTime dt;
-            if (date_st == "null")
-            {
+            if (date_st == "null") {
                 dt = DateTime.Now.AddDays(-1);
             }
-            else
-            {
+            else {
+                Regex regex = new Regex(@"‎+");
+                date_st = regex.Replace(date_st, "");
                 dt = Convert.ToDateTime(date_st);
             }
 

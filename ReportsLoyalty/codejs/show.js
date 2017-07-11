@@ -178,11 +178,11 @@ var showPersonalOffers = function () {
                         height: 35,
                         items: [{
                                 xtype: 'label',
-                                text: 'Список акцій'
+                                text: 'Акції'
                             }, {
                                 id: 'cmbCampaigns_personal_offers',
                                 xtype: 'combobox',
-                                width: 250,
+                                width: 420,
                                 store: dict.getStoreCampaigns(2),//st_campaign_extra_points,
                                 queryMode: 'local',
                                 displayField: 'name',
@@ -198,7 +198,7 @@ var showPersonalOffers = function () {
                                 xtype: 'datefield',
                                 format: "d/m/Y",
                                 minDate: new Date(),
-                                width: 110,
+                                width: 100,
                                 listeners: {
                                     scope: this,
                                     expand: function (field, eOpts) {
@@ -221,7 +221,7 @@ var showPersonalOffers = function () {
                             }, {
                                 id: 'cmbMarkets_personal_offers',
                                 xtype: 'combobox',
-                                width: 250,
+                                width: 200,
                                 store: dict.getStoreMarkets(),//st_dict_markets,
                                 queryMode: 'local',
                                 displayField: 'market_name',
@@ -256,6 +256,7 @@ var showPersonalOffers = function () {
                                         url = url + '&date_st=' + date_st
                                     } else {
                                         date_st = date_st.toLocaleDateString();
+                                        date_st = date_st.replace("[\\x00-\\x1F]", "");
                                         url = url + '&date_st=' + date_st
                                     }
 
