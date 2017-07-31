@@ -149,6 +149,7 @@
     <Content Include="pages\basic_indicators.aspx" />
     <Content Include="pages\BirthDayChildrenUPL.aspx" />
     <Content Include="pages\BirthDayUPL.aspx" />
+    <Content Include="pages\CountersDocsAndSell.aspx" />
     <Content Include="pages\customers\participant_list.aspx" />
     <Content Include="pages\extra_points\extra_point_indicators.aspx" />
     <Content Include="pages\personal_offers\daily_personal_offers.aspx" />
@@ -6467,6 +6468,13 @@
     <Compile Include="pages\BirthDayUPL.aspx.designer.cs">
       <DependentUpon>BirthDayUPL.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\CountersDocsAndSell.aspx.cs">
+      <DependentUpon>CountersDocsAndSell.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\CountersDocsAndSell.aspx.designer.cs">
+      <DependentUpon>CountersDocsAndSell.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\customers\participant_list.aspx.cs">
       <DependentUpon>participant_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6671,6 +6679,7 @@
     <Folder Include="Views\Dict\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="reports\CountersDocsAndSell.rdlc" />
     <EmbeddedResource Include="reports\customers\participant_list.rdlc" />
     <EmbeddedResource Include="reports\profile_participant\is_not_sms_sent.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators.rdlc" />

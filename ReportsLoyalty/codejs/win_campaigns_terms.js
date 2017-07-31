@@ -133,8 +133,11 @@ var grid_campaigns_terms = function (campaign_id) {
             selectionchange: function (view, selections, options) {
                 if (selections.length > 0) {
                     var record = selections[0].getData();
-                    Ext.getCmp('current_campaign_terms_details').setHtml(record.description);
-                    Ext.getCmp('current_campaign_terms_short').setHtml(record.short_comment);
+                    Ext.getCmp('current_campaign_terms_details').setHtml(
+                        '<textarea class="boxsizingBorder">' + record.description + '</textarea>');
+                    Ext.getCmp('current_campaign_terms_short').setHtml(
+                        '<textarea rows="4" cols="50">' + record.short_comment + '</textarea>'
+                        );
                 } else {
                     Ext.getCmp('current_campaign_terms_details').setHtml('');
                     Ext.getCmp('current_campaign_terms_short').setHtml('');
@@ -199,7 +202,7 @@ var get_campaigns_terms = function winCustomers(campaign_id) {
                 padding: 5,
                 items: [{
                     xtype: 'panel',
-                    autoScroll: true,
+                    autoScroll: false,
                     title: 'Короткий коментар: ',
                     id: 'current_campaign_terms_short',
                     height: 100
@@ -212,6 +215,7 @@ var get_campaigns_terms = function winCustomers(campaign_id) {
                     //name: 'terms',
                     anchor: '100%',
                     readOnly: true,
+                    autoScroll:false,
                     flex: 1
                 }]
             }

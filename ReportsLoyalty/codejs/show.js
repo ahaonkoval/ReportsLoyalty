@@ -1344,3 +1344,125 @@ var showProgramIndicators = function () {
 
     center.setActiveTab(tab);
 }
+/* ------------------------------------------------------------------------------------------------------*/
+var showCountersDocsAndSell = function () {
+    var center = Ext.getCmp('pnlCenter');
+
+    var p_personal_offers = Ext.getCmp('p_counters_docs_and_sell');
+    if (p_personal_offers != null) return;
+
+    tab = center.add({
+        id: 'p_counters_docs_and_sell',
+        title: 'Прохідність',
+        extend: 'Ext.panel.Panel',
+        closable: true,
+        layout: 'fit',
+        items: {
+            layout: {
+                type: 'vbox',
+                align: 'stretch',
+                pack: 'start'
+            },
+            items: [{
+                xtype: 'panel',
+                height: 36,
+                items: {
+                    xtype: 'toolbar',
+                    height: 35,
+                    items: [{
+                        xtype: 'label',
+                        text: 'Дата початку:'
+                    }, {
+                        id: 'dtDST_start_counters_docs',
+                        xtype: 'datefield',
+                        format: "d/m/Y",
+                        minDate: new Date(),
+                        value: "23/07/2016",
+                        width: 110
+                    }, {
+                        xtype: 'label',
+                        text: 'Дата кінця:'
+                    }, {
+                        id: 'dtDST_end_counters_docs',
+                        xtype: 'datefield',
+                        format: "d/m/Y",
+                        //minDate: new Date(),
+                        value: new Date(),
+                        width: 110
+                    }, {
+                        xtype: 'tbseparator'
+                    }, {
+                        xtype: 'label',
+                        text: 'Магазин:'
+                    }, {
+                        id: 'cmb_markets_counters_docs',
+                        xtype: 'combobox',
+                        width: 250,
+                        store: dict.getStoreMarkets(),
+                        queryMode: 'local',
+                        displayField: 'market_name',
+                        valueField: 'id',
+                        renderTo: Ext.getBody()
+                    }, {
+                        xtype: 'button',
+                        width: 100,
+                        text: 'Показати',
+                        handler: function () {
+
+                            var url = 'pages/CountersDocsAndSell.aspx?'
+
+                            var dtStart = Ext.getCmp('dtDST_start_counters_docs');
+                            var date_start = dtStart.getValue();
+                            if (date_start == null) {
+                                url = url + '&date_start=' + date_start
+                            } else {
+                                date_start = date_start.toLocaleDateString();
+                                url = url + '&date_start=' + date_start
+                            }
+
+                            var dtEnd = Ext.getCmp('dtDST_end_counters_docs');
+                            var date_end = dtEnd.getValue();
+                            if (date_end == null) {
+                                url = url + '&date_end=' + date_end
+                            } else {
+                                date_end = date_end.toLocaleDateString();
+                                url = url + '&date_end=' + date_end
+                            }
+
+                            var cmbMarkets = Ext.getCmp('cmb_markets_counters_docs');
+                            var market_id = cmbMarkets.getValue();
+                            if (market_id == null) market_id = 0;
+                            url = url + '&market_id=' + market_id;
+
+                            var report_box = Ext.getCmp('rep_box_counters_docs');
+                            if (report_box != null) {
+                                Ext.getCmp('p_rep_conteiner_counters_docs').remove(report_box);
+                            }
+
+                            //url = url + '&height=' + (center.getWidth() - 30)
+
+                            dynamicPanel = new Ext.Component({
+                                id: 'rep_box_counters_docs',
+                                xtype: 'box',
+                                layout: 'fit',
+                                showMask: true,
+                                autoEl: {
+                                    tag: 'iframe',
+                                    src: url
+                                }
+                            });
+                            Ext.getCmp('p_rep_conteiner_counters_docs').add(dynamicPanel);
+                        }
+                    }]
+                }
+            }, {
+                xtype: 'panel',
+                layout: 'fit',
+                id: 'p_rep_conteiner_counters_docs',
+                flex: 1
+            }]
+        }
+    });
+
+    center.setActiveTab(tab);
+}

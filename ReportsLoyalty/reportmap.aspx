@@ -192,6 +192,12 @@
                                     name: 'name',
                                     html: '<a href="#" onclick="showProgramIndicators();" class="menu_is_run">Середні показники програми</a>',
                                     margin: '2 2 2 10'
+                                }, {
+                                    xtype: 'panel',
+                                    border: false,
+                                    name: 'name',
+                                    html: '<a href="#" onclick="showCountersDocsAndSell();" class="menu_is_run">Прохідність</a>',
+                                    margin: '2 2 2 10'
                                 }
                             ]
                         }]
