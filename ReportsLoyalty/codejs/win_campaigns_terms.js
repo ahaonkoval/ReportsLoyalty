@@ -2,7 +2,7 @@
 var campaigns_terms_model = Ext.define('campaigns_terms_model', {
     extend: 'Ext.data.Model',
     fields: [{
-        name: 'number',
+        name: 'Rn',
         type: 'int'
     }, {
         name: 'campaigns_terms_id',
@@ -72,7 +72,7 @@ var createColumns_terms = function (finish, start) {
 
     var columns = [
         {
-            dataIndex: 'number',
+            dataIndex: 'Rn',
             text: 'ID',
             width: 35
         },
@@ -161,8 +161,8 @@ var get_campaigns_terms = function winCustomers(campaign_id) {
     win_campaigns_terms = Ext.create('Ext.Window', {
         //id: 'win_customers',
         title: 'Умови проходження кампанії',
-        width: 1000,
-        height: 700,
+        width: '90%',
+        height: '80%',
         modal: true,
         closable: true,
         layout: {

@@ -22,6 +22,7 @@ namespace EtData
         public string delivery_channel { get; set; }
         public Nullable<bool> control_group { get; set; }
         public Nullable<long> market_id { get; set; }
+        public string free { get; set; }
     
         public virtual campaigns_mk campaigns_mk { get; set; }
     }

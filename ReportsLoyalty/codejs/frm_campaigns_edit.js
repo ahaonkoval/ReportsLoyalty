@@ -300,8 +300,8 @@ var grid = Ext.create('Ext.grid.Panel', {
 var win_campaigns_show = function () {
     win_campaigns = Ext.create('Ext.Window', {
         title: 'Управління кампаниями',
-        width: 1000,
-        height: 800,
+        width: '90%',
+        height: '80%',
         modal: true,
         closable: true,
         //constrain: true,

@@ -59,8 +59,8 @@ namespace ReportsLoyalty.Controllers
                 //var campaign_id = queryparams.Where(w => w.Key == "campaign_id").FirstOrDefault();
 
                 var campaign_terms = data.Campaigns.GetCampaignsTerms(id).Where(
-                        w => w.campaigns_terms_id >= start && w.campaigns_terms_id <= (start + limit)
-                    ).OrderBy(o => o.campaigns_terms_id);
+                        w => w.Rn >= start && w.Rn <= (start + limit)
+                    ).OrderBy(o => o.Rn);
 
                 int campaigns_count = data.Campaigns.GetCampaignsTerms(id).Count();
 

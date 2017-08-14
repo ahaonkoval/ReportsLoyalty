@@ -178,8 +178,8 @@ var getCustomers = function winCustomers(campaign_id) {
     win = Ext.create('Ext.Window', {
         //id: 'win_customers',
         title: 'Учасники кампанії',
-        width: 1000,
-        height: 800,
+        width: '90%',
+        height: '80%',
         modal: true,
         closable: true,
         layout: {

@@ -19,5 +19,6 @@ namespace EtData
         public System.DateTime created { get; set; }
         public string short_comment { get; set; }
         public string description { get; set; }
+        public Nullable<int> Rn { get; set; }
     }
 }

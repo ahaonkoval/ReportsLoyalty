@@ -47,6 +47,7 @@
           <Property Name="delivery_channel" Type="nvarchar" MaxLength="50" />
           <Property Name="control_group" Type="bit" />
           <Property Name="market_id" Type="bigint" />
+          <Property Name="free" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="campaign_sub_groups">
           <Key>
@@ -93,6 +94,7 @@
           <Property Name="created" Type="datetime" Nullable="false" />
           <Property Name="short_comment" Type="nvarchar" MaxLength="800" />
           <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="Rn" Type="int" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "crm_wizard.dbo.dict_markets" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -104,6 +106,8 @@
           <Property Name="short_name" Type="nvarchar" MaxLength="50" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="market_name" Type="nvarchar" MaxLength="4000" StoreGeneratedPattern="Computed" />
+          <Property Name="start" Type="bit" />
+          <Property Name="date_start" Type="date" />
         </EntityType>
         <EntityType Name="markmo_types">
           <Key>
@@ -294,6 +298,9 @@
                 <Property Name="control_group" Type="varchar" MaxLength="3" />
                 <Property Name="delivery_channel" Type="nvarchar" MaxLength="50" />
                 <Property Name="market_name" Type="nvarchar" MaxLength="4000" />
+                <Property Name="free" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="crm_customer_id" Type="bigint" />
+                <Property Name="is_not_send" Type="bit" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -350,7 +357,9 @@
     [dict_markets].[id] AS [id], 
     [dict_markets].[short_name] AS [short_name], 
     [dict_markets].[name] AS [name], 
-    [dict_markets].[market_name] AS [market_name]
+    [dict_markets].[market_name] AS [market_name], 
+    [dict_markets].[start] AS [start], 
+    [dict_markets].[date_start] AS [date_start]
     FROM [dbo].[dict_markets] AS [dict_markets]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_campaigns_mk" EntityType="Self.v_campaigns_mk" store:Type="Views" store:Schema="calc">
@@ -483,7 +492,7 @@
           </AssociationSet>
           <EntitySet Name="campaigns_terms" EntityType="LoyaltyModel.campaigns_terms" />
           <FunctionImport Name="t_get_campaigns" IsComposable="true" ReturnType="Collection(LoyaltyModel.tf_campaigns)">
-            <Parameter Name="isRun" Mode="In" Type="Boolean" />
+          <Parameter Name="isRun" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="p_get_trade_with_extra_points_Result">
@@ -572,6 +581,7 @@
           <Property Name="control_group" Type="Boolean" />
           <Property Name="market_id" Type="Int64" />
           <NavigationProperty Name="campaigns_mk" Relationship="LoyaltyModel.FK_participant_campaign_campaigns_mk" FromRole="campaign_participant" ToRole="campaigns_mk" />
+          <Property Name="free" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="campaign_sub_groups">
           <Key>
@@ -656,6 +666,8 @@
           <Property Name="short_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="market_name" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="start" Type="Boolean" />
+          <Property Name="date_start" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="v_campaigns_mk">
           <Key>
@@ -802,6 +814,7 @@
           <Property Name="created" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="short_comment" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rn" Type="Int32" />
         </EntityType>
         <ComplexType Name="tf_campaigns">
           <Property Type="Int64" Name="id" Nullable="false" />
@@ -918,6 +931,7 @@
           <EntitySetMapping Name="campaign_participant">
             <EntityTypeMapping TypeName="LoyaltyModel.campaign_participant">
               <MappingFragment StoreEntitySet="campaign_participant">
+                <ScalarProperty Name="free" ColumnName="free" />
                 <ScalarProperty Name="market_id" ColumnName="market_id" />
                 <ScalarProperty Name="control_group" ColumnName="control_group" />
                 <ScalarProperty Name="delivery_channel" ColumnName="delivery_channel" />
@@ -1005,6 +1019,8 @@
           <EntitySetMapping Name="dict_markets">
             <EntityTypeMapping TypeName="LoyaltyModel.dict_markets">
               <MappingFragment StoreEntitySet="dict_markets">
+                <ScalarProperty Name="date_start" ColumnName="date_start" />
+                <ScalarProperty Name="start" ColumnName="start" />
                 <ScalarProperty Name="market_name" ColumnName="market_name" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="short_name" ColumnName="short_name" />
@@ -1079,6 +1095,7 @@
           <EntitySetMapping Name="campaigns_terms">
             <EntityTypeMapping TypeName="LoyaltyModel.campaigns_terms">
               <MappingFragment StoreEntitySet="campaigns_terms">
+                <ScalarProperty Name="Rn" ColumnName="Rn" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="short_comment" ColumnName="short_comment" />
                 <ScalarProperty Name="created" ColumnName="created" />

@@ -267,8 +267,19 @@ namespace EtData
         /// <returns></returns>
         public IEnumerable<campaigns_terms> GetCampaignsTerms(long id)
         {
+            var index = 1;
             List<campaigns_terms> t = Le.campaigns_terms.Where(w => w.campaign_id == id).ToList();
-            return t;
+            var lt = t.Select(x => new campaigns_terms
+            {
+                Rn = index++,                            
+                campaigns_terms_id = Convert.ToInt64(x.campaigns_terms_id),
+                campaign_id = Convert.ToInt64(x.campaign_id),
+                created = x.created,
+                description = x.description,
+                short_comment = x.short_comment
+
+            }).ToList();
+            return lt;
         }
 
         public void CreateTerm(Models.Term t)
