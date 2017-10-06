@@ -133,9 +133,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="pages\p_50points_reports.aspx" />
     <Content Include="scripts\campaigns_terms.js" />
     <Content Include="scripts\customers.js" />
     <Content Include="scripts\campaigns.js" />
+    <Content Include="scripts\pl_indicators.js" />
     <Content Include="scripts\upload_status.js" />
     <Content Include="scripts\campaign_details.js" />
     <Content Include="Content\bootstrap.css" />
@@ -149,14 +151,14 @@
     <Content Include="pages\BirthDayChildrenUPL.aspx" />
     <Content Include="pages\BirthDayUPL.aspx" />
     <Content Include="pages\CountersDocsAndSell.aspx" />
-    <Content Include="pages\customers\participant_list.aspx" />
-    <Content Include="pages\extra_points\extra_point_indicators.aspx" />
-    <Content Include="pages\personal_offers\daily_personal_offers.aspx" />
-    <Content Include="pages\profile_participant\profile_participant.aspx" />
-    <Content Include="pages\program_indicators\page_program_indicators.aspx" />
-    <Content Include="pages\upl_byday\upl_trade_byday.aspx" />
-    <Content Include="pages\upl_sum\upl_sum.aspx" />
-    <Content Include="pages\upl_visits\upl_visits.aspx" />
+    <Content Include="pages\participant_list.aspx" />
+    <Content Include="pages\extra_point_indicators.aspx" />
+    <Content Include="pages\daily_personal_offers.aspx" />
+    <Content Include="pages\profile_participant.aspx" />
+    <Content Include="pages\page_program_indicators.aspx" />
+    <Content Include="pages\upl_trade_byday.aspx" />
+    <Content Include="pages\upl_sum.aspx" />
+    <Content Include="pages\upl_visits.aspx" />
     <Content Include="reportmap.aspx" />
     <Content Include="scripts\jslib\ai.0.22.9-build00167.js" />
     <Content Include="scripts\jslib\ai.0.22.9-build00167.min.js" />
@@ -165,7 +167,7 @@
     <Content Include="scripts\buttons.js" />
     <Content Include="scripts\dict.js" />
     <Content Include="scripts\requests.js" />
-    <Content Include="scripts\show.js" />
+    <Content Include="scripts\markmo_indicators.js" />
     <Content Include="scripts\jslib\ext\classic\locale\locale-af-debug.js" />
     <Content Include="scripts\jslib\ext\classic\locale\locale-af.js" />
     <Content Include="scripts\jslib\ext\classic\locale\locale-bg-debug.js" />
@@ -6474,60 +6476,67 @@
     <Compile Include="pages\CountersDocsAndSell.aspx.designer.cs">
       <DependentUpon>CountersDocsAndSell.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\customers\participant_list.aspx.cs">
+    <Compile Include="pages\participant_list.aspx.cs">
       <DependentUpon>participant_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\customers\participant_list.aspx.designer.cs">
+    <Compile Include="pages\participant_list.aspx.designer.cs">
       <DependentUpon>participant_list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\personal_offers\daily_personal_offers.aspx.cs">
+    <Compile Include="pages\daily_personal_offers.aspx.cs">
       <DependentUpon>daily_personal_offers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\personal_offers\daily_personal_offers.aspx.designer.cs">
+    <Compile Include="pages\daily_personal_offers.aspx.designer.cs">
       <DependentUpon>daily_personal_offers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\extra_points\extra_point_indicators.aspx.cs">
+    <Compile Include="pages\extra_point_indicators.aspx.cs">
       <DependentUpon>extra_point_indicators.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\extra_points\extra_point_indicators.aspx.designer.cs">
+    <Compile Include="pages\extra_point_indicators.aspx.designer.cs">
       <DependentUpon>extra_point_indicators.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\profile_participant\profile_participant.aspx.cs">
+    <Compile Include="pages\profile_participant.aspx.cs">
       <DependentUpon>profile_participant.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\profile_participant\profile_participant.aspx.designer.cs">
+    <Compile Include="pages\profile_participant.aspx.designer.cs">
       <DependentUpon>profile_participant.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\program_indicators\page_program_indicators.aspx.cs">
+    <Compile Include="pages\page_program_indicators.aspx.cs">
       <DependentUpon>page_program_indicators.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\program_indicators\page_program_indicators.aspx.designer.cs">
+    <Compile Include="pages\page_program_indicators.aspx.designer.cs">
       <DependentUpon>page_program_indicators.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\upl_byday\upl_trade_byday.aspx.cs">
+    <Compile Include="pages\p_50points_reports.aspx.cs">
+      <DependentUpon>p_50points_reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\p_50points_reports.aspx.designer.cs">
+      <DependentUpon>p_50points_reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\upl_trade_byday.aspx.cs">
       <DependentUpon>upl_trade_byday.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\upl_byday\upl_trade_byday.aspx.designer.cs">
+    <Compile Include="pages\upl_trade_byday.aspx.designer.cs">
       <DependentUpon>upl_trade_byday.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\upl_sum\upl_sum.aspx.cs">
+    <Compile Include="pages\upl_sum.aspx.cs">
       <DependentUpon>upl_sum.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\upl_sum\upl_sum.aspx.designer.cs">
+    <Compile Include="pages\upl_sum.aspx.designer.cs">
       <DependentUpon>upl_sum.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\upl_visits\upl_visits.aspx.cs">
+    <Compile Include="pages\upl_visits.aspx.cs">
       <DependentUpon>upl_visits.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\upl_visits\upl_visits.aspx.designer.cs">
+    <Compile Include="pages\upl_visits.aspx.designer.cs">
       <DependentUpon>upl_visits.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

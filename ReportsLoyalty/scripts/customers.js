@@ -231,7 +231,7 @@ var getCustomers = function winCustomers(campaign_id) {
                     ],
                     listeners: {
                         'tabchange': function (tabPanel, tab) {
-                            var url = 'pages/customers/participant_list.aspx?'
+                            var url = 'pages/participant_list.aspx?'
                             url = url + 'campaign_id=' + campaign_id;
 
                             Ext.getCmp('participant_list_conteiner').removeAll(true);

@@ -8,7 +8,7 @@
     <title></title>
     <script type="text/javascript" src="scripts/jslib/ext/ext-all.js"></script>
     <script type="text/javascript" src="scripts/jslib/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="scripts/show.js"></script>
+    <script type="text/javascript" src="scripts/markmo_indicators.js"></script>
     <script type="text/javascript" src="scripts/dict.js"></script>
     <script type="text/javascript" src="scripts/requests.js"></script>
     <script type="text/javascript" src="scripts/campaigns.js"></script>
@@ -16,12 +16,13 @@
     <script type="text/javascript" src="scripts/campaigns_terms.js"></script>
     <script type="text/javascript" src="scripts/upload_status.js"></script>
     <script type="text/javascript" src="scripts/customers.js"></script>    
+    <script type="text/javascript" src="scripts/pl_indicators.js"></script>    
 
     <link rel="stylesheet" type="text/css" href="Content/report.css"/>
     <link rel="stylesheet" type="text/css" href="scripts/jslib/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
 </head>
 <body>
-
+    
     <script>
 
         var checker = setInterval(function () { checkauth() }, 5000);
@@ -125,7 +126,7 @@
                                 xtype: 'panel',
                                 border: false,
                                 name: 'name',
-                                html: '<a href="#" onclick="" class="menu_is_run">Результати акцій "50 і більше балів"</a>',
+                                html: '<a href="#" onclick="show50pointsReport();" class="menu_is_run">Результати акцій "50 і більше балів"</a>',
                                 margin: '2 2 2 10'
                             },
                             //{
