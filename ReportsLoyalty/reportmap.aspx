@@ -6,19 +6,19 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script type="text/javascript" src="jslib/ext/ext-all.js"></script>
-    <script type="text/javascript" src="jslib/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="codejs/show.js"></script>
-    <script type="text/javascript" src="codejs/dict.js"></script>
-    <script type="text/javascript" src="codejs/requests.js"></script>
-    <script type="text/javascript" src="codejs/frm_campaigns_edit.js"></script>
-    <script type="text/javascript" src="codejs/win_campaign_details.js"></script>
-    <script type="text/javascript" src="codejs/win_upload_status.js"></script>
-    <script type="text/javascript" src="codejs/win_customers.js"></script>
-    <script type="text/javascript" src="codejs/win_campaigns_terms.js"></script>
+    <script type="text/javascript" src="scripts/jslib/ext/ext-all.js"></script>
+    <script type="text/javascript" src="scripts/jslib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="scripts/show.js"></script>
+    <script type="text/javascript" src="scripts/dict.js"></script>
+    <script type="text/javascript" src="scripts/requests.js"></script>
+    <script type="text/javascript" src="scripts/campaigns.js"></script>
+    <script type="text/javascript" src="scripts/campaign_details.js"></script>
+    <script type="text/javascript" src="scripts/campaigns_terms.js"></script>
+    <script type="text/javascript" src="scripts/upload_status.js"></script>
+    <script type="text/javascript" src="scripts/customers.js"></script>    
 
     <link rel="stylesheet" type="text/css" href="Content/report.css"/>
-    <link rel="stylesheet" type="text/css" href="scripts/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
+    <link rel="stylesheet" type="text/css" href="scripts/jslib/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
 </head>
 <body>
 
@@ -121,13 +121,13 @@
                                 html: '<a href="#" onclick="showBirthDayUPL();" class="menu_is_run">МК До дня народження УПЛ</a>',
                                 margin: '2 2 2 10'
                             },
-                            //{
-                            //    xtype: 'panel',
-                            //    border: false,
-                            //    name: 'name',
-                            //    html: '<a href="#" onclick="" class="menu_is_not_run">МК "До дня народження УПЛ (по дням)"</a>',
-                            //    margin: '2 2 2 10'
-                            //},
+                            {
+                                xtype: 'panel',
+                                border: false,
+                                name: 'name',
+                                html: '<a href="#" onclick="" class="menu_is_run">Результати акцій "50 і більше балів"</a>',
+                                margin: '2 2 2 10'
+                            },
                             //{
                             //    xtype: 'panel',
                             //    border: false,

@@ -133,11 +133,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="scripts\win_campaigns_terms.js" />
-    <Content Include="scripts\win_customers.js" />
-    <Content Include="scripts\frm_campaigns_edit.js" />
-    <Content Include="scripts\win_upload_status.js" />
-    <Content Include="scripts\win_campaign_details.js" />
+    <Content Include="scripts\campaigns_terms.js" />
+    <Content Include="scripts\customers.js" />
+    <Content Include="scripts\campaigns.js" />
+    <Content Include="scripts\upload_status.js" />
+    <Content Include="scripts\campaign_details.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\report.css" />

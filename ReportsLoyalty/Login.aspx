@@ -6,11 +6,11 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script type="text/javascript" src="scripts/ext/ext-all.js"></script>
-    <script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="codejs/buttons.js"></script>
-    <script type="text/javascript" src="codejs/requests.js"></script>
-    <link rel="stylesheet" type="text/css" href="scripts/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
+    <script type="text/javascript" src="scripts/jslib/ext/ext-all.js"></script>
+    <script type="text/javascript" src="scripts/jslib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="scripts/buttons.js"></script>
+    <script type="text/javascript" src="scripts/requests.js"></script>
+    <link rel="stylesheet" type="text/css" href="scripts/jslib/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
     <%--<style type="text/css">
     #unlicensed
     {
