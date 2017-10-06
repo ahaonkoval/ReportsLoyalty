@@ -6,8 +6,8 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script type="text/javascript" src="scripts/ext/ext-all.js"></script>
-    <script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="jslib/ext/ext-all.js"></script>
+    <script type="text/javascript" src="jslib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="codejs/show.js"></script>
     <script type="text/javascript" src="codejs/dict.js"></script>
     <script type="text/javascript" src="codejs/requests.js"></script>

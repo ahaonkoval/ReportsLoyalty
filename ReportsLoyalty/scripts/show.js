@@ -1368,7 +1368,7 @@ var showCountersDocsAndSell = function () {
                 height: 36,
                 items: {
                     xtype: 'toolbar',
-                    height: 35,
+                    height: 36,
                     items: [{
                         xtype: 'label',
                         text: 'Дата початку:'
@@ -1396,8 +1396,12 @@ var showCountersDocsAndSell = function () {
                         text: 'Магазин:'
                     }, {
                         id: 'cmb_markets_counters_docs',
-                        xtype: 'combobox',
+                        //xtype: 'tagfield',//'combobox',
+                        xtype: 'tagfield',
+                        multiSelect: true,
+                        editabe:true,
                         width: 250,
+                        
                         store: dict.getStoreMarkets(),
                         queryMode: 'local',
                         displayField: 'market_name',

@@ -56,7 +56,7 @@ namespace ReportsLoyalty.Controllers
         {
             GetData gt = new GetData();
 
-            List<dict_markets> markets = gt.Dict.GetDictMarkets().ToList();
+            List<dict_markets> markets = gt.Dict.GetDictMarkets().Where(w => w.is_start == true).ToList();
             markets.Add(
                     new dict_markets
                     {

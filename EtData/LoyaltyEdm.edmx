@@ -106,7 +106,7 @@
           <Property Name="short_name" Type="nvarchar" MaxLength="50" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="market_name" Type="nvarchar" MaxLength="4000" StoreGeneratedPattern="Computed" />
-          <Property Name="start" Type="bit" />
+          <Property Name="is_start" Type="bit" />
           <Property Name="date_start" Type="date" />
         </EntityType>
         <EntityType Name="markmo_types">
@@ -290,15 +290,15 @@
               <RowType>
                 <Property Name="number" Type="bigint" />
                 <Property Name="name1" Type="nvarchar" MaxLength="50" />
-                <Property Name="name2" Type="varchar" MaxLength="50" />
-                <Property Name="name3" Type="varchar" MaxLength="50" />
-                <Property Name="gender" Type="varchar" MaxLength="3" Nullable="false" />
-                <Property Name="barcode" Type="varchar" MaxLength="13" Nullable="false" />
-                <Property Name="mobile_phone" Type="varchar" MaxLength="30" />
-                <Property Name="control_group" Type="varchar" MaxLength="3" />
+                <Property Name="name2" Type="nvarchar" MaxLength="50" />
+                <Property Name="name3" Type="nvarchar" MaxLength="50" />
+                <Property Name="gender" Type="nvarchar" MaxLength="10" />
+                <Property Name="barcode" Type="nvarchar" MaxLength="50" />
+                <Property Name="mobile_phone" Type="nvarchar" MaxLength="50" />
+                <Property Name="control_group" Type="nvarchar" MaxLength="50" />
                 <Property Name="delivery_channel" Type="nvarchar" MaxLength="50" />
-                <Property Name="market_name" Type="nvarchar" MaxLength="4000" />
-                <Property Name="free" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="market_name" Type="nvarchar" MaxLength="50" />
+                <Property Name="free" Type="nvarchar" MaxLength="50" />
                 <Property Name="crm_customer_id" Type="bigint" />
                 <Property Name="is_not_send" Type="bit" />
               </RowType>
@@ -358,7 +358,7 @@
     [dict_markets].[short_name] AS [short_name], 
     [dict_markets].[name] AS [name], 
     [dict_markets].[market_name] AS [market_name], 
-    [dict_markets].[start] AS [start], 
+    [dict_markets].[is_start] AS [is_start], 
     [dict_markets].[date_start] AS [date_start]
     FROM [dbo].[dict_markets] AS [dict_markets]</DefiningQuery>
           </EntitySet>
@@ -466,7 +466,6 @@
           <EntitySet Name="campaigns_mk" EntityType="LoyaltyModel.campaigns_mk" />
           <EntitySet Name="markmo_types" EntityType="LoyaltyModel.markmo_types" />
           <EntitySet Name="markmos1" EntityType="LoyaltyModel.markmos1" />
-          <EntitySet Name="dict_markets" EntityType="LoyaltyModel.dict_markets" />
           <EntitySet Name="v_campaigns_mk" EntityType="LoyaltyModel.v_campaigns_mk" />
           <EntitySet Name="v_campaigns_mk_run" EntityType="LoyaltyModel.v_campaigns_mk_run" />
           <EntitySet Name="v_fgroups" EntityType="LoyaltyModel.v_fgroups" />
@@ -494,6 +493,7 @@
           <FunctionImport Name="t_get_campaigns" IsComposable="true" ReturnType="Collection(LoyaltyModel.tf_campaigns)">
           <Parameter Name="isRun" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <EntitySet Name="dict_markets" EntityType="LoyaltyModel.dict_markets" />
         </EntityContainer>
         <ComplexType Name="p_get_trade_with_extra_points_Result">
           <Property Type="String" Name="articul" Nullable="true" MaxLength="255" />
@@ -657,17 +657,6 @@
           <Property Name="web_short_description" Type="String" MaxLength="220" FixedLength="false" Unicode="false" />
           <Property Name="distinct_cnt" Type="Int32" />
           <Property Name="max_amount" Type="Decimal" Precision="14" Scale="2" />
-        </EntityType>
-        <EntityType Name="dict_markets">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="short_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="market_name" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="start" Type="Boolean" />
-          <Property Name="date_start" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="v_campaigns_mk">
           <Key>
@@ -837,6 +826,17 @@
           <Property Type="Int32" Name="customers_qty_control" Nullable="true" />
           <Property Type="DateTime" Name="max_term_date" Nullable="true" Precision="23" />
         </ComplexType>
+        <EntityType Name="dict_markets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="short_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="market_name" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="is_start" Type="Boolean" />
+          <Property Name="date_start" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1016,18 +1016,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="dict_markets">
-            <EntityTypeMapping TypeName="LoyaltyModel.dict_markets">
-              <MappingFragment StoreEntitySet="dict_markets">
-                <ScalarProperty Name="date_start" ColumnName="date_start" />
-                <ScalarProperty Name="start" ColumnName="start" />
-                <ScalarProperty Name="market_name" ColumnName="market_name" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="short_name" ColumnName="short_name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="v_campaigns_mk">
             <EntityTypeMapping TypeName="LoyaltyModel.v_campaigns_mk">
               <MappingFragment StoreEntitySet="v_campaigns_mk">
@@ -1129,6 +1117,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="dict_markets">
+            <EntityTypeMapping TypeName="LoyaltyModel.dict_markets">
+              <MappingFragment StoreEntitySet="dict_markets">
+                <ScalarProperty Name="date_start" ColumnName="date_start" />
+                <ScalarProperty Name="is_start" ColumnName="is_start" />
+                <ScalarProperty Name="market_name" ColumnName="market_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="short_name" ColumnName="short_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

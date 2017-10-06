@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="LoyaltyModel.campaigns_mk" Width="1.5" PointX="3" PointY="5.25" />
         <EntityTypeShape EntityType="LoyaltyModel.markmo_types" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="LoyaltyModel.markmos1" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="LoyaltyModel.dict_markets" Width="1.5" PointX="7.75" PointY="5.75" />
         <EntityTypeShape EntityType="LoyaltyModel.v_campaigns_mk" Width="1.5" PointX="7.75" PointY="8.75" />
         <EntityTypeShape EntityType="LoyaltyModel.v_campaigns_mk_run" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="LoyaltyModel.v_fgroups" Width="1.5" PointX="9.75" PointY="5.75" />
@@ -23,6 +22,7 @@
         <AssociationConnector Association="LoyaltyModel.FK_campaign_groups_sub_campaigns_mk" />
         <AssociationConnector Association="LoyaltyModel.FK_campaigns_mk_campaign_types" />
         <EntityTypeShape EntityType="LoyaltyModel.campaigns_terms" Width="2" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="LoyaltyModel.dict_markets" Width="1.5" PointX="10.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

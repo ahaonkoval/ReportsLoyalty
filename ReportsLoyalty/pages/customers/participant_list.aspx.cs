@@ -22,7 +22,7 @@ namespace ReportsLoyalty.pages.customers
 	                a.name3,
 	                a.gender,
 	                a.barcode,
-	                a.mobile_phone,
+	                cast(replace(a.mobile_phone, '+','') as bigint) mobile_phone,
 	                a.control_group,
 	                a.delivery_channel,
 	                a.market_name,

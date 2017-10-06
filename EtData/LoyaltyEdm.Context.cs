@@ -35,11 +35,11 @@ namespace EtData
         public virtual DbSet<campaigns_mk> campaigns_mk { get; set; }
         public virtual DbSet<markmo_types> markmo_types { get; set; }
         public virtual DbSet<markmos1> markmos1 { get; set; }
-        public virtual DbSet<dict_markets> dict_markets { get; set; }
         public virtual DbSet<v_campaigns_mk> v_campaigns_mk { get; set; }
         public virtual DbSet<v_campaigns_mk_run> v_campaigns_mk_run { get; set; }
         public virtual DbSet<v_fgroups> v_fgroups { get; set; }
         public virtual DbSet<campaigns_terms> campaigns_terms { get; set; }
+        public virtual DbSet<dict_markets> dict_markets { get; set; }
     
         public virtual ObjectResult<p_get_trade_with_extra_points_Result> p_get_trade_with_extra_points(Nullable<int> campaign_id, Nullable<System.DateTime> date, Nullable<int> market_id)
         {

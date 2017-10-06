@@ -92,6 +92,7 @@ function WinCampaignDetails() {
              group_id_2: {
                  displayName: 'ГРУПА(групи)',
                  editor: {
+                     //xtype: 'tagfield',
                      xtype: 'tagfield',
                      store: this.StGroups,
                      //allowBlank: false,
@@ -253,7 +254,7 @@ function WinCampaignDetails() {
     /* --------------------------------------------------------------------------------------------------------------------------------------------------- */   
     this.win = Ext.create('Ext.Window', {
         id: 'win_campaign_details',
-        title: 'Настройки кампании',
+        title: 'Настройки кампанії',
         width: 700,
         height: 410,
         modal: true,
@@ -321,6 +322,9 @@ function WinCampaignDetails() {
                                             //----<<<<------------------------------------------------
                                             var store_campaign_mk = Ext.getStore('store_campaign_mk');
                                             store_campaign_mk.add({
+
+                                                /* --Б--*/
+                                                id: a.responseText,
                                                 is_run: data.get('is_run').data.value,
                                                 type_id: data.get('type_id').data.value,
                                                 name: data.get('name').data.value,

@@ -9,7 +9,7 @@
               <Width>3.54848cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.33749cm</Width>
+              <Width>0.8898cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.16361cm</Width>
@@ -2157,7 +2157,7 @@
                             <TextRun>
                               <Value>=Fields!city.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2199,7 +2199,8 @@
                             <TextRun>
                               <Value>=Fields!is_channel.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2242,7 +2243,8 @@
                             <TextRun>
                               <Value>=Fields!doc_qty_art.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2286,7 +2288,8 @@
                             <TextRun>
                               <Value>=Fields!customers_qty_art.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2324,7 +2327,8 @@
                             <TextRun>
                               <Value>=Fields!sm_discount.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2363,7 +2367,8 @@
                             <TextRun>
                               <Value>=Fields!avg_art.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2402,7 +2407,8 @@
                             <TextRun>
                               <Value>=Fields!sm_art.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2446,7 +2452,8 @@
                             <TextRun>
                               <Value>=Fields!sm_art.Value-Fields!sm_buy_art.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2486,7 +2493,8 @@
                             <TextRun>
                               <Value>=Fields!margin_art.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2526,7 +2534,8 @@
                             <TextRun>
                               <Value>=Fields!doc_qty_group.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2565,7 +2574,8 @@
                             <TextRun>
                               <Value>=Fields!customers_qty_group.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2603,7 +2613,8 @@
                             <TextRun>
                               <Value>=Fields!avg_group.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2642,7 +2653,8 @@
                             <TextRun>
                               <Value>=Fields!sm_group.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2686,7 +2698,8 @@
                             <TextRun>
                               <Value>=Fields!sm_group.Value-Fields!sm_buy_group.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2726,7 +2739,8 @@
                             <TextRun>
                               <Value>=Fields!margin_group.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2766,7 +2780,8 @@
                             <TextRun>
                               <Value>=Fields!doc_qty_depart.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2805,7 +2820,8 @@
                             <TextRun>
                               <Value>=Fields!customers_qty_depart.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2843,7 +2859,8 @@
                             <TextRun>
                               <Value>=Fields!avg_depart.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2882,7 +2899,8 @@
                             <TextRun>
                               <Value>=Fields!sm_depart.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2926,7 +2944,8 @@
                             <TextRun>
                               <Value>=Fields!sm_depart.Value-Fields!sm_buy_depart.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -2966,7 +2985,8 @@
                             <TextRun>
                               <Value>=Fields!margin_depart.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -3006,7 +3026,8 @@
                             <TextRun>
                               <Value>=Fields!doc_qty_market.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -3045,7 +3066,8 @@
                             <TextRun>
                               <Value>=Fields!customers_qty_market.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -3083,7 +3105,8 @@
                             <TextRun>
                               <Value>=Fields!avg_market.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -3122,7 +3145,8 @@
                             <TextRun>
                               <Value>=Fields!sm_market.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -3166,7 +3190,8 @@
                             <TextRun>
                               <Value>=Fields!sm_market.Value-Fields!sm_buy_market.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -3206,7 +3231,8 @@
                             <TextRun>
                               <Value>=Fields!margin_market.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -3246,7 +3272,8 @@
                             <TextRun>
                               <Value>=Fields!sm_discount_all.Value</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -3397,7 +3424,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!doc_qty_art.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3431,7 +3459,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!customers_qty_art.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3465,7 +3494,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!sm_discount.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3499,7 +3529,8 @@
                             <TextRun>
                               <Value>=Avg(Fields!avg_art.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3533,7 +3564,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!sm_art.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3567,7 +3599,8 @@
                             <TextRun>
                               <Value>=SUM(Fields!sm_art.Value-Fields!sm_buy_art.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3601,7 +3634,8 @@
                             <TextRun>
                               <Value>=AVG(Fields!margin_art.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3635,7 +3669,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!doc_qty_group.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3669,7 +3704,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!customers_qty_group.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3703,7 +3739,8 @@
                             <TextRun>
                               <Value>=avg(Fields!avg_group.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3737,7 +3774,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!sm_group.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3771,7 +3809,8 @@
                             <TextRun>
                               <Value>=SUM(Fields!sm_group.Value-Fields!sm_buy_group.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3805,7 +3844,8 @@
                             <TextRun>
                               <Value>=AVG(Fields!margin_group.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3839,7 +3879,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!doc_qty_depart.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3873,7 +3914,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!customers_qty_depart.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3907,7 +3949,8 @@
                             <TextRun>
                               <Value>=avg(Fields!avg_depart.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3941,7 +3984,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!sm_depart.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -3975,7 +4019,8 @@
                             <TextRun>
                               <Value>=SUM(Fields!sm_depart.Value-Fields!sm_buy_depart.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4009,7 +4054,8 @@
                             <TextRun>
                               <Value>=AVG(Fields!margin_depart.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4043,7 +4089,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!doc_qty_market.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4077,7 +4124,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!customers_qty_market.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4111,7 +4159,8 @@
                             <TextRun>
                               <Value>=avg(Fields!avg_market.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4145,7 +4194,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!sm_market.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4179,7 +4229,8 @@
                             <TextRun>
                               <Value>=SUM(Fields!sm_market.Value-Fields!sm_buy_market.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4213,7 +4264,8 @@
                             <TextRun>
                               <Value>=AVG(Fields!margin_market.Value)</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4247,7 +4299,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!sm_discount_all.Value, "ds_pers_expected_effect")</Value>
                               <Style>
-                                <FontFamily>Calibri Light</FontFamily>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -4328,11 +4381,12 @@
         <Top>0.82585cm</Top>
         <Left>0.15875cm</Left>
         <Height>3.22021cm</Height>
-        <Width>36.79296cm</Width>
+        <Width>36.34527cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
+          <FontFamily>Tahoma</FontFamily>
         </Style>
       </Tablix>
       <Subreport Name="sb_days">
@@ -4346,6 +4400,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <FontFamily>Tahoma</FontFamily>
         </Style>
       </Subreport>
       <Subreport Name="sb_days2">
@@ -4359,6 +4414,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <FontFamily>Tahoma</FontFamily>
         </Style>
       </Subreport>
       <Subreport Name="Subreport3">
@@ -4377,6 +4433,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <FontFamily>Tahoma</FontFamily>
         </Style>
       </Subreport>
       <Subreport Name="Subreport4">
@@ -4395,6 +4452,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <FontFamily>Tahoma</FontFamily>
         </Style>
       </Subreport>
       <Textbox Name="Textbox2">
