@@ -52,3 +52,9 @@ textarea
 }
 
 
+.x-grid-row .custom-column { 
+    //background-color: #ecf; 
+    //color: #090; 
+    //font-weight: bold; 
+    font-size: 11px;
+}

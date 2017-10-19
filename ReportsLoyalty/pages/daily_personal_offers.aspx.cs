@@ -35,10 +35,10 @@ namespace ReportsLoyalty.pages.personal_offers
             this.sds_expected_effect.SelectParameters.Clear();
             this.sds_expected_effect.SelectParameters.Add("campaign_id", campaign_id);
             this.sds_expected_effect.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-            //this.sds_expected_effect.SelectParameters.Add("market_id", market_id);
+            this.sds_expected_effect.SelectParameters.Add("market_id", market_id);
             this.sds_expected_effect.SelectParameters.Add("control_group", ctrl);
 
-            this.sds_expected_effect.SelectParameters.Add("market_lst", "13");
+            //this.sds_expected_effect.SelectParameters.Add("market_lst", "13");
 
             this.sds_days_allocated.SelectCommand = "rep.p_get_daily_pers_map_allocation";
             this.sds_days_allocated.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;

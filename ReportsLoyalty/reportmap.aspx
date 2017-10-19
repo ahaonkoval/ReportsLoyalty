@@ -16,7 +16,8 @@
     <script type="text/javascript" src="scripts/campaigns_terms.js"></script>
     <script type="text/javascript" src="scripts/upload_status.js"></script>
     <script type="text/javascript" src="scripts/customers.js"></script>    
-    <script type="text/javascript" src="scripts/pl_indicators.js"></script>    
+    <script type="text/javascript" src="scripts/pl_indicators.js"></script>
+    <script type="text/javascript" src="scripts/p50points_reports.js"></script>
 
     <link rel="stylesheet" type="text/css" href="Content/report.css"/>
     <link rel="stylesheet" type="text/css" href="scripts/jslib/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
@@ -40,6 +41,21 @@
         }
 
         Ext.onReady(function () {
+
+            Ext.create('Ext.window.Window', {
+                title: 'Hello',
+                id: 'win_show_pause',
+                modal: true,
+                height: 200,
+                width: 400,
+                layout: 'fit',
+                items: {  // Let's put an empty grid in just to illustrate fit layout
+                    xtype: 'grid',
+                    border: false,
+                    columns: [{ header: 'World' }],                 // One header just for show. There's no data,
+                    store: Ext.create('Ext.data.ArrayStore', {}) // A dummy empty data store
+                }
+            });
 
             var viewport = Ext.create('Ext.container.Viewport', {
 

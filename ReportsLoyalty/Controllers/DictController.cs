@@ -38,6 +38,20 @@ namespace ReportsLoyalty.Controllers
         public void Delete(int id)
         {
         }
+
+        //public IEnumerable<campaigns_mk> GetCampaigns50points()
+        //{
+        //    using (GetData gt = new GetData())
+        //    {
+        //        campaign_types t = new campaign_types
+        //        {
+        //            id = 6,
+        //            name = "50 points"
+        //        };
+                
+        //        return gt.Campaigns.GetCampaignsByType(t);
+        //    }
+        //}
         /// <summary>
         /// 
         /// </summary>
@@ -164,4 +178,16 @@ namespace ReportsLoyalty.Controllers
             }
         }
     }
+
+    //public class Rto
+    //{
+    //    public IEnumerable<campaigns_mk> data { get; set; }
+
+    //    public int total { get; set; }
+
+    //    public Rto()
+    //    {
+
+    //    }
+    //}
 }

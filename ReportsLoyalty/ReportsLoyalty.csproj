@@ -133,10 +133,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pages\p_50points_reports.aspx" />
+    <Content Include="img\Settings_16x16.png" />
+    <Content Include="pages\p50points_reports.aspx" />
     <Content Include="scripts\campaigns_terms.js" />
     <Content Include="scripts\customers.js" />
     <Content Include="scripts\campaigns.js" />
+    <Content Include="scripts\p50points_reports.js" />
     <Content Include="scripts\pl_indicators.js" />
     <Content Include="scripts\upload_status.js" />
     <Content Include="scripts\campaign_details.js" />
@@ -6423,6 +6425,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DictCampaignController.cs" />
     <Compile Include="Controllers\DictController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TermController.cs" />
@@ -6511,12 +6514,12 @@
     <Compile Include="pages\page_program_indicators.aspx.designer.cs">
       <DependentUpon>page_program_indicators.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\p_50points_reports.aspx.cs">
-      <DependentUpon>p_50points_reports.aspx</DependentUpon>
+    <Compile Include="pages\p50points_reports.aspx.cs">
+      <DependentUpon>p50points_reports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\p_50points_reports.aspx.designer.cs">
-      <DependentUpon>p_50points_reports.aspx</DependentUpon>
+    <Compile Include="pages\p50points_reports.aspx.designer.cs">
+      <DependentUpon>p50points_reports.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\upl_trade_byday.aspx.cs">
       <DependentUpon>upl_trade_byday.aspx</DependentUpon>
@@ -6708,6 +6711,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reports\profile_participant\profile_participant.rdlc" />
     <EmbeddedResource Include="reports\program_indicators\rep_program_indicators.rdlc" />
+    <EmbeddedResource Include="reports\test.rdlc" />
     <EmbeddedResource Include="reports\upl_byday\upl_trade_byday.rdlc" />
     <EmbeddedResource Include="reports\upl_sum\upl_sum.rdlc" />
     <EmbeddedResource Include="reports\upl_visits\upl_visit.rdlc" />

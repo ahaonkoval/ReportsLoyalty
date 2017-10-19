@@ -80,7 +80,7 @@ var showBasicIndicators = function () {
                         text: 'Показати',
                         handler: function () {
 
-                            var url = '/pages/basic_indicators.aspx?'
+                            var url = 'pages/basic_indicators.aspx?'
 
                             var dtStart = Ext.getCmp('dtDST_start_basic_indicators');
                             var date_start = dtStart.getValue();

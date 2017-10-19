@@ -52,7 +52,7 @@ namespace ReportsLoyalty {
         
         private t_get_campaign_customersDataTable tablet_get_campaign_customers;
         
-        private t_get_50points_reportDataTable tablet_get_50points_report;
+        private p_get_50points_report_dataDataTable tablep_get_50points_report_data;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -124,8 +124,8 @@ namespace ReportsLoyalty {
                 if ((ds.Tables["t_get_campaign_customers"] != null)) {
                     base.Tables.Add(new t_get_campaign_customersDataTable(ds.Tables["t_get_campaign_customers"]));
                 }
-                if ((ds.Tables["t_get_50points_report"] != null)) {
-                    base.Tables.Add(new t_get_50points_reportDataTable(ds.Tables["t_get_50points_report"]));
+                if ((ds.Tables["p_get_50points_report_data"] != null)) {
+                    base.Tables.Add(new p_get_50points_report_dataDataTable(ds.Tables["p_get_50points_report_data"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -289,9 +289,9 @@ namespace ReportsLoyalty {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public t_get_50points_reportDataTable t_get_50points_report {
+        public p_get_50points_report_dataDataTable p_get_50points_report_data {
             get {
-                return this.tablet_get_50points_report;
+                return this.tablep_get_50points_report_data;
             }
         }
         
@@ -404,8 +404,8 @@ namespace ReportsLoyalty {
                 if ((ds.Tables["t_get_campaign_customers"] != null)) {
                     base.Tables.Add(new t_get_campaign_customersDataTable(ds.Tables["t_get_campaign_customers"]));
                 }
-                if ((ds.Tables["t_get_50points_report"] != null)) {
-                    base.Tables.Add(new t_get_50points_reportDataTable(ds.Tables["t_get_50points_report"]));
+                if ((ds.Tables["p_get_50points_report_data"] != null)) {
+                    base.Tables.Add(new p_get_50points_report_dataDataTable(ds.Tables["p_get_50points_report_data"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -524,10 +524,10 @@ namespace ReportsLoyalty {
                     this.tablet_get_campaign_customers.InitVars();
                 }
             }
-            this.tablet_get_50points_report = ((t_get_50points_reportDataTable)(base.Tables["t_get_50points_report"]));
+            this.tablep_get_50points_report_data = ((p_get_50points_report_dataDataTable)(base.Tables["p_get_50points_report_data"]));
             if ((initTable == true)) {
-                if ((this.tablet_get_50points_report != null)) {
-                    this.tablet_get_50points_report.InitVars();
+                if ((this.tablep_get_50points_report_data != null)) {
+                    this.tablep_get_50points_report_data.InitVars();
                 }
             }
         }
@@ -568,8 +568,8 @@ namespace ReportsLoyalty {
             base.Tables.Add(this.tablep_get_birth_day_mk_trade_rating);
             this.tablet_get_campaign_customers = new t_get_campaign_customersDataTable();
             base.Tables.Add(this.tablet_get_campaign_customers);
-            this.tablet_get_50points_report = new t_get_50points_reportDataTable();
-            base.Tables.Add(this.tablet_get_50points_report);
+            this.tablep_get_50points_report_data = new p_get_50points_report_dataDataTable();
+            base.Tables.Add(this.tablep_get_50points_report_data);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -658,7 +658,7 @@ namespace ReportsLoyalty {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializet_get_50points_report() {
+        private bool ShouldSerializep_get_50points_report_data() {
             return false;
         }
         
@@ -760,7 +760,7 @@ namespace ReportsLoyalty {
         public delegate void t_get_campaign_customersRowChangeEventHandler(object sender, t_get_campaign_customersRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void t_get_50points_reportRowChangeEventHandler(object sender, t_get_50points_reportRowChangeEvent e);
+        public delegate void p_get_50points_report_dataRowChangeEventHandler(object sender, p_get_50points_report_dataRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5567,7 +5567,13 @@ namespace ReportsLoyalty {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class t_get_50points_reportDataTable : global::System.Data.TypedTableBase<t_get_50points_reportRow> {
+        public partial class p_get_50points_report_dataDataTable : global::System.Data.TypedTableBase<p_get_50points_report_dataRow> {
+            
+            private global::System.Data.DataColumn columncampaign_id;
+            
+            private global::System.Data.DataColumn columnname;
+            
+            private global::System.Data.DataColumn columnmarket_id;
             
             private global::System.Data.DataColumn columnmarket_name;
             
@@ -5583,10 +5589,12 @@ namespace ReportsLoyalty {
             
             private global::System.Data.DataColumn columnbonus_used;
             
+            private global::System.Data.DataColumn columnsm_obert_buy;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_get_50points_reportDataTable() {
-                this.TableName = "t_get_50points_report";
+            public p_get_50points_report_dataDataTable() {
+                this.TableName = "p_get_50points_report_data";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -5594,7 +5602,7 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal t_get_50points_reportDataTable(global::System.Data.DataTable table) {
+            internal p_get_50points_report_dataDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -5611,9 +5619,33 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected t_get_50points_reportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected p_get_50points_report_dataDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn campaign_idColumn {
+                get {
+                    return this.columncampaign_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn nameColumn {
+                get {
+                    return this.columnname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn market_idColumn {
+                get {
+                    return this.columnmarket_id;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5674,6 +5706,14 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_obert_buyColumn {
+                get {
+                    return this.columnsm_obert_buy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5683,51 +5723,55 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_get_50points_reportRow this[int index] {
+            public p_get_50points_report_dataRow this[int index] {
                 get {
-                    return ((t_get_50points_reportRow)(this.Rows[index]));
+                    return ((p_get_50points_report_dataRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event t_get_50points_reportRowChangeEventHandler t_get_50points_reportRowChanging;
+            public event p_get_50points_report_dataRowChangeEventHandler p_get_50points_report_dataRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event t_get_50points_reportRowChangeEventHandler t_get_50points_reportRowChanged;
+            public event p_get_50points_report_dataRowChangeEventHandler p_get_50points_report_dataRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event t_get_50points_reportRowChangeEventHandler t_get_50points_reportRowDeleting;
+            public event p_get_50points_report_dataRowChangeEventHandler p_get_50points_report_dataRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event t_get_50points_reportRowChangeEventHandler t_get_50points_reportRowDeleted;
+            public event p_get_50points_report_dataRowChangeEventHandler p_get_50points_report_dataRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addt_get_50points_reportRow(t_get_50points_reportRow row) {
+            public void Addp_get_50points_report_dataRow(p_get_50points_report_dataRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_get_50points_reportRow Addt_get_50points_reportRow(string market_name, long qty_proposal, long qty_participant, decimal sm_obert, decimal avg_doc_sm, decimal bonus_sm_free, decimal bonus_used) {
-                t_get_50points_reportRow rowt_get_50points_reportRow = ((t_get_50points_reportRow)(this.NewRow()));
+            public p_get_50points_report_dataRow Addp_get_50points_report_dataRow(long campaign_id, string name, long market_id, string market_name, long qty_proposal, long qty_participant, float sm_obert, float avg_doc_sm, float bonus_sm_free, float bonus_used, float sm_obert_buy) {
+                p_get_50points_report_dataRow rowp_get_50points_report_dataRow = ((p_get_50points_report_dataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        campaign_id,
+                        name,
+                        market_id,
                         market_name,
                         qty_proposal,
                         qty_participant,
                         sm_obert,
                         avg_doc_sm,
                         bonus_sm_free,
-                        bonus_used};
-                rowt_get_50points_reportRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowt_get_50points_reportRow);
-                return rowt_get_50points_reportRow;
+                        bonus_used,
+                        sm_obert_buy};
+                rowp_get_50points_report_dataRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowp_get_50points_report_dataRow);
+                return rowp_get_50points_report_dataRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                t_get_50points_reportDataTable cln = ((t_get_50points_reportDataTable)(base.Clone()));
+                p_get_50points_report_dataDataTable cln = ((p_get_50points_report_dataDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -5735,12 +5779,15 @@ namespace ReportsLoyalty {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new t_get_50points_reportDataTable();
+                return new p_get_50points_report_dataDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columncampaign_id = base.Columns["campaign_id"];
+                this.columnname = base.Columns["name"];
+                this.columnmarket_id = base.Columns["market_id"];
                 this.columnmarket_name = base.Columns["market_name"];
                 this.columnqty_proposal = base.Columns["qty_proposal"];
                 this.columnqty_participant = base.Columns["qty_participant"];
@@ -5748,52 +5795,71 @@ namespace ReportsLoyalty {
                 this.columnavg_doc_sm = base.Columns["avg_doc_sm"];
                 this.columnbonus_sm_free = base.Columns["bonus_sm_free"];
                 this.columnbonus_used = base.Columns["bonus_used"];
+                this.columnsm_obert_buy = base.Columns["sm_obert_buy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columncampaign_id = new global::System.Data.DataColumn("campaign_id", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncampaign_id);
+                this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnname);
+                this.columnmarket_id = new global::System.Data.DataColumn("market_id", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmarket_id);
                 this.columnmarket_name = new global::System.Data.DataColumn("market_name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmarket_name);
                 this.columnqty_proposal = new global::System.Data.DataColumn("qty_proposal", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnqty_proposal);
                 this.columnqty_participant = new global::System.Data.DataColumn("qty_participant", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnqty_participant);
-                this.columnsm_obert = new global::System.Data.DataColumn("sm_obert", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnsm_obert = new global::System.Data.DataColumn("sm_obert", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsm_obert);
-                this.columnavg_doc_sm = new global::System.Data.DataColumn("avg_doc_sm", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnavg_doc_sm = new global::System.Data.DataColumn("avg_doc_sm", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnavg_doc_sm);
-                this.columnbonus_sm_free = new global::System.Data.DataColumn("bonus_sm_free", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnbonus_sm_free = new global::System.Data.DataColumn("bonus_sm_free", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnbonus_sm_free);
-                this.columnbonus_used = new global::System.Data.DataColumn("bonus_used", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnbonus_used = new global::System.Data.DataColumn("bonus_used", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnbonus_used);
-                this.columnmarket_name.MaxLength = 250;
+                this.columnsm_obert_buy = new global::System.Data.DataColumn("sm_obert_buy", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_obert_buy);
+                this.columncampaign_id.ReadOnly = true;
+                this.columnname.MaxLength = 255;
+                this.columnmarket_name.ReadOnly = true;
+                this.columnmarket_name.MaxLength = 4000;
+                this.columnqty_proposal.ReadOnly = true;
+                this.columnqty_participant.ReadOnly = true;
+                this.columnsm_obert.ReadOnly = true;
+                this.columnavg_doc_sm.ReadOnly = true;
+                this.columnbonus_sm_free.ReadOnly = true;
+                this.columnbonus_used.ReadOnly = true;
+                this.columnsm_obert_buy.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_get_50points_reportRow Newt_get_50points_reportRow() {
-                return ((t_get_50points_reportRow)(this.NewRow()));
+            public p_get_50points_report_dataRow Newp_get_50points_report_dataRow() {
+                return ((p_get_50points_report_dataRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new t_get_50points_reportRow(builder);
+                return new p_get_50points_report_dataRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(t_get_50points_reportRow);
+                return typeof(p_get_50points_report_dataRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.t_get_50points_reportRowChanged != null)) {
-                    this.t_get_50points_reportRowChanged(this, new t_get_50points_reportRowChangeEvent(((t_get_50points_reportRow)(e.Row)), e.Action));
+                if ((this.p_get_50points_report_dataRowChanged != null)) {
+                    this.p_get_50points_report_dataRowChanged(this, new p_get_50points_report_dataRowChangeEvent(((p_get_50points_report_dataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5801,8 +5867,8 @@ namespace ReportsLoyalty {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.t_get_50points_reportRowChanging != null)) {
-                    this.t_get_50points_reportRowChanging(this, new t_get_50points_reportRowChangeEvent(((t_get_50points_reportRow)(e.Row)), e.Action));
+                if ((this.p_get_50points_report_dataRowChanging != null)) {
+                    this.p_get_50points_report_dataRowChanging(this, new p_get_50points_report_dataRowChangeEvent(((p_get_50points_report_dataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5810,8 +5876,8 @@ namespace ReportsLoyalty {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.t_get_50points_reportRowDeleted != null)) {
-                    this.t_get_50points_reportRowDeleted(this, new t_get_50points_reportRowChangeEvent(((t_get_50points_reportRow)(e.Row)), e.Action));
+                if ((this.p_get_50points_report_dataRowDeleted != null)) {
+                    this.p_get_50points_report_dataRowDeleted(this, new p_get_50points_report_dataRowChangeEvent(((p_get_50points_report_dataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5819,14 +5885,14 @@ namespace ReportsLoyalty {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.t_get_50points_reportRowDeleting != null)) {
-                    this.t_get_50points_reportRowDeleting(this, new t_get_50points_reportRowChangeEvent(((t_get_50points_reportRow)(e.Row)), e.Action));
+                if ((this.p_get_50points_report_dataRowDeleting != null)) {
+                    this.p_get_50points_report_dataRowDeleting(this, new p_get_50points_report_dataRowChangeEvent(((p_get_50points_report_dataRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removet_get_50points_reportRow(t_get_50points_reportRow row) {
+            public void Removep_get_50points_report_dataRow(p_get_50points_report_dataRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -5853,7 +5919,7 @@ namespace ReportsLoyalty {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "t_get_50points_reportDataTable";
+                attribute2.FixedValue = "p_get_50points_report_dataDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -8871,15 +8937,65 @@ namespace ReportsLoyalty {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class t_get_50points_reportRow : global::System.Data.DataRow {
+        public partial class p_get_50points_report_dataRow : global::System.Data.DataRow {
             
-            private t_get_50points_reportDataTable tablet_get_50points_report;
+            private p_get_50points_report_dataDataTable tablep_get_50points_report_data;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal t_get_50points_reportRow(global::System.Data.DataRowBuilder rb) : 
+            internal p_get_50points_report_dataRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablet_get_50points_report = ((t_get_50points_reportDataTable)(this.Table));
+                this.tablep_get_50points_report_data = ((p_get_50points_report_dataDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long campaign_id {
+                get {
+                    try {
+                        return ((long)(this[this.tablep_get_50points_report_data.campaign_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'campaign_id\' в таблице \'p_get_50points_report_data\' равно D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_50points_report_data.campaign_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string name {
+                get {
+                    try {
+                        return ((string)(this[this.tablep_get_50points_report_data.nameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'name\' в таблице \'p_get_50points_report_data\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_50points_report_data.nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long market_id {
+                get {
+                    try {
+                        return ((long)(this[this.tablep_get_50points_report_data.market_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'market_id\' в таблице \'p_get_50points_report_data\' равно DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_50points_report_data.market_idColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8887,15 +9003,15 @@ namespace ReportsLoyalty {
             public string market_name {
                 get {
                     try {
-                        return ((string)(this[this.tablet_get_50points_report.market_nameColumn]));
+                        return ((string)(this[this.tablep_get_50points_report_data.market_nameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'market_name\' в таблице \'t_get_50points_report\' равно DBNull" +
-                                ".", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'market_name\' в таблице \'p_get_50points_report_data\' равно D" +
+                                "BNull.", e);
                     }
                 }
                 set {
-                    this[this.tablet_get_50points_report.market_nameColumn] = value;
+                    this[this.tablep_get_50points_report_data.market_nameColumn] = value;
                 }
             }
             
@@ -8904,15 +9020,15 @@ namespace ReportsLoyalty {
             public long qty_proposal {
                 get {
                     try {
-                        return ((long)(this[this.tablet_get_50points_report.qty_proposalColumn]));
+                        return ((long)(this[this.tablep_get_50points_report_data.qty_proposalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'qty_proposal\' в таблице \'t_get_50points_report\' равно DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'qty_proposal\' в таблице \'p_get_50points_report_data\' равно " +
+                                "DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablet_get_50points_report.qty_proposalColumn] = value;
+                    this[this.tablep_get_50points_report_data.qty_proposalColumn] = value;
                 }
             }
             
@@ -8921,167 +9037,233 @@ namespace ReportsLoyalty {
             public long qty_participant {
                 get {
                     try {
-                        return ((long)(this[this.tablet_get_50points_report.qty_participantColumn]));
+                        return ((long)(this[this.tablep_get_50points_report_data.qty_participantColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'qty_participant\' в таблице \'t_get_50points_report\' равно DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'qty_participant\' в таблице \'p_get_50points_report_data\' рав" +
+                                "но DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablet_get_50points_report.qty_participantColumn] = value;
+                    this[this.tablep_get_50points_report_data.qty_participantColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal sm_obert {
+            public float sm_obert {
                 get {
                     try {
-                        return ((decimal)(this[this.tablet_get_50points_report.sm_obertColumn]));
+                        return ((float)(this[this.tablep_get_50points_report_data.sm_obertColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_obert\' в таблице \'t_get_50points_report\' равно DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablet_get_50points_report.sm_obertColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal avg_doc_sm {
-                get {
-                    try {
-                        return ((decimal)(this[this.tablet_get_50points_report.avg_doc_smColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'avg_doc_sm\' в таблице \'t_get_50points_report\' равно DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tablet_get_50points_report.avg_doc_smColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal bonus_sm_free {
-                get {
-                    try {
-                        return ((decimal)(this[this.tablet_get_50points_report.bonus_sm_freeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'bonus_sm_free\' в таблице \'t_get_50points_report\' равно DBNu" +
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_obert\' в таблице \'p_get_50points_report_data\' равно DBNu" +
                                 "ll.", e);
                     }
                 }
                 set {
-                    this[this.tablet_get_50points_report.bonus_sm_freeColumn] = value;
+                    this[this.tablep_get_50points_report_data.sm_obertColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal bonus_used {
+            public float avg_doc_sm {
                 get {
                     try {
-                        return ((decimal)(this[this.tablet_get_50points_report.bonus_usedColumn]));
+                        return ((float)(this[this.tablep_get_50points_report_data.avg_doc_smColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'bonus_used\' в таблице \'t_get_50points_report\' равно DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'avg_doc_sm\' в таблице \'p_get_50points_report_data\' равно DB" +
+                                "Null.", e);
                     }
                 }
                 set {
-                    this[this.tablet_get_50points_report.bonus_usedColumn] = value;
+                    this[this.tablep_get_50points_report_data.avg_doc_smColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float bonus_sm_free {
+                get {
+                    try {
+                        return ((float)(this[this.tablep_get_50points_report_data.bonus_sm_freeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'bonus_sm_free\' в таблице \'p_get_50points_report_data\' равно" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_50points_report_data.bonus_sm_freeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float bonus_used {
+                get {
+                    try {
+                        return ((float)(this[this.tablep_get_50points_report_data.bonus_usedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'bonus_used\' в таблице \'p_get_50points_report_data\' равно DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_50points_report_data.bonus_usedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float sm_obert_buy {
+                get {
+                    try {
+                        return ((float)(this[this.tablep_get_50points_report_data.sm_obert_buyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_obert_buy\' в таблице \'p_get_50points_report_data\' равно " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_50points_report_data.sm_obert_buyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Iscampaign_idNull() {
+                return this.IsNull(this.tablep_get_50points_report_data.campaign_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setcampaign_idNull() {
+                this[this.tablep_get_50points_report_data.campaign_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsnameNull() {
+                return this.IsNull(this.tablep_get_50points_report_data.nameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetnameNull() {
+                this[this.tablep_get_50points_report_data.nameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ismarket_idNull() {
+                return this.IsNull(this.tablep_get_50points_report_data.market_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setmarket_idNull() {
+                this[this.tablep_get_50points_report_data.market_idColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Ismarket_nameNull() {
-                return this.IsNull(this.tablet_get_50points_report.market_nameColumn);
+                return this.IsNull(this.tablep_get_50points_report_data.market_nameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setmarket_nameNull() {
-                this[this.tablet_get_50points_report.market_nameColumn] = global::System.Convert.DBNull;
+                this[this.tablep_get_50points_report_data.market_nameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isqty_proposalNull() {
-                return this.IsNull(this.tablet_get_50points_report.qty_proposalColumn);
+                return this.IsNull(this.tablep_get_50points_report_data.qty_proposalColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setqty_proposalNull() {
-                this[this.tablet_get_50points_report.qty_proposalColumn] = global::System.Convert.DBNull;
+                this[this.tablep_get_50points_report_data.qty_proposalColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isqty_participantNull() {
-                return this.IsNull(this.tablet_get_50points_report.qty_participantColumn);
+                return this.IsNull(this.tablep_get_50points_report_data.qty_participantColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setqty_participantNull() {
-                this[this.tablet_get_50points_report.qty_participantColumn] = global::System.Convert.DBNull;
+                this[this.tablep_get_50points_report_data.qty_participantColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Issm_obertNull() {
-                return this.IsNull(this.tablet_get_50points_report.sm_obertColumn);
+                return this.IsNull(this.tablep_get_50points_report_data.sm_obertColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setsm_obertNull() {
-                this[this.tablet_get_50points_report.sm_obertColumn] = global::System.Convert.DBNull;
+                this[this.tablep_get_50points_report_data.sm_obertColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isavg_doc_smNull() {
-                return this.IsNull(this.tablet_get_50points_report.avg_doc_smColumn);
+                return this.IsNull(this.tablep_get_50points_report_data.avg_doc_smColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setavg_doc_smNull() {
-                this[this.tablet_get_50points_report.avg_doc_smColumn] = global::System.Convert.DBNull;
+                this[this.tablep_get_50points_report_data.avg_doc_smColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isbonus_sm_freeNull() {
-                return this.IsNull(this.tablet_get_50points_report.bonus_sm_freeColumn);
+                return this.IsNull(this.tablep_get_50points_report_data.bonus_sm_freeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setbonus_sm_freeNull() {
-                this[this.tablet_get_50points_report.bonus_sm_freeColumn] = global::System.Convert.DBNull;
+                this[this.tablep_get_50points_report_data.bonus_sm_freeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isbonus_usedNull() {
-                return this.IsNull(this.tablet_get_50points_report.bonus_usedColumn);
+                return this.IsNull(this.tablep_get_50points_report_data.bonus_usedColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setbonus_usedNull() {
-                this[this.tablet_get_50points_report.bonus_usedColumn] = global::System.Convert.DBNull;
+                this[this.tablep_get_50points_report_data.bonus_usedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_obert_buyNull() {
+                return this.IsNull(this.tablep_get_50points_report_data.sm_obert_buyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_obert_buyNull() {
+                this[this.tablep_get_50points_report_data.sm_obert_buyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9565,22 +9747,22 @@ namespace ReportsLoyalty {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class t_get_50points_reportRowChangeEvent : global::System.EventArgs {
+        public class p_get_50points_report_dataRowChangeEvent : global::System.EventArgs {
             
-            private t_get_50points_reportRow eventRow;
+            private p_get_50points_report_dataRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_get_50points_reportRowChangeEvent(t_get_50points_reportRow row, global::System.Data.DataRowAction action) {
+            public p_get_50points_report_dataRowChangeEvent(p_get_50points_report_dataRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_get_50points_reportRow Row {
+            public p_get_50points_report_dataRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -12710,7 +12892,7 @@ ORDER BY number";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class t_get_50points_reportTableAdapter : global::System.ComponentModel.Component {
+    public partial class p_get_50points_report_dataTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -12724,7 +12906,7 @@ ORDER BY number";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public t_get_50points_reportTableAdapter() {
+        public p_get_50points_report_dataTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -12821,7 +13003,10 @@ ORDER BY number";
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "t_get_50points_report";
+            tableMapping.DataSetTable = "p_get_50points_report_data";
+            tableMapping.ColumnMappings.Add("campaign_id", "campaign_id");
+            tableMapping.ColumnMappings.Add("name", "name");
+            tableMapping.ColumnMappings.Add("market_id", "market_id");
             tableMapping.ColumnMappings.Add("market_name", "market_name");
             tableMapping.ColumnMappings.Add("qty_proposal", "qty_proposal");
             tableMapping.ColumnMappings.Add("qty_participant", "qty_participant");
@@ -12829,6 +13014,7 @@ ORDER BY number";
             tableMapping.ColumnMappings.Add("avg_doc_sm", "avg_doc_sm");
             tableMapping.ColumnMappings.Add("bonus_sm_free", "bonus_sm_free");
             tableMapping.ColumnMappings.Add("bonus_used", "bonus_used");
+            tableMapping.ColumnMappings.Add("sm_obert_buy", "sm_obert_buy");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -12845,36 +13031,38 @@ ORDER BY number";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        market_name, qty_proposal, qty_participant, sm_obert, avg_doc_sm, b" +
-                "onus_sm_free, bonus_used\r\nFROM            rep.t_get_50points_report(@campaign_id" +
-                ", @d_start, @d_end, @ctrl_group) AS a";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@campaign_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@d_start", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@d_end", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ctrl_group", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = "rep.p_get_50points_report_data";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@campaign_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ctrl_group", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(crm_wizardDataSet.t_get_50points_reportDataTable dataTable, int campaign_id, string d_start, string d_end, bool ctrl_group) {
+        public virtual int Fill(crm_wizardDataSet.p_get_50points_report_dataDataTable dataTable, global::System.Nullable<long> campaign_id, global::System.Nullable<bool> ctrl_group, global::System.Nullable<long> market_id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(campaign_id));
-            if ((d_start == null)) {
-                throw new global::System.ArgumentNullException("d_start");
+            if ((campaign_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(campaign_id.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(d_start));
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((d_end == null)) {
-                throw new global::System.ArgumentNullException("d_end");
+            if ((ctrl_group.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((bool)(ctrl_group.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(d_end));
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            this.Adapter.SelectCommand.Parameters[3].Value = ((bool)(ctrl_group));
+            if ((market_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((long)(market_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -12886,23 +13074,27 @@ ORDER BY number";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual crm_wizardDataSet.t_get_50points_reportDataTable GetData(int campaign_id, string d_start, string d_end, bool ctrl_group) {
+        public virtual crm_wizardDataSet.p_get_50points_report_dataDataTable GetData(global::System.Nullable<long> campaign_id, global::System.Nullable<bool> ctrl_group, global::System.Nullable<long> market_id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(campaign_id));
-            if ((d_start == null)) {
-                throw new global::System.ArgumentNullException("d_start");
+            if ((campaign_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(campaign_id.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(d_start));
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((d_end == null)) {
-                throw new global::System.ArgumentNullException("d_end");
+            if ((ctrl_group.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((bool)(ctrl_group.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(d_end));
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            this.Adapter.SelectCommand.Parameters[3].Value = ((bool)(ctrl_group));
-            crm_wizardDataSet.t_get_50points_reportDataTable dataTable = new crm_wizardDataSet.t_get_50points_reportDataTable();
+            if ((market_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((long)(market_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            crm_wizardDataSet.p_get_50points_report_dataDataTable dataTable = new crm_wizardDataSet.p_get_50points_report_dataDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

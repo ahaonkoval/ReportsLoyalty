@@ -28,7 +28,7 @@ namespace EtData
         /// <returns></returns>
         public string GetCampaignNameById(int id)
         {
-            return Le.v_campaigns_mk_run.Where(m => m.id == id).First().name;
+            return Le.v_campaigns_mk.Where(m => m.id == id).First().name;
         }
         /// <summary>
         /// 
@@ -37,7 +37,7 @@ namespace EtData
         /// <returns></returns>
         public DateTime? GetStartDateById(int id)
         {
-            return Le.v_campaigns_mk_run.Where(m => m.id == id).First().date_start;
+            return Le.v_campaigns_mk.Where(m => m.id == id).First().date_start;
         }
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace EtData
         /// <returns></returns>
         public DateTime? GetEndDateById(int id)
         {
-            return Le.v_campaigns_mk_run.Where(m => m.id == id).First().date_end;
+            return Le.v_campaigns_mk.Where(m => m.id == id).First().date_end;
         }
         /// <summary>
         /// 
@@ -65,6 +65,12 @@ namespace EtData
             //    return Le.v_campaigns_mk;
             //}
         }
+
+        public IEnumerable<v_campaigns_mk> GetCampaignsByType(campaign_types type)
+        {
+            return Le.v_campaigns_mk.Where(w => w.type_id == type.id);
+        }
+
         /// <summary>
         /// 
         /// </summary>

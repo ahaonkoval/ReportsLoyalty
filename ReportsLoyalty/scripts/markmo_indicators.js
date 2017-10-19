@@ -616,10 +616,10 @@ var show50pointsReport = function () {
             },
             items: [{
                 xtype: 'panel',
-                height: 36,
+                height:38,
                 items: {
                     xtype: 'toolbar',
-                    height: 35,
+                    height: 36,
                     items: [{
                         xtype: 'label',
                         text: 'Магазин:'
@@ -634,13 +634,22 @@ var show50pointsReport = function () {
                         renderTo: Ext.getBody()
                     }, {
                         xtype: 'tbseparator'
-                    }, {
+                    },
+                    //{
+                    //    xtype: 'label',
+                    //    text: 'По мережі:'
+                    //}, {
+                    //    xtype: 'checkboxfield',
+                    //    id: 'ch_inMarket50points',
+                    //    name: 'inMarket50points'
+                    //},
+                    {
                         xtype: 'label',
-                        text: 'По маркету:'
+                        text: 'По контрольній групі:'
                     }, {
                         xtype: 'checkboxfield',
-                        id: 'ch_inMarket50points',
-                        name: 'inMarket50points'
+                        id: 'ch_ctrl_group_50points',
+                        name: 'ch_ctrl_group_50points'
                     }, {
                         xtype: 'tbseparator'
                     }, {
@@ -649,48 +658,97 @@ var show50pointsReport = function () {
                         text: 'Показати',
                         handler: function () {
 
-                            var url = 'pages/BirthDayChildrenUPL.aspx?'
+                            var hi = Ext.getCmp('h_p50p_campaign_id');
+                            var id = hi.getValue();
+                            if (id == "") return;
+                            //alert(id);
 
-                            var cmbMarkets = Ext.getCmp('cmbMarkets_BirthDayChildrenUPL');
+                            var url = 'pages/p50points_reports.aspx?'
+                            url = url + 'campaign_id=' + id;
+
+                            var cmbMarkets = Ext.getCmp('cmbMarkets_50points');
                             var market_id = cmbMarkets.getValue();
                             if (market_id == null) market_id = 0;
                             url = url + '&market_id=' + market_id;
 
-                            var inmarket = Ext.getCmp('ch_inMarketBirthDayChildrenUPL');
-                            var im = inmarket.getValue();
-                            if (im == null) {
-                                im = true;
-                            }
-                            url = url + '&im=' + im;
+                            //var inmarket = Ext.getCmp('ch_inMarket50points');
+                            //var im = inmarket.getValue();
+                            //if (im == null) {
+                            //    im = true;
+                            //}
+                            //url = url + '&im=' + im;
 
-                            var report_box = Ext.getCmp('rep_box_BirthDayChildrenUPL');
+                            var control_group = Ext.getCmp('ch_ctrl_group_50points');
+                            var ctrl = control_group.getValue();
+                            if (ctrl == null) {
+                                ctrl = true;
+                            }
+                            url = url + '&ctrl=' + ctrl;
+
+                            var report_box = Ext.getCmp('rep_box_50points');
                             if (report_box != null) {
-                                Ext.getCmp('p_rep_conteiner_BirthDayChildrenUPL').remove(report_box);
+                                Ext.getCmp('p_rep_conteiner_50points').remove(report_box);
                             }
 
                             //url = url + '&height=' + (center.getWidth() - 30)
 
+                            //var ws = Ext.getCmp('win_show_pause');
+                            //ws.show();
+
                             dynamicPanel = new Ext.Component({
-                                id: 'rep_box_BirthDayChildrenUPL',
+                                id: 'rep_box_50points',
                                 xtype: 'box',
                                 layout: 'fit',
                                 showMask: true,
+                                border: false,
                                 autoEl: {
                                     tag: 'iframe',
-                                    src: url
+                                    src: url,
+                                    scripts: true
+                                    //success: function () { alert(); }
                                 }
                             });
-                            Ext.getCmp('p_rep_conteiner_BirthDayChildrenUPL').add(dynamicPanel);
+
+                            Ext.getCmp('p_rep_conteiner_50points').add(dynamicPanel);
                         }
                     }]
                 }
-            }, {
+            },
+            {
                 xtype: 'panel',
-                layout: 'fit',
-                id: 'p_rep_conteiner_BirthDayChildrenUPL',
-                flex: 1
-            }]
-        }
-
+                flex: 1,
+                //layout: 'fit',
+                //height: 100,
+                border: false,
+                layout: {
+                    type: 'hbox',
+                    pack: 'start',
+                    align: 'stretch'
+                },
+                items: [{
+                    xtype: 'panel',
+                    width: 400,
+                    title: "Кампанії типу '50 і більше балів'",
+                    layout: 'fit',
+                    border: false,
+                    items: 
+                        [
+                            { xtype: 'hiddenfield', id: 'h_p50p_campaign_id', border: false, },
+                            {
+                                xtype: 'panel',
+                                border: false,
+                                items: get50PointsGrid()
+                            },
+                        ]
+                }, {
+                    xtype: 'panel',
+                    layout: 'fit',
+                    id: 'p_rep_conteiner_50points',
+                    flex: 1
+                   }]
+            }, {
+                xtype: 'panel', height: 20
+            }
+        ]}
     });
 }
