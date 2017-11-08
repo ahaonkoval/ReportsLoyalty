@@ -105,6 +105,7 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="short_name" Type="nvarchar" MaxLength="50" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
           <Property Name="market_name" Type="nvarchar" MaxLength="4000" StoreGeneratedPattern="Computed" />
           <Property Name="is_start" Type="bit" />
           <Property Name="date_start" Type="date" />
@@ -164,6 +165,8 @@
           <Property Name="group_id_1" Type="bigint" />
           <Property Name="markmo_id" Type="bigint" />
           <Property Name="number" Type="bigint" />
+          <Property Name="qty_participant" Type="int" />
+          <Property Name="qty_articuls" Type="int" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "crm_wizard.calc.v_campaigns_mk_run" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -342,6 +345,28 @@
           <Parameter Name="date" Type="date" Mode="In" />
           <Parameter Name="market_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="t_get_departs_by_otdid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="rep">
+          <Parameter Name="otdid" Type="bigint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="fgroup_id" Type="bigint" />
+                <Property Name="name" Type="nvarchar" MaxLength="500" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="t_get_groups_by_otdid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="rep">
+          <Parameter Name="otdid" Type="bigint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="fgroup_id" Type="bigint" />
+                <Property Name="name" Type="nvarchar" MaxLength="500" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="Хранилище LoyaltyModelContainer">
           <EntitySet Name="campaign_articul" EntityType="Self.campaign_articul" Schema="calc" store:Type="Tables" />
           <EntitySet Name="campaign_groups" EntityType="Self.campaign_groups" Schema="calc" store:Type="Tables" />
@@ -357,6 +382,7 @@
     [dict_markets].[id] AS [id], 
     [dict_markets].[short_name] AS [short_name], 
     [dict_markets].[name] AS [name], 
+    [dict_markets].[address] AS [address], 
     [dict_markets].[market_name] AS [market_name], 
     [dict_markets].[is_start] AS [is_start], 
     [dict_markets].[date_start] AS [date_start]
@@ -379,7 +405,9 @@
     [v_campaigns_mk].[group_id_0] AS [group_id_0], 
     [v_campaigns_mk].[group_id_1] AS [group_id_1], 
     [v_campaigns_mk].[markmo_id] AS [markmo_id], 
-    [v_campaigns_mk].[number] AS [number]
+    [v_campaigns_mk].[number] AS [number], 
+    [v_campaigns_mk].[qty_participant] AS [qty_participant], 
+    [v_campaigns_mk].[qty_articuls] AS [qty_articuls]
     FROM [calc].[v_campaigns_mk] AS [v_campaigns_mk]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_campaigns_mk_run" EntityType="Self.v_campaigns_mk_run" store:Type="Views" store:Schema="calc">
@@ -494,6 +522,12 @@
           <Parameter Name="isRun" Mode="In" Type="Boolean" />
           </FunctionImport>
           <EntitySet Name="dict_markets" EntityType="LoyaltyModel.dict_markets" />
+          <FunctionImport Name="t_get_groups_by_otdid" IsComposable="true" ReturnType="Collection(LoyaltyModel.t_get_groups_by_otdid_Result)">
+          <Parameter Name="otdid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="t_get_departs_by_otdid" IsComposable="true" ReturnType="Collection(LoyaltyModel.t_get_departs_by_otdid_Result)">
+            <Parameter Name="otdid" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="p_get_trade_with_extra_points_Result">
           <Property Type="String" Name="articul" Nullable="true" MaxLength="255" />
@@ -679,6 +713,8 @@
           <Property Name="group_id_1" Type="Int64" />
           <Property Name="markmo_id" Type="Int64" />
           <Property Name="number" Type="Int64" />
+          <Property Name="qty_participant" Type="Int32" />
+          <Property Name="qty_articuls" Type="Int32" />
         </EntityType>
         <EntityType Name="v_campaigns_mk_run">
           <Key>
@@ -836,7 +872,16 @@
           <Property Name="market_name" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="is_start" Type="Boolean" />
           <Property Name="date_start" Type="DateTime" Precision="0" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="t_get_groups_by_otdid_Result">
+          <Property Type="Int64" Name="fgroup_id" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="t_get_departs_by_otdid_Result">
+          <Property Type="Int64" Name="fgroup_id" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="500" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1019,6 +1064,8 @@
           <EntitySetMapping Name="v_campaigns_mk">
             <EntityTypeMapping TypeName="LoyaltyModel.v_campaigns_mk">
               <MappingFragment StoreEntitySet="v_campaigns_mk">
+                <ScalarProperty Name="qty_articuls" ColumnName="qty_articuls" />
+                <ScalarProperty Name="qty_participant" ColumnName="qty_participant" />
                 <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="markmo_id" ColumnName="markmo_id" />
                 <ScalarProperty Name="group_id_1" ColumnName="group_id_1" />
@@ -1120,6 +1167,7 @@
           <EntitySetMapping Name="dict_markets">
             <EntityTypeMapping TypeName="LoyaltyModel.dict_markets">
               <MappingFragment StoreEntitySet="dict_markets">
+                <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="date_start" ColumnName="date_start" />
                 <ScalarProperty Name="is_start" ColumnName="is_start" />
                 <ScalarProperty Name="market_name" ColumnName="market_name" />
@@ -1129,6 +1177,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="t_get_groups_by_otdid" FunctionName="Хранилище LoyaltyModel.t_get_groups_by_otdid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoyaltyModel.t_get_groups_by_otdid_Result">
+                <ScalarProperty Name="fgroup_id" ColumnName="fgroup_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="t_get_departs_by_otdid" FunctionName="Хранилище LoyaltyModel.t_get_departs_by_otdid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LoyaltyModel.t_get_departs_by_otdid_Result">
+                <ScalarProperty Name="fgroup_id" ColumnName="fgroup_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

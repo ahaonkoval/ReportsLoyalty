@@ -11,6 +11,26 @@ var showExtraPoints = function () {
     if (p_extra_points != null) return;
 
     //var a = getDisabledDatesById(46);
+    var selectStyleComboboxConfig = {
+        fieldLabel: 'My Dropdown',
+        name: 'type',
+        allowBlank: false,
+        editable: false,
+        // This is the option required for "select"-style behaviour
+        triggerAction: 'all',
+        typeAhead: false,
+        mode: 'local',
+        width: 120,
+        listWidth: 120,
+        hiddenName: 'my_dropdown',
+        store: [
+            ['val1', 'First Value'],
+            ['val2', 'Second Value']
+        ],
+        readOnly: true
+    };
+    var comboBox = new Ext.form.ComboBox(selectStyleComboboxConfig);
+
     tab = center.add({
         id:'p_extra_points',
         title: 'ЕКСТРА-БАЛИ',
@@ -85,7 +105,32 @@ var showExtraPoints = function () {
                             displayField: 'market_name',
                             valueField: 'id',
                             renderTo: Ext.getBody()
-                        }, {
+                        }, comboBox,
+                        //{
+                        //    xtype: 'combobox',
+                        //    //width: '400',
+                        //    ////triggerAction: 'all',
+                        //    //valueField: 'id',
+                        //    //displayField: 'market_name',
+                        //    //editable: false, 
+                        //    //multiSelect: true,
+                        //    //value: [1],
+                        //    //mode: 'remote',
+                        //    fieldLabel: 'My Dropdown',
+                        //    name: 'type',
+                        //    allowBlank: false,
+                        //    editable: false,
+                        //    // This is the option required for "select"-style behaviour
+                        //    triggerAction: 'all',
+                        //    typeAhead: false,
+                        //    mode: 'local',
+                        //    width: 120,
+                        //    listWidth: 120,
+                        //    hiddenName: 'my_dropdown',
+                        //    store: dict.getStoreMarkets(),//st_dict_markets,
+                        //    readOnly: true
+                        //},
+                        {
                             xtype: 'button',
                             width: 100,
                             text: 'Показати',

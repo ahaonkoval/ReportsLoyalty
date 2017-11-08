@@ -1,32 +1,68 @@
 ﻿
 function WinCampaignDetails() {
+
     this.record = null,
-    /* ------------------------------------------------------------------------------------------------- */
-    this.StDepart = dict.getCmpGrpByLevel(0, 'st_depart'),
-    this.getStDepart = function () {
-        return this.StDepart;
-    },
-    // --------
+
+    // довідеик (так/ні)
     this.StTrueFalse = dict.getStoreTrueFalse(),
     this.getStTrueFalse = function () {
         return this.StTrueFalse;
     },
-    // --------
-    this.StGroups = dict.getCmpGrpByLevel(2, 'st_groups'),
+
+    // перелік відділів
+    this.StOTD = dict.getCmpGrpByLevel(0),
+    this.getStOTD = function () {
+        return this.StOTD;
+    },
+
+    // перелік ВСІХ департаментів, потрібно для завантаження до вибіру відділу
+    this.StDepartments = dict.getCmpGrpByLevel(1),
+    this.getStDepartments = function () {
+        return this.StDepartments;
+    },
+
+    // перелік груп рівня 2 --<-- зараз поки не буде використовуватись
+    this.StGroups = dict.getCmpGrpByLevel(2),
     this.getStGroups = function () {
         return this.StGroups;
     },
-    // --------
+    this.setStGroups = function (store) {
+        this.StGroups = store;
+    }
+
+    // Типи капмпаній, довідник, выд цього залежить де ы як буде выдображений звіт
     this.StCampaignTypes = dict.getStoreCampaignTypes(),
     this.getStCampaignTypes = function () {
         return this.StCampaignTypes;
     },
+
+    this.TagGroups = Ext.create(
+        {
+            xtype: 'tagfield',
+            store: this.getStDepartments(),
+            //allowBlank: false,
+            displayField: 'name',
+            valueField: 'fgroup_id',
+            //reference: 'name',
+            //filterPickList: true,
+            //queryMode: 'local',
+            //publishes: 'value',
+            id: 'cmbCmpEditGrp_2',
+            //listeners: {
+            //    activate: function (ctrl, event, eOpts) {
+            //        ctrl.setStore(this.StGroups);
+            //    }
+            //}
+        }
+    ),
+
     /* ------------------------------------------------------------------------------------------------- */
     this.Grid = Ext.create('Ext.grid.property.Grid', {
          //title: 'Кампания: ' + record.get('name'),
          id: 'property_grd',
          width: 565,
          readOnly: true,
+         sortableColumns: false,
          //renderTo: Ext.getBody(),
          groupingConfig: {
              groupHeaderTpl: 'Settings: {name}',
@@ -68,20 +104,27 @@ function WinCampaignDetails() {
                  displayName: 'ВІДДІЛ',
                  editor: {
                      xtype: 'combobox',
-                     store: this.StDepart,
+                     store: this.StOTD,
                      forceSelection: true,
                      allowBlank: false,
                      displayField: 'name',
                      valueField: 'fgroup_id',
                      id: 'cmbCmpEditGrp',
-                     editable: false
+                     editable: false,
+                     listeners: {
+                         change: function (ctrl, newValue, oldValue, eOpts) {
+                             var store = dict.getDepartmentsListByOtdId(newValue);
+                             winCd.TagGroups.setStore(store);
+                             winCd.setStGroups(store);
+                         }
+                     }
                  },
                  renderer: function (value) {
                      if (value == null || value == 0) {
                          return '';
                      }
                      else {
-                         var store = winCd.getStDepart();
+                         var store = winCd.getStOTD();
                          var data = store.getData();
                          var rec = data.filterBy('fgroup_id', value);
                          value = rec.items[0].get('name');
@@ -90,33 +133,43 @@ function WinCampaignDetails() {
                  }
              },
              group_id_2: {
-                 displayName: 'ГРУПА(групи)',
-                 editor: {
-                     //xtype: 'tagfield',
-                     xtype: 'tagfield',
-                     store: this.StGroups,
-                     //allowBlank: false,
-                     displayField: 'name',
-                     valueField: 'fgroup_id',
-                     //reference: 'name',
-                     //filterPickList: true,
-                     //queryMode: 'local',
-                     //publishes: 'value',
-                     id: 'cmbCmpEditGrp_2',                     
-                 },
+                 displayName: 'ДЕПАРТАМЕНТ', ///'ГРУПА(групи)',/
+                 editor: this.TagGroups,
+                 //editor: {
+                 //    xtype: 'tagfield',
+                 //    store: this.getStGroups(),//this.StGroups,
+                 //    //allowBlank: false,
+                 //    displayField: 'name',
+                 //    valueField: 'fgroup_id',
+                 //    //reference: 'name',
+                 //    //filterPickList: true,
+                 //    //queryMode: 'local',
+                 //    //publishes: 'value',
+                 //    id: 'cmbCmpEditGrp_2',
+                 //    //listeners: {
+                 //    //    activate: function (ctrl, event, eOpts) {
+                 //    //        ctrl.setStore(this.StGroups);
+                 //    //    }
+                 //    //}
+                 //},
                  renderer: function (value) {
                      var returned = '';
                      if (value != '') {
-                         var store = winCd.getStGroups();
+                         var store = winCd.TagGroups.getStore();//winCd.getStGroups();
                          var data = store.getData();
-                         gps = value.toString().split(',');
+                         var gps = value.toString().split(',');
+
                          for (var i = 0; i <= gps.length - 1; i++) {
+
                              var rec = data.filterBy('fgroup_id', gps[i]);
-                             if (returned.length == 0) {
-                                 returned = returned + rec.items[0].get('name');
-                             } else {
-                                 returned = returned + ', ' + rec.items[0].get('name');
-                             }                             
+                             if (rec.length > 0) {
+                                 if (returned.length == 0) {
+                                     returned = returned + rec.items[0].get('name');
+                                 } else {
+                                     returned = returned + ', ' + rec.items[0].get('name');
+                                 }
+                             }
+
                          }
                          value = returned;
                      } else {
@@ -146,44 +199,44 @@ function WinCampaignDetails() {
                      }
                  }
              },
-             margin_markets: {
-                 displayName: 'Маржа по маркетам',
-                 //type: 'numberfield',
-                 //decimalPrecision: 2
-                 editor: {
-                     xtype: 'numberfield',
-                     decimalPrecision: 3
-                 }
-             },
-             margin_lavel_0: {
-                 displayName: 'Маржа по відділу',
-                 editor: {
-                     xtype: 'numberfield',
-                     decimalPrecision: 3
-                 }
-             },
-             margin_lavel_1: {
-                 displayName: 'Маржа по департаменту',
-                 editor: {
-                     xtype: 'numberfield',
-                     decimalPrecision: 3
-                 }
-             }
-             ,
-             margin_lavel_2: {
-                 displayName: 'Маржа по групі',
-                 editor: {
-                     xtype: 'numberfield',
-                     decimalPrecision: 3
-                 }
-             },
-             margin_lavel_3: {
-                 displayName: 'Маржа по підгрупі',
-                 editor: {
-                     xtype: 'numberfield',
-                     decimalPrecision: 3
-                 }
-             }
+             //margin_markets: {
+             //    displayName: 'Маржа по маркетам',
+             //    //type: 'numberfield',
+             //    //decimalPrecision: 2
+             //    editor: {
+             //        xtype: 'numberfield',
+             //        decimalPrecision: 3
+             //    }
+             //},
+             //margin_lavel_0: {
+             //    displayName: 'Маржа по відділу',
+             //    editor: {
+             //        xtype: 'numberfield',
+             //        decimalPrecision: 3
+             //    }
+             //},
+             //margin_lavel_1: {
+             //    displayName: 'Маржа по департаменту',
+             //    editor: {
+             //        xtype: 'numberfield',
+             //        decimalPrecision: 3
+             //    }
+             //}
+             //,
+             //margin_lavel_2: {
+             //    displayName: 'Маржа по групі',
+             //    editor: {
+             //        xtype: 'numberfield',
+             //        decimalPrecision: 3
+             //    }
+             //},
+             //margin_lavel_3: {
+             //    displayName: 'Маржа по підгрупі',
+             //    editor: {
+             //        xtype: 'numberfield',
+             //        decimalPrecision: 3
+             //    }
+             //}
          }
      }),
     this.setPropertyGridData = function (record) {
@@ -216,11 +269,11 @@ function WinCampaignDetails() {
                 source['date_start'] = date_start;
                 source['date_end'] = date_end;
                 source['is_run'] = is_run_value;//record.get('is_run');
-                source['margin_markets'] = rec.get('margin_markets');
-                source['margin_lavel_0'] = rec.get('margin_lavel_0');
-                source['margin_lavel_1'] = rec.get('margin_lavel_1');
-                source['margin_lavel_2'] = rec.get('margin_lavel_2');
-                source['margin_lavel_3'] = rec.get('margin_lavel_3');
+                //source['margin_markets'] = rec.get('margin_markets');
+                //source['margin_lavel_0'] = rec.get('margin_lavel_0');
+                //source['margin_lavel_1'] = rec.get('margin_lavel_1');
+                //source['margin_lavel_2'] = rec.get('margin_lavel_2');
+                //source['margin_lavel_3'] = rec.get('margin_lavel_3');
                 source['group_id_0'] = rec.get('group_id_0');
                 source['group_id_2'] = fgroup_ids;
                 source['type_id'] = rec.get('type_id');
@@ -239,11 +292,11 @@ function WinCampaignDetails() {
         source['date_start'] = new Date();
         source['date_end'] = new Date();
         source['is_run'] = 0;
-        source['margin_markets'] = 0;
-        source['margin_lavel_0'] = 0;
-        source['margin_lavel_1'] = 0;
-        source['margin_lavel_2'] = 0;
-        source['margin_lavel_3'] = 0;
+        //source['margin_markets'] = 0;
+        //source['margin_lavel_0'] = 0;
+        //source['margin_lavel_1'] = 0;
+        //source['margin_lavel_2'] = 0;
+        //source['margin_lavel_3'] = 0;
         source['group_id_0'] = '';
         source['group_id_2'] = '';
         source['type_id'] = null;
@@ -254,7 +307,7 @@ function WinCampaignDetails() {
     /* --------------------------------------------------------------------------------------------------------------------------------------------------- */   
     this.win = Ext.create('Ext.Window', {
         id: 'win_campaign_details',
-        title: 'Настройки кампанії',
+        title: 'Налаштування кампанії',
         width: 700,
         height: 410,
         modal: true,
@@ -303,12 +356,12 @@ function WinCampaignDetails() {
                                     is_run: data.get('is_run').data.value,
                                     group_id_0: data.get('group_id_0').data.value,
                                     group_id_2: data.get('group_id_2').data.value.toString(),
-                                    type_id: data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                                    margin_markets: data.get('margin_markets').data.value,
-                                    margin_lavel_0: data.get('margin_lavel_0').data.value,
-                                    margin_lavel_1: data.get('margin_lavel_1').data.value,
-                                    margin_lavel_2: data.get('margin_lavel_2').data.value,
-                                    margin_lavel_3: data.get('margin_lavel_3').data.value
+                                    type_id: data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value
+                                    //margin_markets: data.get('margin_markets').data.value,
+                                    //margin_lavel_0: data.get('margin_lavel_0').data.value,
+                                    //margin_lavel_1: data.get('margin_lavel_1').data.value,
+                                    //margin_lavel_2: data.get('margin_lavel_2').data.value,
+                                    //margin_lavel_3: data.get('margin_lavel_3').data.value
                                 };
 
                                 Ext.Ajax.request({
@@ -331,11 +384,11 @@ function WinCampaignDetails() {
                                                 date_start: data.get('date_start').data.value,
                                                 date_end: data.get('date_end').data.value,
                                                 group_id_0: data.get('group_id_0').data.value,
-                                                group_id_2: data.get('group_id_2').data.value.toString(),
-                                                margin_lavel_0: data.get('margin_lavel_0').data.value,
-                                                margin_lavel_1: data.get('margin_lavel_1').data.value,
-                                                margin_lavel_2: data.get('margin_lavel_2').data.value,
-                                                margin_lavel_3: data.get('margin_lavel_3').data.value
+                                                group_id_2: data.get('group_id_2').data.value.toString()
+                                                //margin_lavel_0: data.get('margin_lavel_0').data.value,
+                                                //margin_lavel_1: data.get('margin_lavel_1').data.value,
+                                                //margin_lavel_2: data.get('margin_lavel_2').data.value,
+                                                //margin_lavel_3: data.get('margin_lavel_3').data.value
                                             });
                                             //----<<<<------------------------------------------------
                                             var wnd = Ext.getCmp('win_campaign_details');
@@ -358,11 +411,11 @@ function WinCampaignDetails() {
                             group_id_0: data.get('group_id_0').data.value,
                             group_id_2: data.get('group_id_2').data.value.toString(),
                             type_id: data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                            margin_markets: data.get('margin_markets').data.value,
-                            margin_lavel_0: data.get('margin_lavel_0').data.value,
-                            margin_lavel_1: data.get('margin_lavel_1').data.value,
-                            margin_lavel_2: data.get('margin_lavel_2').data.value,
-                            margin_lavel_3: data.get('margin_lavel_3').data.value
+                            //margin_markets: data.get('margin_markets').data.value,
+                            //margin_lavel_0: data.get('margin_lavel_0').data.value,
+                            //margin_lavel_1: data.get('margin_lavel_1').data.value,
+                            //margin_lavel_2: data.get('margin_lavel_2').data.value,
+                            //margin_lavel_3: data.get('margin_lavel_3').data.value
                         };
                         Ext.Ajax.request({
                             url: 'api/campaign/SetCampaignData',
@@ -380,11 +433,11 @@ function WinCampaignDetails() {
                                     winCd.record.set('group_id_0', data.get('group_id_0').data.value);
                                     winCd.record.set('type_id', data.get('type_id').data.value);
 
-                                    winCd.record.set('margin_markets', data.get('margin_markets').data.value);
-                                    winCd.record.set('margin_lavel_0', data.get('margin_lavel_0').data.value);
-                                    winCd.record.set('margin_lavel_1', data.get('margin_lavel_1').data.value);
-                                    winCd.record.set('margin_lavel_2', data.get('margin_lavel_2').data.value);
-                                    winCd.record.set('margin_lavel_3', data.get('margin_lavel_3').data.value);
+                                    //winCd.record.set('margin_markets', data.get('margin_markets').data.value);
+                                    //winCd.record.set('margin_lavel_0', data.get('margin_lavel_0').data.value);
+                                    //winCd.record.set('margin_lavel_1', data.get('margin_lavel_1').data.value);
+                                    //winCd.record.set('margin_lavel_2', data.get('margin_lavel_2').data.value);
+                                    //winCd.record.set('margin_lavel_3', data.get('margin_lavel_3').data.value);
 
                                     winCd.record.commit();
                                     //----<<<<------------------------------------------------

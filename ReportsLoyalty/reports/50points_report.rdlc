@@ -18,10 +18,10 @@
               <Width>1.23cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.83854cm</Width>
+              <Width>2.47138cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.46813cm</Width>
+              <Width>2.11132cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.5475cm</Width>
@@ -249,16 +249,32 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>К-сть реаліз. балів на </Value>
+                              <Value>К-сть реаліз. балів за період акції </Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                             <TextRun>
-                              <Value>=FormatDateTime(DateAdd("d", -1, Parameters!DStart.Value), DateFormat.ShortDate)</Value>
+                              <Value>=Parameters!DStart.Value</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> - </Value>
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Parameters!DEnd.Value</Value>
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -1264,7 +1280,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1340,13 +1355,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Round((Fields!qty_participant.Value/Fields!qty_proposal.Value)* 100, 2)</Value>
+                              <Value>=Str(Round((Fields!qty_participant.Value/Fields!qty_proposal.Value)* 100, 1)) + "%"</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox28</rd:DefaultName>
@@ -1372,7 +1389,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!bonus_sm_free.Value</Value>
+                              <Value>=Round(Fields!bonus_sm_free.Value, 2)</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                               </Style>
@@ -1436,7 +1453,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!bonus_sm_free.Value/Fields!qty_proposal.Value</Value>
+                              <Value>=Round(Fields!bonus_sm_free.Value/Fields!qty_participant.Value, 2)</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                               </Style>
@@ -1468,13 +1485,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Round((Fields!bonus_used.Value/Fields!bonus_sm_free.Value)*100, 2)</Value>
+                              <Value>=Str(Round((Fields!bonus_used.Value/Fields!bonus_sm_free.Value)*100, 0)) + "%"</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox48</rd:DefaultName>
@@ -1532,13 +1551,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Round((Fields!bonus_used.Value/Fields!sm_obert.Value)*100, 2)</Value>
+                              <Value>=Str(Round((Fields!bonus_used.Value/Fields!sm_obert.Value)*100, 0)) + "%"</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox55</rd:DefaultName>
@@ -1553,6 +1574,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1596,7 +1618,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=((Fields!sm_obert.Value-Fields!sm_obert_buy.Value)/Fields!sm_obert.Value)*100</Value>
+                              <Value>=Str(Round(((Fields!sm_obert.Value-Fields!sm_obert_buy.Value)/Fields!sm_obert.Value)*100, 0)) + "%"</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                               </Style>
@@ -1688,7 +1710,7 @@
         <DataSetName>dt_50points_report</DataSetName>
         <Top>0.9525cm</Top>
         <Height>3.41396cm</Height>
-        <Width>25.0923cm</Width>
+        <Width>26.36833cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1813,7 +1835,7 @@
         <Top>0.17611cm</Top>
         <Left>11.01486cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.06661cm</Width>
+        <Width>1.96078cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -1894,7 +1916,7 @@
     <Height>2.38542in</Height>
     <Style />
   </Body>
-  <Width>9.94644in</Width>
+  <Width>10.38123in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

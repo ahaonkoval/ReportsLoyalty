@@ -6,19 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.1791cm</Width>
+              <Width>4.53227cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.48576cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.51222cm</Width>
+              <Width>1.37993cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.52104cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.7661cm</Width>
+              <Width>1.50152cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.60042cm</Width>
@@ -991,7 +991,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -1024,7 +1023,7 @@
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_expected_effect</DataSetName>
         <Height>2.06458cm</Height>
-        <Width>12.50631cm</Width>
+        <Width>13.4626cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1035,16 +1034,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.48886cm</Width>
+              <Width>4.53227cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>8.8143cm</Width>
+              <Width>8.93034cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.50449cm</Width>
+              <Width>1.90137cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.57667cm</Width>
+              <Width>2.02035cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1060,7 +1059,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Група</Value>
+                              <Value>Департамент</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -1513,10 +1512,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.89647cm</Width>
+              <Width>2.86719cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.89106cm</Width>
+              <Width>1.86178cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1769,9 +1768,9 @@
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_discount</DataSetName>
         <Top>4.48993cm</Top>
-        <Left>17.71577cm</Left>
+        <Left>17.77433cm</Left>
         <Height>1.65889cm</Height>
-        <Width>4.78753cm</Width>
+        <Width>4.72897cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -1853,10 +1852,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.20432cm</Width>
+              <Width>2.72807cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.57667cm</Width>
+              <Width>1.10042cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -2220,9 +2219,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_distanse</DataSetName>
-        <Left>12.60333cm</Left>
+        <Left>13.55583cm</Left>
         <Height>2.03499cm</Height>
-        <Width>4.78099cm</Width>
+        <Width>3.82849cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>

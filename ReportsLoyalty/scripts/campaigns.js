@@ -1,6 +1,7 @@
-﻿var win_campaigns = null;
-var wCustomers = null;
+﻿//var win_campaigns = null;
+//var wCustomers = null;
 
+/* MODEL */
 Ext.define('campaigns_mk', {
     extend: 'Ext.data.Model',
     fields: [{
@@ -18,10 +19,10 @@ Ext.define('campaigns_mk', {
                 } else {
                     return v;
                 }
-                
+
             } else {
                 return '';
-            }            
+            }
         }
     }, {
         name: 'date_end',
@@ -115,190 +116,190 @@ Ext.define('campaigns_mk', {
                 } else {
                     return v;
                 }
-                
+
             } else {
                 return '';
-            }            
+            }
         }
     }]
 });
 
-var encode = false;
-var local = true;
+var getWinCampaigns = function () {
+    var encode = false;
+    var local = true;
 
-var store = Ext.create('Ext.data.JsonStore', {
-    id: 'store_campaign_mk',
-    autoLoad:false,
-    // store configs
-    autoDestroy: true,
-    model: 'campaigns_mk',
-    proxy: {
-        type: 'ajax',        
-        url: ('api/Campaign'),
+    var store = Ext.create('Ext.data.JsonStore', {
+        id: 'store_campaign_mk',
+        autoLoad: false,
+        // store configs
+        autoDestroy: true,
+        model: 'campaigns_mk',
+        proxy: {
+            type: 'ajax',
+            url: ('api/Campaign'),
 
-        //url: (local ? url.local : url.remote),
-        reader: {
-            type: 'json',
-            root: 'data',
-            idProperty: 'id',
-            totalProperty: 'total'
-        }
-    },
-    remoteSort: false,
-    sorters: [{
-        property: 'id',
-        direction: 'ASC'
-    }],
-    pageSize: 50
-});
-
-var filters = {
-    ftype: 'filters',
-    // encode and local configuration options defined previously for easier reuse
-    encode: encode, // json encode the filter query
-    local: local,   // defaults to false (remote filtering)
-
-    // Filters are most naturally placed in the column definition, but can also be
-    // added here.
-    filters: [{
-        type: 'boolean',
-        dataIndex: 'is_run'
-    }]
-};
-
-var createColumns = function (finish, start) {
-
-    var columns = [
-        {
-            dataIndex: 'id',
-            text: 'Id',
-            filterable: false,
-            width: 50
-        }, {
-            dataIndex: 'name',
-            text: 'Назва кампанії',
-            id: 'name',
-            flex: 1,
-            filter: {
-                type: 'string'
+            //url: (local ? url.local : url.remote),
+            reader: {
+                type: 'json',
+                root: 'data',
+                idProperty: 'id',
+                totalProperty: 'total'
             }
-        }, {
-            dataIndex: 'date_start',
-            xtype: 'datecolumn',
-            format: 'd.m.Y',//'Y-m-d', // H:i:s
-            text: 'Дата початку',
-            filter: {
-                type: 'date'  // specify type here or in store fields config
-            }
-            //width: 80
-        }, {
-            dataIndex: 'date_end',
-            xtype: 'datecolumn',
-            text: 'Дата кінця',
-            format: 'd.m.Y',
-            filter: {
-                type: 'date'  // specify type here or in store fields config
-            }
-            //filter: {
-            //    type: 'list',
-            //    store: optionsStore,
-            //    phpMode: true
-            //}
-        }, {
-            dataIndex: 'is_run',
-            disabled: true,
-            xtype: 'checkcolumn',
-            text: 'Працює',
-            width: 70
-            //filter true
-            //renderer: Ext.util.Format.dateRenderer('m/d/Y')
-        }, {
-            text: 'Відгук',
-            width: 70,
-            xtype: 'widgetcolumn',
-            dataIndex: 'progress',
-            widget: {
-                width: 50,
-                textAlign: 'right',
-                xtype: 'button',
-                handler: function (btn) {
-                    var rec = btn.getWidgetRecord();
-                    //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
-                    Ext.MessageBox.prompt('Увага', 'Введіть ID розсилки:', function (mp) { });
+        },
+        remoteSort: false,
+        sorters: [{
+            property: 'id',
+            direction: 'ASC'
+        }],
+        pageSize: 50
+    });
+
+    var filters = {
+        ftype: 'filters',
+        // encode and local configuration options defined previously for easier reuse
+        encode: encode, // json encode the filter query
+        local: local,   // defaults to false (remote filtering)
+
+        // Filters are most naturally placed in the column definition, but can also be
+        // added here.
+        filters: [{
+            type: 'boolean',
+            dataIndex: 'is_run'
+        }]
+    };
+
+    var createColumns = function (finish, start) {
+
+        var columns = [
+            {
+                dataIndex: 'id',
+                text: 'Id',
+                filterable: false,
+                width: 50
+            }, {
+                dataIndex: 'name',
+                text: 'Назва кампанії',
+                id: 'name',
+                flex: 1,
+                filter: {
+                    type: 'string'
                 }
-            }
-        }, {
-            text: 'Учасники',
-            width: 90,
-            xtype: 'widgetcolumn',
-            dataIndex: 'customers_grp',
-            widget: {
+            }, {
+                dataIndex: 'date_start',
+                xtype: 'datecolumn',
+                format: 'd.m.Y',//'Y-m-d', // H:i:s
+                text: 'Дата початку',
+                filter: {
+                    type: 'date'  // specify type here or in store fields config
+                }
+                //width: 80
+            }, {
+                dataIndex: 'date_end',
+                xtype: 'datecolumn',
+                text: 'Дата кінця',
+                format: 'd.m.Y',
+                filter: {
+                    type: 'date'  // specify type here or in store fields config
+                }
+                //filter: {
+                //    type: 'list',
+                //    store: optionsStore,
+                //    phpMode: true
+                //}
+            }, {
+                dataIndex: 'is_run',
+                disabled: true,
+                xtype: 'checkcolumn',
+                text: 'Працює',
+                width: 70
+                //filter true
+                //renderer: Ext.util.Format.dateRenderer('m/d/Y')
+            }, {
+                text: 'Відгук',
                 width: 70,
-                textAlign: 'right',
-                xtype: 'button',
-                handler: function (btn) {
-                    var rec = btn.getWidgetRecord();
-                    var hidden_campaign_id = Ext.getCmp('hidden_campaign_id');
-                    hidden_campaign_id.setValue(rec.get('id'));
-                    var campaign_id = rec.get('id');
-                    getCustomers(campaign_id);
+                xtype: 'widgetcolumn',
+                dataIndex: 'progress',
+                widget: {
+                    width: 50,
+                    textAlign: 'right',
+                    xtype: 'button',
+                    handler: function (btn) {
+                        var rec = btn.getWidgetRecord();
+                        //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
+                        Ext.MessageBox.prompt('Увага', 'Введіть ID розсилки:', function (mp) { });
+                    }
                 }
-            }
-        }, {
-            text: 'Умови кампанії',
-            width: 120,
-            xtype: 'widgetcolumn',
-            //format: 'd.m.Y',
-            dataIndex: 'max_term_date',
-            widget: {
-                width: 100,
-                textAlign: 'center',
-                xtype: 'button',
+            }, {
+                text: 'Учасники',
+                width: 90,
+                xtype: 'widgetcolumn',
+                dataIndex: 'customers_grp',
+                widget: {
+                    width: 70,
+                    textAlign: 'right',
+                    xtype: 'button',
+                    handler: function (btn) {
+                        var rec = btn.getWidgetRecord();
+                        var hidden_campaign_id = Ext.getCmp('hidden_campaign_id');
+                        hidden_campaign_id.setValue(rec.get('id'));
+                        var campaign_id = rec.get('id');
+                        getCustomers(campaign_id);
+                    }
+                }
+            }, {
+                text: 'Умови кампанії',
+                width: 120,
+                xtype: 'widgetcolumn',
                 //format: 'd.m.Y',
-                handler: function (btn) {
-                    var rec = btn.getWidgetRecord();
-                    var campaign_id = rec.get('id');
-                    get_campaigns_terms(campaign_id)
+                dataIndex: 'max_term_date',
+                widget: {
+                    width: 100,
+                    textAlign: 'center',
+                    xtype: 'button',
+                    //format: 'd.m.Y',
+                    handler: function (btn) {
+                        var rec = btn.getWidgetRecord();
+                        var campaign_id = rec.get('id');
+                        get_campaigns_terms(campaign_id)
+                    }
                 }
             }
-        }
-    ];
+        ];
 
-    return columns.slice(start || 0, finish);
-};
+        return columns.slice(start || 0, finish);
+    };
 
-var grid = Ext.create('Ext.grid.Panel', {
-    stateful: true,
-    stateId: 'stateful-filter-grid',
-    border: false,
-    store: store,
-    columns: createColumns(8),
-    plugins: 'gridfilters',
-    loadMask: true,
-    //features: [filters],
-    dockedItems: [Ext.create('Ext.toolbar.Paging', {
-        dock: 'bottom',
-        store: store
-    })],
-    emptyText: 'Записів більше нема',
-    listeners: {
-        'rowdblclick': function (grid, record, e) {
-            /* открываєм окно редактирования */
-            winCd.Show(record);
-            //win_campaign_details_show(record);
+    var grid = Ext.create('Ext.grid.Panel', {
+        stateful: true,
+        stateId: 'stateful-filter-grid',
+        border: false,
+        store: store,
+        columns: createColumns(8),
+        plugins: 'gridfilters',
+        loadMask: true,
+        //features: [filters],
+        dockedItems: [Ext.create('Ext.toolbar.Paging', {
+            dock: 'bottom',
+            store: store
+        })],
+        emptyText: 'Записів більше нема',
+        listeners: {
+            'rowdblclick': function (grid, record, e) {
+                /* открываєм окно редактирования */
+                winCd.Show(record);
+                //win_campaign_details_show(record);
+            }
+        },
+        viewConfig: {
+            stripeRows: false,
+            getRowClass: function (record) {
+                //return record.get('is_run') == true ? 'child-row' : 'adult-row';
+                return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
+            }
         }
-    },
-    viewConfig: {
-        stripeRows: false,
-        getRowClass: function (record) {
-            //return record.get('is_run') == true ? 'child-row' : 'adult-row';
-            return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
-        }
-    }
-});
+    });
 
-var win_campaigns_show = function () {
-    win_campaigns = Ext.create('Ext.Window', {
+    var win_campaigns = Ext.create('Ext.Window', {
         title: 'Управління кампаниями',
         width: '90%',
         height: '80%',
@@ -331,15 +332,15 @@ var win_campaigns_show = function () {
                                     items: [
                                         {
                                             xtype: 'label',
-                                            text: 'Тыльки активні кампанії:'
+                                            text: 'Тільки активні кампанії:'
                                         },
                                         {
                                             xtype: 'checkbox',
                                             value: true,
                                             id: 'cisRun',
                                             listeners: {
-                                                'change': function (cmp, newValue, oldValue, eOpts ) {
-                                                    store.load({
+                                                'change': function (cmp, newValue, oldValue, eOpts) {
+                                                    store.loadPage(1, {
                                                         params: { isRun: newValue }
                                                     });
                                                 }
@@ -378,7 +379,7 @@ var win_campaigns_show = function () {
                         ]
                     }
             ]
-        },{
+        }, {
             xtype: 'panel',
             flex: 1,
             layout: 'fit',
@@ -393,11 +394,19 @@ var win_campaigns_show = function () {
         }
     });
 
-    win_campaigns.show();
     store.load({
         params: { isRun: Ext.getCmp('cisRun').getValue() }
     });
-};
+
+    //win_campaigns.show();
+    return win_campaigns;
+
+    //store.load({
+    //    params: { isRun: Ext.getCmp('cisRun').getValue() }
+    //});
+}
+
+
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 Ext.override(Ext.Window, {
     closeAction: 'hide'

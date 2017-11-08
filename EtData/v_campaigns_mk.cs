@@ -30,5 +30,7 @@ namespace EtData
         public Nullable<long> group_id_1 { get; set; }
         public Nullable<long> markmo_id { get; set; }
         public Nullable<long> number { get; set; }
+        public Nullable<int> qty_participant { get; set; }
+        public Nullable<int> qty_articuls { get; set; }
     }
 }

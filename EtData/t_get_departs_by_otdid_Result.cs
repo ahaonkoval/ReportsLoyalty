@@ -10,16 +10,10 @@
 namespace EtData
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class dict_markets
+    public partial class t_get_departs_by_otdid_Result
     {
-        public int id { get; set; }
-        public string short_name { get; set; }
+        public Nullable<long> fgroup_id { get; set; }
         public string name { get; set; }
-        public string market_name { get; set; }
-        public Nullable<bool> is_start { get; set; }
-        public Nullable<System.DateTime> date_start { get; set; }
-        public string address { get; set; }
     }
 }

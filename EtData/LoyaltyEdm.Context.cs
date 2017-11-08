@@ -90,5 +90,25 @@ namespace EtData
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<tf_campaigns>("[LoyaltyEntities].[t_get_campaigns](@isRun)", isRunParameter);
         }
+    
+        [DbFunction("LoyaltyEntities", "t_get_groups_by_otdid")]
+        public virtual IQueryable<t_get_groups_by_otdid_Result> t_get_groups_by_otdid(Nullable<long> otdid)
+        {
+            var otdidParameter = otdid.HasValue ?
+                new ObjectParameter("otdid", otdid) :
+                new ObjectParameter("otdid", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<t_get_groups_by_otdid_Result>("[LoyaltyEntities].[t_get_groups_by_otdid](@otdid)", otdidParameter);
+        }
+    
+        [DbFunction("LoyaltyEntities", "t_get_departs_by_otdid")]
+        public virtual IQueryable<t_get_departs_by_otdid_Result> t_get_departs_by_otdid(Nullable<long> otdid)
+        {
+            var otdidParameter = otdid.HasValue ?
+                new ObjectParameter("otdid", otdid) :
+                new ObjectParameter("otdid", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<t_get_departs_by_otdid_Result>("[LoyaltyEntities].[t_get_departs_by_otdid](@otdid)", otdidParameter);
+        }
     }
 }

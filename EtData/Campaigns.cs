@@ -108,7 +108,7 @@ namespace EtData
                 } else
                 {
                     current = Le.v_fgroups.Where(w => w.fgroup_id == c.group_id).FirstOrDefault().name;
-                    sb.AppendFormat("Групи:{0}", current);
+                    sb.AppendFormat("Департамент:{0}", current);
                 }
                 
             }
@@ -216,11 +216,11 @@ namespace EtData
                 {
                     campaign.type_id = cmp.type_id;
                 }
-                campaign.margin_markets = cmp.margin_markets;
-                campaign.margin_lavel_3 = cmp.margin_lavel_3;
-                campaign.margin_lavel_2 = cmp.margin_lavel_2;
-                campaign.margin_lavel_1 = cmp.margin_lavel_1;
-                campaign.margin_lavel_0 = cmp.margin_lavel_0;
+                //campaign.margin_markets = cmp.margin_markets;
+                //campaign.margin_lavel_3 = cmp.margin_lavel_3;
+                //campaign.margin_lavel_2 = cmp.margin_lavel_2;
+                //campaign.margin_lavel_1 = cmp.margin_lavel_1;
+                //campaign.margin_lavel_0 = cmp.margin_lavel_0;
                 campaign.is_run = Convert.ToBoolean(cmp.is_run);
                 campaign.date_start = cmp.date_start;
                 campaign.date_end = cmp.date_end;

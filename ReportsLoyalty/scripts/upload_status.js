@@ -1,4 +1,5 @@
-﻿function WinUploadStatus() {
+﻿
+function WinUploadStatus() {
     /* Store ------------------------------------------------------------------------------------------------- */
     this.StUPLControl = dict.getStoreUPLControlData(),
     this.getStUPLControl = function () {

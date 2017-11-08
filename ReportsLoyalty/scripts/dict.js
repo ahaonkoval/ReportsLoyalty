@@ -1,5 +1,6 @@
 ﻿
 function Dict() {
+    /// 
     this.getStoreCampaigns = function (type_id) {
         var model = Ext.define('v_campaigns_mk_run', {
             extend: 'Ext.data.Model',
@@ -20,6 +21,7 @@ function Dict() {
         });
 
     },
+    ///
     this.getStoreMarkets = function () {
         var model = Ext.define('dict_markets', {
             extend: 'Ext.data.Model',
@@ -39,6 +41,7 @@ function Dict() {
             autoLoad: true
         });
     },
+    ///
     this.getCmpGrpByLevel = function (level) {
         var model = Ext.define('FGroup', {
             extend: 'Ext.data.Model',
@@ -57,6 +60,47 @@ function Dict() {
             autoLoad: true
         });
     },
+
+    // Завантаження переліку груп віддвілу (другий рівень довідника, name 2)
+    // завантаження проходить ИД відділа
+    this.getGrpNameTwoByOtdId = function (otdId) {
+        var model = Ext.define('FGroup', {
+            extend: 'Ext.data.Model',
+            fields: ['fgroup_id', 'name'],
+            proxy: {
+                type: 'rest',
+                url: 'api/dict/GetGroupsByOtdId/' + otdId,
+                reader: {
+                    type: 'json',
+                    root: 'FGroup'
+                }
+            }
+        });
+        return Ext.create('Ext.data.Store', {
+            model: model,
+            autoLoad: true
+        });
+    },
+    ///
+    this.getDepartmentsListByOtdId = function (otdId) {
+        var model = Ext.define('FGroup', {
+            extend: 'Ext.data.Model',
+            fields: ['fgroup_id', 'name'],
+            proxy: {
+                type: 'rest',
+                url: 'api/dict/GetDepartmentsByOtdId/' + otdId,
+                reader: {
+                    type: 'json',
+                    root: 'FGroup'
+                }
+            }
+        });
+        return Ext.create('Ext.data.Store', {
+            model: model,
+            autoLoad: true
+        });
+    },
+    ///
     this.getCmpGrpByParentId = function (parentId) {
         var model = Ext.define('FGroup', {
             extend: 'Ext.data.Model',
@@ -75,25 +119,27 @@ function Dict() {
             autoLoad: false
         });
     },
-    this.getCmpGrpByParentId = function (parentId, store_id) {
-        var model = Ext.define('FGroup', {
-            extend: 'Ext.data.Model',
-            fields: ['fgroup_id', 'name'],
-            proxy: {
-                type: 'rest',
-                url: 'api/dict/GetGroupsByParentId/' + parentId,
-                reader: {
-                    type: 'json',
-                    root: 'FGroup'
-                }
-            }
-        });
-        return Ext.create('Ext.data.Store', {
-            model: model,
-            id: store_id,
-            autoLoad: false
-        });
-    },
+    ///
+    //this.getCmpGrpByParentId = function (parentId, store_id) {
+    //    var model = Ext.define('FGroup', {
+    //        extend: 'Ext.data.Model',
+    //        fields: ['fgroup_id', 'name'],
+    //        proxy: {
+    //            type: 'rest',
+    //            url: 'api/dict/GetGroupsByParentId/' + parentId,
+    //            reader: {
+    //                type: 'json',
+    //                root: 'FGroup'
+    //            }
+    //        }
+    //    });
+    //    return Ext.create('Ext.data.Store', {
+    //        model: model,
+    //        id: store_id,
+    //        autoLoad: false
+    //    });
+    //},
+    ///
     this.getStoreTrueFalse = function () {
         var m = Ext.define('ModelTrueFalse', {
             extend: 'Ext.data.Model',
@@ -112,7 +158,7 @@ function Dict() {
             ]
         });
     },
-    //
+    ///
     this.getStoreCampaignTypes = function () {
         var m = Ext.define('CampaignType', {
             extend: 'Ext.data.Model',
@@ -131,8 +177,8 @@ function Dict() {
             autoLoad: true
         });
     },
-
-     this.getStoreUPLControlData = function () {
+    ///
+    this.getStoreUPLControlData = function () {
          var m = Ext.define('UPLControl', {
              extend: 'Ext.data.Model',
              fields: ['City', 'Customers_qty', 'Diff_customers_qty', 'is_alert_customers_qty', 'card_issued_qty', 'diff_card_issued_qty',

@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>5.54148cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -543,7 +543,7 @@
         <Top>0.92287cm</Top>
         <Left>0.42016cm</Left>
         <Height>1.8cm</Height>
-        <Width>7.5cm</Width>
+        <Width>10.54148cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -622,7 +622,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>5.54147cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -1159,7 +1159,7 @@
         <Top>3.53426cm</Top>
         <Left>0.42016cm</Left>
         <Height>1.8cm</Height>
-        <Width>7.5cm</Width>
+        <Width>10.54147cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -1225,7 +1225,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>5.54148cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -1570,7 +1570,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>1.04979cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1581,7 +1581,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Загалом</Value>
+                              <Value>Загалом дітей УПЛ</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -1761,8 +1761,8 @@
         <DataSetName>ds_kids_age</DataSetName>
         <Top>6.28703cm</Top>
         <Left>0.42016cm</Left>
-        <Height>1.8cm</Height>
-        <Width>7.5cm</Width>
+        <Height>2.24979cm</Height>
+        <Width>10.54148cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -1809,7 +1809,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>8.2987cm</Top>
+        <Top>8.9337cm</Top>
         <Left>0.42015cm</Left>
         <Height>0.6cm</Height>
         <Width>8.73063cm</Width>
@@ -1828,7 +1828,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>5.54148cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.23063cm</Width>
@@ -2860,10 +2860,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_animals</DataSetName>
-        <Top>9.03981cm</Top>
+        <Top>9.60426cm</Top>
         <Left>0.42015cm</Left>
         <Height>1.8cm</Height>
-        <Width>8.73063cm</Width>
+        <Width>11.77211cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -2910,7 +2910,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>10.91037cm</Top>
+        <Top>11.54537cm</Top>
         <Left>0.42016cm</Left>
         <Height>0.6cm</Height>
         <Width>4.68251cm</Width>
@@ -2929,7 +2929,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>5.54147cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.18251cm</Width>
@@ -4459,10 +4459,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_hobby</DataSetName>
-        <Top>11.65148cm</Top>
-        <Left>0.42015cm</Left>
+        <Top>12.3923cm</Top>
+        <Left>0.42016cm</Left>
         <Height>2.19688cm</Height>
-        <Width>17.32834cm</Width>
+        <Width>20.36981cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -4509,7 +4509,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>14.02474cm</Top>
+        <Top>14.65974cm</Top>
         <Left>0.42016cm</Left>
         <Height>0.6cm</Height>
         <Width>7.80458cm</Width>
@@ -4528,7 +4528,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>5.54148cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -5062,10 +5062,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_car</DataSetName>
-        <Top>14.76585cm</Top>
+        <Top>15.40085cm</Top>
         <Left>0.42016cm</Left>
         <Height>1.8cm</Height>
-        <Width>7.80458cm</Width>
+        <Width>10.84606cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>

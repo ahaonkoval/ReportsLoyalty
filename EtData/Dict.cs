@@ -41,7 +41,47 @@ namespace EtData
         {
             return Le.v_fgroups.Where(w => w.parent_id == parent_id).OrderBy(o => o.fgroup_id);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<v_fgroups> GetGroupsByOtdId(long id)
+        {
+            List<v_fgroups> fg = new List<v_fgroups>();
+            var groups = Le.t_get_groups_by_otdid(id);
+            foreach (t_get_groups_by_otdid_Result o in groups)
+            {
+                fg.Add(new v_fgroups {
+                    fgroup_id = o.fgroup_id.Value,
+                     name = o.name
+                });
+            }
+            return fg;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<v_fgroups> GetDepartmentsByOtdId(long id)
+        {
+            List<v_fgroups> fg = new List<v_fgroups>();
+            var groups = Le.t_get_departs_by_otdid(id);
+            foreach (t_get_departs_by_otdid_Result o in groups)
+            {
+                fg.Add(new v_fgroups
+                {
+                    fgroup_id = o.fgroup_id.Value,
+                    name = o.name
+                });
+            }
+            return fg;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<UPLControl> GetUploadingControlData()
         {
             List<UPLControl> l_ctrl = new List<UPLControl>();

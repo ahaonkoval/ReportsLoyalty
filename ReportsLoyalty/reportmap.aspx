@@ -84,7 +84,8 @@
                                 listeners: {
                                     click: function () {
                                         //win_campaigns.show();
-                                        win_campaigns_show();
+                                        //win_campaigns_show();
+                                        getWinCampaigns().show();
                                     }
                                 }
                             },

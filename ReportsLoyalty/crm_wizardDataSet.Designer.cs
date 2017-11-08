@@ -2469,6 +2469,18 @@ namespace ReportsLoyalty {
             
             private global::System.Data.DataColumn columnmargin_market;
             
+            private global::System.Data.DataColumn columnsm_art1;
+            
+            private global::System.Data.DataColumn columnsm_group1;
+            
+            private global::System.Data.DataColumn columnsm_depart1;
+            
+            private global::System.Data.DataColumn columnsm_market1;
+            
+            private global::System.Data.DataColumn columnsm_buy_market1;
+            
+            private global::System.Data.DataColumn columnqty_customers;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public p_get_daily_pers_expected_effectDataTable() {
@@ -2728,6 +2740,54 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_art1Column {
+                get {
+                    return this.columnsm_art1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_group1Column {
+                get {
+                    return this.columnsm_group1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_depart1Column {
+                get {
+                    return this.columnsm_depart1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_market1Column {
+                get {
+                    return this.columnsm_market1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_buy_market1Column {
+                get {
+                    return this.columnsm_buy_market1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn qty_customersColumn {
+                get {
+                    return this.columnqty_customers;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2791,7 +2851,13 @@ namespace ReportsLoyalty {
                         decimal margin_art, 
                         decimal margin_group, 
                         decimal margin_depart, 
-                        decimal margin_market) {
+                        decimal margin_market, 
+                        double sm_art1, 
+                        double sm_group1, 
+                        double sm_depart1, 
+                        double sm_market1, 
+                        double sm_buy_market1, 
+                        long qty_customers) {
                 p_get_daily_pers_expected_effectRow rowp_get_daily_pers_expected_effectRow = ((p_get_daily_pers_expected_effectRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         city,
@@ -2821,7 +2887,13 @@ namespace ReportsLoyalty {
                         margin_art,
                         margin_group,
                         margin_depart,
-                        margin_market};
+                        margin_market,
+                        sm_art1,
+                        sm_group1,
+                        sm_depart1,
+                        sm_market1,
+                        sm_buy_market1,
+                        qty_customers};
                 rowp_get_daily_pers_expected_effectRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowp_get_daily_pers_expected_effectRow);
                 return rowp_get_daily_pers_expected_effectRow;
@@ -2872,6 +2944,12 @@ namespace ReportsLoyalty {
                 this.columnmargin_group = base.Columns["margin_group"];
                 this.columnmargin_depart = base.Columns["margin_depart"];
                 this.columnmargin_market = base.Columns["margin_market"];
+                this.columnsm_art1 = base.Columns["sm_art1"];
+                this.columnsm_group1 = base.Columns["sm_group1"];
+                this.columnsm_depart1 = base.Columns["sm_depart1"];
+                this.columnsm_market1 = base.Columns["sm_market1"];
+                this.columnsm_buy_market1 = base.Columns["sm_buy_market1"];
+                this.columnqty_customers = base.Columns["qty_customers"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2933,6 +3011,18 @@ namespace ReportsLoyalty {
                 base.Columns.Add(this.columnmargin_depart);
                 this.columnmargin_market = new global::System.Data.DataColumn("margin_market", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmargin_market);
+                this.columnsm_art1 = new global::System.Data.DataColumn("sm_art1", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_art1);
+                this.columnsm_group1 = new global::System.Data.DataColumn("sm_group1", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_group1);
+                this.columnsm_depart1 = new global::System.Data.DataColumn("sm_depart1", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_depart1);
+                this.columnsm_market1 = new global::System.Data.DataColumn("sm_market1", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_market1);
+                this.columnsm_buy_market1 = new global::System.Data.DataColumn("sm_buy_market1", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_buy_market1);
+                this.columnqty_customers = new global::System.Data.DataColumn("qty_customers", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnqty_customers);
                 this.columncity.MaxLength = 50;
                 this.columnis_channel.ReadOnly = true;
                 this.columnis_channel.MaxLength = 50;
@@ -2962,6 +3052,16 @@ namespace ReportsLoyalty {
                 this.columnmargin_group.ReadOnly = true;
                 this.columnmargin_depart.ReadOnly = true;
                 this.columnmargin_market.ReadOnly = true;
+                this.columnsm_art1.ReadOnly = true;
+                this.columnsm_art1.Caption = "sm_art";
+                this.columnsm_group1.ReadOnly = true;
+                this.columnsm_group1.Caption = "sm_group";
+                this.columnsm_depart1.ReadOnly = true;
+                this.columnsm_depart1.Caption = "sm_depart";
+                this.columnsm_market1.ReadOnly = true;
+                this.columnsm_market1.Caption = "sm_market";
+                this.columnsm_buy_market1.ReadOnly = true;
+                this.columnsm_buy_market1.Caption = "sm_buy_market";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7332,6 +7432,108 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double sm_art1 {
+                get {
+                    try {
+                        return ((double)(this[this.tablep_get_daily_pers_expected_effect.sm_art1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_art1\' в таблице \'p_get_daily_pers_expected_effect\' равно" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_daily_pers_expected_effect.sm_art1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double sm_group1 {
+                get {
+                    try {
+                        return ((double)(this[this.tablep_get_daily_pers_expected_effect.sm_group1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_group1\' в таблице \'p_get_daily_pers_expected_effect\' рав" +
+                                "но DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_daily_pers_expected_effect.sm_group1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double sm_depart1 {
+                get {
+                    try {
+                        return ((double)(this[this.tablep_get_daily_pers_expected_effect.sm_depart1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_depart1\' в таблице \'p_get_daily_pers_expected_effect\' ра" +
+                                "вно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_daily_pers_expected_effect.sm_depart1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double sm_market1 {
+                get {
+                    try {
+                        return ((double)(this[this.tablep_get_daily_pers_expected_effect.sm_market1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_market1\' в таблице \'p_get_daily_pers_expected_effect\' ра" +
+                                "вно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_daily_pers_expected_effect.sm_market1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double sm_buy_market1 {
+                get {
+                    try {
+                        return ((double)(this[this.tablep_get_daily_pers_expected_effect.sm_buy_market1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_buy_market1\' в таблице \'p_get_daily_pers_expected_effect" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_daily_pers_expected_effect.sm_buy_market1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long qty_customers {
+                get {
+                    try {
+                        return ((long)(this[this.tablep_get_daily_pers_expected_effect.qty_customersColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'qty_customers\' в таблице \'p_get_daily_pers_expected_effect\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_daily_pers_expected_effect.qty_customersColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IscityNull() {
                 return this.IsNull(this.tablep_get_daily_pers_expected_effect.cityColumn);
             }
@@ -7664,6 +7866,78 @@ namespace ReportsLoyalty {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setmargin_marketNull() {
                 this[this.tablep_get_daily_pers_expected_effect.margin_marketColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_art1Null() {
+                return this.IsNull(this.tablep_get_daily_pers_expected_effect.sm_art1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_art1Null() {
+                this[this.tablep_get_daily_pers_expected_effect.sm_art1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_group1Null() {
+                return this.IsNull(this.tablep_get_daily_pers_expected_effect.sm_group1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_group1Null() {
+                this[this.tablep_get_daily_pers_expected_effect.sm_group1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_depart1Null() {
+                return this.IsNull(this.tablep_get_daily_pers_expected_effect.sm_depart1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_depart1Null() {
+                this[this.tablep_get_daily_pers_expected_effect.sm_depart1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_market1Null() {
+                return this.IsNull(this.tablep_get_daily_pers_expected_effect.sm_market1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_market1Null() {
+                this[this.tablep_get_daily_pers_expected_effect.sm_market1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_buy_market1Null() {
+                return this.IsNull(this.tablep_get_daily_pers_expected_effect.sm_buy_market1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_buy_market1Null() {
+                this[this.tablep_get_daily_pers_expected_effect.sm_buy_market1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isqty_customersNull() {
+                return this.IsNull(this.tablep_get_daily_pers_expected_effect.qty_customersColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setqty_customersNull() {
+                this[this.tablep_get_daily_pers_expected_effect.qty_customersColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11003,16 +11277,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("doc_qty_art", "doc_qty_art");
             tableMapping.ColumnMappings.Add("sm_discount", "sm_discount");
             tableMapping.ColumnMappings.Add("avg_art", "avg_art");
-            tableMapping.ColumnMappings.Add("sm_art", "sm_art");
             tableMapping.ColumnMappings.Add("doc_qty_group", "doc_qty_group");
             tableMapping.ColumnMappings.Add("avg_group", "avg_group");
-            tableMapping.ColumnMappings.Add("sm_group", "sm_group");
             tableMapping.ColumnMappings.Add("doc_qty_depart", "doc_qty_depart");
             tableMapping.ColumnMappings.Add("avg_depart", "avg_depart");
-            tableMapping.ColumnMappings.Add("sm_depart", "sm_depart");
             tableMapping.ColumnMappings.Add("doc_qty_market", "doc_qty_market");
             tableMapping.ColumnMappings.Add("avg_market", "avg_market");
-            tableMapping.ColumnMappings.Add("sm_market", "sm_market");
             tableMapping.ColumnMappings.Add("sm_discount_all", "sm_discount_all");
             tableMapping.ColumnMappings.Add("customers_qty_art", "customers_qty_art");
             tableMapping.ColumnMappings.Add("customers_qty_group", "customers_qty_group");
@@ -11021,11 +11291,16 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("sm_buy_art", "sm_buy_art");
             tableMapping.ColumnMappings.Add("sm_buy_group", "sm_buy_group");
             tableMapping.ColumnMappings.Add("sm_buy_depart", "sm_buy_depart");
-            tableMapping.ColumnMappings.Add("sm_buy_market", "sm_buy_market");
             tableMapping.ColumnMappings.Add("margin_art", "margin_art");
             tableMapping.ColumnMappings.Add("margin_group", "margin_group");
             tableMapping.ColumnMappings.Add("margin_depart", "margin_depart");
             tableMapping.ColumnMappings.Add("margin_market", "margin_market");
+            tableMapping.ColumnMappings.Add("sm_art", "sm_art1");
+            tableMapping.ColumnMappings.Add("sm_group", "sm_group1");
+            tableMapping.ColumnMappings.Add("sm_depart", "sm_depart1");
+            tableMapping.ColumnMappings.Add("sm_market", "sm_market1");
+            tableMapping.ColumnMappings.Add("sm_buy_market", "sm_buy_market1");
+            tableMapping.ColumnMappings.Add("qty_customers", "qty_customers");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -11049,13 +11324,14 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@control_group", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_lst", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(crm_wizardDataSet.p_get_daily_pers_expected_effectDataTable dataTable, global::System.Nullable<int> campaign_id, global::System.Nullable<bool> control_group, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id) {
+        public virtual int Fill(crm_wizardDataSet.p_get_daily_pers_expected_effectDataTable dataTable, global::System.Nullable<int> campaign_id, global::System.Nullable<bool> control_group, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((campaign_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(campaign_id.Value));
@@ -11080,6 +11356,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(market_lst));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -11092,7 +11374,7 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual crm_wizardDataSet.p_get_daily_pers_expected_effectDataTable GetData(global::System.Nullable<int> campaign_id, global::System.Nullable<bool> control_group, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id) {
+        public virtual crm_wizardDataSet.p_get_daily_pers_expected_effectDataTable GetData(global::System.Nullable<int> campaign_id, global::System.Nullable<bool> control_group, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((campaign_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(campaign_id.Value));
@@ -11117,6 +11399,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(market_lst));
             }
             crm_wizardDataSet.p_get_daily_pers_expected_effectDataTable dataTable = new crm_wizardDataSet.p_get_daily_pers_expected_effectDataTable();
             this.Adapter.Fill(dataTable);
