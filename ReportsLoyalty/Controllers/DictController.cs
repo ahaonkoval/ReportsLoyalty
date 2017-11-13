@@ -75,6 +75,7 @@ namespace ReportsLoyalty.Controllers
                     new dict_markets
                     {
                         id = 0,
+                        short_name = "all",
                         market_name = "ВСІ"                        
                     }
                 );

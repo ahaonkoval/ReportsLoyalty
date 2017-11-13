@@ -55,21 +55,21 @@ namespace ReportsLoyalty.pages.profile_participant
             this.sds_kids_age.SelectParameters.Add("date_start", dt_start.ToString("yyyy-MM-dd"));
             this.sds_kids_age.SelectParameters.Add("date_end", dt_end.ToString("yyyy-MM-dd"));
             /*----------------------------------------------------------------------------------------------------------*/
-            this.sds_animals.SelectCommand =
-                @"select * from rep.t_get_allacation_customers_by_animals(@date_start, @date_end, @market_id) order by market_name";
-            this.sds_animals.SelectCommandType = SqlDataSourceCommandType.Text;
-            this.sds_animals.SelectParameters.Clear();
-            this.sds_animals.SelectParameters.Add("market_id", market_id);
-            this.sds_animals.SelectParameters.Add("date_start", dt_start.ToString("yyyy-MM-dd"));
-            this.sds_animals.SelectParameters.Add("date_end", dt_end.ToString("yyyy-MM-dd"));
+            //this.sds_animals.SelectCommand =
+            //    @"select * from rep.t_get_allacation_customers_by_animals(@date_start, @date_end, @market_id) order by market_name";
+            //this.sds_animals.SelectCommandType = SqlDataSourceCommandType.Text;
+            //this.sds_animals.SelectParameters.Clear();
+            //this.sds_animals.SelectParameters.Add("market_id", market_id);
+            //this.sds_animals.SelectParameters.Add("date_start", dt_start.ToString("yyyy-MM-dd"));
+            //this.sds_animals.SelectParameters.Add("date_end", dt_end.ToString("yyyy-MM-dd"));
             /*----------------------------------------------------------------------------------------------------------*/
-            this.sds_hobby.SelectCommand =
-                @"select * from rep.t_get_allocation_customers_by_hobby(@date_start, @date_end, @market_id) order by market_name";
-            this.sds_hobby.SelectCommandType = SqlDataSourceCommandType.Text;
-            this.sds_hobby.SelectParameters.Clear();
-            this.sds_hobby.SelectParameters.Add("market_id", market_id);
-            this.sds_hobby.SelectParameters.Add("date_start", dt_start.ToString("yyyy-MM-dd"));
-            this.sds_hobby.SelectParameters.Add("date_end", dt_end.ToString("yyyy-MM-dd"));
+            //this.sds_hobby.SelectCommand =
+            //    @"select * from rep.t_get_allocation_customers_by_hobby(@date_start, @date_end, @market_id) order by market_name";
+            //this.sds_hobby.SelectCommandType = SqlDataSourceCommandType.Text;
+            //this.sds_hobby.SelectParameters.Clear();
+            //this.sds_hobby.SelectParameters.Add("market_id", market_id);
+            //this.sds_hobby.SelectParameters.Add("date_start", dt_start.ToString("yyyy-MM-dd"));
+            //this.sds_hobby.SelectParameters.Add("date_end", dt_end.ToString("yyyy-MM-dd"));
             /*----------------------------------------------------------------------------------------------------------*/
             this.sds_car.SelectCommand =
                 @"select * from rep.t_get_allocation_customers_by_have_car(@date_start, @date_end, @market_id) order by market_name";

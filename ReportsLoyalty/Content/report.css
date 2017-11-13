@@ -58,3 +58,38 @@ textarea
     //font-weight: bold; 
     font-size: 11px;
 }
+
+/*.markmo-list .x-list-item:nth-child(1),
+.markmo-list .x-list-item:nth-child(2) {
+  color: #CCC;
+  font-size:10px;
+}*/
+
+/*.markets-list .x-list-item:nth-child(1),*/
+/*.markets-list .x-list-item:nth-child(2) {
+  color: #f00;
+  font-size:10px;
+}*/
+
+/*.make-bold input {
+    font-weight: bold;
+}*/
+
+.x-boundlist-item {
+  color: #CCC;
+  font-size:10px;
+}
+
+/*.x-combobox_ak-item {
+    padding: 0 10px;
+    font: normal 13px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+    line-height: 30px;
+    cursor: pointer;
+    cursor: hand;
+    position: relative;
+    border-width: 1px;
+    border-style: dotted;
+    border-color: #fff;
+    color: #404040;
+}*/
+

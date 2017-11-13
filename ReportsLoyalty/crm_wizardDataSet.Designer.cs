@@ -11560,13 +11560,14 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@allocation_type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_lst", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(crm_wizardDataSet.p_get_daily_pers_map_allocationDataTable dataTable, global::System.Nullable<int> campaign_id, global::System.Nullable<bool> control_group, global::System.Nullable<int> allocation_type, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id) {
+        public virtual int Fill(crm_wizardDataSet.p_get_daily_pers_map_allocationDataTable dataTable, global::System.Nullable<int> campaign_id, global::System.Nullable<bool> control_group, global::System.Nullable<int> allocation_type, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((campaign_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(campaign_id.Value));
@@ -11597,6 +11598,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(market_lst));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -11609,7 +11616,7 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual crm_wizardDataSet.p_get_daily_pers_map_allocationDataTable GetData(global::System.Nullable<int> campaign_id, global::System.Nullable<bool> control_group, global::System.Nullable<int> allocation_type, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id) {
+        public virtual crm_wizardDataSet.p_get_daily_pers_map_allocationDataTable GetData(global::System.Nullable<int> campaign_id, global::System.Nullable<bool> control_group, global::System.Nullable<int> allocation_type, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((campaign_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(campaign_id.Value));
@@ -11640,6 +11647,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(market_lst));
             }
             crm_wizardDataSet.p_get_daily_pers_map_allocationDataTable dataTable = new crm_wizardDataSet.p_get_daily_pers_map_allocationDataTable();
             this.Adapter.Fill(dataTable);
@@ -11798,13 +11811,14 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@control_group", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_lst", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(crm_wizardDataSet.p_get_daily_pers_trade_ratingDataTable dataTable, global::System.Nullable<int> campaign_id, global::System.Nullable<int> lavel, global::System.Nullable<bool> control_group, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id) {
+        public virtual int Fill(crm_wizardDataSet.p_get_daily_pers_trade_ratingDataTable dataTable, global::System.Nullable<int> campaign_id, global::System.Nullable<int> lavel, global::System.Nullable<bool> control_group, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((campaign_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(campaign_id.Value));
@@ -11835,6 +11849,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(market_lst));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -11847,7 +11867,7 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual crm_wizardDataSet.p_get_daily_pers_trade_ratingDataTable GetData(global::System.Nullable<int> campaign_id, global::System.Nullable<int> lavel, global::System.Nullable<bool> control_group, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id) {
+        public virtual crm_wizardDataSet.p_get_daily_pers_trade_ratingDataTable GetData(global::System.Nullable<int> campaign_id, global::System.Nullable<int> lavel, global::System.Nullable<bool> control_group, global::System.Nullable<global::System.DateTime> date, global::System.Nullable<int> market_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((campaign_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(campaign_id.Value));
@@ -11878,6 +11898,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(market_lst));
             }
             crm_wizardDataSet.p_get_daily_pers_trade_ratingDataTable dataTable = new crm_wizardDataSet.p_get_daily_pers_trade_ratingDataTable();
             this.Adapter.Fill(dataTable);
@@ -12270,13 +12296,15 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_end", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@in_market", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@campaign_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_lst", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(crm_wizardDataSet.p_get_birth_day_mk_expected_effectDataTable dataTable, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<bool> in_market, global::System.Nullable<long> market_id) {
+        public virtual int Fill(crm_wizardDataSet.p_get_birth_day_mk_expected_effectDataTable dataTable, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<bool> in_market, global::System.Nullable<long> market_id, global::System.Nullable<long> campaign_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((date_start.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(date_start.Value));
@@ -12301,6 +12329,18 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((campaign_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((long)(campaign_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(market_lst));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -12313,7 +12353,7 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual crm_wizardDataSet.p_get_birth_day_mk_expected_effectDataTable GetData(global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<bool> in_market, global::System.Nullable<long> market_id) {
+        public virtual crm_wizardDataSet.p_get_birth_day_mk_expected_effectDataTable GetData(global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<bool> in_market, global::System.Nullable<long> market_id, global::System.Nullable<long> campaign_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((date_start.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(date_start.Value));
@@ -12338,6 +12378,18 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((campaign_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((long)(campaign_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(market_lst));
             }
             crm_wizardDataSet.p_get_birth_day_mk_expected_effectDataTable dataTable = new crm_wizardDataSet.p_get_birth_day_mk_expected_effectDataTable();
             this.Adapter.Fill(dataTable);
@@ -12492,13 +12544,14 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_end", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@campaign_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_lst", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(crm_wizardDataSet.p_get_birth_day_mk_discountDataTable dataTable, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id, global::System.Nullable<long> campaign_id) {
+        public virtual int Fill(crm_wizardDataSet.p_get_birth_day_mk_discountDataTable dataTable, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id, global::System.Nullable<long> campaign_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((date_start.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(date_start.Value));
@@ -12523,6 +12576,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(market_lst));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -12535,7 +12594,7 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual crm_wizardDataSet.p_get_birth_day_mk_discountDataTable GetData(global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id, global::System.Nullable<long> campaign_id) {
+        public virtual crm_wizardDataSet.p_get_birth_day_mk_discountDataTable GetData(global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id, global::System.Nullable<long> campaign_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((date_start.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(date_start.Value));
@@ -12560,6 +12619,12 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(market_lst));
             }
             crm_wizardDataSet.p_get_birth_day_mk_discountDataTable dataTable = new crm_wizardDataSet.p_get_birth_day_mk_discountDataTable();
             this.Adapter.Fill(dataTable);
@@ -12713,13 +12778,15 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_start", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_end", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@campaign_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_lst", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(crm_wizardDataSet.p_get_birth_day_mk_distanseDataTable dataTable, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id) {
+        public virtual int Fill(crm_wizardDataSet.p_get_birth_day_mk_distanseDataTable dataTable, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id, global::System.Nullable<long> campaign_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((date_start.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(date_start.Value));
@@ -12738,6 +12805,18 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((campaign_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((long)(campaign_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(market_lst));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -12750,7 +12829,7 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual crm_wizardDataSet.p_get_birth_day_mk_distanseDataTable GetData(global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id) {
+        public virtual crm_wizardDataSet.p_get_birth_day_mk_distanseDataTable GetData(global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id, global::System.Nullable<long> campaign_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((date_start.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(date_start.Value));
@@ -12769,6 +12848,18 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((campaign_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((long)(campaign_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(market_lst));
             }
             crm_wizardDataSet.p_get_birth_day_mk_distanseDataTable dataTable = new crm_wizardDataSet.p_get_birth_day_mk_distanseDataTable();
             this.Adapter.Fill(dataTable);
@@ -12923,13 +13014,16 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_start", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_end", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@in_market", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@campaign_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_lst", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(crm_wizardDataSet.p_get_birth_day_mk_trade_ratingDataTable dataTable, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id) {
+        public virtual int Fill(crm_wizardDataSet.p_get_birth_day_mk_trade_ratingDataTable dataTable, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id, global::System.Nullable<bool> in_market, global::System.Nullable<long> campaign_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((date_start.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(date_start.Value));
@@ -12948,6 +13042,24 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((in_market.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((bool)(in_market.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((campaign_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((long)(campaign_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(market_lst));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -12960,7 +13072,7 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual crm_wizardDataSet.p_get_birth_day_mk_trade_ratingDataTable GetData(global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id) {
+        public virtual crm_wizardDataSet.p_get_birth_day_mk_trade_ratingDataTable GetData(global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, global::System.Nullable<long> market_id, global::System.Nullable<bool> in_market, global::System.Nullable<long> campaign_id, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((date_start.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(date_start.Value));
@@ -12979,6 +13091,24 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((in_market.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((bool)(in_market.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((campaign_id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((long)(campaign_id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(market_lst));
             }
             crm_wizardDataSet.p_get_birth_day_mk_trade_ratingDataTable dataTable = new crm_wizardDataSet.p_get_birth_day_mk_trade_ratingDataTable();
             this.Adapter.Fill(dataTable);

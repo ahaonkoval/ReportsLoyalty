@@ -10,28 +10,45 @@ var showExtraPoints = function () {
     var p_extra_points = Ext.getCmp('p_extra_points');
     if (p_extra_points != null) return;
 
-    //var a = getDisabledDatesById(46);
-    var selectStyleComboboxConfig = {
-        fieldLabel: 'My Dropdown',
-        name: 'type',
-        allowBlank: false,
-        editable: false,
-        // This is the option required for "select"-style behaviour
-        triggerAction: 'all',
-        typeAhead: false,
-        mode: 'local',
-        width: 120,
-        listWidth: 120,
-        hiddenName: 'my_dropdown',
-        store: [
-            ['val1', 'First Value'],
-            ['val2', 'Second Value']
-        ],
-        readOnly: true
-    };
-    var comboBox = new Ext.form.ComboBox(selectStyleComboboxConfig);
+    var comboBox = Ext.create('Ext.form.ComboBox', {
+        fieldLabel: 'Магазин',
+        store: dict.getStoreMarkets(),
+        multiSelect: true,
+        queryMode: 'local',
+        valueField: 'short_name',
+        displayField: 'market_name',
+        width: 300,
+        labelWidth: 50,
+        emptyText: 'Всі',
+        itemCls: 'make-bold',
+        renderTo: Ext.getBody(),
+        tpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '<div class="x-boundlist-item">{market_name}</div>', 
+            '</tpl>'
+        ),
+        displayTpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '{short_name};',
+            '</tpl>'
+        ),
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') == -1) {
+                    ctrl.setValue(['all'])
+                } else {
+                    if (oldValue != null) {
+                        if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') > -1)
+                            ctrl.setValue([]);
+                    }
+                }
+            }
+        }
 
-    tab = center.add({
+    });
+
+
+    var tab = center.add({
         id:'p_extra_points',
         title: 'ЕКСТРА-БАЛИ',
         extend: 'Ext.panel.Panel',
@@ -93,19 +110,18 @@ var showExtraPoints = function () {
                             }
                         }, {
                             xtype: 'tbseparator'
-                        }, {
-                            xtype: 'label',
-                            text: 'Магазин:'
-                        }, {
-                            id: 'cmbMarkets',
-                            xtype: 'combobox',
-                            width: 250,
-                            store: dict.getStoreMarkets(),//st_dict_markets,
-                            queryMode: 'local',
-                            displayField: 'market_name',
-                            valueField: 'id',
-                            renderTo: Ext.getBody()
-                        }, comboBox,
+                        }, 
+                        //{
+                        //    id: 'cmbMarkets',
+                        //    xtype: 'combobox',
+                        //    width: 250,
+                        //    store: dict.getStoreMarkets(),//st_dict_markets,
+                        //    queryMode: 'local',
+                        //    displayField: 'market_name',
+                        //    valueField: 'id',
+                        //    renderTo: Ext.getBody()
+                        //}
+                        ,comboBox,
                         //{
                         //    xtype: 'combobox',
                         //    //width: '400',
@@ -203,6 +219,43 @@ var showPersonalOffers = function () {
     var p_personal_offers = Ext.getCmp('p_personal_offers');
     if (p_personal_offers != null) return;
 
+    var comboBox = Ext.create('Ext.form.ComboBox', {
+        fieldLabel: 'Магазин',
+        store: dict.getStoreMarkets(),
+        multiSelect: true,
+        queryMode: 'local',
+        valueField: 'short_name',
+        displayField: 'market_name',
+        width: 300,
+        labelWidth: 50,
+        emptyText: 'Всі',
+        itemCls: 'make-bold',
+        renderTo: Ext.getBody(),
+        tpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '<div class="x-boundlist-item">{market_name}</div>',
+            '</tpl>'
+        ),
+        displayTpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '{short_name};',
+            '</tpl>'
+        ),
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') == -1) {
+                    ctrl.setValue(['all'])
+                } else {
+                    if (oldValue != null) {
+                        if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') > -1)
+                            ctrl.setValue([]);
+                    }
+                }
+            }
+        }
+
+    });
+
     tab = center.add({
         id: 'p_personal_offers',
         title: 'Персональні пропозиції',
@@ -260,19 +313,22 @@ var showPersonalOffers = function () {
                                 }
                             }, {
                                 xtype: 'tbseparator'
-                            }, {
-                                xtype: 'label',
-                                text: 'Магазин:'
-                            }, {
-                                id: 'cmbMarkets_personal_offers',
-                                xtype: 'combobox',
-                                width: 200,
-                                store: dict.getStoreMarkets(),//st_dict_markets,
-                                queryMode: 'local',
-                                displayField: 'market_name',
-                                valueField: 'id',
-                                renderTo: Ext.getBody()
-                            }, {
+                            },
+                            comboBox,
+                            //{
+                            //    xtype: 'label',
+                            //    text: 'Магазин:'
+                            //}, {
+                            //    id: 'cmbMarkets_personal_offers',
+                            //    xtype: 'combobox',
+                            //    width: 200,
+                            //    store: dict.getStoreMarkets(),//st_dict_markets,
+                            //    queryMode: 'local',
+                            //    displayField: 'market_name',
+                            //    valueField: 'id',
+                            //    renderTo: Ext.getBody()
+                            //},
+                            {
                                 xtype: 'label',
                                 text: 'Контрольна група:'
                             }, {
@@ -305,8 +361,8 @@ var showPersonalOffers = function () {
                                         url = url + '&date_st=' + date_st
                                     }
 
-                                    var cmbMarkets = Ext.getCmp('cmbMarkets_personal_offers');
-                                    var market_id = cmbMarkets.getValue();
+                                    //var cmbMarkets = Ext.getCmp('cmbMarkets_personal_offers');
+                                    var market_id = comboBox.getValue(); //cmbMarkets.getValue();
                                     if (market_id == null) market_id = 0;
                                     url = url + '&market_id=' + market_id;
 
@@ -364,6 +420,43 @@ var showBirthDayUPL = function () {
     var p_birth_day_upl = Ext.getCmp('p_birth_day_upl');
     if (p_birth_day_upl != null) return;
 
+    var comboBox = Ext.create('Ext.form.ComboBox', {
+        fieldLabel: 'Магазин',
+        store: dict.getStoreMarkets(),
+        multiSelect: true,
+        queryMode: 'local',
+        valueField: 'short_name',
+        displayField: 'market_name',
+        width: 300,
+        labelWidth: 50,
+        emptyText: 'Всі',
+        itemCls: 'make-bold',
+        renderTo: Ext.getBody(),
+        tpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '<div class="x-boundlist-item">{market_name}</div>',
+            '</tpl>'
+        ),
+        displayTpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '{short_name};',
+            '</tpl>'
+        ),
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') == -1) {
+                    ctrl.setValue(['all'])
+                } else {
+                    if (oldValue != null) {
+                        if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') > -1)
+                            ctrl.setValue([]);
+                    }
+                }
+            }
+        }
+
+    });
+
     tab = center.add({
         id: 'p_birth_day_upl',
         title: 'МК "До дня народження УПЛ"',
@@ -402,19 +495,21 @@ var showBirthDayUPL = function () {
                         width: 110
                     }, {
                         xtype: 'tbseparator'
-                    }, {
-                        xtype: 'label',
-                        text: 'Магазин:'
-                    }, {
-                        id: 'cmbMarkets_BirthDayUPL',
-                        xtype: 'combobox',
-                        width: 250,
-                        store: dict.getStoreMarkets(),
-                        queryMode: 'local',
-                        displayField: 'market_name',
-                        valueField: 'id',
-                        renderTo: Ext.getBody()
-                    }, {
+                    }, comboBox,
+                    //{
+                    //    xtype: 'label',
+                    //    text: 'Магазин:'
+                    //}, {
+                    //    id: 'cmbMarkets_BirthDayUPL',
+                    //    xtype: 'combobox',
+                    //    width: 250,
+                    //    store: dict.getStoreMarkets(),
+                    //    queryMode: 'local',
+                    //    displayField: 'market_name',
+                    //    valueField: 'id',
+                    //    renderTo: Ext.getBody()
+                    //},
+                    {
                         xtype: 'tbseparator'
                     }, {
                         xtype: 'label',
@@ -451,8 +546,8 @@ var showBirthDayUPL = function () {
                                 url = url + '&date_end=' + date_end
                             }
 
-                            var cmbMarkets = Ext.getCmp('cmbMarkets_BirthDayUPL');
-                            var market_id = cmbMarkets.getValue();
+                            //var cmbMarkets = Ext.getCmp('cmbMarkets_BirthDayUPL');
+                            var market_id = comboBox.getValue();
                             if (market_id == null) market_id = 0;
                             url = url + '&market_id=' + market_id;
 

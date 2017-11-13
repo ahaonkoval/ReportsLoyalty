@@ -37,6 +37,14 @@
 
         <asp:SqlDataSource ID="sds_expected_effect" runat="server" ConnectionString="<%$ ConnectionStrings:crm_wizard_connect_string %>" 
             SelectCommand="rep.p_get_daily_pers_expected_effect" SelectCommandType="StoredProcedure">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="" Direction="ReturnValue" Name="RETURN_VALUE" Type="Int32" />
+                <asp:Parameter Name="campaign_id" Type="Int32" />
+                <asp:Parameter Name="control_group" Type="Boolean" />
+                <asp:Parameter DbType="Date" Name="date" />
+                <asp:Parameter Name="market_id" Type="Int32" />
+                <asp:Parameter Name="market_lst" Type="String" />
+            </SelectParameters>
         </asp:SqlDataSource>
         <asp:SqlDataSource ID="sds_days_allocated" runat="server" ConnectionString="<%$ ConnectionStrings:crm_wizard_connect_string %>"
             SelectCommand="">
