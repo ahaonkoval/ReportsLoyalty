@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CountersDocsAndSell.aspx.cs" Inherits="ReportsLoyalty.pages.CountersDocsAndSell" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="counter_docs.aspx.cs" Inherits="ReportsLoyalty.pages.CountersDocsAndSell" %>
 <%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 
 <!DOCTYPE html>

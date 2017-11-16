@@ -4318,6 +4318,8 @@ namespace ReportsLoyalty {
             
             private global::System.Data.DataColumn columnsm_all;
             
+            private global::System.Data.DataColumn columnused_market_id;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public p_get_counters_docs_bydateDataTable() {
@@ -4393,6 +4395,14 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn used_market_idColumn {
+                get {
+                    return this.columnused_market_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4428,14 +4438,15 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_get_counters_docs_bydateRow Addp_get_counters_docs_bydateRow(System.DateTime created, int doc_count_upl, double sm_upl, int doc_count_all, double sm_all) {
+            public p_get_counters_docs_bydateRow Addp_get_counters_docs_bydateRow(System.DateTime created, int doc_count_upl, double sm_upl, int doc_count_all, double sm_all, long used_market_id) {
                 p_get_counters_docs_bydateRow rowp_get_counters_docs_bydateRow = ((p_get_counters_docs_bydateRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         created,
                         doc_count_upl,
                         sm_upl,
                         doc_count_all,
-                        sm_all};
+                        sm_all,
+                        used_market_id};
                 rowp_get_counters_docs_bydateRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowp_get_counters_docs_bydateRow);
                 return rowp_get_counters_docs_bydateRow;
@@ -4463,6 +4474,7 @@ namespace ReportsLoyalty {
                 this.columnsm_upl = base.Columns["sm_upl"];
                 this.columndoc_count_all = base.Columns["doc_count_all"];
                 this.columnsm_all = base.Columns["sm_all"];
+                this.columnused_market_id = base.Columns["used_market_id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4478,6 +4490,8 @@ namespace ReportsLoyalty {
                 base.Columns.Add(this.columndoc_count_all);
                 this.columnsm_all = new global::System.Data.DataColumn("sm_all", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsm_all);
+                this.columnused_market_id = new global::System.Data.DataColumn("used_market_id", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnused_market_id);
                 this.columncreated.ReadOnly = true;
                 this.columndoc_count_upl.ReadOnly = true;
                 this.columnsm_upl.ReadOnly = true;
@@ -6540,6 +6554,23 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long used_market_id {
+                get {
+                    try {
+                        return ((long)(this[this.tablep_get_counters_docs_bydate.used_market_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'used_market_id\' в таблице \'p_get_counters_docs_bydate\' равн" +
+                                "о DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_counters_docs_bydate.used_market_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IscreatedNull() {
                 return this.IsNull(this.tablep_get_counters_docs_bydate.createdColumn);
             }
@@ -6596,6 +6627,18 @@ namespace ReportsLoyalty {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setsm_allNull() {
                 this[this.tablep_get_counters_docs_bydate.sm_allColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isused_market_idNull() {
+                return this.IsNull(this.tablep_get_counters_docs_bydate.used_market_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setused_market_idNull() {
+                this[this.tablep_get_counters_docs_bydate.used_market_idColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9560,6 +9603,7 @@ namespace ReportsLoyalty.LoyalityIndicatorsTableAdapters {
             tableMapping.ColumnMappings.Add("sm_upl", "sm_upl");
             tableMapping.ColumnMappings.Add("doc_count_all", "doc_count_all");
             tableMapping.ColumnMappings.Add("sm_all", "sm_all");
+            tableMapping.ColumnMappings.Add("used_market_id", "used_market_id");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -9580,14 +9624,16 @@ namespace ReportsLoyalty.LoyalityIndicatorsTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_start", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date_end", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@market_lst", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(LoyalityIndicators.p_get_counters_docs_bydateDataTable dataTable, global::System.Nullable<long> market_id, global::System.Nullable<global::System.DateTime> date) {
+        public virtual int Fill(LoyalityIndicators.p_get_counters_docs_bydateDataTable dataTable, global::System.Nullable<long> market_id, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((market_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((long)(market_id.Value));
@@ -9595,11 +9641,23 @@ namespace ReportsLoyalty.LoyalityIndicatorsTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((date.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(date.Value));
+            if ((date_start.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(date_start.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((date_end.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(date_end.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(market_lst));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -9612,7 +9670,7 @@ namespace ReportsLoyalty.LoyalityIndicatorsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual LoyalityIndicators.p_get_counters_docs_bydateDataTable GetData(global::System.Nullable<long> market_id, global::System.Nullable<global::System.DateTime> date) {
+        public virtual LoyalityIndicators.p_get_counters_docs_bydateDataTable GetData(global::System.Nullable<long> market_id, global::System.Nullable<global::System.DateTime> date_start, global::System.Nullable<global::System.DateTime> date_end, string market_lst) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((market_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((long)(market_id.Value));
@@ -9620,11 +9678,23 @@ namespace ReportsLoyalty.LoyalityIndicatorsTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((date.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(date.Value));
+            if ((date_start.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(date_start.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((date_end.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(date_end.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((market_lst == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(market_lst));
             }
             LoyalityIndicators.p_get_counters_docs_bydateDataTable dataTable = new LoyalityIndicators.p_get_counters_docs_bydateDataTable();
             this.Adapter.Fill(dataTable);

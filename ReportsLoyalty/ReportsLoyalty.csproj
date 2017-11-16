@@ -152,7 +152,7 @@
     <Content Include="pages\basic_indicators.aspx" />
     <Content Include="pages\BirthDayChildrenUPL.aspx" />
     <Content Include="pages\BirthDayUPL.aspx" />
-    <Content Include="pages\CountersDocsAndSell.aspx" />
+    <Content Include="pages\counter_docs.aspx" />
     <Content Include="pages\participant_list.aspx" />
     <Content Include="pages\extra_point_indicators.aspx" />
     <Content Include="pages\daily_personal_offers.aspx" />
@@ -6472,12 +6472,12 @@
     <Compile Include="pages\BirthDayUPL.aspx.designer.cs">
       <DependentUpon>BirthDayUPL.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\CountersDocsAndSell.aspx.cs">
-      <DependentUpon>CountersDocsAndSell.aspx</DependentUpon>
+    <Compile Include="pages\counter_docs.aspx.cs">
+      <DependentUpon>counter_docs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\CountersDocsAndSell.aspx.designer.cs">
-      <DependentUpon>CountersDocsAndSell.aspx</DependentUpon>
+    <Compile Include="pages\counter_docs.aspx.designer.cs">
+      <DependentUpon>counter_docs.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\participant_list.aspx.cs">
       <DependentUpon>participant_list.aspx</DependentUpon>

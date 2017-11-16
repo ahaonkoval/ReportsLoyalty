@@ -14,15 +14,17 @@ namespace ReportsLoyalty.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //this.ReportViewerExtraPoints.Reset();
+
             try
             {
                 var campaign_id = Request.QueryString["campaign_id"].ToString();
                 var date_st = Request.QueryString["date_st"].ToString();
                 var market_id = Request.QueryString["market_id"].ToString();
 
-                //var campaign_id = "43";
-                //var date_st = "null"; 
-                //var market_id = "0";
+                if (market_id == string.Empty) market_id = "0";
+                int n;
+                bool is_numeric_market_id = int.TryParse(market_id, out n);
 
                 DateTime dt;
                 if (date_st == "null")
@@ -39,30 +41,65 @@ namespace ReportsLoyalty.pages
                 this.sds_report.SelectParameters.Clear();
                 this.sds_report.SelectParameters.Add("campaign_id", campaign_id);
                 this.sds_report.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-                this.sds_report.SelectParameters.Add("market_id", market_id);
+                if (is_numeric_market_id)
+                {
+                    if (n == 0)
+                        this.sds_report.SelectParameters.Add("market_id", market_id);
+                }
+                else
+                {
+                    this.sds_report.SelectParameters.Add("market_lst", market_id);
+                }
+                //this.sds_report.SelectParameters.Add("market_id", market_id);
 
                 this.sds_day_diff.SelectCommand = "rep.p_get_diff_day_with_extra_points";
                 this.sds_day_diff.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
                 this.sds_day_diff.SelectParameters.Clear();
                 this.sds_day_diff.SelectParameters.Add("campaign_id", campaign_id);
                 this.sds_day_diff.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-                this.sds_day_diff.SelectParameters.Add("market_id", market_id);
+                if (is_numeric_market_id)
+                {
+                    if (n == 0)
+                        this.sds_day_diff.SelectParameters.Add("market_id", market_id);
+                }
+                else
+                {
+                    this.sds_day_diff.SelectParameters.Add("market_lst", market_id);
+                }
 
                 this.sds_distance.SelectCommand = "rep.p_get_diff_distance_with_extra_points";
                 this.sds_distance.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
                 this.sds_distance.SelectParameters.Clear();
                 this.sds_distance.SelectParameters.Add("campaign_id", campaign_id);
                 this.sds_distance.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-                this.sds_distance.SelectParameters.Add("market_id", market_id);
+                if (is_numeric_market_id)
+                {
+                    if (n == 0)
+                        this.sds_distance.SelectParameters.Add("market_id", market_id);
+                }
+                else
+                {
+                    this.sds_distance.SelectParameters.Add("market_lst", market_id);
+                }
 
-                this.sds_trade_list.SelectCommand = "rep.p_get_trade_with_extra_points";
+
+                this.sds_trade_list.SelectCommand = "[rep].[p_get_trade_with_extra_points]";
                 this.sds_trade_list.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
                 this.sds_trade_list.SelectParameters.Clear();
                 this.sds_trade_list.SelectParameters.Add("campaign_id", campaign_id);
-                this.sds_trade_list.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-                this.sds_trade_list.SelectParameters.Add("market_id", market_id);
+                this.sds_trade_list.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));// dt.ToString("yyyy-MM-dd"));
 
-                ReportViewerExtraPoints.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                if (is_numeric_market_id)
+                {
+                    if (n == 0)
+                        this.sds_trade_list.SelectParameters.Add("market_id", market_id);
+                }
+                else
+                {
+                    this.sds_trade_list.SelectParameters.Add("market_lst", market_id);
+                }
+
+                //ReportViewerExtraPoints.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
 
                 GetData gdt = new GetData();
 
@@ -76,6 +113,9 @@ namespace ReportsLoyalty.pages
 
                 ReportViewerExtraPoints.LocalReport.SetParameters(new ReportParameter("RP_StartDate", st_date));
                 ReportViewerExtraPoints.LocalReport.SetParameters(new ReportParameter("RP_EndDate", ed_date));
+
+                //this.ReportViewerExtraPoints.ReportRefresh += ReportViewerExtraPoints_ReportRefresh;
+                
             }
             catch (Exception error)
             {
@@ -87,10 +127,11 @@ namespace ReportsLoyalty.pages
         {
             /* Загружаемо дані в субрепорти*/
             try
-            {
-                e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_get_trade_with_extra_points", this.sds_trade_list));
+            {                
                 e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_diff_day_with_extra_points", this.sds_day_diff));
                 e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_diff_distance_with_extra_points", this.sds_distance));
+                e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_get_trade_with_extra_points", this.sds_trade_list));
+
             }
             catch (Exception error)
             {

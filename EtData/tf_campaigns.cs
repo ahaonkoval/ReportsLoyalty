@@ -29,7 +29,7 @@ namespace EtData
         public Nullable<long> group_id_1 { get; set; }
         public Nullable<long> markmo_id { get; set; }
         public Nullable<long> number { get; set; }
-        public Nullable<int> customers_qty { get; set; }
+        public Nullable<long> customers_qty { get; set; }
         public Nullable<int> customers_qty_control { get; set; }
         public Nullable<System.DateTime> max_term_date { get; set; }
     }

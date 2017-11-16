@@ -752,6 +752,44 @@ var showCountersDocsAndSell = function () {
     var p_personal_offers = Ext.getCmp('p_counters_docs_and_sell');
     if (p_personal_offers != null) return;
 
+
+    var comboBox = Ext.create('Ext.form.ComboBox', {
+        fieldLabel: 'Магазин',
+        store: dict.getStoreMarkets(),
+        multiSelect: true,
+        queryMode: 'local',
+        valueField: 'short_name',
+        displayField: 'market_name',
+        width: 300,
+        labelWidth: 50,
+        emptyText: 'Всі',
+        itemCls: 'make-bold',
+        renderTo: Ext.getBody(),
+        tpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '<div class="x-boundlist-item">{market_name}</div>',
+            '</tpl>'
+        ),
+        displayTpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '{short_name};',
+            '</tpl>'
+        ),
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') == -1) {
+                    ctrl.setValue(['all'])
+                } else {
+                    if (oldValue != null) {
+                        if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') > -1)
+                            ctrl.setValue([]);
+                    }
+                }
+            }
+        }
+
+    });
+
     tab = center.add({
         id: 'p_counters_docs_and_sell',
         title: 'Прохідність',
@@ -792,29 +830,32 @@ var showCountersDocsAndSell = function () {
                         width: 110
                     }, {
                         xtype: 'tbseparator'
-                    }, {
-                        xtype: 'label',
-                        text: 'Магазин:'
-                    }, {
-                        id: 'cmb_markets_counters_docs',
-                        //xtype: 'tagfield',//'combobox',
-                        xtype: 'tagfield',
-                        multiSelect: true,
-                        editabe: true,
-                        width: 250,
+                    },
+                    comboBox,
+                    //{
+                    //    xtype: 'label',
+                    //    text: 'Магазин:'
+                    //}, {
+                    //    id: 'cmb_markets_counters_docs',
+                    //    //xtype: 'tagfield',//'combobox',
+                    //    xtype: 'tagfield',
+                    //    multiSelect: true,
+                    //    editabe: true,
+                    //    width: 250,
 
-                        store: dict.getStoreMarkets(),
-                        queryMode: 'local',
-                        displayField: 'market_name',
-                        valueField: 'id',
-                        renderTo: Ext.getBody()
-                    }, {
+                    //    store: dict.getStoreMarkets(),
+                    //    queryMode: 'local',
+                    //    displayField: 'market_name',
+                    //    valueField: 'id',
+                    //    renderTo: Ext.getBody()
+                    //},
+                    {
                         xtype: 'button',
                         width: 100,
                         text: 'Показати',
                         handler: function () {
 
-                            var url = 'pages/CountersDocsAndSell.aspx?'
+                            var url = 'pages/counter_docs.aspx?'
 
                             var dtStart = Ext.getCmp('dtDST_start_counters_docs');
                             var date_start = dtStart.getValue();
@@ -834,8 +875,8 @@ var showCountersDocsAndSell = function () {
                                 url = url + '&date_end=' + date_end
                             }
 
-                            var cmbMarkets = Ext.getCmp('cmb_markets_counters_docs');
-                            var market_id = cmbMarkets.getValue();
+                            //var cmbMarkets = Ext.getCmp('cmb_markets_counters_docs');
+                            var market_id = comboBox.getValue(); // cmbMarkets.getValue();
                             if (market_id == null) market_id = 0;
                             url = url + '&market_id=' + market_id;
 

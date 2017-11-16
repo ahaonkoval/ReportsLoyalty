@@ -9,7 +9,7 @@
               <Width>1.57396cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>8.51109cm</Width>
+              <Width>13.37942cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.94437cm</Width>
@@ -593,8 +593,8 @@
         </TablixRowHierarchy>
         <DataSetName>ds_get_trade_with_extra_points</DataSetName>
         <Left>0.02328cm</Left>
-        <Height>2.52293cm</Height>
-        <Width>16.91005cm</Width>
+        <Height>2.52292cm</Height>
+        <Width>21.77838cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -605,7 +605,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>6.6875in</Width>
+  <Width>8.58333in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -660,7 +660,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>crm_wizardDataSet</rd:DataSetName>
-        <rd:SchemaPath>D:\develops\ReportsLoyalty\ReportsLoyalty\crm_wizardDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\develops\GitHub\ReportLoyalty\ReportsLoyalty\crm_wizardDataSet.xsd</rd:SchemaPath>
         <rd:TableName>p_get_trade_with_extra_points</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

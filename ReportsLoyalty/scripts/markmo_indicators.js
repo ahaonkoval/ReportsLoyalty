@@ -110,7 +110,7 @@ var showExtraPoints = function () {
                             }
                         }, {
                             xtype: 'tbseparator'
-                        }, 
+                        }
                         //{
                         //    id: 'cmbMarkets',
                         //    xtype: 'combobox',
@@ -120,7 +120,7 @@ var showExtraPoints = function () {
                         //    displayField: 'market_name',
                         //    valueField: 'id',
                         //    renderTo: Ext.getBody()
-                        //}
+                        //},
                         ,comboBox,
                         //{
                         //    xtype: 'combobox',
@@ -171,8 +171,8 @@ var showExtraPoints = function () {
                                     url = url + '&date_st=' + date_st
                                 }
 
-                                var cmbMarkets = Ext.getCmp('cmbMarkets');
-                                var market_id = cmbMarkets.getValue();
+                                //var cmbMarkets = Ext.getCmp('cmbMarkets');
+                                var market_id = comboBox.getValue();
                                 if (market_id == null) market_id = 0;
                                 url = url + '&market_id=' + market_id;
 
@@ -596,6 +596,43 @@ var showBirthDayChildrenUPL = function () {
     var p_birth_day_upl = Ext.getCmp('p_birth_day_children_upl');
     if (p_birth_day_upl != null) return;
 
+    var comboBox = Ext.create('Ext.form.ComboBox', {
+        fieldLabel: 'Магазин',
+        store: dict.getStoreMarkets(),
+        multiSelect: true,
+        queryMode: 'local',
+        valueField: 'short_name',
+        displayField: 'market_name',
+        width: 300,
+        labelWidth: 50,
+        emptyText: 'Всі',
+        itemCls: 'make-bold',
+        renderTo: Ext.getBody(),
+        tpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '<div class="x-boundlist-item">{market_name}</div>',
+            '</tpl>'
+        ),
+        displayTpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '{short_name};',
+            '</tpl>'
+        ),
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') == -1) {
+                    ctrl.setValue(['all'])
+                } else {
+                    if (oldValue != null) {
+                        if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') > -1)
+                            ctrl.setValue([]);
+                    }
+                }
+            }
+        }
+
+    });
+
     tab = center.add({
         id: 'p_birth_day_children_upl',
         title: 'МК "До дня народження ДІТЕЙ УПЛ"',
@@ -637,25 +674,29 @@ var showBirthDayChildrenUPL = function () {
                     }, {
                         xtype: 'label',
                         text: 'Магазин:'
-                    }, {
-                        id: 'cmbMarkets_BirthDayChildrenUPL',
-                        xtype: 'combobox',
-                        width: 250,
-                        store: dict.getStoreMarkets(),
-                        queryMode: 'local',
-                        displayField: 'market_name',
-                        valueField: 'id',
-                        renderTo: Ext.getBody()
-                    }, {
-                        xtype: 'tbseparator'
-                    }, {
+                    },
+                    //{
+                    //    id: 'cmbMarkets_BirthDayChildrenUPL',
+                    //    xtype: 'combobox',
+                    //    width: 250,
+                    //    store: dict.getStoreMarkets(),
+                    //    queryMode: 'local',
+                    //    displayField: 'market_name',
+                    //    valueField: 'id',
+                    //    renderTo: Ext.getBody()
+                    //}, {
+                    //    xtype: 'tbseparator'
+                    //},
+                    comboBox,
+                    {
                         xtype: 'label',
                         text: 'По маркету:'
                     }, {
                         xtype: 'checkboxfield',
                         id: 'ch_inMarketBirthDayChildrenUPL',
                         name: 'inMarketBirthDayUPL'
-                    }, {
+                    },
+                    {
                         xtype: 'tbseparator'
                     }, {
                         xtype: 'button',
@@ -684,7 +725,7 @@ var showBirthDayChildrenUPL = function () {
                             }
 
                             var cmbMarkets = Ext.getCmp('cmbMarkets_BirthDayChildrenUPL');
-                            var market_id = cmbMarkets.getValue();
+                            var market_id = comboBox.getValue(); //cmbMarkets.getValue();
                             if (market_id == null) market_id = 0;
                             url = url + '&market_id=' + market_id;
 

@@ -858,7 +858,7 @@
           <Property Type="Int64" Name="group_id_1" Nullable="true" />
           <Property Type="Int64" Name="markmo_id" Nullable="true" />
           <Property Type="Int64" Name="number" Nullable="true" />
-          <Property Type="Int32" Name="customers_qty" Nullable="true" />
+          <Property Type="Int64" Name="customers_qty" Nullable="true" />
           <Property Type="Int32" Name="customers_qty_control" Nullable="true" />
           <Property Type="DateTime" Name="max_term_date" Nullable="true" Precision="23" />
         </ComplexType>

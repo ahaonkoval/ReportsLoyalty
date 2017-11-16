@@ -18,7 +18,7 @@
     <Shape ID="DesignTable:t_get_participant_separation_by_visits" ZOrder="4" X="46" Y="664" Height="139" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="92" />
     <Shape ID="DesignTable:t_get_participant_separation_by_sum" ZOrder="3" X="361" Y="663" Height="139" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="92" />
     <Shape ID="DesignTable:t_get_program_indicators" ZOrder="2" X="710" Y="701" Height="71" Width="291" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="109" SplitterPosition="24" />
-    <Shape ID="DesignTable:p_get_counters_docs_bydate" ZOrder="1" X="1026" Y="297" Height="172" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignTable:p_get_counters_docs_bydate" ZOrder="1" X="1026" Y="297" Height="191" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="140" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

@@ -139,13 +139,6 @@
                                 html: '<a href="#" onclick="showBirthDayUPL();" class="menu_is_run">МК До дня народження УПЛ</a>',
                                 margin: '2 2 2 10'
                             },
-                            {
-                                xtype: 'panel',
-                                border: false,
-                                name: 'name',
-                                html: '<a href="#" onclick="show50pointsReport();" class="menu_is_run">Результати акцій "50 і більше балів"</a>',
-                                margin: '2 2 2 10'
-                            },
                             //{
                             //    xtype: 'panel',
                             //    border: false,
@@ -159,8 +152,14 @@
                                 name: 'name',
                                 html: '<a href="#" onclick="showBirthDayChildrenUPL();" class="menu_is_run">МК "До дня народження ДІТЕЙ УПЛ"</a>',
                                 margin: '2 2 2 10'
-                            }
-                            ]
+                            },
+                            {
+                                xtype: 'panel',
+                                border: false,
+                                name: 'name',
+                                html: '<a href="#" onclick="show50pointsReport();" class="menu_is_run">Результати акцій "50 і більше балів"</a>',
+                                margin: '2 2 2 10'
+                            }]
                         //    {
                         //        xtype: 'panel',
                         //        border: false,
@@ -178,37 +177,37 @@
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
-                                    html: '<a href="#" onclick="showBasicIndicators();" class="menu_is_run">Загальні показники</a>',
+                                    html: '<a href="#" onclick="" class="menu_is_not_run">Загальні показники</a>', //showBasicIndicators();
                                     margin: '2 2 2 10'
                                 }, {
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
-                                    html: '<a href="#" onclick="showProfileParticipant();" class="menu_is_run">Профіль учасників</a>',
+                                    html: '<a href="#" onclick="" class="menu_is_not_run">Профіль учасників</a>', //showProfileParticipant();
                                     margin: '2 2 2 10'
                                 }, {
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
-                                    html: '<a href="#" onclick="showUplByDay();" class="menu_is_run">Розподіл УПЛ по кількості днів з покупками</a>',
+                                    html: '<a href="#" onclick="" class="menu_is_not_run">Розподіл УПЛ по кількості днів з покупками</a>', //showUplByDay();
                                     margin: '2 2 2 10'
                                 }, {
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
-                                    html: '<a href="#" onclick="showUplVisit();" class="menu_is_run">Карти по візитам</a>',
+                                    html: '<a href="#" onclick="" class="menu_is_not_run">Карти по візитам</a>', //showUplVisit();
                                     margin: '2 2 2 10'
                                 }, {
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
-                                    html: '<a href="#" onclick="showUplSUM();" class="menu_is_run">Карти по сумі</a>',
+                                    html: '<a href="#" onclick="" class="menu_is_not_run">Карти по сумі</a>', //showUplSUM();
                                     margin: '2 2 2 10'
                                 }, {
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
-                                    html: '<a href="#" onclick="showProgramIndicators();" class="menu_is_run">Середні показники програми</a>',
+                                    html: '<a href="#" onclick="" class="menu_is_not_run">Середні показники програми</a>', //showProgramIndicators();
                                     margin: '2 2 2 10'
                                 }, {
                                     xtype: 'panel',

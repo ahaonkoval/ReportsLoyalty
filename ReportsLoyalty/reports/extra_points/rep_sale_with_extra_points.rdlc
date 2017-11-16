@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.8175cm</Width>
+              <Width>4.37129cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.15397cm</Width>
@@ -15,37 +15,37 @@
               <Width>1.14218cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.3176cm</Width>
+              <Width>1.26565cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.31285cm</Width>
+              <Width>2.18597cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.57373cm</Width>
+              <Width>1.82479cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.37249cm</Width>
+              <Width>2.11959cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.22403cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.8046cm</Width>
+              <Width>1.59293cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.30666cm</Width>
+              <Width>1.25374cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.23cm</Width>
+              <Width>1.25646cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.60042cm</Width>
+              <Width>1.30938cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.49437cm</Width>
+              <Width>1.25624cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.89146cm</Width>
+              <Width>1.78563cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.89146cm</Width>
@@ -383,7 +383,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Середній чек покупки з балами, </Value>
+                              <Value>Середній чек покупки </Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Calibri</FontFamily>
@@ -831,7 +831,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>з балами</Value>
+                              <Value>з балами (з  картами)</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Calibri</FontFamily>
@@ -869,7 +869,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>без балів</Value>
+                              <Value>без балів (з картами)</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Calibri</FontFamily>
@@ -907,7 +907,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Загалом</Value>
+                              <Value>Загалом (з картами і без)</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Calibri</FontFamily>
@@ -997,7 +997,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>грн</Value>
+                              <Value>з балами, грн</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
                                 <FontFamily>Calibri</FontFamily>
@@ -2613,7 +2613,7 @@
         <Top>0.8825cm</Top>
         <Left>0.03938cm</Left>
         <Height>4.4373cm</Height>
-        <Width>23.13332cm</Width>
+        <Width>25.63332cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2622,10 +2622,10 @@
       </Tablix>
       <Subreport Name="Subreport1">
         <ReportName>rep_trade_with_extra_points</ReportName>
-        <Top>0.8825cm</Top>
-        <Left>23.29714cm</Left>
+        <Top>11.37668cm</Top>
+        <Left>0.03938cm</Left>
         <Height>13.48306cm</Height>
-        <Width>12.05951cm</Width>
+        <Width>25.63332cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -2635,10 +2635,10 @@
       </Subreport>
       <Subreport Name="Subreport2">
         <ReportName>rep_diff_day_with_extra_points</ReportName>
-        <Top>6.40431cm</Top>
+        <Top>6.16675cm</Top>
         <Left>0.03938cm</Left>
         <Height>5cm</Height>
-        <Width>12cm</Width>
+        <Width>10.07969cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -2648,10 +2648,10 @@
       </Subreport>
       <Subreport Name="Subreport3">
         <ReportName>rep_diff_distance_with_extra_points</ReportName>
-        <Top>12.22306cm</Top>
-        <Left>0.07876cm</Left>
+        <Top>6.20029cm</Top>
+        <Left>10.29546cm</Left>
         <Height>5cm</Height>
-        <Width>12cm</Width>
+        <Width>10.07969cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -2677,7 +2677,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>5.73375cm</Top>
+        <Top>5.49619cm</Top>
         <Left>0.03938cm</Left>
         <Height>0.62646cm</Height>
         <Width>6.3793cm</Width>
@@ -2710,8 +2710,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>11.54542cm</Top>
-        <Left>0.07876cm</Left>
+        <Top>5.52265cm</Top>
+        <Left>10.29546cm</Left>
         <Height>0.6cm</Height>
         <Width>6.3793cm</Width>
         <ZIndex>5</ZIndex>
@@ -2900,7 +2900,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Left>21.28124cm</Left>
+        <Left>21.3518cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>11</ZIndex>
@@ -2915,10 +2915,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>6.85546in</Height>
+    <Height>12.36114in</Height>
     <Style />
   </Body>
-  <Width>14.20961in</Width>
+  <Width>10.26169in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
