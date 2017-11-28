@@ -55,15 +55,7 @@ namespace EtData
         /// <returns></returns>
         public IEnumerable<tf_campaigns> GetCampaigns(bool isRun)
         {
-            return Le.t_get_campaigns(isRun);
-            //if (isRun)
-            //{
-            //    return Le.t_get_campaigns(isRun);
-                
-            //} else
-            //{
-            //    return Le.v_campaigns_mk;
-            //}
+            return Le.t_get_campaigns(isRun).OrderByDescending(o => o.id).ToList();
         }
 
         public IEnumerable<v_campaigns_mk> GetCampaignsByType(campaign_types type)

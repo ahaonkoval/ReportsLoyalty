@@ -15,9 +15,10 @@ namespace ReportsLoyalty.Controllers
     {
         // GET: api/Campaign
         //public IEnumerable<campaigns_mk> Get()
-        public HttpResponseMessage Get()
+        public object Get()
         {
             var queryparams = Request.GetQueryNameValuePairs();
+
             var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
             var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
             var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
@@ -25,26 +26,65 @@ namespace ReportsLoyalty.Controllers
             var isRun = queryparams.Where(w => w.Key == "isRun").FirstOrDefault();
             //var SpecProduct = (SpecProductObj.Value == null ? string.Empty : SpecProductObj.Value.ToString());            
 
-            GetData data = new GetData();
+            using (GetData data = new GetData())
+            {
+                var campaigns = data.Campaigns.GetCampaigns(Convert.ToBoolean(isRun.Value))
+                    .Where(w => w.number >= start && w.number <= (start + limit));//.OrderByDescending(o => o.id);
+                int campaigns_count = data.Campaigns.GetCampaignsCount(Convert.ToBoolean(isRun.Value));
 
-            //var cmps = data.Campaigns.GetCampaigns().Where(c => c.
+                object om = new
+                {
+                    total = campaigns_count,
+                    data = campaigns
+                };
 
-            var campaigns = data.Campaigns.GetCampaigns(Convert.ToBoolean(isRun.Value)).Where(
-                    w => w.number >= start && w.number <= (start + limit)
-                ).OrderBy(o => o.id);
+                return om;
+            }
 
-            int campaigns_count = data.Campaigns.GetCampaignsCount(Convert.ToBoolean(isRun.Value));
+            //var cmps = data.Campaigns.GetCampaigns().Where(c => c.            
 
-            var response = new HttpResponseMessage();
+            //var response = new HttpResponseMessage();
 
-            var str = new JavaScriptSerializer().Serialize(campaigns.ToList());
+            //var str = new JavaScriptSerializer().Serialize(campaigns.ToList());
             //str = string.Format("\"data\":{0}", str); campaigns.Count().ToString()
-            str = string.Format("\"total\": \"{0}\", \"data\":{1}", campaigns_count.ToString(), str);
-            str = "{" + str + "}";
-            response.Content = new StringContent(str, Encoding.UTF8, "application/json");
+            //str = string.Format("\"total\": \"{0}\", \"data\":{1}", campaigns_count.ToString(), str);
+            //str = "{" + str + "}";
+            //response.Content = new StringContent(str, Encoding.UTF8, "application/json");
 
-            return response;
+            //return response;
         }
+
+        //public HttpResponseMessage Get()
+        //{
+        //    var queryparams = Request.GetQueryNameValuePairs();
+
+        //    var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+        //    var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+        //    var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+        //    var isRun = queryparams.Where(w => w.Key == "isRun").FirstOrDefault();
+        //    //var SpecProduct = (SpecProductObj.Value == null ? string.Empty : SpecProductObj.Value.ToString());            
+
+        //    GetData data = new GetData();
+
+        //    //var cmps = data.Campaigns.GetCampaigns().Where(c => c.
+
+        //    var campaigns = data.Campaigns.GetCampaigns(Convert.ToBoolean(isRun.Value)).Where(
+        //            w => w.number >= start && w.number <= (start + limit)
+        //        ).OrderBy(o => o.id);
+
+        //    int campaigns_count = data.Campaigns.GetCampaignsCount(Convert.ToBoolean(isRun.Value));
+
+        //    var response = new HttpResponseMessage();
+
+        //    var str = new JavaScriptSerializer().Serialize(campaigns.ToList());
+        //    //str = string.Format("\"data\":{0}", str); campaigns.Count().ToString()
+        //    str = string.Format("\"total\": \"{0}\", \"data\":{1}", campaigns_count.ToString(), str);
+        //    str = "{" + str + "}";
+        //    response.Content = new StringContent(str, Encoding.UTF8, "application/json");
+
+        //    return response;
+        //}
 
         [HttpGet]
         public HttpResponseMessage GetCampaignsTerms(long id)

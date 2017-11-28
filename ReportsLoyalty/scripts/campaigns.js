@@ -147,7 +147,7 @@ var getWinCampaigns = function () {
         remoteSort: false,
         sorters: [{
             property: 'id',
-            direction: 'ASC'
+            direction: 'DESC'
         }],
         pageSize: 50
     });
@@ -297,6 +297,20 @@ var getWinCampaigns = function () {
         }
     });
 
+    var checkboxIsRun = Ext.create('Ext.form.Checkbox', {
+        //xtype: 'checkbox',
+        value: false,
+        //id: 'cisRun',
+        listeners: {
+            'change': function (cmp, newValue, oldValue, eOpts) {
+                store.loadPage(1, {
+                    params: { isRun: newValue }
+                });
+            }
+        }
+    });
+
+
     var win_campaigns = Ext.create('Ext.Window', {
         title: 'Управління кампаниями',
         width: '90%',
@@ -332,18 +346,20 @@ var getWinCampaigns = function () {
                                             xtype: 'label',
                                             text: 'Тільки активні кампанії:'
                                         },
-                                        {
-                                            xtype: 'checkbox',
-                                            value: true,
-                                            id: 'cisRun',
-                                            listeners: {
-                                                'change': function (cmp, newValue, oldValue, eOpts) {
-                                                    store.loadPage(1, {
-                                                        params: { isRun: newValue }
-                                                    });
-                                                }
-                                            }
-                                        }, {
+                                        checkboxIsRun
+                                        //{
+                                        //    xtype: 'checkbox',
+                                        //    value: false,
+                                        //    id: 'cisRun',
+                                        //    listeners: {
+                                        //        'change': function (cmp, newValue, oldValue, eOpts) {
+                                        //            store.loadPage(1, {
+                                        //                params: { isRun: newValue }
+                                        //            });
+                                        //        }
+                                        //    }
+                                        //}
+                                        , {
                                             id: 'hidden_campaign_id',
                                             xtype: 'hiddenfield',
                                             name: 'hidden_campaign_id',
@@ -393,7 +409,9 @@ var getWinCampaigns = function () {
     });
 
     store.load({
-        params: { isRun: Ext.getCmp('cisRun').getValue() }
+        params: {
+            isRun: checkboxIsRun.getValue()//Ext.getCmp('cisRun').getValue()
+        }
     });
 
     //win_campaigns.show();
