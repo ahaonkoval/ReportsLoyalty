@@ -1,6 +1,4 @@
-﻿//var win_campaigns = null;
-//var wCustomers = null;
-
+﻿
 /* MODEL */
 Ext.define('campaigns_mk', {
     extend: 'Ext.data.Model',

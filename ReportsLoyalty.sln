@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsLoyalty", "ReportsLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtData", "EtData\EtData.csproj", "{44D625BA-1514-4114-8A6B-A832150449CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftLineApi", "SoftLineApi\SoftLineApi.csproj", "{8DB11E23-B720-43DF-802A-8265D783793D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTest", "WinTest\WinTest.csproj", "{37272374-7B37-41EA-AC91-9FE5B3848CCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{44D625BA-1514-4114-8A6B-A832150449CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44D625BA-1514-4114-8A6B-A832150449CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44D625BA-1514-4114-8A6B-A832150449CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DB11E23-B720-43DF-802A-8265D783793D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DB11E23-B720-43DF-802A-8265D783793D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DB11E23-B720-43DF-802A-8265D783793D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DB11E23-B720-43DF-802A-8265D783793D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37272374-7B37-41EA-AC91-9FE5B3848CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37272374-7B37-41EA-AC91-9FE5B3848CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37272374-7B37-41EA-AC91-9FE5B3848CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37272374-7B37-41EA-AC91-9FE5B3848CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
