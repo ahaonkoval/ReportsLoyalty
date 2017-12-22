@@ -22,13 +22,13 @@ namespace ReportsLoyalty.pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ReportViewerPersonalOffers элемент управления.
+        /// ReportViewerBirthDayChildrenUPL элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewerPersonalOffers;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewerBirthDayChildrenUPL;
         
         /// <summary>
         /// ScriptManager1 элемент управления.

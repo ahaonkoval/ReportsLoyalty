@@ -112,7 +112,17 @@ Ext.define('campaigns_mk', {
                     return rtn;
                     //return new Date(parseInt(v.substr(6)));
                 } else {
-                    return v;
+                    var d = new Date(v),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                    if (month.length < 2) month = '0' + month;
+                    if (day.length < 2) day = '0' + day;
+
+                    return [day, month, year].join('.');
+                    //return [year, month, day].join('-');
+                    //return v;
                 }
 
             } else {
@@ -249,12 +259,14 @@ var getWinCampaigns = function () {
                 width: 120,
                 xtype: 'widgetcolumn',
                 //format: 'd.m.Y',
+                //renderer: Ext.util.Format.dateRenderer('d.m.Y'),
                 dataIndex: 'max_term_date',
                 widget: {
                     width: 100,
                     textAlign: 'center',
                     xtype: 'button',
-                    //format: 'd.m.Y',
+                    format: 'd.m.Y',
+                    
                     handler: function (btn) {
                         var rec = btn.getWidgetRecord();
                         var campaign_id = rec.get('id');
@@ -298,9 +310,7 @@ var getWinCampaigns = function () {
     });
 
     var checkboxIsRun = Ext.create('Ext.form.Checkbox', {
-        //xtype: 'checkbox',
         value: false,
-        //id: 'cisRun',
         listeners: {
             'change': function (cmp, newValue, oldValue, eOpts) {
                 store.loadPage(1, {

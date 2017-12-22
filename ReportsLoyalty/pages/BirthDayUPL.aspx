@@ -14,7 +14,7 @@
 
         <div style="margin:0; padding:0; height:100%">
             <div style="margin:0; padding:0; height:100%">
-                <rsweb:ReportViewer ID="ReportViewerPersonalOffers" runat="server"
+                <rsweb:ReportViewer ID="ReportViewerBirthDay" runat="server"
                     Font-Names="Verdana"
                     Font-Size="8pt"
                     WaitMessageFont-Names="Verdana"

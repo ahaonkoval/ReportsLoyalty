@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using Microsoft.Reporting.WebForms;
 
 namespace ReportsLoyalty.pages
 {
@@ -98,6 +99,9 @@ namespace ReportsLoyalty.pages
             }
 
             this.sds_distanse.SelectParameters.Add("campaign_id", "91");
+
+            ReportViewerBirthDayChildrenUPL.LocalReport.SetParameters(new ReportParameter("RP_StartDate", date_start));
+            ReportViewerBirthDayChildrenUPL.LocalReport.SetParameters(new ReportParameter("RP_EndDate", date_end));
         }
     }
 }

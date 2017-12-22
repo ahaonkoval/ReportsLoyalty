@@ -47,9 +47,71 @@ var showExtraPoints = function () {
 
     });
 
+    var panel_allocation = Ext.create('Ext.panel.Panel', {
+        layout: 'fit',
+        //id: 'p_rep_conteiner_extra_points_ratig'
+    });
+
+    var panel_basic = Ext.create('Ext.panel.Panel', {
+        layout: 'fit',        
+        //id: 'p_rep_conteiner_extra_points_ratig'
+    });
+
+    var panel_rating = Ext.create('Ext.panel.Panel', {
+        layout: 'fit',
+        //id: 'p_rep_conteiner_extra_points_ratig'
+    });
+
+    //var panel_purveyor = Ext.create('Ext.panel.Panel', {
+    //    layout: 'fit',
+    //    //id: 'p_rep_conteiner_extra_points_ratig'
+    //});
+
+    var tbReports = Ext.create('Ext.TabPanel', {
+        height:400,
+        layout: 'fit',
+        border:true,
+        items: [
+            {
+                title: 'Основні показники',
+                layout: 'fit',
+                items: [
+                    panel_basic
+                    //{
+                    //xtype: 'panel',
+                    //layout: 'fit',
+                    //id: 'p_rep_conteiner_extra_points'
+                    //}
+                ]
+            },
+            {
+                title: 'Розподіл УПЛ',
+                layout: 'fit',
+                items: [panel_allocation]
+                //    [{
+                //    xtype: 'panel',
+                //    layout: 'fit',
+                //    id: 'p_rep_conteiner_extra_points'
+                //}]
+            },
+            {
+                title: 'Рейтинг артикулів',
+                layout: 'fit',
+                items: [panel_rating]
+            },
+            //{
+            //    title: 'Звіт для постачальника',
+            //    layout: 'fit',
+            //    items: [
+            //        panel_purveyor
+            //    ]
+            //}
+        ]
+
+    });
 
     var tab = center.add({
-        id:'p_extra_points',
+        id: 'p_extra_points',
         title: 'ЕКСТРА-БАЛИ',
         extend: 'Ext.panel.Panel',
         closable: true,
@@ -62,150 +124,174 @@ var showExtraPoints = function () {
                     pack: 'start'
                 },
                 items: [
-            {
-                xtype: 'panel',
-                height: 36,
-                items: {
-                    xtype: 'toolbar',
-                    height: 35,
-                    items: [
-                        {
-                            xtype: 'label',
-                            text: 'Акції'
-                        }, {
-                            id: 'cmbCampaigns',
-                            xtype: 'combobox',
-                            width: 350,
-                            store: dict.getStoreCampaigns(1),//st_campaign_extra_points,
-                            queryMode: 'local',
-                            valueField: 'id',
-                            displayField: 'name',
-                            //tpl: "<tpl for=\".\"><div class=\"x-combo-list-item\">{name}</div></tpl>",
-                            renderTo: Ext.getBody(),
-                            listeners: {
-                                scope: this,
-                                change: function (ctrl, newValue, oldValue, eOpts) {
-                                }
-                            }
-                        }, {
-                            xtype: 'tbseparator'
-                        }, {
-                            xtype: 'label',
-                            text: 'На дату:'
-                        }, {
-                            id: 'dtDateState',
-                            format: "d/m/Y",
-                            xtype: 'datefield',
-                            width: 110,
-                            listeners: {
-                                scope: this,
-                                expand: function (field, eOpts) {
-                                    var dtDateState = Ext.getCmp('dtDateState');
-                                    var cmbCampaigns = Ext.getCmp('cmbCampaigns');
-                                    if (cmbCampaigns != null) {
-                                        if (cmbCampaigns.getValue() != null)
-                                            getDisabledDatesById(cmbCampaigns.getValue(), dtDateState);
-                                    }                                    
-                                }
-                            }
-                        }, {
-                            xtype: 'tbseparator'
-                        }
-                        //{
-                        //    id: 'cmbMarkets',
-                        //    xtype: 'combobox',
-                        //    width: 250,
-                        //    store: dict.getStoreMarkets(),//st_dict_markets,
-                        //    queryMode: 'local',
-                        //    displayField: 'market_name',
-                        //    valueField: 'id',
-                        //    renderTo: Ext.getBody()
-                        //},
-                        ,comboBox,
-                        //{
-                        //    xtype: 'combobox',
-                        //    //width: '400',
-                        //    ////triggerAction: 'all',
-                        //    //valueField: 'id',
-                        //    //displayField: 'market_name',
-                        //    //editable: false, 
-                        //    //multiSelect: true,
-                        //    //value: [1],
-                        //    //mode: 'remote',
-                        //    fieldLabel: 'My Dropdown',
-                        //    name: 'type',
-                        //    allowBlank: false,
-                        //    editable: false,
-                        //    // This is the option required for "select"-style behaviour
-                        //    triggerAction: 'all',
-                        //    typeAhead: false,
-                        //    mode: 'local',
-                        //    width: 120,
-                        //    listWidth: 120,
-                        //    hiddenName: 'my_dropdown',
-                        //    store: dict.getStoreMarkets(),//st_dict_markets,
-                        //    readOnly: true
-                        //},
-                        {
-                            xtype: 'button',
-                            width: 100,
-                            text: 'Показати',
-                            handler: function () {
-
-                                var url = 'pages/extra_point_indicators.aspx?'
-
-                                var cmbCampaigns = Ext.getCmp('cmbCampaigns');
-                                var campaign_id = cmbCampaigns.getValue();
-                                if (campaign_id == null) {
-                                    Ext.Msg.alert('Увага', 'Акція не вибрана', Ext.emptyFn);
-                                    return;
-                                }
-                                url = url + 'campaign_id=' + campaign_id;
-
-                                var dtDateState = Ext.getCmp('dtDateState');
-                                var date_st = dtDateState.getValue();
-                                if (date_st == null) {
-                                    url = url + '&date_st=' + date_st
-                                } else {
-                                    date_st = date_st.toLocaleDateString();
-                                    url = url + '&date_st=' + date_st
-                                }
-
-                                //var cmbMarkets = Ext.getCmp('cmbMarkets');
-                                var market_id = comboBox.getValue();
-                                if (market_id == null) market_id = 0;
-                                url = url + '&market_id=' + market_id;
-
-                                var report_box = Ext.getCmp('rep_box_extra_points');
-                                if (report_box != null) {
-                                    Ext.getCmp('p_rep_conteiner_extra_points').remove(report_box);
-                                }
-
-                                url = url + '&height=' + (center.getWidth() - 30)
-
-                                dynamicPanel = new Ext.Component({
-                                    id: 'rep_box_extra_points',
-                                    xtype: 'box',
-                                    layout: 'fit',
-                                    showMask: true,
-                                    autoEl: {
-                                        tag: 'iframe',
-                                        src: url
+                    {
+                        xtype: 'panel',
+                        height: 36,
+                        items: {
+                            xtype: 'toolbar',
+                            height: 35,
+                            items: [
+                                {
+                                    xtype: 'label',
+                                    text: 'Акції'
+                                }, {
+                                    id: 'cmbCampaigns',
+                                    xtype: 'combobox',
+                                    width: 350,
+                                    store: dict.getStoreCampaigns(1),//st_campaign_extra_points,
+                                    queryMode: 'local',
+                                    valueField: 'id',
+                                    displayField: 'name',
+                                    //tpl: "<tpl for=\".\"><div class=\"x-combo-list-item\">{name}</div></tpl>",
+                                    renderTo: Ext.getBody(),
+                                    listeners: {
+                                        scope: this,
+                                        change: function (ctrl, newValue, oldValue, eOpts) {
+                                        }
                                     }
-                                });
-                                Ext.getCmp('p_rep_conteiner_extra_points').add(dynamicPanel);
-                            }
+                                }, {
+                                    xtype: 'tbseparator'
+                                }, {
+                                    xtype: 'label',
+                                    text: 'На дату:'
+                                }, {
+                                    id: 'dtDateState',
+                                    format: "d/m/Y",
+                                    xtype: 'datefield',
+                                    width: 110,
+                                    listeners: {
+                                        scope: this,
+                                        expand: function (field, eOpts) {
+                                            var dtDateState = Ext.getCmp('dtDateState');
+                                            var cmbCampaigns = Ext.getCmp('cmbCampaigns');
+                                            if (cmbCampaigns != null) {
+                                                if (cmbCampaigns.getValue() != null)
+                                                    getDisabledDatesById(cmbCampaigns.getValue(), dtDateState);
+                                            }
+                                        }
+                                    }
+                                }, {
+                                    xtype: 'tbseparator'
+                                }
+                                //{
+                                //    id: 'cmbMarkets',
+                                //    xtype: 'combobox',
+                                //    width: 250,
+                                //    store: dict.getStoreMarkets(),//st_dict_markets,
+                                //    queryMode: 'local',
+                                //    displayField: 'market_name',
+                                //    valueField: 'id',
+                                //    renderTo: Ext.getBody()
+                                //},
+                                , comboBox,
+                                //{
+                                //    xtype: 'combobox',
+                                //    //width: '400',
+                                //    ////triggerAction: 'all',
+                                //    //valueField: 'id',
+                                //    //displayField: 'market_name',
+                                //    //editable: false, 
+                                //    //multiSelect: true,
+                                //    //value: [1],
+                                //    //mode: 'remote',
+                                //    fieldLabel: 'My Dropdown',
+                                //    name: 'type',
+                                //    allowBlank: false,
+                                //    editable: false,
+                                //    // This is the option required for "select"-style behaviour
+                                //    triggerAction: 'all',
+                                //    typeAhead: false,
+                                //    mode: 'local',
+                                //    width: 120,
+                                //    listWidth: 120,
+                                //    hiddenName: 'my_dropdown',
+                                //    store: dict.getStoreMarkets(),//st_dict_markets,
+                                //    readOnly: true
+                                //},
+                                {
+                                    xtype: 'button',
+                                    width: 100,
+                                    text: 'Показати',
+                                    handler: function () {
+
+                                        var url = 'pages/extra_point_indicators.aspx?'
+
+                                        var cmbCampaigns = Ext.getCmp('cmbCampaigns');
+                                        var campaign_id = cmbCampaigns.getValue();
+                                        if (campaign_id == null) {
+                                            Ext.Msg.alert('Увага', 'Акція не вибрана', Ext.emptyFn);
+                                            return;
+                                        }
+                                        url = url + 'campaign_id=' + campaign_id;
+
+                                        var dtDateState = Ext.getCmp('dtDateState');
+                                        var date_st = dtDateState.getValue();
+                                        if (date_st == null) {
+                                            url = url + '&date_st=' + date_st
+                                        } else {
+                                            date_st = date_st.toLocaleDateString();
+                                            url = url + '&date_st=' + date_st
+                                        }
+
+                                        //var cmbMarkets = Ext.getCmp('cmbMarkets');
+                                        var market_id = comboBox.getValue();
+                                        if (market_id == null) market_id = 0;
+                                        url = url + '&market_id=' + market_id;
+
+                                        var report_box = Ext.getCmp('rep_box_extra_points');
+                                        if (report_box != null) {
+                                            //Ext.getCmp('p_rep_conteiner_extra_points').remove(report_box);
+                                            panel_basic.remove(report_box);
+                                        }
+
+                                        //url = url + '&height=' + (center.getWidth() - 30)
+
+                                        var url_rtg = 'pages/extra_point_articul_rating.aspx?campaign_id=' + campaign_id + '&market_id=' + market_id + '&date_st=' + date_st;
+
+                                        var dp_basic = new Ext.Component({
+                                            id: 'rep_box_extra_points',
+                                            xtype: 'box',
+                                            layout: 'fit',
+                                            showMask: true,
+                                            autoEl: {
+                                                tag: 'iframe',
+                                                src: url
+                                            }
+                                        });
+                                        panel_basic.add(dp_basic);
+                                        //Ext.getCmp('p_rep_conteiner_extra_points').add(dynamicPanel);
+
+                                        panel_rating.remove(Ext.getCmp('rep_box_extra_points_rating'));
+
+                                        var dp_rating = new Ext.Component({
+                                            id: 'rep_box_extra_points_rating',
+                                            xtype: 'box',
+                                            //layout: 'fit',
+                                            showMask: true,
+                                            autoEl: {
+                                                tag: 'iframe',
+                                                src: url_rtg
+                                            }
+                                        });
+                                        panel_rating.add(dp_rating);
+                                    }
+                                }
+                            ]
                         }
-                    ]
-                }
-            },
-            {
-                xtype: 'panel',
-                layout: 'fit',
-                id: 'p_rep_conteiner_extra_points',
-                flex: 1
-            }
+                    },
+                    //tbReports
+                    {
+                        xtype: 'panel',
+                        border: true,
+                        layout: 'fit',
+                        //id: 'p_rep_conteiner_extra_points',
+                        flex: 1,
+                        items: [
+                            tbReports
+                        ]
+                    }
                 ]
+
             },
         ]
     });

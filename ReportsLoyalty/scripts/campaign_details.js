@@ -77,10 +77,33 @@ function WinCampaignDetails() {
                  }
              },
              date_start: {
-                 displayName: 'Дата початку'
+                 displayName: 'Дата початку',
+                 renderer: Ext.util.Format.dateRenderer('d.m.Y'),
+                 editor: {
+                     xtype: 'datefield',
+                     format: 'd.m.Y'
+                 }
+                 //format: 'd.m.Y',
+                 //renderer: function (v) {
+                 //    //return new Date(v).getDay();
+                 //    var d = new Date(v),
+                 //        month = '' + (d.getMonth() + 1),
+                 //        day = '' + d.getDate(),
+                 //        year = d.getFullYear();
+
+                 //    if (month.length < 2) month = '0' + month;
+                 //    if (day.length < 2) day = '0' + day;
+
+                 //    return [year, month, day].join('-');
+                 //}
              },
              date_end: {
-                 displayName: 'Дата кінця'
+                 displayName: 'Дата кінця',
+                 renderer: Ext.util.Format.dateRenderer('d.m.Y'),
+                 editor: {
+                     xtype: 'datefield',
+                     format: 'd.m.Y'
+                 }
              },
              is_run: {
                  displayName: 'В роботі',
@@ -266,8 +289,8 @@ function WinCampaignDetails() {
                 var source = {};
 
                 source['name'] = rec.get('name');
-                source['date_start'] = date_start;
-                source['date_end'] = date_end;
+                source['date_start'] = new Date(date_start);//Ext.Date.parse(date_start, 'm/d/Y')//date_start;
+                source['date_end'] = new Date(date_end);//date_end;
                 source['is_run'] = is_run_value;//record.get('is_run');
                 //source['margin_markets'] = rec.get('margin_markets');
                 //source['margin_lavel_0'] = rec.get('margin_lavel_0');

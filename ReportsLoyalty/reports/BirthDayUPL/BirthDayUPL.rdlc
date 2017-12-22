@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.53227cm</Width>
+              <Width>5.48477cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.48576cm</Width>
@@ -40,7 +40,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Місто</Value>
+                              <Value>ТЦ</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -1022,8 +1022,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_expected_effect</DataSetName>
+        <Top>0.73485cm</Top>
+        <Left>0.18376cm</Left>
         <Height>2.06458cm</Height>
-        <Width>13.4626cm</Width>
+        <Width>14.41511cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1498,9 +1500,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_trade_rating</DataSetName>
-        <Top>4.48993cm</Top>
+        <Top>5.39547cm</Top>
+        <Left>0.3175cm</Left>
         <Height>1.65889cm</Height>
-        <Width>17.38432cm</Width>
+        <Width>17.38433cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -1767,8 +1770,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_discount</DataSetName>
-        <Top>4.48993cm</Top>
-        <Left>17.77433cm</Left>
+        <Top>5.39547cm</Top>
+        <Left>17.99861cm</Left>
         <Height>1.65889cm</Height>
         <Width>4.72897cm</Width>
         <ZIndex>2</ZIndex>
@@ -1798,8 +1801,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox39</rd:DefaultName>
-        <Top>5.61937cm</Top>
-        <Left>22.85433cm</Left>
+        <Top>6.52491cm</Top>
+        <Left>23.07861cm</Left>
         <Height>0.49417cm</Height>
         <Width>1.15727cm</Width>
         <ZIndex>3</ZIndex>
@@ -1833,8 +1836,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox40</rd:DefaultName>
-        <Top>4.48993cm</Top>
-        <Left>22.53857cm</Left>
+        <Top>5.39547cm</Top>
+        <Left>22.76285cm</Left>
         <Height>1.05889cm</Height>
         <Width>1.86692cm</Width>
         <ZIndex>4</ZIndex>
@@ -2219,7 +2222,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_distanse</DataSetName>
-        <Left>13.55583cm</Left>
+        <Top>0.73485cm</Top>
+        <Left>14.68706cm</Left>
         <Height>2.03499cm</Height>
         <Width>3.82849cm</Width>
         <ZIndex>5</ZIndex>
@@ -2497,9 +2501,10 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>ds_birth_day_mk_distanse</DataSetName>
-        <Left>17.77433cm</Left>
+        <Top>0.73485cm</Top>
+        <Left>18.58611cm</Left>
         <Height>4.12748cm</Height>
-        <Width>7.16896cm</Width>
+        <Width>6.85146cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -2510,11 +2515,68 @@
           <BackgroundGradientType>None</BackgroundGradientType>
         </Style>
       </Chart>
+      <Textbox Name="Textbox27">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Пропозиція до дня народження УПЛ (Деко). </Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                  <FontWeight>SemiBold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> Дата початку: </Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!RP_StartDate.Value</Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>  Дата завершення: </Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!RP_EndDate.Value</Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox27</rd:DefaultName>
+        <Top>0.09388cm</Top>
+        <Left>0.3175cm</Left>
+        <Height>0.6cm</Height>
+        <Width>17.38433cm</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.7015in</Height>
+    <Height>3.014in</Height>
     <Style />
   </Body>
-  <Width>10.91062in</Width>
+  <Width>10.01479in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -2669,6 +2731,16 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="RP_StartDate">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="RP_EndDate">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0178b141-063a-4d9b-8a59-966034a38ba6</rd:ReportID>
 </Report>

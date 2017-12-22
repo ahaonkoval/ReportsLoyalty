@@ -40,6 +40,11 @@
               <Mapping SourceColumn="margin_bn_prc" DataSetColumn="margin_bn_prc" />
               <Mapping SourceColumn="qty_trade_all" DataSetColumn="qty_trade_all" />
               <Mapping SourceColumn="qty_doc_all" DataSetColumn="qty_doc_all" />
+              <Mapping SourceColumn="tc_name" DataSetColumn="tc_name" />
+              <Mapping SourceColumn="mtdl" DataSetColumn="mtdl" />
+              <Mapping SourceColumn="sm_art_all" DataSetColumn="sm_art_all" />
+              <Mapping SourceColumn="sm_doc_all" DataSetColumn="sm_doc_all" />
+              <Mapping SourceColumn="present" DataSetColumn="present" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -460,12 +465,16 @@ ORDER BY number</CommandText>
               </DbSource>
             </MainSource>
             <Mappings>
+              <Mapping SourceColumn="name_1" DataSetColumn="name_1" />
+              <Mapping SourceColumn="name_2" DataSetColumn="name_2" />
+              <Mapping SourceColumn="name_3" DataSetColumn="name_3" />
               <Mapping SourceColumn="articul" DataSetColumn="articul" />
               <Mapping SourceColumn="name" DataSetColumn="name" />
               <Mapping SourceColumn="trade_qty_participant" DataSetColumn="trade_qty_participant" />
               <Mapping SourceColumn="sm_participant" DataSetColumn="sm_participant" />
               <Mapping SourceColumn="trade_qty_all" DataSetColumn="trade_qty_all" />
               <Mapping SourceColumn="sm_all" DataSetColumn="sm_all" />
+              <Mapping SourceColumn="sm_bonus_obtained" DataSetColumn="sm_bonus_obtained" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -501,6 +510,17 @@ ORDER BY number</CommandText>
               <xs:element name="margin_bn_prc" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmargin_bn_prc" msprop:Generator_ColumnPropNameInRow="margin_bn_prc" msprop:Generator_ColumnPropNameInTable="margin_bn_prcColumn" msprop:Generator_UserColumnName="margin_bn_prc" type="xs:decimal" minOccurs="0" />
               <xs:element name="qty_trade_all" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnqty_trade_all" msprop:Generator_ColumnPropNameInRow="qty_trade_all" msprop:Generator_ColumnPropNameInTable="qty_trade_allColumn" msprop:Generator_UserColumnName="qty_trade_all" type="xs:decimal" minOccurs="0" />
               <xs:element name="qty_doc_all" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnqty_doc_all" msprop:Generator_ColumnPropNameInRow="qty_doc_all" msprop:Generator_ColumnPropNameInTable="qty_doc_allColumn" msprop:Generator_UserColumnName="qty_doc_all" type="xs:long" minOccurs="0" />
+              <xs:element name="tc_name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntc_name" msprop:Generator_ColumnPropNameInRow="tc_name" msprop:Generator_ColumnPropNameInTable="tc_nameColumn" msprop:Generator_UserColumnName="tc_name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="mtdl" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmtdl" msprop:Generator_ColumnPropNameInRow="mtdl" msprop:Generator_ColumnPropNameInTable="mtdlColumn" msprop:Generator_UserColumnName="mtdl" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sm_art_all" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsm_art_all" msprop:Generator_ColumnPropNameInRow="sm_art_all" msprop:Generator_ColumnPropNameInTable="sm_art_allColumn" msprop:Generator_UserColumnName="sm_art_all" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sm_doc_all" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsm_doc_all" msprop:Generator_ColumnPropNameInRow="sm_doc_all" msprop:Generator_ColumnPropNameInTable="sm_doc_allColumn" msprop:Generator_UserColumnName="sm_doc_all" type="xs:decimal" minOccurs="0" />
+              <xs:element name="present" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnpresent" msprop:Generator_ColumnPropNameInRow="present" msprop:Generator_ColumnPropNameInTable="presentColumn" msprop:Generator_UserColumnName="present" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -837,17 +857,38 @@ ORDER BY number</CommandText>
         <xs:element name="p_get_trade_with_extra_points" msprop:Generator_TableClassName="p_get_trade_with_extra_pointsDataTable" msprop:Generator_TableVarName="tablep_get_trade_with_extra_points" msprop:Generator_TablePropName="p_get_trade_with_extra_points" msprop:Generator_RowDeletingName="p_get_trade_with_extra_pointsRowDeleting" msprop:Generator_RowChangingName="p_get_trade_with_extra_pointsRowChanging" msprop:Generator_RowEvHandlerName="p_get_trade_with_extra_pointsRowChangeEventHandler" msprop:Generator_RowDeletedName="p_get_trade_with_extra_pointsRowDeleted" msprop:Generator_UserTableName="p_get_trade_with_extra_points" msprop:Generator_RowChangedName="p_get_trade_with_extra_pointsRowChanged" msprop:Generator_RowEvArgName="p_get_trade_with_extra_pointsRowChangeEvent" msprop:Generator_RowClassName="p_get_trade_with_extra_pointsRow">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="name_1" msprop:Generator_ColumnVarNameInTable="columnname_1" msprop:Generator_ColumnPropNameInRow="name_1" msprop:Generator_ColumnPropNameInTable="name_1Column" msprop:Generator_UserColumnName="name_1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name_2" msprop:Generator_ColumnVarNameInTable="columnname_2" msprop:Generator_ColumnPropNameInRow="name_2" msprop:Generator_ColumnPropNameInTable="name_2Column" msprop:Generator_UserColumnName="name_2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name_3" msprop:Generator_ColumnVarNameInTable="columnname_3" msprop:Generator_ColumnPropNameInRow="name_3" msprop:Generator_ColumnPropNameInTable="name_3Column" msprop:Generator_UserColumnName="name_3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="articul" msprop:Generator_ColumnVarNameInTable="columnarticul" msprop:Generator_ColumnPropNameInRow="articul" msprop:Generator_ColumnPropNameInTable="articulColumn" msprop:Generator_UserColumnName="articul" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
+                    <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
+                    <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -855,6 +896,7 @@ ORDER BY number</CommandText>
               <xs:element name="sm_participant" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsm_participant" msprop:Generator_ColumnPropNameInRow="sm_participant" msprop:Generator_ColumnPropNameInTable="sm_participantColumn" msprop:Generator_UserColumnName="sm_participant" type="xs:decimal" minOccurs="0" />
               <xs:element name="trade_qty_all" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntrade_qty_all" msprop:Generator_ColumnPropNameInRow="trade_qty_all" msprop:Generator_ColumnPropNameInTable="trade_qty_allColumn" msprop:Generator_UserColumnName="trade_qty_all" type="xs:decimal" minOccurs="0" />
               <xs:element name="sm_all" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsm_all" msprop:Generator_ColumnPropNameInRow="sm_all" msprop:Generator_ColumnPropNameInTable="sm_allColumn" msprop:Generator_UserColumnName="sm_all" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sm_bonus_obtained" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsm_bonus_obtained" msprop:Generator_ColumnPropNameInRow="sm_bonus_obtained" msprop:Generator_ColumnPropNameInTable="sm_bonus_obtainedColumn" msprop:Generator_UserColumnName="sm_bonus_obtained" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
         <div style="margin:0; padding:0; height:100%">
             <div style="margin:0; padding:0; height:100%">
-                <rsweb:ReportViewer ID="ReportViewerPersonalOffers" runat="server"
+                <rsweb:ReportViewer ID="ReportViewerBirthDayChildrenUPL" runat="server"
                     Font-Names="Verdana"
                     Font-Size="8pt"
                     WaitMessageFont-Names="Verdana"

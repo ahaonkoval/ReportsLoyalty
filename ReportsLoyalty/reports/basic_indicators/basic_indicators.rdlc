@@ -49,7 +49,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Маркет</Value>
+                              <Value>ТЦ</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -1428,8 +1428,8 @@
         <DataSetName>ds_basic_indicators</DataSetName>
         <Top>0.26141cm</Top>
         <Left>0.26141cm</Left>
-        <Height>2.51437cm</Height>
-        <Width>19.33792cm</Width>
+        <Height>2.51438cm</Height>
+        <Width>19.33793cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

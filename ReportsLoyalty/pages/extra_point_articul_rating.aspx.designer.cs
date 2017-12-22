@@ -10,7 +10,7 @@
 namespace ReportsLoyalty.pages {
     
     
-    public partial class BirthDayUPL {
+    public partial class extra_point_articul_rating {
         
         /// <summary>
         /// form1 элемент управления.
@@ -22,57 +22,30 @@ namespace ReportsLoyalty.pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ReportViewerBirthDay элемент управления.
+        /// ReportViewerExtraPoints элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewerBirthDay;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewerExtraPoints;
         
         /// <summary>
-        /// ScriptManager1 элемент управления.
+        /// ScriptManager2 элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.ScriptManager ScriptManager2;
         
         /// <summary>
-        /// sds_BirthDayUPL элемент управления.
+        /// sds_report элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sds_BirthDayUPL;
-        
-        /// <summary>
-        /// sds_Rating элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sds_Rating;
-        
-        /// <summary>
-        /// sds_discount элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sds_discount;
-        
-        /// <summary>
-        /// sds_distanse элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sds_distanse;
+        protected global::System.Web.UI.WebControls.SqlDataSource sds_report;
     }
 }

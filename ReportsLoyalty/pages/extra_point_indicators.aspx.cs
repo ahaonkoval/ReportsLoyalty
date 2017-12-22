@@ -57,47 +57,47 @@ namespace ReportsLoyalty.pages
                 this.sds_day_diff.SelectParameters.Clear();
                 this.sds_day_diff.SelectParameters.Add("campaign_id", campaign_id);
                 this.sds_day_diff.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-                if (is_numeric_market_id)
-                {
-                    if (n == 0)
-                        this.sds_day_diff.SelectParameters.Add("market_id", market_id);
-                }
-                else
-                {
-                    this.sds_day_diff.SelectParameters.Add("market_lst", market_id);
-                }
+                //if (is_numeric_market_id)
+                //{
+                //    if (n == 0)
+                //        this.sds_day_diff.SelectParameters.Add("market_id", market_id);
+                //}
+                //else
+                //{
+                //    this.sds_day_diff.SelectParameters.Add("market_lst", market_id);
+                //}
 
-                this.sds_distance.SelectCommand = "rep.p_get_diff_distance_with_extra_points";
-                this.sds_distance.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
-                this.sds_distance.SelectParameters.Clear();
-                this.sds_distance.SelectParameters.Add("campaign_id", campaign_id);
-                this.sds_distance.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-                if (is_numeric_market_id)
-                {
-                    if (n == 0)
-                        this.sds_distance.SelectParameters.Add("market_id", market_id);
-                }
-                else
-                {
-                    this.sds_distance.SelectParameters.Add("market_lst", market_id);
-                }
+                //this.sds_distance.SelectCommand = "rep.p_get_diff_distance_with_extra_points";
+                //this.sds_distance.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
+                //this.sds_distance.SelectParameters.Clear();
+                //this.sds_distance.SelectParameters.Add("campaign_id", campaign_id);
+                //this.sds_distance.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
+                //if (is_numeric_market_id)
+                //{
+                //    if (n == 0)
+                //        this.sds_distance.SelectParameters.Add("market_id", market_id);
+                //}
+                //else
+                //{
+                //    this.sds_distance.SelectParameters.Add("market_lst", market_id);
+                //}
 
 
-                this.sds_trade_list.SelectCommand = "[rep].[p_get_trade_with_extra_points]";
-                this.sds_trade_list.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
-                this.sds_trade_list.SelectParameters.Clear();
-                this.sds_trade_list.SelectParameters.Add("campaign_id", campaign_id);
-                this.sds_trade_list.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));// dt.ToString("yyyy-MM-dd"));
+                //this.sds_trade_list.SelectCommand = "[rep].[p_get_trade_with_extra_points]";
+                //this.sds_trade_list.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
+                //this.sds_trade_list.SelectParameters.Clear();
+                //this.sds_trade_list.SelectParameters.Add("campaign_id", campaign_id);
+                //this.sds_trade_list.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));// dt.ToString("yyyy-MM-dd"));
 
-                if (is_numeric_market_id)
-                {
-                    if (n == 0)
-                        this.sds_trade_list.SelectParameters.Add("market_id", market_id);
-                }
-                else
-                {
-                    this.sds_trade_list.SelectParameters.Add("market_lst", market_id);
-                }
+                //if (is_numeric_market_id)
+                //{
+                //    if (n == 0)
+                //        this.sds_trade_list.SelectParameters.Add("market_id", market_id);
+                //}
+                //else
+                //{
+                //    this.sds_trade_list.SelectParameters.Add("market_lst", market_id);
+                //}
 
                 //ReportViewerExtraPoints.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
 

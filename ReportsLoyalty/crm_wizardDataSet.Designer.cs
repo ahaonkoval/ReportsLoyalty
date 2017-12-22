@@ -799,6 +799,16 @@ namespace ReportsLoyalty {
             
             private global::System.Data.DataColumn columnqty_doc_all;
             
+            private global::System.Data.DataColumn columntc_name;
+            
+            private global::System.Data.DataColumn columnmtdl;
+            
+            private global::System.Data.DataColumn columnsm_art_all;
+            
+            private global::System.Data.DataColumn columnsm_doc_all;
+            
+            private global::System.Data.DataColumn columnpresent;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public p_get_sale_with_extra_pointsDataTable() {
@@ -954,6 +964,46 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tc_nameColumn {
+                get {
+                    return this.columntc_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn mtdlColumn {
+                get {
+                    return this.columnmtdl;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_art_allColumn {
+                get {
+                    return this.columnsm_art_all;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_doc_allColumn {
+                get {
+                    return this.columnsm_doc_all;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn presentColumn {
+                get {
+                    return this.columnpresent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -989,7 +1039,27 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_get_sale_with_extra_pointsRow Addp_get_sale_with_extra_pointsRow(string city, decimal doc_qty, decimal customers_qty, decimal trade_qty_bonus, decimal trade_qty_no_bonus, decimal bonus_sm, decimal avg_doc_sm, decimal margin_grn, decimal margin_prc, decimal art_sm, decimal sm, decimal margin_bn, decimal margin_bn_prc, decimal qty_trade_all, long qty_doc_all) {
+            public p_get_sale_with_extra_pointsRow Addp_get_sale_with_extra_pointsRow(
+                        string city, 
+                        decimal doc_qty, 
+                        decimal customers_qty, 
+                        decimal trade_qty_bonus, 
+                        decimal trade_qty_no_bonus, 
+                        decimal bonus_sm, 
+                        decimal avg_doc_sm, 
+                        decimal margin_grn, 
+                        decimal margin_prc, 
+                        decimal art_sm, 
+                        decimal sm, 
+                        decimal margin_bn, 
+                        decimal margin_bn_prc, 
+                        decimal qty_trade_all, 
+                        long qty_doc_all, 
+                        string tc_name, 
+                        decimal mtdl, 
+                        decimal sm_art_all, 
+                        decimal sm_doc_all, 
+                        decimal present) {
                 p_get_sale_with_extra_pointsRow rowp_get_sale_with_extra_pointsRow = ((p_get_sale_with_extra_pointsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         city,
@@ -1006,7 +1076,12 @@ namespace ReportsLoyalty {
                         margin_bn,
                         margin_bn_prc,
                         qty_trade_all,
-                        qty_doc_all};
+                        qty_doc_all,
+                        tc_name,
+                        mtdl,
+                        sm_art_all,
+                        sm_doc_all,
+                        present};
                 rowp_get_sale_with_extra_pointsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowp_get_sale_with_extra_pointsRow);
                 return rowp_get_sale_with_extra_pointsRow;
@@ -1044,6 +1119,11 @@ namespace ReportsLoyalty {
                 this.columnmargin_bn_prc = base.Columns["margin_bn_prc"];
                 this.columnqty_trade_all = base.Columns["qty_trade_all"];
                 this.columnqty_doc_all = base.Columns["qty_doc_all"];
+                this.columntc_name = base.Columns["tc_name"];
+                this.columnmtdl = base.Columns["mtdl"];
+                this.columnsm_art_all = base.Columns["sm_art_all"];
+                this.columnsm_doc_all = base.Columns["sm_doc_all"];
+                this.columnpresent = base.Columns["present"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1079,6 +1159,16 @@ namespace ReportsLoyalty {
                 base.Columns.Add(this.columnqty_trade_all);
                 this.columnqty_doc_all = new global::System.Data.DataColumn("qty_doc_all", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnqty_doc_all);
+                this.columntc_name = new global::System.Data.DataColumn("tc_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntc_name);
+                this.columnmtdl = new global::System.Data.DataColumn("mtdl", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmtdl);
+                this.columnsm_art_all = new global::System.Data.DataColumn("sm_art_all", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_art_all);
+                this.columnsm_doc_all = new global::System.Data.DataColumn("sm_doc_all", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_doc_all);
+                this.columnpresent = new global::System.Data.DataColumn("present", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpresent);
                 this.columncity.MaxLength = 50;
                 this.columndoc_qty.ReadOnly = true;
                 this.columncustomers_qty.ReadOnly = true;
@@ -1094,6 +1184,12 @@ namespace ReportsLoyalty {
                 this.columnmargin_bn_prc.ReadOnly = true;
                 this.columnqty_trade_all.ReadOnly = true;
                 this.columnqty_doc_all.ReadOnly = true;
+                this.columntc_name.ReadOnly = true;
+                this.columntc_name.MaxLength = 4000;
+                this.columnmtdl.ReadOnly = true;
+                this.columnsm_art_all.ReadOnly = true;
+                this.columnsm_doc_all.ReadOnly = true;
+                this.columnpresent.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5744,6 +5840,12 @@ namespace ReportsLoyalty {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class p_get_trade_with_extra_pointsDataTable : global::System.Data.TypedTableBase<p_get_trade_with_extra_pointsRow> {
             
+            private global::System.Data.DataColumn columnname_1;
+            
+            private global::System.Data.DataColumn columnname_2;
+            
+            private global::System.Data.DataColumn columnname_3;
+            
             private global::System.Data.DataColumn columnarticul;
             
             private global::System.Data.DataColumn columnname;
@@ -5755,6 +5857,8 @@ namespace ReportsLoyalty {
             private global::System.Data.DataColumn columntrade_qty_all;
             
             private global::System.Data.DataColumn columnsm_all;
+            
+            private global::System.Data.DataColumn columnsm_bonus_obtained;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -5787,6 +5891,30 @@ namespace ReportsLoyalty {
             protected p_get_trade_with_extra_pointsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn name_1Column {
+                get {
+                    return this.columnname_1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn name_2Column {
+                get {
+                    return this.columnname_2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn name_3Column {
+                get {
+                    return this.columnname_3;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5839,6 +5967,14 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_bonus_obtainedColumn {
+                get {
+                    return this.columnsm_bonus_obtained;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5874,15 +6010,19 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public p_get_trade_with_extra_pointsRow Addp_get_trade_with_extra_pointsRow(string articul, string name, decimal trade_qty_participant, decimal sm_participant, decimal trade_qty_all, decimal sm_all) {
+            public p_get_trade_with_extra_pointsRow Addp_get_trade_with_extra_pointsRow(string name_1, string name_2, string name_3, string articul, string name, decimal trade_qty_participant, decimal sm_participant, decimal trade_qty_all, decimal sm_all, decimal sm_bonus_obtained) {
                 p_get_trade_with_extra_pointsRow rowp_get_trade_with_extra_pointsRow = ((p_get_trade_with_extra_pointsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        name_1,
+                        name_2,
+                        name_3,
                         articul,
                         name,
                         trade_qty_participant,
                         sm_participant,
                         trade_qty_all,
-                        sm_all};
+                        sm_all,
+                        sm_bonus_obtained};
                 rowp_get_trade_with_extra_pointsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowp_get_trade_with_extra_pointsRow);
                 return rowp_get_trade_with_extra_pointsRow;
@@ -5905,17 +6045,27 @@ namespace ReportsLoyalty {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnname_1 = base.Columns["name_1"];
+                this.columnname_2 = base.Columns["name_2"];
+                this.columnname_3 = base.Columns["name_3"];
                 this.columnarticul = base.Columns["articul"];
                 this.columnname = base.Columns["name"];
                 this.columntrade_qty_participant = base.Columns["trade_qty_participant"];
                 this.columnsm_participant = base.Columns["sm_participant"];
                 this.columntrade_qty_all = base.Columns["trade_qty_all"];
                 this.columnsm_all = base.Columns["sm_all"];
+                this.columnsm_bonus_obtained = base.Columns["sm_bonus_obtained"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnname_1 = new global::System.Data.DataColumn("name_1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnname_1);
+                this.columnname_2 = new global::System.Data.DataColumn("name_2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnname_2);
+                this.columnname_3 = new global::System.Data.DataColumn("name_3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnname_3);
                 this.columnarticul = new global::System.Data.DataColumn("articul", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnarticul);
                 this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
@@ -5928,12 +6078,18 @@ namespace ReportsLoyalty {
                 base.Columns.Add(this.columntrade_qty_all);
                 this.columnsm_all = new global::System.Data.DataColumn("sm_all", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsm_all);
-                this.columnarticul.MaxLength = 255;
-                this.columnname.MaxLength = 255;
+                this.columnsm_bonus_obtained = new global::System.Data.DataColumn("sm_bonus_obtained", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_bonus_obtained);
+                this.columnname_1.MaxLength = 150;
+                this.columnname_2.MaxLength = 150;
+                this.columnname_3.MaxLength = 150;
+                this.columnarticul.MaxLength = 8;
+                this.columnname.MaxLength = 200;
                 this.columntrade_qty_participant.ReadOnly = true;
                 this.columnsm_participant.ReadOnly = true;
                 this.columntrade_qty_all.ReadOnly = true;
                 this.columnsm_all.ReadOnly = true;
+                this.columnsm_bonus_obtained.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6330,6 +6486,91 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string tc_name {
+                get {
+                    try {
+                        return ((string)(this[this.tablep_get_sale_with_extra_points.tc_nameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'tc_name\' в таблице \'p_get_sale_with_extra_points\' равно DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_sale_with_extra_points.tc_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal mtdl {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablep_get_sale_with_extra_points.mtdlColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'mtdl\' в таблице \'p_get_sale_with_extra_points\' равно DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_sale_with_extra_points.mtdlColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal sm_art_all {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablep_get_sale_with_extra_points.sm_art_allColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_art_all\' в таблице \'p_get_sale_with_extra_points\' равно " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_sale_with_extra_points.sm_art_allColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal sm_doc_all {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablep_get_sale_with_extra_points.sm_doc_allColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_doc_all\' в таблице \'p_get_sale_with_extra_points\' равно " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_sale_with_extra_points.sm_doc_allColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal present {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablep_get_sale_with_extra_points.presentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'present\' в таблице \'p_get_sale_with_extra_points\' равно DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_sale_with_extra_points.presentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IscityNull() {
                 return this.IsNull(this.tablep_get_sale_with_extra_points.cityColumn);
             }
@@ -6506,6 +6747,66 @@ namespace ReportsLoyalty {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setqty_doc_allNull() {
                 this[this.tablep_get_sale_with_extra_points.qty_doc_allColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Istc_nameNull() {
+                return this.IsNull(this.tablep_get_sale_with_extra_points.tc_nameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Settc_nameNull() {
+                this[this.tablep_get_sale_with_extra_points.tc_nameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsmtdlNull() {
+                return this.IsNull(this.tablep_get_sale_with_extra_points.mtdlColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetmtdlNull() {
+                this[this.tablep_get_sale_with_extra_points.mtdlColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_art_allNull() {
+                return this.IsNull(this.tablep_get_sale_with_extra_points.sm_art_allColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_art_allNull() {
+                this[this.tablep_get_sale_with_extra_points.sm_art_allColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_doc_allNull() {
+                return this.IsNull(this.tablep_get_sale_with_extra_points.sm_doc_allColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_doc_allNull() {
+                this[this.tablep_get_sale_with_extra_points.sm_doc_allColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspresentNull() {
+                return this.IsNull(this.tablep_get_sale_with_extra_points.presentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpresentNull() {
+                this[this.tablep_get_sale_with_extra_points.presentColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9368,6 +9669,57 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string name_1 {
+                get {
+                    try {
+                        return ((string)(this[this.tablep_get_trade_with_extra_points.name_1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'name_1\' в таблице \'p_get_trade_with_extra_points\' равно DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_trade_with_extra_points.name_1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string name_2 {
+                get {
+                    try {
+                        return ((string)(this[this.tablep_get_trade_with_extra_points.name_2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'name_2\' в таблице \'p_get_trade_with_extra_points\' равно DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_trade_with_extra_points.name_2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string name_3 {
+                get {
+                    try {
+                        return ((string)(this[this.tablep_get_trade_with_extra_points.name_3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'name_3\' в таблице \'p_get_trade_with_extra_points\' равно DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_trade_with_extra_points.name_3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string articul {
                 get {
                     try {
@@ -9470,6 +9822,59 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal sm_bonus_obtained {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablep_get_trade_with_extra_points.sm_bonus_obtainedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_bonus_obtained\' в таблице \'p_get_trade_with_extra_points" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablep_get_trade_with_extra_points.sm_bonus_obtainedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isname_1Null() {
+                return this.IsNull(this.tablep_get_trade_with_extra_points.name_1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setname_1Null() {
+                this[this.tablep_get_trade_with_extra_points.name_1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isname_2Null() {
+                return this.IsNull(this.tablep_get_trade_with_extra_points.name_2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setname_2Null() {
+                this[this.tablep_get_trade_with_extra_points.name_2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isname_3Null() {
+                return this.IsNull(this.tablep_get_trade_with_extra_points.name_3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setname_3Null() {
+                this[this.tablep_get_trade_with_extra_points.name_3Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsarticulNull() {
                 return this.IsNull(this.tablep_get_trade_with_extra_points.articulColumn);
             }
@@ -9538,6 +9943,18 @@ namespace ReportsLoyalty {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setsm_allNull() {
                 this[this.tablep_get_trade_with_extra_points.sm_allColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_bonus_obtainedNull() {
+                return this.IsNull(this.tablep_get_trade_with_extra_points.sm_bonus_obtainedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_bonus_obtainedNull() {
+                this[this.tablep_get_trade_with_extra_points.sm_bonus_obtainedColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -10191,6 +10608,11 @@ namespace ReportsLoyalty.crm_wizardDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("margin_bn_prc", "margin_bn_prc");
             tableMapping.ColumnMappings.Add("qty_trade_all", "qty_trade_all");
             tableMapping.ColumnMappings.Add("qty_doc_all", "qty_doc_all");
+            tableMapping.ColumnMappings.Add("tc_name", "tc_name");
+            tableMapping.ColumnMappings.Add("mtdl", "mtdl");
+            tableMapping.ColumnMappings.Add("sm_art_all", "sm_art_all");
+            tableMapping.ColumnMappings.Add("sm_doc_all", "sm_doc_all");
+            tableMapping.ColumnMappings.Add("present", "present");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13544,12 +13966,16 @@ ORDER BY number";
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "p_get_trade_with_extra_points";
+            tableMapping.ColumnMappings.Add("name_1", "name_1");
+            tableMapping.ColumnMappings.Add("name_2", "name_2");
+            tableMapping.ColumnMappings.Add("name_3", "name_3");
             tableMapping.ColumnMappings.Add("articul", "articul");
             tableMapping.ColumnMappings.Add("name", "name");
             tableMapping.ColumnMappings.Add("trade_qty_participant", "trade_qty_participant");
             tableMapping.ColumnMappings.Add("sm_participant", "sm_participant");
             tableMapping.ColumnMappings.Add("trade_qty_all", "trade_qty_all");
             tableMapping.ColumnMappings.Add("sm_all", "sm_all");
+            tableMapping.ColumnMappings.Add("sm_bonus_obtained", "sm_bonus_obtained");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

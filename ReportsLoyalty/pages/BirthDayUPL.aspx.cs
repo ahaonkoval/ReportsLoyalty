@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using Microsoft.Reporting.WebForms;
 
 namespace ReportsLoyalty.pages
 {
@@ -88,6 +89,13 @@ namespace ReportsLoyalty.pages
             } else {
                 this.sds_distanse.SelectParameters.Add("market_lst", market_id);
             }
+
+
+            //string st_date = gdt.Campaigns.GetStartDateById(Convert.ToInt32(campaign_id)).Value.ToString("dd.MM.yyyy");
+            //string ed_date = gdt.Campaigns.GetEndDateById(Convert.ToInt32(campaign_id)).Value.ToString("dd.MM.yyyy");
+
+            ReportViewerBirthDay.LocalReport.SetParameters(new ReportParameter("RP_StartDate", date_start));
+            ReportViewerBirthDay.LocalReport.SetParameters(new ReportParameter("RP_EndDate", date_end));
 
             //this.sds_distanse.SelectParameters.Add("market_id", market_id);
             //this.sds_distanse.SelectParameters.Add("in_market", im);
