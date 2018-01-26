@@ -133,6 +133,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\001_02.ico" />
     <Content Include="img\Settings_16x16.png" />
     <Content Include="pages\extra_point_articul_rating.aspx" />
     <Content Include="pages\extra_point_customers_allocated.aspx" />
@@ -142,6 +143,7 @@
     <Content Include="scripts\campaigns.js" />
     <Content Include="scripts\p50points_reports.js" />
     <Content Include="scripts\pl_indicators.js" />
+    <Content Include="scripts\stop_list.js" />
     <Content Include="scripts\upload_status.js" />
     <Content Include="scripts\campaign_details.js" />
     <Content Include="Content\bootstrap.css" />

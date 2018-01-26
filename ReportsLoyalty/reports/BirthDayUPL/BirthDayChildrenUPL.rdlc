@@ -6,30 +6,30 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.1791cm</Width>
+              <Width>3.74576cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.48576cm</Width>
+              <Width>1.03523cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.51222cm</Width>
+              <Width>1.03597cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.52104cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.7661cm</Width>
+              <Width>1.28985cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.60042cm</Width>
+              <Width>1.33584cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.44167cm</Width>
+              <Width>1.17709cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.86458cm</Height>
+              <Height>1.05889cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -260,7 +260,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Оберт ЦЗ</Value>
+                              <Value>Маржа</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -576,17 +576,16 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="sm_buy">
+                    <Textbox Name="Textbox22">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!sm_buy.Value</Value>
+                              <Value>=STR(ROUND(((Fields!sm.Value-Fields!sm_buy.Value)/Fields!sm.Value)*100,0))+"%"</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
-                                <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -595,7 +594,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>sm_buy</rd:DefaultName>
+                      <rd:DefaultName>Textbox22</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -890,18 +889,17 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox23">
+                    <Textbox Name="Textbox24">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!sm_buy.Value)</Value>
+                              <Value />
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -910,7 +908,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox23</rd:DefaultName>
+                      <rd:DefaultName>Textbox24</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1022,10 +1020,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_expected_effect</DataSetName>
-        <Top>0.82919cm</Top>
+        <Top>5.20447cm</Top>
         <Left>0.02869cm</Left>
-        <Height>2.06458cm</Height>
-        <Width>12.50631cm</Width>
+        <Height>2.25889cm</Height>
+        <Width>11.14077cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1036,16 +1034,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.48886cm</Width>
+              <Width>3.38285cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>8.8143cm</Width>
+              <Width>9.96266cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.50449cm</Width>
+              <Width>1.17119cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.57667cm</Width>
+              <Width>1.21691cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1500,10 +1498,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_trade_rating</DataSetName>
-        <Top>5.31912cm</Top>
-        <Left>0.02869cm</Left>
+        <Top>5.20447cm</Top>
+        <Left>11.24002cm</Left>
         <Height>1.65889cm</Height>
-        <Width>17.38432cm</Width>
+        <Width>15.73361cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -1769,8 +1767,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_discount</DataSetName>
-        <Top>5.31912cm</Top>
-        <Left>17.80302cm</Left>
+        <Top>5.20447cm</Top>
+        <Left>27.0971cm</Left>
         <Height>1.65889cm</Height>
         <Width>4.72897cm</Width>
         <ZIndex>2</ZIndex>
@@ -1800,10 +1798,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox40</rd:DefaultName>
-        <Top>5.31912cm</Top>
-        <Left>22.56726cm</Left>
-        <Height>1.05889cm</Height>
-        <Width>1.86692cm</Width>
+        <Top>0.82919cm</Top>
+        <Left>26.48341cm</Left>
+        <Height>0.52972cm</Height>
+        <Width>3.48088cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -2187,7 +2185,7 @@
         </TablixRowHierarchy>
         <DataSetName>ds_birth_day_mk_distanse</DataSetName>
         <Top>0.82919cm</Top>
-        <Left>12.63202cm</Left>
+        <Left>0.02869cm</Left>
         <Height>2.06458cm</Height>
         <Width>4.78099cm</Width>
         <ZIndex>4</ZIndex>
@@ -2466,7 +2464,7 @@
         </ChartNoDataMessage>
         <DataSetName>ds_birth_day_mk_distanse</DataSetName>
         <Top>0.82919cm</Top>
-        <Left>17.80302cm</Left>
+        <Left>4.91551cm</Left>
         <Height>4.12748cm</Height>
         <Width>7.16896cm</Width>
         <ZIndex>5</ZIndex>
@@ -2486,7 +2484,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=avg(Fields!discount_prc.Value, "ds_birth_day_mk_discount")</Value>
+                <Value>=ROUND(avg(Fields!discount_prc.Value, "ds_birth_day_mk_discount"),0)</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
                   <FontWeight>Bold</FontWeight>
@@ -2499,10 +2497,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox50</rd:DefaultName>
-        <Top>6.44856cm</Top>
-        <Left>22.53199cm</Left>
+        <Top>0.82919cm</Top>
+        <Left>30.1054cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.75917cm</Width>
+        <Width>1.35025cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -2571,10 +2569,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>5.3125in</Height>
+    <Height>3in</Height>
     <Style />
   </Body>
-  <Width>9.91667in</Width>
+  <Width>12.5625in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

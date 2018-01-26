@@ -245,8 +245,10 @@ var showExtraPoints = function () {
                                         }
 
                                         //url = url + '&height=' + (center.getWidth() - 30)
+                                        //extra_point_customers_allocated
 
                                         var url_rtg = 'pages/extra_point_articul_rating.aspx?campaign_id=' + campaign_id + '&market_id=' + market_id + '&date_st=' + date_st;
+                                        var url_alloc = 'pages/extra_point_customers_allocated.aspx?campaign_id=' + campaign_id + '&market_id=' + market_id + '&date_st=' + date_st;
 
                                         var dp_basic = new Ext.Component({
                                             id: 'rep_box_extra_points',
@@ -259,7 +261,6 @@ var showExtraPoints = function () {
                                             }
                                         });
                                         panel_basic.add(dp_basic);
-                                        //Ext.getCmp('p_rep_conteiner_extra_points').add(dynamicPanel);
 
                                         panel_rating.remove(Ext.getCmp('rep_box_extra_points_rating'));
 
@@ -274,6 +275,20 @@ var showExtraPoints = function () {
                                             }
                                         });
                                         panel_rating.add(dp_rating);
+
+                                        panel_allocation.remove(Ext.getCmp('rep_box_extra_points_allocated'));
+                                        var dp_allocated = new Ext.Component({
+                                            id: 'rep_box_extra_points_allocated',
+                                            xtype: 'box',
+                                            //layout: 'fit',
+                                            showMask: true,
+                                            autoEl: {
+                                                tag: 'iframe',
+                                                src: url_alloc
+                                            }
+                                        });
+
+                                        panel_allocation.add(dp_allocated);
                                     }
                                 }
                             ]

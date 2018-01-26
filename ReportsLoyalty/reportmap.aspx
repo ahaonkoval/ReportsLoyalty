@@ -8,8 +8,16 @@
     <title></title>
     <script type="text/javascript" src="scripts/jslib/ext/ext-all.js"></script>
     <script type="text/javascript" src="scripts/jslib/jquery-3.1.1.min.js"></script>
+
+    <%--<script type="text/javascript" src="scripts/jslib/Phone.js"></script>--%>
+<%--    <script type="text/javascript" src="scripts/jslib/jquery.maskedinput-1.2.2.min.js"></script>--%>
+<%--    <script type="text/javascript" src="scripts/jslib/phoneField.js"></script>--%>
+
     <script type="text/javascript" src="scripts/markmo_indicators.js"></script>
     <script type="text/javascript" src="scripts/dict.js"></script>
+
+    <script type="text/javascript" src="scripts/stop_list.js"></script>
+
     <script type="text/javascript" src="scripts/requests.js"></script>
     <script type="text/javascript" src="scripts/campaigns.js"></script>
     <script type="text/javascript" src="scripts/campaign_details.js"></script>
@@ -24,7 +32,7 @@
 </head>
 <body>
     
-    <script>
+    <script>        
 
         var checker = setInterval(function () { checkauth() }, 5000);
 
@@ -78,6 +86,16 @@
                             //        }
                             //    }
                             //},
+                            {
+                                text: 'Stop list',
+                                formBind: true,
+                                listeners: {
+                                    click: function (ctrl) {
+                                        getWinStopList().show();
+                                        //alert(ctrl);
+                                    }
+                                }
+                            },
                             {
                                 text: 'Управление активностями',
                                 formBind: true,

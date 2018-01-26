@@ -44,9 +44,11 @@
 			"$(ProjectDir)LinqToDB.Templates\LinqToDB.SqlServer.SqlTypes.Tools.ttinclude"
 	*/
 
-	NamespaceName = "DataModels";
+	NamespaceName                 = "DataModels";       // Namespace of the generated classes.
 
-	LoadSqlServerMetadata("10.7.131.204", "crm_wizard", "crm_wizard", "andre2013");
+
+
+	LoadSqlServerMetadata("10.7.131.218", "crm_wizard", "crm_wizard", "andre2013");
 //	LoadSqlServerMetadata(".", "MyDatabase"); // Integrated Security
 //	LoadSqlServerMetadata(string connectionString);
 

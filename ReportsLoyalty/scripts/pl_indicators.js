@@ -1,22 +1,4 @@
-﻿//var showParticipantBySex = function () {
-//    var center = Ext.getCmp('pnlCenter');
-
-//    tab = center.add({
-//        title: 'ЕКСТРА БАЛИ',
-//        extend: 'Ext.panel.Panel',
-//        closable: true,
-//        layout: 'fit',
-//        items: [{
-//            xtype: 'box',
-//            autoEl: {
-//                tag: 'iframe',
-//                src: 'pages/sale_with_extra_point.aspx',
-//            },
-//        }]
-//    });
-
-//    center.setActiveTab(tab);
-//}
+﻿
 /* Основні показники ПЛ */
 var showBasicIndicators = function () {
     var center = Ext.getCmp('pnlCenter');

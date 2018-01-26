@@ -7,6 +7,9 @@ using System.Web.Http;
 using EtData;
 using EtData.Models;
 using ReportsLoyalty.Models;
+using System.Web.Script.Serialization;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -25,33 +28,44 @@ namespace ReportsLoyalty.Controllers
         }
 
         // POST: api/Dict
-        public void Post([FromBody]string value)
-        {
-        }
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
         // PUT: api/Dict/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
         // DELETE: api/Dict/5
         public void Delete(int id)
         {
         }
 
-        //public IEnumerable<campaigns_mk> GetCampaigns50points()
-        //{
-        //    using (GetData gt = new GetData())
-        //    {
-        //        campaign_types t = new campaign_types
-        //        {
-        //            id = 6,
-        //            name = "50 points"
-        //        };
-                
-        //        return gt.Campaigns.GetCampaignsByType(t);
-        //    }
-        //}
+        [HttpGet]
+        public object GetStopList()
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+            using (GetData gt = new GetData())
+            {
+                /* !!!!!!!!!!! */
+                long tt = gt.Dict.GetStopListCount();
+                var dta = gt.Dict.GetStopList(page, start, limit).ToList();
+                /* !!!!!!!!!!! */
+                object o_data = new
+                {
+                    total = tt,
+                    data = dta
+                };
+
+                return o_data;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -226,6 +240,39 @@ namespace ReportsLoyalty.Controllers
                 return gt.Dict.GetUploadingControlData();
             }
         }
+
+        [HttpPost]
+        public int SetToStopList([FromBody] dynamic Conteiner)
+        {
+            try
+            {
+                using (GetData gt = new GetData())
+                {
+                    gt.Dict.SetPhoneToStopList(Conteiner.Phone.Value.ToString());
+                }
+                return 0;
+            } catch
+            {
+                return 1;
+            }
+        }
+
+        [HttpPut]
+        public int PutPhoneById(int id, [FromBody] dynamic Conteiner)
+        {
+            try
+            {
+                using (GetData gt = new GetData())
+                {
+                    gt.Dict.DeletePhoneFromStopList(Convert.ToInt32(Conteiner.StopListId.Value));
+                }
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
     }
 
     //public class Rto
@@ -240,3 +287,4 @@ namespace ReportsLoyalty.Controllers
     //    }
     //}
 }
+

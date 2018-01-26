@@ -43,8 +43,8 @@ namespace ReportsLoyalty.pages
             if (is_numeric_market_id) {
                 if (n != 0)
                     this.sds_counters_docs_bydate.SelectParameters.Add("market_id", market_id);
-                else
-                    this.sds_counters_docs_bydate.SelectParameters.Add("market_id", market_id);
+                //else
+                //    this.sds_counters_docs_bydate.SelectParameters.Add("market_lst", market_id);
             } else {
                 this.sds_counters_docs_bydate.SelectParameters.Add("market_lst", market_id);
             }

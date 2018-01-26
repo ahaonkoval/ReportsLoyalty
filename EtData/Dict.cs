@@ -4,13 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-/*
- * 
- * 
- * 
- * asdaSDasdas
- * \23423423423423
- */
+using LinqToDB;
+
 namespace EtData
 {
     public class Dict
@@ -117,6 +112,51 @@ namespace EtData
             //    }
             //}
             return l_ctrl;
+        }
+
+        public IEnumerable<DataModels.StopList> GetStopList(int page, int start, int limit)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                long index = 1;
+                var lst = db.StopList.OrderBy(o => o.Created).ToList();
+                var lt = lst.Select(x => new DataModels.StopList
+                {
+                    StopListId = index++,
+                    Created = x.Created,
+                    MobilePhone = x.MobilePhone,
+                    MPhone = x.MPhone
+                }).ToList();
+
+                return lt.Where(w => w.StopListId >= start+1 && w.StopListId <= (start + limit)).OrderBy(om => om.StopListId);
+            }
+        }
+
+        public long GetStopListCount()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.StopList.Count();
+            }
+        }
+
+        public void SetPhoneToStopList(string Phone)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                db.StopList.Insert(() => new DataModels.StopList {
+                    Created = DateTime.Now,
+                    MobilePhone = Phone
+                });
+            }
+        }
+
+        public void DeletePhoneFromStopList(int id)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                db.StopList.Delete(w => w.StopListId == id);
+            }
         }
     }
 }
