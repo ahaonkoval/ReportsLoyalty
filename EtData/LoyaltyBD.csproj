@@ -7,8 +7,8 @@
     <ProjectGuid>{44D625BA-1514-4114-8A6B-A832150449CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtData</RootNamespace>
-    <AssemblyName>EtData</AssemblyName>
+    <RootNamespace>LoyaltyDB</RootNamespace>
+    <AssemblyName>LoyaltyDB</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="Models\Cmp.cs" />
     <Compile Include="Models\Term.cs" />
+    <Compile Include="Models\TF_GetUnDoc.cs" />
     <Compile Include="Models\UPLControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="p_get_trade_with_extra_points_Result.cs">
@@ -122,6 +123,7 @@
     <Compile Include="tf_campaign_customers.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransformerData.cs" />
     <Compile Include="t_get_departs_by_otdid_Result.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>

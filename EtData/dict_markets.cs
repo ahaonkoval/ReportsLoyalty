@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EtData
+namespace LoyaltyDB
 {
     using System;
     using System.Collections.Generic;

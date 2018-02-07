@@ -1,4 +1,4 @@
-﻿using EtData.Models;
+﻿using LoyaltyDB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using LinqToDB;
 
-namespace EtData
+namespace LoyaltyDB
 {
     public class Dict
     {
-        EtData.LoyaltyEntities Le;
+        LoyaltyDB.LoyaltyEntities Le;
 
-        public Dict(EtData.LoyaltyEntities le)
+        public Dict(LoyaltyDB.LoyaltyEntities le)
         {
             Le = le;
         }

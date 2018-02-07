@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EtData
+namespace LoyaltyDB
 {
     using System;
     

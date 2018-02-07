@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32.SafeHandles;
 
-namespace EtData
+namespace LoyaltyDB
 {
     public class GetData: IDisposable
     {
@@ -23,10 +23,10 @@ namespace EtData
 
         public GetData()
         {
-            Le = new EtData.LoyaltyEntities();
-            Campaigns = new EtData.Campaigns(Le);
-            Dict = new EtData.Dict(Le);
-            Customers = new EtData.Customers(Le);
+            Le = new LoyaltyDB.LoyaltyEntities();
+            Campaigns = new LoyaltyDB.Campaigns(Le);
+            Dict = new LoyaltyDB.Dict(Le);
+            Customers = new LoyaltyDB.Customers(Le);
         }
 
         public void Dispose()

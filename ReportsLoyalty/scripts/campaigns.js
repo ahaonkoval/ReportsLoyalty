@@ -214,65 +214,108 @@ var getWinCampaigns = function () {
                 //    store: optionsStore,
                 //    phpMode: true
                 //}
-            }, {
-                dataIndex: 'is_run',
-                disabled: true,
-                xtype: 'checkcolumn',
-                text: 'Працює',
-                width: 70
-                //filter true
-                //renderer: Ext.util.Format.dateRenderer('m/d/Y')
-            }, {
-                text: 'Відгук',
-                width: 70,
-                xtype: 'widgetcolumn',
-                dataIndex: 'progress',
-                widget: {
-                    width: 50,
-                    textAlign: 'right',
-                    xtype: 'button',
-                    handler: function (btn) {
-                        var rec = btn.getWidgetRecord();
-                        //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
-                        Ext.MessageBox.prompt('Увага', 'Введіть ID розсилки:', function (mp) { });
-                    }
-                }
-            }, {
+            },
+            //{
+            //    dataIndex: 'is_run',
+            //    disabled: true,
+            //    xtype: 'checkcolumn',
+            //    text: 'Працює',
+            //    width: 70
+            //    //filter true
+            //    //renderer: Ext.util.Format.dateRenderer('m/d/Y')
+            //},
+            //{
+            //    text: 'Відгук',
+            //    width: 70,
+            //    xtype: 'widgetcolumn',
+            //    dataIndex: 'progress',
+            //    widget: {
+            //        width: 50,
+            //        textAlign: 'right',
+            //        xtype: 'button',
+            //        handler: function (btn) {
+            //            var rec = btn.getWidgetRecord();
+            //            //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
+            //            Ext.MessageBox.prompt('Увага', 'Введіть ID розсилки:', function (mp) { });
+            //        }
+            //    }
+            //},
+            //{
+            //    text: 'Учасники',
+            //    width: 90,
+            //    xtype: 'widgetcolumn',
+            //    dataIndex: 'customers_grp',
+            //    widget: {
+            //        width: 70,
+            //        textAlign: 'right',
+            //        xtype: 'button',
+            //        handler: function (btn) {
+            //            var rec = btn.getWidgetRecord();
+            //            var hidden_campaign_id = Ext.getCmp('hidden_campaign_id');
+            //            hidden_campaign_id.setValue(rec.get('id'));
+            //            var campaign_id = rec.get('id');
+            //            getCustomers(campaign_id);
+            //        }
+            //    }
+            //},
+            //{
+            //    text: 'Умови кампанії',
+            //    width: 120,
+            //    xtype: 'widgetcolumn',
+            //    //format: 'd.m.Y',
+            //    //renderer: Ext.util.Format.dateRenderer('d.m.Y'),
+            //    dataIndex: 'max_term_date',
+            //    widget: {
+            //        width: 100,
+            //        textAlign: 'center',
+            //        xtype: 'button',
+            //        format: 'd.m.Y',
+                    
+            //        handler: function (btn) {
+            //            var rec = btn.getWidgetRecord();
+            //            var campaign_id = rec.get('id');
+            //            get_campaigns_terms(campaign_id)
+            //        }
+            //    }
+            //},
+            {
                 text: 'Учасники',
                 width: 90,
-                xtype: 'widgetcolumn',
-                dataIndex: 'customers_grp',
-                widget: {
-                    width: 70,
-                    textAlign: 'right',
-                    xtype: 'button',
-                    handler: function (btn) {
-                        var rec = btn.getWidgetRecord();
-                        var hidden_campaign_id = Ext.getCmp('hidden_campaign_id');
-                        hidden_campaign_id.setValue(rec.get('id'));
-                        var campaign_id = rec.get('id');
-                        getCustomers(campaign_id);
-                    }
-                }
+                columns: [{
+                    text: 'група/тест',
+                    dataIndex: 'customers_grp'
+                }, {
+                    xtype: 'actioncolumn',
+                    width:25,
+                    items: [{
+                        tooltip: 'Перегляд',
+                        icon: 'img/application.ico',
+                        handler: function (view, rowIndex, colIndex, item, e, record, row) {
+                            var campaign_id = record.get('id');
+                            getCustomers(campaign_id);
+                        }
+                    }]
+                }]
             }, {
                 text: 'Умови кампанії',
-                width: 120,
-                xtype: 'widgetcolumn',
-                //format: 'd.m.Y',
-                //renderer: Ext.util.Format.dateRenderer('d.m.Y'),
-                dataIndex: 'max_term_date',
-                widget: {
-                    width: 100,
-                    textAlign: 'center',
-                    xtype: 'button',
-                    format: 'd.m.Y',
-                    
-                    handler: function (btn) {
-                        var rec = btn.getWidgetRecord();
-                        var campaign_id = rec.get('id');
-                        get_campaigns_terms(campaign_id)
+                columns: [
+                    {
+                        text: 'Останні коментарі',
+                        dataIndex: 'max_term_date',
+                        width: 120
+                    }, {
+                        xtype: 'actioncolumn',
+                        width: 25,
+                        items: [{
+                            tooltip: 'Перегляд умов',
+                            icon: 'img/application.ico',
+                            handler: function (view, rowIndex, colIndex, item, e, record, row) {
+                                var campaign_id = record.get('id');
+                                get_campaigns_terms(campaign_id)
+                            }
+                        }]
                     }
-                }
+                ]
             }
         ];
 
@@ -284,7 +327,7 @@ var getWinCampaigns = function () {
         stateId: 'stateful-filter-grid',
         border: false,
         store: store,
-        columns: createColumns(8),
+        columns: createColumns(9),
         plugins: 'gridfilters',
         loadMask: true,
         //features: [filters],

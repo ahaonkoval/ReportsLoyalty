@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EtData;
+using LoyaltyDB;
 using System.Text.RegularExpressions;
 
 namespace ReportsLoyalty.pages.personal_offers

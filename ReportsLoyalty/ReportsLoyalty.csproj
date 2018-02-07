@@ -134,7 +134,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\001_02.ico" />
+    <Content Include="img\application.ico" />
+    <Content Include="img\view.png" />
     <Content Include="img\Settings_16x16.png" />
+    <Content Include="img\view_2.png" />
     <Content Include="pages\extra_point_articul_rating.aspx" />
     <Content Include="pages\extra_point_customers_allocated.aspx" />
     <Content Include="pages\p50points_reports.aspx" />
@@ -6737,9 +6740,9 @@
     <EmbeddedResource Include="reports\upl_visits\upl_visit.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtData\EtData.csproj">
+    <ProjectReference Include="..\EtData\LoyaltyBD.csproj">
       <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
-      <Name>EtData</Name>
+      <Name>LoyaltyBD</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>

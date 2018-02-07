@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EtData
+namespace LoyaltyDB
 {
     public class Campaigns
     {
-        EtData.LoyaltyEntities Le;
+        LoyaltyDB.LoyaltyEntities Le;
 
-        public Campaigns(EtData.LoyaltyEntities le) {
+        public Campaigns(LoyaltyDB.LoyaltyEntities le) {
             Le = le;
         }
         /// <summary>
@@ -180,7 +180,7 @@ namespace EtData
         /// </summary>
         /// <param name="cmp"></param>
         /// <returns></returns>
-        public EtData.Models.Cmp SetCampaign(EtData.Models.Cmp cmp)
+        public LoyaltyDB.Models.Cmp SetCampaign(LoyaltyDB.Models.Cmp cmp)
         {
             if (cmp.campaign_id > -1)
             {
@@ -193,7 +193,7 @@ namespace EtData
                     foreach (string f in f_groups)
                     {
                         Le.campaign_groups.Add(
-                            new EtData.campaign_groups
+                            new LoyaltyDB.campaign_groups
                             {
                                 campaign_id = cmp.campaign_id,
                                 group_id = Convert.ToInt64(f)
@@ -247,7 +247,7 @@ namespace EtData
                     foreach (string f in f_groups)
                     {
                         Le.campaign_groups.Add(
-                            new EtData.campaign_groups
+                            new LoyaltyDB.campaign_groups
                             {
                                 campaign_id = cmp.campaign_id,
                                 group_id = Convert.ToInt64(f)

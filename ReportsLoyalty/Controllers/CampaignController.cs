@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using EtData;
+using LoyaltyDB;
 using System.Web.Script.Serialization;
 using System.Text;
 using Newtonsoft.Json;
@@ -142,7 +142,7 @@ namespace ReportsLoyalty.Controllers
         {
             var queryparams = Request.GetQueryNameValuePairs();
             string json = value.ToString();
-            EtData.Models.Cmp cmp = JsonConvert.DeserializeObject<EtData.Models.Cmp>(json);
+            LoyaltyDB.Models.Cmp cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.Cmp>(json);
 
             using (GetData gt = new GetData())
             {

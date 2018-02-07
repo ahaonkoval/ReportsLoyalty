@@ -5,8 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-using EtData;
-using EtData.Models;
+using LoyaltyDB;
+using LoyaltyDB.Models;
 using ReportsLoyalty.Models;
 
 namespace ReportsLoyalty.Controllers

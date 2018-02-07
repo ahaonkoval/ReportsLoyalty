@@ -1,4 +1,4 @@
-﻿using EtData;
+﻿using LoyaltyDB;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;

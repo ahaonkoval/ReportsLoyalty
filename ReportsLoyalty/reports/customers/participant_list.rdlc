@@ -36,7 +36,7 @@
               <Width>4.27271cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>7.76521cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -338,7 +338,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -856,7 +855,7 @@
         </TablixRowHierarchy>
         <DataSetName>ds_campaign_customers</DataSetName>
         <Height>1.2cm</Height>
-        <Width>24.53668cm</Width>
+        <Width>29.80189cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -867,7 +866,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>10.82677in</Width>
+  <Width>11.73303in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

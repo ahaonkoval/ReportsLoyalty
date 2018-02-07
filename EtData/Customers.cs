@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EtData
+namespace LoyaltyDB
 {
     public class Customers
     {
-        EtData.LoyaltyEntities Le;
-        public Customers(EtData.LoyaltyEntities le)
+        LoyaltyDB.LoyaltyEntities Le;
+        public Customers(LoyaltyDB.LoyaltyEntities le)
         {
             Le = le;
         }
