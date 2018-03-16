@@ -5,7 +5,7 @@ using System.Web;
 
 namespace LoyaltyDB.Models
 {
-    public class Cmp
+    public class Lcampaign
     {
         public long campaign_id { get; set; }
         public string name { get; set; }
@@ -21,7 +21,7 @@ namespace LoyaltyDB.Models
         public decimal margin_lavel_2 { get; set; }
         public decimal margin_lavel_3 { get; set; }
 
-        public Cmp()
+        public Lcampaign()
         {
 
         }

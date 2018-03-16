@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsLoyalty", "ReportsLoyalty\ReportsLoyalty.csproj", "{1677BB6D-DEE7-4A69-89C1-4DD5A215F6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyBD", "EtData\LoyaltyBD.csproj", "{44D625BA-1514-4114-8A6B-A832150449CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyDB", "EtData\LoyaltyDB.csproj", "{44D625BA-1514-4114-8A6B-A832150449CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftLineApi", "SoftLineApi\SoftLineApi.csproj", "{8DB11E23-B720-43DF-802A-8265D783793D}"
 EndProject

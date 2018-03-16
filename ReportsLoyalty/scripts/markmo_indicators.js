@@ -137,7 +137,7 @@ var showExtraPoints = function () {
                                 }, {
                                     id: 'cmbCampaigns',
                                     xtype: 'combobox',
-                                    width: 350,
+                                    width: 550,
                                     store: dict.getStoreCampaigns(1),//st_campaign_extra_points,
                                     queryMode: 'local',
                                     valueField: 'id',

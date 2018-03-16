@@ -129,6 +129,20 @@ Ext.define('campaigns_mk', {
                 return '';
             }
         }
+    }, {
+        name: 'articuls_qty',
+        type: 'int',
+        convert: function (v, record) {
+            if (v != null) {
+                if (v == 0) {
+                    return '';
+                } else {
+                    return v;
+                }
+            } else {
+                return '';
+            }
+        }
     }]
 });
 
@@ -136,15 +150,67 @@ var getWinCampaigns = function () {
     var encode = false;
     var local = true;
 
+    var checkboxIsRun = Ext.create('Ext.form.Checkbox', {
+        value: false,
+        listeners: {
+            'change': function (cmp, newValue, oldValue, eOpts) {
+                store.loadPage(1, {
+                    params: {
+                        isRun: newValue,
+                        TypeId: comboBox.getValue()
+                    }
+                });
+            }
+        }
+    });
+
+    var comboBox = Ext.create('Ext.form.ComboBox', {
+        fieldLabel: 'Типи кампаній:',
+        store: dict.getStoreCampaignTypesFiltered(),
+        //multiSelect: true,
+        queryMode: 'local',
+        valueField: 'id',
+        displayField: 'name',
+        width: 400,
+        labelWidth: 100,
+        emptyText: 'Всі',
+        itemCls: 'make-bold',
+        renderTo: Ext.getBody(),
+        tpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '<div class="x-boundlist-item">{name}</div>',
+            '</tpl>'
+        ),
+        displayTpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '{name};',
+            '</tpl>'
+        ),
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                store.loadPage(1, {
+                    params: {
+                        isRun: checkboxIsRun.getValue(),
+                        TypeId: newValue
+                    }
+                });
+            }
+        }
+
+    });
+
     var store = Ext.create('Ext.data.JsonStore', {
         id: 'store_campaign_mk',
         autoLoad: false,
         // store configs
         autoDestroy: true,
         model: 'campaigns_mk',
+        //baseParams: {
+        //    isRun: 1
+        //},
         proxy: {
             type: 'ajax',
-            url: ('api/Campaign'),
+            url: ('api/Campaign/'),
 
             //url: (local ? url.local : url.remote),
             reader: {
@@ -152,6 +218,10 @@ var getWinCampaigns = function () {
                 root: 'data',
                 idProperty: 'id',
                 totalProperty: 'total'
+            },
+            extraParams: {
+                isRun: checkboxIsRun.getValue(),
+                TypeId: comboBox.getValue()
             }
         },
         remoteSort: false,
@@ -183,20 +253,30 @@ var getWinCampaigns = function () {
                 dataIndex: 'id',
                 text: 'Id',
                 filterable: false,
-                width: 50
-            }, {
-                dataIndex: 'name',
+                width: 50,
+                //height: 100
+            },
+            {
                 text: 'Назва кампанії',
-                id: 'name',
                 flex: 1,
-                filter: {
-                    type: 'string'
-                }
-            }, {
+                dataIndex: 'name',
+            },
+            //{
+            //    dataIndex: 'name',
+            //    text: 'Назва кампанії',
+            //    id: 'name',
+                //flex: 1,
+                //filter: {
+                //    type: 'string'
+                //}
+            //},
+            {
                 dataIndex: 'date_start',
                 xtype: 'datecolumn',
                 format: 'd.m.Y',//'Y-m-d', // H:i:s
                 text: 'Дата початку',
+                width: 80,
+                headerWrap: true,
                 filter: {
                     type: 'date'  // specify type here or in store fields config
                 }
@@ -205,6 +285,7 @@ var getWinCampaigns = function () {
                 dataIndex: 'date_end',
                 xtype: 'datecolumn',
                 text: 'Дата кінця',
+                width: 80,
                 format: 'd.m.Y',
                 filter: {
                     type: 'date'  // specify type here or in store fields config
@@ -215,72 +296,31 @@ var getWinCampaigns = function () {
                 //    phpMode: true
                 //}
             },
-            //{
-            //    dataIndex: 'is_run',
-            //    disabled: true,
-            //    xtype: 'checkcolumn',
-            //    text: 'Працює',
-            //    width: 70
-            //    //filter true
-            //    //renderer: Ext.util.Format.dateRenderer('m/d/Y')
-            //},
-            //{
-            //    text: 'Відгук',
-            //    width: 70,
-            //    xtype: 'widgetcolumn',
-            //    dataIndex: 'progress',
-            //    widget: {
-            //        width: 50,
-            //        textAlign: 'right',
-            //        xtype: 'button',
-            //        handler: function (btn) {
-            //            var rec = btn.getWidgetRecord();
-            //            //Ext.Msg.alert("Button clicked", "Hey! " + rec.get('name'));
-            //            Ext.MessageBox.prompt('Увага', 'Введіть ID розсилки:', function (mp) { });
-            //        }
-            //    }
-            //},
-            //{
-            //    text: 'Учасники',
-            //    width: 90,
-            //    xtype: 'widgetcolumn',
-            //    dataIndex: 'customers_grp',
-            //    widget: {
-            //        width: 70,
-            //        textAlign: 'right',
-            //        xtype: 'button',
-            //        handler: function (btn) {
-            //            var rec = btn.getWidgetRecord();
-            //            var hidden_campaign_id = Ext.getCmp('hidden_campaign_id');
-            //            hidden_campaign_id.setValue(rec.get('id'));
-            //            var campaign_id = rec.get('id');
-            //            getCustomers(campaign_id);
-            //        }
-            //    }
-            //},
-            //{
-            //    text: 'Умови кампанії',
-            //    width: 120,
-            //    xtype: 'widgetcolumn',
-            //    //format: 'd.m.Y',
-            //    //renderer: Ext.util.Format.dateRenderer('d.m.Y'),
-            //    dataIndex: 'max_term_date',
-            //    widget: {
-            //        width: 100,
-            //        textAlign: 'center',
-            //        xtype: 'button',
-            //        format: 'd.m.Y',
-                    
-            //        handler: function (btn) {
-            //            var rec = btn.getWidgetRecord();
-            //            var campaign_id = rec.get('id');
-            //            get_campaigns_terms(campaign_id)
-            //        }
-            //    }
-            //},
+            {
+                text: 'Артикули',
+                width: 70,
+                height: 20,                
+                columns: [
+                    {
+                        dataIndex: 'articuls_qty',
+                    }, {
+                        xtype: 'actioncolumn',
+                        width: 25,
+                        items: [{
+                            tooltip: 'Управління артикулами',
+                            icon: 'img/application.ico',
+                            handler: function (view, rowIndex, colIndex, item, e, record, row) {
+                                var campaign_id = record.get('id');
+                                getWinArticuls(campaign_id).show();
+                            }
+                        }]
+                    }
+                ]
+            },
             {
                 text: 'Учасники',
-                width: 90,
+                width: 70,
+                height: 20,
                 columns: [{
                     text: 'група/тест',
                     dataIndex: 'customers_grp'
@@ -300,7 +340,7 @@ var getWinCampaigns = function () {
                 text: 'Умови кампанії',
                 columns: [
                     {
-                        text: 'Останні коментарі',
+                        text: 'Коментарі',
                         dataIndex: 'max_term_date',
                         width: 120
                     }, {
@@ -322,18 +362,28 @@ var getWinCampaigns = function () {
         return columns.slice(start || 0, finish);
     };
 
+    var columns = createColumns(9);
+
     var grid = Ext.create('Ext.grid.Panel', {
         stateful: true,
         stateId: 'stateful-filter-grid',
         border: false,
         store: store,
-        columns: createColumns(9),
+        columns: columns,
         plugins: 'gridfilters',
         loadMask: true,
         //features: [filters],
         dockedItems: [Ext.create('Ext.toolbar.Paging', {
             dock: 'bottom',
-            store: store
+            store: store,
+            listeners: {
+                beforechange(ctrl, page, eOpts) {
+                    // ураааааа!!!!
+                    store.getProxy().extraParams.isRun = checkboxIsRun.getValue();
+                    store.getProxy().extraParams.TypeId = comboBox.getValue();
+                    //store.getProxy().extraParams.blogid = 1;
+                }
+            }
         })],
         emptyText: 'Записів більше нема',
         listeners: {
@@ -351,18 +401,6 @@ var getWinCampaigns = function () {
             }
         }
     });
-
-    var checkboxIsRun = Ext.create('Ext.form.Checkbox', {
-        value: false,
-        listeners: {
-            'change': function (cmp, newValue, oldValue, eOpts) {
-                store.loadPage(1, {
-                    params: { isRun: newValue }
-                });
-            }
-        }
-    });
-
 
     var win_campaigns = Ext.create('Ext.Window', {
         title: 'Управління кампаниями',
@@ -388,7 +426,7 @@ var getWinCampaigns = function () {
             },
             items: [
                     {
-                        xtype: 'panel', width: 400, border: false,
+                        xtype: 'panel', width: 600, border: false,
                         dockedItems: [
                                 {
                                     xtype: 'toolbar',
@@ -399,19 +437,8 @@ var getWinCampaigns = function () {
                                             xtype: 'label',
                                             text: 'Тільки активні кампанії:'
                                         },
-                                        checkboxIsRun
-                                        //{
-                                        //    xtype: 'checkbox',
-                                        //    value: false,
-                                        //    id: 'cisRun',
-                                        //    listeners: {
-                                        //        'change': function (cmp, newValue, oldValue, eOpts) {
-                                        //            store.loadPage(1, {
-                                        //                params: { isRun: newValue }
-                                        //            });
-                                        //        }
-                                        //    }
-                                        //}
+                                        checkboxIsRun,
+                                        comboBox
                                         , {
                                             id: 'hidden_campaign_id',
                                             xtype: 'hiddenfield',
@@ -463,7 +490,7 @@ var getWinCampaigns = function () {
 
     store.load({
         params: {
-            isRun: checkboxIsRun.getValue()//Ext.getCmp('cisRun').getValue()
+            isRun: checkboxIsRun.getValue()
         }
     });
 

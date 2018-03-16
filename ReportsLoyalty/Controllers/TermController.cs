@@ -31,7 +31,7 @@ namespace ReportsLoyalty.Controllers
         {
             //var queryparams = Request.GetQueryNameValuePairs();
             string json = value.ToString();
-            Term term = JsonConvert.DeserializeObject<Term>(json);
+            Lterminate term = JsonConvert.DeserializeObject<Lterminate>(json);
             using (GetData data = new GetData())
             {
                 data.Campaigns.CreateTerm(term);

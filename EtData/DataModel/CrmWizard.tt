@@ -43,6 +43,9 @@
 
 			"$(ProjectDir)LinqToDB.Templates\LinqToDB.SqlServer.SqlTypes.Tools.ttinclude"
 	*/
+	/*
+		GetSchemaOptions.IncludedSchemas = new[] { "calc" };
+	*/
 
 	NamespaceName                 = "DataModels";       // Namespace of the generated classes.
 

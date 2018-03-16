@@ -21,12 +21,15 @@ namespace LoyaltyDB
 
         public Customers Customers;
 
+        public Articuls Art;
+
         public GetData()
         {
             Le = new LoyaltyDB.LoyaltyEntities();
             Campaigns = new LoyaltyDB.Campaigns(Le);
             Dict = new LoyaltyDB.Dict(Le);
             Customers = new LoyaltyDB.Customers(Le);
+            Art = new LoyaltyDB.Articuls();
         }
 
         public void Dispose()

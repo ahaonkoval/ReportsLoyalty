@@ -141,6 +141,7 @@
     <Content Include="pages\extra_point_articul_rating.aspx" />
     <Content Include="pages\extra_point_customers_allocated.aspx" />
     <Content Include="pages\p50points_reports.aspx" />
+    <Content Include="scripts\articuls.js" />
     <Content Include="scripts\campaigns_terms.js" />
     <Content Include="scripts\customers.js" />
     <Content Include="scripts\campaigns.js" />
@@ -6430,6 +6431,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ArticulsController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DictCampaignController.cs" />
@@ -6716,6 +6718,7 @@
     <EmbeddedResource Include="reports\CountersDocsAndSell.rdlc" />
     <EmbeddedResource Include="reports\customers\participant_list.rdlc" />
     <EmbeddedResource Include="reports\extra_points\rep_customers_allocated.rdlc" />
+    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers - Копировать.rdlc" />
     <EmbeddedResource Include="reports\profile_participant\is_not_sms_sent.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators_diagrams.rdlc" />
@@ -6740,9 +6743,9 @@
     <EmbeddedResource Include="reports\upl_visits\upl_visit.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtData\LoyaltyBD.csproj">
+    <ProjectReference Include="..\EtData\LoyaltyDB.csproj">
       <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
-      <Name>LoyaltyBD</Name>
+      <Name>LoyaltyDB</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>

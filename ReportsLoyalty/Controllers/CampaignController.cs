@@ -24,13 +24,24 @@ namespace ReportsLoyalty.Controllers
             var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
 
             var isRun = queryparams.Where(w => w.Key == "isRun").FirstOrDefault();
-            //var SpecProduct = (SpecProductObj.Value == null ? string.Empty : SpecProductObj.Value.ToString());            
+
+            var TypeId = queryparams.Where(w => w.Key == "TypeId").FirstOrDefault();
+
+            long type_id = 0;
+
+            if (TypeId.Value == string.Empty)
+            {
+                type_id = 0;
+            } else
+            {
+                type_id = Convert.ToInt32(TypeId.Value);
+            }
 
             using (GetData data = new GetData())
             {
-                var campaigns = data.Campaigns.GetCampaigns(Convert.ToBoolean(isRun.Value))
-                    .Where(w => w.number >= start && w.number <= (start + limit));//.OrderByDescending(o => o.id);
-                int campaigns_count = data.Campaigns.GetCampaignsCount(Convert.ToBoolean(isRun.Value));
+                var campaigns = data.Campaigns.GetCampaigns(Convert.ToBoolean(isRun.Value), start, limit, type_id);
+                    //.Where(w => w.number >= start && w.number <= (start + limit));//.OrderByDescending(o => o.id);
+                int campaigns_count = data.Campaigns.GetCampaignsCount(Convert.ToBoolean(isRun.Value), type_id);
 
                 object om = new
                 {
@@ -142,7 +153,7 @@ namespace ReportsLoyalty.Controllers
         {
             var queryparams = Request.GetQueryNameValuePairs();
             string json = value.ToString();
-            LoyaltyDB.Models.Cmp cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.Cmp>(json);
+            LoyaltyDB.Models.Lcampaign cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.Lcampaign>(json);
 
             using (GetData gt = new GetData())
             {

@@ -16,6 +16,8 @@
     <script type="text/javascript" src="scripts/markmo_indicators.js"></script>
     <script type="text/javascript" src="scripts/dict.js"></script>
 
+    <script type="text/javascript" src="scripts/articuls.js"></script>
+
     <script type="text/javascript" src="scripts/stop_list.js"></script>
 
     <script type="text/javascript" src="scripts/requests.js"></script>

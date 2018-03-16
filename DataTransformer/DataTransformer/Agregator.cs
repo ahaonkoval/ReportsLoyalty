@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using ServiceDebuggerHelper;
 using System.Configuration;
 using System.Threading;
+using LoyaltyDB.Models;
 
 namespace DataTransformer
 {
@@ -27,19 +28,24 @@ namespace DataTransformer
             Tm.onCreatePack += Tm_onCreatePack;
         }
 
-        private void Tm_onCreatePack(string e)
+        private void Tm_onCreatePack(PackDocs pd)
         {
-            marker = 10000;
+            marker = 1000;
             Program.Debugger.BeginInvoke(new Action(delegate () {
-                Program.Debugger.SetLog(e);
+            Program.Debugger.SetLog(
+                string.Format("На обробці {0} документів, завантажено {1}", pd.Count.ToString(), pd.Created.ToString("s") )
+                    );
             }));
         }
 
-        private void Tm_onCreateDoc(string e)
+        private void Tm_onCreateDoc(TDoc e)
         {
             Program.Debugger.BeginInvoke(new Action(delegate () {
-                Program.Debugger.SetLog(e);
+                Program.Debugger.SetLog(
+                    string.Format("Документ {0}({1}) завантажено {2}", e.Name, e.DocId.ToString(), e.Transformered.ToString("s"))
+                    );
             }));
+            marker--;
         }
 
         protected override void OnStart(string[] args)

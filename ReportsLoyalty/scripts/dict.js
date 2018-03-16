@@ -178,6 +178,27 @@ function Dict() {
         });
     },
     ///
+    this.getStoreCampaignTypesFiltered = function () {
+        var m = Ext.define('CampaignType', {
+            extend: 'Ext.data.Model',
+            fields: ['id', 'name'],
+            proxy: {
+                type: 'rest',
+                url: 'api/dict/GetCampaignTypesFilters/1',
+                reader: {
+                    type: 'json',
+                    root: 'CampaignType'
+                }
+            }
+        });
+        var store = Ext.create('Ext.data.Store', {
+            model: m,
+            autoLoad: true
+        });
+
+        return store;
+    },
+    ///
     this.getStoreUPLControlData = function () {
          var m = Ext.define('UPLControl', {
              extend: 'Ext.data.Model',

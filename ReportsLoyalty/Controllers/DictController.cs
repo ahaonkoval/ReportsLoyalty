@@ -233,6 +233,34 @@ namespace ReportsLoyalty.Controllers
             }
             return g;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<CampaignType> GetCampaignTypesFilters(int id)
+        {
+            List<CampaignType> g = new List<CampaignType>();
+            using (GetData gt = new GetData())
+            {
+                var c = gt.Campaigns.GetCampaignTypes();
+                foreach (campaign_types ca in c)
+                {
+                    g.Add(new CampaignType
+                    {
+                        id = ca.id,
+                        name = ca.name
+                    });
+                }
+            }
+            g.Add(
+                new CampaignType
+                {
+                    id = 0,
+                    name = "ВСІ"
+                });
+            return g;
+        }
 
         public IEnumerable<UPLControl> GetUploadControlData(int id) {
             using (GetData gt = new GetData())

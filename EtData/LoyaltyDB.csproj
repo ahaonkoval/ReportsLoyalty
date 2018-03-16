@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articuls.cs" />
     <Compile Include="Campaigns.cs" />
     <Compile Include="campaigns_mk.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
@@ -109,8 +110,10 @@
     <Compile Include="markmo_types.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cmp.cs" />
-    <Compile Include="Models\Term.cs" />
+    <Compile Include="Models\Lcampaign.cs" />
+    <Compile Include="Models\Lterminate.cs" />
+    <Compile Include="Models\PackDocs.cs" />
+    <Compile Include="Models\TDoc.cs" />
     <Compile Include="Models\TF_GetUnDoc.cs" />
     <Compile Include="Models\UPLControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

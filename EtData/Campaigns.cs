@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DataModels.CrmWizardDB;
+using DataModels;
 
 namespace LoyaltyDB
 {
@@ -53,9 +55,13 @@ namespace LoyaltyDB
         /// </summary>
         /// <param name="isRun"></param>
         /// <returns></returns>
-        public IEnumerable<tf_campaigns> GetCampaigns(bool isRun)
+        public IEnumerable<TGetCampaignsResult> GetCampaigns(bool isRun, long start, long limit, long type_id)
         {
-            return Le.t_get_campaigns(isRun).OrderByDescending(o => o.id).ToList();
+            //return Le.t_get_campaigns(isRun).OrderByDescending(o => o.id).ToList();
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.TGetCampaigns(isRun, start, limit, type_id).ToList();
+            }
         }
 
         public IEnumerable<v_campaigns_mk> GetCampaignsByType(campaign_types type)
@@ -68,16 +74,9 @@ namespace LoyaltyDB
         /// </summary>
         /// <param name="isRun"></param>
         /// <returns></returns>
-        public int GetCampaignsCount(bool isRun)
+        public int GetCampaignsCount(bool isRun, long type_id)
         {
-            return Le.t_get_campaigns(isRun).Count();
-            //if (isRun)
-            //{
-            //    return Le.v_campaigns_mk.Where(w => w.is_run == isRun).Count();
-            //} else
-            //{
-            //    return Le.v_campaigns_mk.Count();
-            //}
+            return Le.campaigns_mk.Where(w => w.is_run == isRun && w.type_id == (type_id == 0 ? w.type_id : type_id)).Count();
 
         }
         /// <summary>
@@ -99,7 +98,7 @@ namespace LoyaltyDB
                     sb.AppendFormat(", {0}", current);
                 } else
                 {
-                    current = Le.v_fgroups.Where(w => w.fgroup_id == c.group_id).FirstOrDefault().name;
+                    //current = Le.v_fgroups.Where(w => w.fgroup_id == c.group_id).FirstOrDefault().name;
                     sb.AppendFormat("Департамент:{0}", current);
                 }
                 
@@ -113,8 +112,23 @@ namespace LoyaltyDB
         /// <returns></returns>
         public string GetCurrentDepartamentNameById(int id)
         {
-            var cmp = Le.campaigns_mk.Where(w => w.id == id).FirstOrDefault();
-            return Le.v_fgroups.Where(o => o.fgroup_id == cmp.group_id_0).FirstOrDefault().name;            
+
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                // Зараз тут департаменти
+                List<string> lst = new List<string>();
+
+                var dps = db.CampaignGroups.Where(w => w.CampaignId == id).ToList();
+                foreach (CampaignGroups cg in dps)
+                {
+                    var fg = db.Fgroups.Where(wf => wf.FgroupId == cg.GroupId).FirstOrDefault();
+                    lst.Add(fg.Name);
+                }
+
+                string ls = string.Join(",", lst.ToArray());
+
+                return ls;
+            }                       
         }
         /// <summary>
         /// 
@@ -180,7 +194,7 @@ namespace LoyaltyDB
         /// </summary>
         /// <param name="cmp"></param>
         /// <returns></returns>
-        public LoyaltyDB.Models.Cmp SetCampaign(LoyaltyDB.Models.Cmp cmp)
+        public LoyaltyDB.Models.Lcampaign SetCampaign(LoyaltyDB.Models.Lcampaign cmp)
         {
             if (cmp.campaign_id > -1)
             {
@@ -280,7 +294,7 @@ namespace LoyaltyDB
             return lt;
         }
 
-        public void CreateTerm(Models.Term t)
+        public void CreateTerm(Models.Lterminate t)
         {
             campaigns_terms term = new campaigns_terms {
                 campaign_id = t.campaign_id,

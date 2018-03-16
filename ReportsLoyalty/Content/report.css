@@ -1,4 +1,16 @@
 ﻿
+.x-column-header-inner .x-column-header-text {
+    white-space: normal;
+}
+ 
+.x-column-header-inner {
+    line-height: normal;
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+    text-align: center;
+    top: 2%;
+}
+
 .x-grid-row .x-grid-cell {
     font: normal 12px/15px tahoma,arial,verdana,sans-serif;
     background-color:rgba(199, 231, 237, 0.38);

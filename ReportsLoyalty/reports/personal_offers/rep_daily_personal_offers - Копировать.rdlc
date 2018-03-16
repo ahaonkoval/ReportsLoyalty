@@ -273,7 +273,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Parameters!DepartmentName.Value</Value>
+                              <Value>=Parameters!GroupName.Value</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -348,6 +348,13 @@
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
+                            <TextRun>
+                              <Value>=Parameters!DepartName.Value</Value>
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
                             <TextRun>
                               <Value>, відгук: </Value>
                               <Style>
@@ -580,7 +587,54 @@
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
-                  <CellContents />
+                  <CellContents>
+                    <Textbox Name="Textbox13">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Parameters!ctrl.Value</Value>
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox13</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <BackgroundColor>PaleTurquoise</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
@@ -4395,6 +4449,7 @@
         </TablixRowHierarchy>
         <DataSetName>ds_pers_expected_effect</DataSetName>
         <Top>0.82585cm</Top>
+        <Left>0.15875cm</Left>
         <Height>5.07229cm</Height>
         <Width>36.25823cm</Width>
         <Style>
@@ -4405,6 +4460,44 @@
           <FontSize>9pt</FontSize>
         </Style>
       </Tablix>
+      <Subreport Name="Subreport3">
+        <ReportName>rep_daily_pers_trade_rating_0</ReportName>
+        <Parameters>
+          <Parameter Name="RatingDepartName">
+            <Value>=Parameters!MainRatingDepartName.Value</Value>
+          </Parameter>
+        </Parameters>
+        <Top>13.58606cm</Top>
+        <Left>0.15875cm</Left>
+        <Height>8.7727cm</Height>
+        <Width>14.58375cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <FontFamily>Tahoma</FontFamily>
+        </Style>
+      </Subreport>
+      <Subreport Name="Subreport4">
+        <ReportName>rep_daily_pers_trade_rating_2</ReportName>
+        <Parameters>
+          <Parameter Name="RatingGroupName">
+            <Value>=Parameters!MainRatingGroupName.Value</Value>
+          </Parameter>
+        </Parameters>
+        <Top>13.62134cm</Top>
+        <Left>14.94479cm</Left>
+        <Height>8.7727cm</Height>
+        <Width>13.64614cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <FontFamily>Tahoma</FontFamily>
+        </Style>
+      </Subreport>
       <Textbox Name="Textbox2">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -4418,22 +4511,48 @@
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
-              <TextRun>
-                <Value>=Parameters!CampaignName.Value</Value>
-                <Style>
-                  <FontFamily>Calibri</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>0.08474cm</Top>
+        <Left>0.13229cm</Left>
         <Height>0.6cm</Height>
-        <Width>36.12594cm</Width>
-        <ZIndex>1</ZIndex>
+        <Width>4.06492cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!NameCampaign.Value</Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>0.08474cm</Top>
+        <Left>4.45298cm</Left>
+        <Height>0.6cm</Height>
+        <Width>8.63374cm</Width>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -4448,7 +4567,7 @@
     <Height>8.81655in</Height>
     <Style />
   </Body>
-  <Width>14.27489in</Width>
+  <Width>15.52563in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -4624,15 +4743,35 @@
     </DataSet>
   </DataSets>
   <ReportParameters>
-    <ReportParameter Name="CampaignName">
+    <ReportParameter Name="NameCampaign">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="DepartmentName">
+    <ReportParameter Name="GroupName">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter2</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="DepartName">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter2</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="MainRatingGroupName">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="OtdName">
+    <ReportParameter Name="MainRatingDepartName">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="mDepart">
+      <DataType>Float</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="mMarket">
+      <DataType>Float</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ctrl">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

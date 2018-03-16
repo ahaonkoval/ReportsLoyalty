@@ -132,7 +132,7 @@ function WinCampaignDetails() {
                      allowBlank: false,
                      displayField: 'name',
                      valueField: 'fgroup_id',
-                     id: 'cmbCmpEditGrp',
+                     //id: 'cmbCmpEditGrp',
                      editable: false,
                      listeners: {
                          change: function (ctrl, newValue, oldValue, eOpts) {
@@ -380,11 +380,6 @@ function WinCampaignDetails() {
                                     group_id_0: data.get('group_id_0').data.value,
                                     group_id_2: data.get('group_id_2').data.value.toString(),
                                     type_id: data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value
-                                    //margin_markets: data.get('margin_markets').data.value,
-                                    //margin_lavel_0: data.get('margin_lavel_0').data.value,
-                                    //margin_lavel_1: data.get('margin_lavel_1').data.value,
-                                    //margin_lavel_2: data.get('margin_lavel_2').data.value,
-                                    //margin_lavel_3: data.get('margin_lavel_3').data.value
                                 };
 
                                 Ext.Ajax.request({

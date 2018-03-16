@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LoyaltyDB;
+using LoyaltyDB.Models;
 
 namespace DataTransformer
 {
@@ -11,10 +12,10 @@ namespace DataTransformer
     {
         TransformerData Td;
 
-        public delegate void CreatePack(string e);
+        public delegate void CreatePack(PackDocs e);
         public event CreatePack onCreatePack;
 
-        public delegate void CreateDoc(string e);
+        public delegate void CreateDoc(TDoc e);
         public event CreateDoc onCreateDoc;
 
         public TransformerMovement() {
@@ -23,12 +24,12 @@ namespace DataTransformer
             Td.onCreatePack += Td_onCreatePack;
         }
 
-        private void Td_onCreatePack(string e)
+        private void Td_onCreatePack(PackDocs e)
         {
             onCreatePack(e);
         }
 
-        private void Td_onCreateDoc(string e)
+        private void Td_onCreateDoc(TDoc e)
         {
             onCreateDoc(e);
         }
