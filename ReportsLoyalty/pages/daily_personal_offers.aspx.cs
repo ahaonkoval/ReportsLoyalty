@@ -120,7 +120,12 @@ namespace ReportsLoyalty.pages.personal_offers
                     string.Format("Департамент: {0}", DepartmentName)
                 ));
 
-                //OtdName
+                string OtdName = gdt.Campaigns.GetOtdNameByCampaignId(Convert.ToInt32(campaign_id));
+
+                ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("OtdName",
+                    string.Format("Відділ: {0}", OtdName)
+                ));
+
             }
             // DepartmentName
             //ReportViewerPersonalOffers.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;

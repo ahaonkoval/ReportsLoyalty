@@ -4,7 +4,7 @@ function Dict() {
     this.getStoreCampaigns = function (type_id) {
         var model = Ext.define('v_campaigns_mk_run', {
             extend: 'Ext.data.Model',
-            fields: ['id', 'name'],
+            fields: ['Id', 'Name'],
             proxy: {
                 type: 'rest',
                 url: 'api/dict/GetCampaignsRunsListByTypeId/'+type_id,

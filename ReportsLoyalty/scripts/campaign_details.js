@@ -222,15 +222,14 @@ function WinCampaignDetails() {
                      }
                  }
              },
-             //margin_markets: {
-             //    displayName: 'Маржа по маркетам',
-             //    //type: 'numberfield',
-             //    //decimalPrecision: 2
-             //    editor: {
-             //        xtype: 'numberfield',
-             //        decimalPrecision: 3
-             //    }
-             //},
+             mailing_id: {
+                 displayName: 'ИД розсилки Софтлайн',
+                 //type: 'numberfield',
+                 //decimalPrecision: 2
+                 editor: {
+                     xtype: 'textfield'
+                 }
+             },
              //margin_lavel_0: {
              //    displayName: 'Маржа по відділу',
              //    editor: {
@@ -288,18 +287,14 @@ function WinCampaignDetails() {
                 var date_end = rec.get('date_end') == '' ? new Date() : rec.get('date_end');
                 var source = {};
 
-                source['name'] = rec.get('name');
-                source['date_start'] = new Date(date_start);//Ext.Date.parse(date_start, 'm/d/Y')//date_start;
-                source['date_end'] = new Date(date_end);//date_end;
-                source['is_run'] = is_run_value;//record.get('is_run');
-                //source['margin_markets'] = rec.get('margin_markets');
-                //source['margin_lavel_0'] = rec.get('margin_lavel_0');
-                //source['margin_lavel_1'] = rec.get('margin_lavel_1');
-                //source['margin_lavel_2'] = rec.get('margin_lavel_2');
-                //source['margin_lavel_3'] = rec.get('margin_lavel_3');
-                source['group_id_0'] = rec.get('group_id_0');
-                source['group_id_2'] = fgroup_ids;
-                source['type_id'] = rec.get('type_id');
+                source['name']          = rec.get('name');
+                source['date_start']    = new Date(date_start);//Ext.Date.parse(date_start, 'm/d/Y')//date_start;
+                source['date_end']      = new Date(date_end);//date_end;
+                source['is_run']        = is_run_value;//record.get('is_run');
+                source['group_id_0']    = rec.get('group_id_0');
+                source['group_id_2']    = fgroup_ids;
+                source['type_id']       = rec.get('type_id');
+                source['mailing_id']    = rec.get('mailing_id');
 
                 grid.setSource(source);
                 win.show();                                                                  // <-- показываем окно
@@ -311,18 +306,14 @@ function WinCampaignDetails() {
         var grid = this.Grid;
         var win = this.win;
         var source = {};
-        source['name'] = '';
-        source['date_start'] = new Date();
-        source['date_end'] = new Date();
-        source['is_run'] = 0;
-        //source['margin_markets'] = 0;
-        //source['margin_lavel_0'] = 0;
-        //source['margin_lavel_1'] = 0;
-        //source['margin_lavel_2'] = 0;
-        //source['margin_lavel_3'] = 0;
-        source['group_id_0'] = '';
-        source['group_id_2'] = '';
-        source['type_id'] = null;
+        source['name']          = '';
+        source['date_start']    = new Date();
+        source['date_end']      = new Date();
+        source['is_run']        = 0;
+        source['group_id_0']    = '';
+        source['group_id_2']    = '';
+        source['type_id']       = null;
+        source['mailing_id']    = '';
 
         grid.setSource(source);
         win.show();
@@ -372,14 +363,15 @@ function WinCampaignDetails() {
                             }
                             else if (btnText === "yes") {
                                 var o = {
-                                    campaign_id: -1,
-                                    name: data.get('name').data.value,
-                                    date_start: data.get('date_start').data.value,
-                                    date_end: data.get('date_end').data.value,
-                                    is_run: data.get('is_run').data.value,
-                                    group_id_0: data.get('group_id_0').data.value,
-                                    group_id_2: data.get('group_id_2').data.value.toString(),
-                                    type_id: data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value
+                                    campaign_id     : -1,
+                                    name            : data.get('name').data.value,
+                                    date_start      : data.get('date_start').data.value,
+                                    date_end        : data.get('date_end').data.value,
+                                    is_run          : data.get('is_run').data.value,
+                                    group_id_0      : data.get('group_id_0').data.value,
+                                    group_id_2      : data.get('group_id_2').data.value.toString(),
+                                    type_id         : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
+                                    mailing_id      : data.get('mailing_id').data.value.toString()
                                 };
 
                                 Ext.Ajax.request({
@@ -395,18 +387,15 @@ function WinCampaignDetails() {
                                             store_campaign_mk.add({
 
                                                 /* --Б--*/
-                                                id: a.responseText,
-                                                is_run: data.get('is_run').data.value,
-                                                type_id: data.get('type_id').data.value,
-                                                name: data.get('name').data.value,
-                                                date_start: data.get('date_start').data.value,
-                                                date_end: data.get('date_end').data.value,
-                                                group_id_0: data.get('group_id_0').data.value,
-                                                group_id_2: data.get('group_id_2').data.value.toString()
-                                                //margin_lavel_0: data.get('margin_lavel_0').data.value,
-                                                //margin_lavel_1: data.get('margin_lavel_1').data.value,
-                                                //margin_lavel_2: data.get('margin_lavel_2').data.value,
-                                                //margin_lavel_3: data.get('margin_lavel_3').data.value
+                                                id          : a.responseText,
+                                                is_run      : data.get('is_run').data.value,
+                                                type_id     : data.get('type_id').data.value,
+                                                name        : data.get('name').data.value,
+                                                date_start  : data.get('date_start').data.value,
+                                                date_end    : data.get('date_end').data.value,
+                                                group_id_0  : data.get('group_id_0').data.value,
+                                                group_id_2  : data.get('group_id_2').data.value.toString(),
+                                                mailing_id  : data.get('mailing_id').data.value.toString()
                                             });
                                             //----<<<<------------------------------------------------
                                             var wnd = Ext.getCmp('win_campaign_details');
@@ -421,19 +410,15 @@ function WinCampaignDetails() {
                         }, this);
                     } else {
                         var o = {
-                            campaign_id: record.get('id'),
-                            name: data.get('name').data.value,
-                            date_start: data.get('date_start').data.value,
-                            date_end: data.get('date_end').data.value,
-                            is_run: data.get('is_run').data.value,
-                            group_id_0: data.get('group_id_0').data.value,
-                            group_id_2: data.get('group_id_2').data.value.toString(),
-                            type_id: data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                            //margin_markets: data.get('margin_markets').data.value,
-                            //margin_lavel_0: data.get('margin_lavel_0').data.value,
-                            //margin_lavel_1: data.get('margin_lavel_1').data.value,
-                            //margin_lavel_2: data.get('margin_lavel_2').data.value,
-                            //margin_lavel_3: data.get('margin_lavel_3').data.value
+                            campaign_id : record.get('id'),
+                            name        : data.get('name').data.value,
+                            date_start  : data.get('date_start').data.value,
+                            date_end    : data.get('date_end').data.value,
+                            is_run      : data.get('is_run').data.value,
+                            group_id_0  : data.get('group_id_0').data.value,
+                            group_id_2  : data.get('group_id_2').data.value.toString(),
+                            type_id     : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
+                            mailing_id  : data.get('mailing_id').data.value.toString()
                         };
                         Ext.Ajax.request({
                             url: 'api/campaign/SetCampaignData',
@@ -450,12 +435,7 @@ function WinCampaignDetails() {
                                     winCd.record.set('is_run', data.get('is_run').data.value);
                                     winCd.record.set('group_id_0', data.get('group_id_0').data.value);
                                     winCd.record.set('type_id', data.get('type_id').data.value);
-
-                                    //winCd.record.set('margin_markets', data.get('margin_markets').data.value);
-                                    //winCd.record.set('margin_lavel_0', data.get('margin_lavel_0').data.value);
-                                    //winCd.record.set('margin_lavel_1', data.get('margin_lavel_1').data.value);
-                                    //winCd.record.set('margin_lavel_2', data.get('margin_lavel_2').data.value);
-                                    //winCd.record.set('margin_lavel_3', data.get('margin_lavel_3').data.value);
+                                    winCd.record.set('mailing_id', data.get('mailing_id').data.value);
 
                                     winCd.record.commit();
                                     //----<<<<------------------------------------------------

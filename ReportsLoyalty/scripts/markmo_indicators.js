@@ -140,8 +140,8 @@ var showExtraPoints = function () {
                                     width: 550,
                                     store: dict.getStoreCampaigns(1),//st_campaign_extra_points,
                                     queryMode: 'local',
-                                    valueField: 'id',
-                                    displayField: 'name',
+                                    valueField: 'Id',
+                                    displayField: 'Name',
                                     //tpl: "<tpl for=\".\"><div class=\"x-combo-list-item\">{name}</div></tpl>",
                                     renderTo: Ext.getBody(),
                                     listeners: {
@@ -384,8 +384,8 @@ var showPersonalOffers = function () {
                                 width: 420,
                                 store: dict.getStoreCampaigns(2),//st_campaign_extra_points,
                                 queryMode: 'local',
-                                displayField: 'name',
-                                valueField: 'id',
+                                displayField: 'Name',
+                                valueField: 'Id',
                                 renderTo: Ext.getBody()
                             }, {
                                 xtype: 'tbseparator'

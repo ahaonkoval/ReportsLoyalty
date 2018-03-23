@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static DataModels.CrmWizardDB;
 using DataModels;
+using LinqToDB;
 
 namespace LoyaltyDB
 {
@@ -15,13 +16,33 @@ namespace LoyaltyDB
         public Campaigns(LoyaltyDB.LoyaltyEntities le) {
             Le = le;
         }
+
+        #region GET
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<v_campaigns_mk_run> GetCampaignsRuns()
+        public IEnumerable<VCampaignsMkRun> GetCampaignsRuns()
         {
-            return Le.v_campaigns_mk_run.ToList();
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                //return db.VCampaignsMkRun.ToList();
+
+                return db.VCampaignsMkRun.ToList().Select(a => new VCampaignsMkRun
+                {
+                    Created = a.Created,
+                    DateEnd = a.DateEnd,
+                    DateStart = a.DateStart,
+                    GroupId0 = a.GroupId0,
+                    GroupId1 = a.GroupId1,
+                    Id = a.Id,
+                    IsRun = a.IsRun,
+                    MarkmoId = a.MarkmoId,
+                    TypeId = a.TypeId,
+                    Name = string.Format("({0}), {1}", a.Id.ToString(), a.Name)
+                });
+            }        
+            //return Le.v_campaigns_mk_run.ToList();
         }
         /// <summary>
         /// 
@@ -32,6 +53,7 @@ namespace LoyaltyDB
         {
             return Le.v_campaigns_mk.Where(m => m.id == id).First().name;
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -63,12 +85,15 @@ namespace LoyaltyDB
                 return db.TGetCampaigns(isRun, start, limit, type_id).ToList();
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public IEnumerable<v_campaigns_mk> GetCampaignsByType(campaign_types type)
         {
             return Le.v_campaigns_mk.Where(w => w.type_id == type.id);
         }
-
         /// <summary>
         /// 
         /// </summary>
@@ -76,8 +101,11 @@ namespace LoyaltyDB
         /// <returns></returns>
         public int GetCampaignsCount(bool isRun, long type_id)
         {
-            return Le.campaigns_mk.Where(w => w.is_run == isRun && w.type_id == (type_id == 0 ? w.type_id : type_id)).Count();
-
+            //return Le.campaigns_mk.Where(w => w.is_run == isRun && w.type_id == (type_id == 0 ? w.type_id : type_id)).Count();
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.CampaignsMk.Where(w => w.IsRun == (isRun == true ? isRun : w.IsRun) && w.TypeId == (type_id == 0 ? w.TypeId : type_id)).Count();
+            }
         }
         /// <summary>
         /// 
@@ -112,7 +140,6 @@ namespace LoyaltyDB
         /// <returns></returns>
         public string GetCurrentDepartamentNameById(int id)
         {
-
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
                 // Зараз тут департаменти
@@ -130,34 +157,17 @@ namespace LoyaltyDB
                 return ls;
             }                       
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="campaign_id"></param>
-        /// <param name="level_id"></param>
-        /// <returns></returns>
-        public decimal GetCampaignMarginByLevelId(long campaign_id, int level_id)
+
+        public string GetOtdNameByCampaignId(int id)
         {
-            decimal o = 0;
-            var cmp = Le.campaigns_mk.Where(w => w.id == campaign_id).FirstOrDefault();
-            switch (level_id)
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
-                case 0: o = cmp.margin_lavel_0.HasValue ? cmp.margin_lavel_0.Value : 0;
-                    break;
-                case 1:
-                    o = cmp.margin_lavel_1.HasValue ? cmp.margin_lavel_1.Value : 0;
-                    break;
-                case 2:
-                    o = cmp.margin_lavel_2.HasValue ? cmp.margin_lavel_2.Value : 0;
-                    break;
-                case 3:
-                    o = cmp.margin_lavel_3.HasValue ? cmp.margin_lavel_3.Value : 0;
-                    break;
-                case -1:
-                    o = cmp.margin_markets.HasValue ? cmp.margin_markets.Value : 0;
-                    break;
-            }
-            return o;
+                var campaign = db.CampaignsMk.Where(w => w.Id == id).FirstOrDefault();
+
+                var GrpName1 = db.Fgroups.Where(wf => wf.FgroupId == campaign.GroupId0).FirstOrDefault();
+
+                return GrpName1.Name;
+            }                
         }
         /// <summary>
         /// 
@@ -192,89 +202,6 @@ namespace LoyaltyDB
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="cmp"></param>
-        /// <returns></returns>
-        public LoyaltyDB.Models.Lcampaign SetCampaign(LoyaltyDB.Models.Lcampaign cmp)
-        {
-            if (cmp.campaign_id > -1)
-            {
-                string[] f_groups = cmp.group_id_2.Split(',');
-                var cmp_grp = Le.campaign_groups.Where(w => w.campaign_id == cmp.campaign_id);
-                Le.campaign_groups.RemoveRange(cmp_grp);
-                Le.SaveChanges();
-                if (f_groups[0].Length > 0)
-                {
-                    foreach (string f in f_groups)
-                    {
-                        Le.campaign_groups.Add(
-                            new LoyaltyDB.campaign_groups
-                            {
-                                campaign_id = cmp.campaign_id,
-                                group_id = Convert.ToInt64(f)
-                            });
-                    }
-                }
-
-                var campaign = Le.campaigns_mk.Where(wc => wc.id == cmp.campaign_id).FirstOrDefault();
-
-                campaign.name = cmp.name;
-                if (cmp.type_id > 0)
-                {
-                    campaign.type_id = cmp.type_id;
-                }
-                //campaign.margin_markets = cmp.margin_markets;
-                //campaign.margin_lavel_3 = cmp.margin_lavel_3;
-                //campaign.margin_lavel_2 = cmp.margin_lavel_2;
-                //campaign.margin_lavel_1 = cmp.margin_lavel_1;
-                //campaign.margin_lavel_0 = cmp.margin_lavel_0;
-                campaign.is_run = Convert.ToBoolean(cmp.is_run);
-                campaign.date_start = cmp.date_start;
-                campaign.date_end = cmp.date_end;
-                campaign.group_id_0 = Convert.ToInt64(cmp.group_id_0);
-
-                Le.SaveChanges();
-
-            } else if (cmp.campaign_id == -1)   // --<<-- Новая кампания
-            {
-                campaigns_mk campaign = new campaigns_mk
-                {
-                    date_end = cmp.date_end,
-                    date_start = cmp.date_start,
-                    group_id_0 = cmp.group_id_0 == string.Empty ? 0 : Convert.ToInt64(cmp.group_id_0),
-                    is_run = Convert.ToBoolean(cmp.is_run),
-                    margin_markets = cmp.margin_markets,
-                    margin_lavel_0 = cmp.margin_lavel_0,
-                    margin_lavel_1 = cmp.margin_lavel_1,
-                    margin_lavel_2 = cmp.margin_lavel_2,
-                    margin_lavel_3 = cmp.margin_lavel_3,
-                    name = cmp.name                    
-                };
-                if (cmp.type_id > 0) campaign.type_id = cmp.type_id;
-                Le.campaigns_mk.Add(campaign);
-                Le.SaveChanges();
-                Le.Entry(campaign);
-                cmp.campaign_id = campaign.id;
-
-                string[] f_groups = cmp.group_id_2.Split(',');
-                if (f_groups[0].Length > 0)
-                {
-                    foreach (string f in f_groups)
-                    {
-                        Le.campaign_groups.Add(
-                            new LoyaltyDB.campaign_groups
-                            {
-                                campaign_id = cmp.campaign_id,
-                                group_id = Convert.ToInt64(f)
-                            });
-                    }
-                }
-                Le.SaveChanges();
-            }            
-            return cmp;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public IEnumerable<campaigns_terms> GetCampaignsTerms(long id)
@@ -294,6 +221,89 @@ namespace LoyaltyDB
             return lt;
         }
 
+
+
+        #endregion
+
+        #region
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmp"></param>
+        /// <returns></returns>
+        public LoyaltyDB.Models.Lcampaign SetCampaign(LoyaltyDB.Models.Lcampaign cmp)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                if (cmp.campaign_id > -1)
+                {
+                    string[] f_groups = cmp.group_id_2.Split(',');
+                    var cmp_grp = db.CampaignGroups.Where(w => w.CampaignId == cmp.campaign_id);
+
+                    db.CampaignGroups.Delete(wd => wd.CampaignId == cmp.campaign_id);
+
+                    if (f_groups[0].Length > 0)
+                    {
+                        foreach (string f in f_groups)
+                        {
+                            db.CampaignGroups.Insert(() => new DataModels.CampaignGroups
+                            {
+                                CampaignId = cmp.campaign_id,
+                                GroupId = Convert.ToInt64(f)
+                            });
+                        }
+                    }
+
+                    db.CampaignsMk.Where(wc => wc.Id == cmp.campaign_id)
+                        .Set(p => p.Name, cmp.name)
+                        .Set(p => p.TypeId, cmp.type_id)
+                        .Set(p => p.IsRun, Convert.ToBoolean(cmp.is_run))
+                        .Set(p => p.DateStart, cmp.date_start)
+                        .Set(p => p.DateEnd, cmp.date_end)
+                        .Set(p => p.GroupId0, Convert.ToInt64(cmp.group_id_0))
+                        .Set(p => p.MailingId, cmp.mailing_id)
+                        .Update();
+
+                }
+                else if (cmp.campaign_id == -1)   // --<<-- Новая кампания
+                {
+                    campaigns_mk campaign = new campaigns_mk
+                    {
+                        date_end = cmp.date_end,
+                        date_start = cmp.date_start,
+                        group_id_0 = cmp.group_id_0 == string.Empty ? 0 : Convert.ToInt64(cmp.group_id_0),
+                        is_run = Convert.ToBoolean(cmp.is_run),
+                        type_id = 6,
+                        name = cmp.name
+                    };
+
+                    if (cmp.type_id > 0) campaign.type_id = cmp.type_id;
+
+                    Le.campaigns_mk.Add(campaign);
+                    Le.SaveChanges();
+                    Le.Entry(campaign);
+                    cmp.campaign_id = campaign.id;
+
+                    string[] f_groups = cmp.group_id_2.Split(',');
+                    if (f_groups[0].Length > 0)
+                    {
+                        foreach (string f in f_groups)
+                        {
+                            Le.campaign_groups.Add(
+                                new LoyaltyDB.campaign_groups
+                                {
+                                    campaign_id = cmp.campaign_id,
+                                    group_id = Convert.ToInt64(f)
+                                });
+                        }
+                    }
+                    Le.SaveChanges();
+                }
+                return cmp;
+            }
+        }
+
+        #endregion
         public void CreateTerm(Models.Lterminate t)
         {
             campaigns_terms term = new campaigns_terms {
@@ -307,5 +317,56 @@ namespace LoyaltyDB
             Le.SaveChanges();
         }
 
+        #region MAILING
+        public void SetStatusCampaignMailing(long campaignId, string phone, int status, string chanel)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                db.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+
+                if (phone.IndexOf("+") < 0)
+                    phone = string.Format("+{0}", phone);
+
+                var customers = db.CrmCustomers.Where(w => w.MobilePhone == phone);
+
+                var customersParticipant = db.CampaignParticipant.Join(customers,
+                    c => c.CrmCustomerId,
+                    p => p.CrmCustomerId,
+                    (c, p) => new { c.CrmCustomerId, p.MobilePhone, c.CampaignId, c.Id }
+                ).Where(w=> w.CampaignId == campaignId).ToList();
+
+                foreach (var cp in customersParticipant)
+                {
+                    db.CampaignParticipant.Where(w => w.Id == cp.Id)
+                        .Set(p => p.DeliveryStatus, status)
+                        .Set(p => p.DeliveryChannel, chanel)
+                        .Update();
+                }
+
+                db.CommitTransaction();
+            }
+        }
+
+        public string GetMailingIdByCampaignId(int campaignId)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                return db.CampaignsMk.Where(w => w.Id == campaignId).FirstOrDefault().MailingId;
+            }
+        }
+
+        public void SetPhonesFindMarkets(string phone, string status, string channel)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+
+                db.PhonesFindMarkets.Insert(() => new PhonesFindMarkets {
+                    Chanell = channel,
+                    Status = status,
+                    Phone = phone
+                });
+            }
+        }
+        #endregion
     }
 }

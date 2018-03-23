@@ -47,34 +47,38 @@ Ext.define('campaigns_mk', {
     }, {
         name: 'type_id',
         type: 'int'
-    }, {
-        name: 'margin_markets',
-        type: 'float'
-    }, {
-        name: 'margin_lavel_0',
-        type: 'float'
-    }, {
-        name: 'margin_lavel_1',
-        type: 'float'
-    }, {
-        name: 'margin_lavel_2',
-        type: 'float'
-    }, {
-        name: 'margin_lavel_3',
-        type: 'float'
-    }, {
-        name: 'group_id',
-        type: 'int'
-    }, {
-        name: 'group_name',
-        type: 'string'
-    }, {
-        name: 'depart_id',
-        type: 'int'
-    }, {
-        name: 'depart_name',
-        type: 'string'
-    }, {
+    },
+    //{
+    //    name: 'margin_markets',
+    //    type: 'float'
+    //},
+    //{
+    //    name: 'margin_lavel_0',
+    //    type: 'float'
+    //}, {
+    //    name: 'margin_lavel_1',
+    //    type: 'float'
+    //}, {
+    //    name: 'margin_lavel_2',
+    //    type: 'float'
+    //}, {
+    //    name: 'margin_lavel_3',
+    //    type: 'float'
+    //},
+    //{
+    //    name: 'group_id',
+    //    type: 'int'
+    //}, {
+    //    name: 'group_name',
+    //    type: 'string'
+    //}, {
+    //    name: 'depart_id',
+    //    type: 'int'
+    //}, {
+    //    name: 'depart_name',
+    //    type: 'string'
+    //},
+    {
         name: 'customers_qty',
         type: 'int'
     }, {
@@ -143,6 +147,12 @@ Ext.define('campaigns_mk', {
                 return '';
             }
         }
+    }, {
+        name: 'group_id_0',
+        type: 'int'
+    }, {
+        name: 'mailing_id',
+        type: 'string'
     }]
 });
 

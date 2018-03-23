@@ -27,5 +27,12 @@ namespace ReportsLoyalty
 
             //GlobalConfiguration.Configure(WebApiConfig.Register);
         }
+
+        void Session_Start(Object sender, EventArgs e)
+        {
+            //int i = 0;
+        }
     }
+
+    
 }

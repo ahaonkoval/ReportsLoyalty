@@ -10,6 +10,7 @@ using ReportsLoyalty.Models;
 using System.Web.Script.Serialization;
 using System.Text;
 using Newtonsoft.Json;
+using DataModels;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -71,10 +72,13 @@ namespace ReportsLoyalty.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<v_campaigns_mk_run> GetCampaignsRunsListByTypeId(int id)
+        public IEnumerable<VCampaignsMkRun> GetCampaignsRunsListByTypeId(int id)
         {
-            GetData gt = new GetData();
-            return gt.Campaigns.GetCampaignsRuns().Where(w => w.type_id == id).ToList();
+            using (GetData gt = new GetData())
+            {
+                return gt.Campaigns.GetCampaignsRuns().Where(w => w.TypeId == id).ToList();
+            }
+            //return gt.Campaigns.GetCampaignsRuns().Where(w => w.type_id == id).ToList();//.Select(m => new v_campaigns_mk_run {                });
         }
         /// <summary>
         /// 

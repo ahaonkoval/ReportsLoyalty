@@ -15,11 +15,8 @@ namespace LoyaltyDB.Models
         public string group_id_0 { get; set; }
         public string group_id_2 { get; set; }
         public int type_id { get; set; }
-        public decimal margin_markets { get; set; }
-        public decimal margin_lavel_0 { get; set; }
-        public decimal margin_lavel_1 { get; set; }
-        public decimal margin_lavel_2 { get; set; }
-        public decimal margin_lavel_3 { get; set; }
+
+        public string mailing_id { get; set; }
 
         public Lcampaign()
         {

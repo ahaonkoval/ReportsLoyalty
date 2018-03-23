@@ -7,6 +7,7 @@ using SoftLineApi.Models;
 using System.Configuration;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace SoftLineApi
 {
@@ -20,7 +21,7 @@ namespace SoftLineApi
             ident = new Identification();
             this.Uri = ConfigurationManager.AppSettings["Uri"];
         }
-
+        #region PUBLIC
         public String Request(string NotificationId)
         {
             string source = string.Format(
@@ -59,5 +60,19 @@ namespace SoftLineApi
             ds.Close();
             return responseFromServer;
         }
+
+        public Replay StringToObject(string m)
+        {
+            List<Contact> lc = new List<Models.Contact>();
+
+            Replay rp = JsonConvert.DeserializeObject<Replay>(m);
+
+            return rp;
+        }
+        #endregion
+
+        #region PRIVATE
+
+        #endregion
     }
 }
