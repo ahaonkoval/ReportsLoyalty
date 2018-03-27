@@ -5,13 +5,13 @@ var campaigns_terms_model = Ext.define('campaigns_terms_model', {
         name: 'Rn',
         type: 'int'
     }, {
-        name: 'campaigns_terms_id',
+        name: 'CampaignsTermsId',
         type: 'int'
     }, {
-        name: 'campaign_id',
+        name: 'CampaignId',
         type: 'int'
     }, {
-        name: 'created',
+        name: 'Created',
         type: 'date',
         convert: function (v, record) {
             if (v != null) {
@@ -26,10 +26,10 @@ var campaigns_terms_model = Ext.define('campaigns_terms_model', {
             }
         }
     }, {
-        name: 'short_comment',
+        name: 'ShortComment',
         type: 'string'
     }, {
-        name: 'description',
+        name: 'Description',
         type: 'string'
     }]
 });
@@ -48,13 +48,13 @@ var store_campaigns_terms = function (campaign_id) {
             reader: {
                 type: 'json',
                 root: 'data',
-                idProperty: 'id',
+                idProperty: 'Id',
                 totalProperty: 'total'
             }
         },
         remoteSort: false,
         sorters: [{
-            property: 'number',
+            property: 'Rn',
             direction: 'ASC'
         }],
         pageSize: 50
@@ -77,13 +77,13 @@ var createColumns_terms = function (finish, start) {
             width: 35
         },
         {
-            dataIndex: 'created',
+            dataIndex: 'Created',
             text: 'Створено',
             xtype: 'datecolumn',
             flex: 1
             //width: 90
         }, {
-            dataIndex: 'short_comment',            
+            dataIndex: 'ShortComment',            
             text: 'Короткий комментар',
             //flex: 1
             visible: false
@@ -134,9 +134,9 @@ var grid_campaigns_terms = function (campaign_id) {
                 if (selections.length > 0) {
                     var record = selections[0].getData();
                     Ext.getCmp('current_campaign_terms_details').setHtml(
-                        '<textarea class="boxsizingBorder">' + record.description + '</textarea>');
+                        '<textarea class="boxsizingBorder">' + record.Description + '</textarea>');
                     Ext.getCmp('current_campaign_terms_short').setHtml(
-                        '<textarea rows="4" cols="50">' + record.short_comment + '</textarea>'
+                        '<textarea rows="4" cols="50">' + record.ShortComment + '</textarea>'
                         );
                 } else {
                     Ext.getCmp('current_campaign_terms_details').setHtml('');

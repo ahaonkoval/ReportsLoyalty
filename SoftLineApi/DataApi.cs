@@ -1,44 +1,35 @@
-﻿using System;
-using System.Windows.Forms;
-using SoftLineApi;
+﻿using LoyaltyDB;
 using SoftLineApi.Models;
-using LoyaltyDB;
-using System.Linq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WinTest
+namespace SoftLineApi
 {
-    public partial class TestRequestForm : Form
+    public class DataApi
     {
-        public TestRequestForm()
+        
+        public delegate void EndSaveList(int StatusCount);
+        
+        public event EndSaveList onEndSaveList;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CampaignId"></param>
+        /// <param name="pl"></param>
+        public void SaveStatuses(int CampaignId, Replay pl)
         {
-            InitializeComponent();
-        }
-
-        private void btnRequest_Click(object sender, EventArgs e)
-        {
-            SoftLineApi.StatusApi api = new SoftLineApi.StatusApi();
-
-            string message = TestData.getData();
-            //api.Request("2454812"); //2454812 2360876 2454812
-            //string message = api.Request("2454812");
-
-            Replay p = api.StringToObject(message);
-
-            var phones = p.contacts.Select(o => o.phone).Distinct();
-
-            //var statuses = p.contacts.Select(o => o.status).Distinct().ToArray();
-
-            //string ms = string.Join(";", statuses);
-            //this.txt.Text = ms;
+            var phones = pl.contacts.Select(o => o.phone).Distinct();
 
             using (GetData gt = new GetData())
-            { 
+            {
                 List<int> l = StatusApi.GetFalseStatus();
 
                 foreach (string pn in phones)
                 {
-                    var clst = p.contacts.Where(w => w.phone == pn).ToList();
+                    var clst = pl.contacts.Where(w => w.phone == pn).ToList();
 
                     if (clst.Count > 1) // Кількість записів про доставку більше одієї і тому потрібно визначити останній
                     {
@@ -47,7 +38,7 @@ namespace WinTest
                             if (clst.Where(w1 => l.Contains(w1.status)).Count() >= 1)
                             {
                                 gt.Campaigns.SetStatusCampaignMailing(
-                                    223,
+                                    CampaignId,
                                     pn,
                                     1,
                                     "SMS"
@@ -56,16 +47,17 @@ namespace WinTest
                             else
                             {
                                 gt.Campaigns.SetStatusCampaignMailing(
-                                    223,
+                                    CampaignId,
                                     pn,
                                     1,
                                     "VIBER"
                                 );
                             }
-                        } else
+                        }
+                        else
                         {
                             gt.Campaigns.SetStatusCampaignMailing(
-                                223,
+                                CampaignId,
                                 pn,
                                 2,
                                 "SMS"
@@ -77,20 +69,23 @@ namespace WinTest
                         switch (clst.FirstOrDefault().status)
                         {
                             case 1: // Доставлен
-                                gt.Campaigns.SetStatusCampaignMailing(223, clst.FirstOrDefault().phone, 1, "VIBER");
+                                gt.Campaigns.SetStatusCampaignMailing(CampaignId, clst.FirstOrDefault().phone, 1, "VIBER");
                                 break;
                             case 3: // Прочитан 
-                                gt.Campaigns.SetStatusCampaignMailing(223, clst.FirstOrDefault().phone, 1, "VIBER");
+                                gt.Campaigns.SetStatusCampaignMailing(CampaignId, clst.FirstOrDefault().phone, 1, "VIBER");
                                 break;
                             default:
-                                gt.Campaigns.SetStatusCampaignMailing(223, clst.FirstOrDefault().phone, 2, "VIBER");
+                                gt.Campaigns.SetStatusCampaignMailing(CampaignId, clst.FirstOrDefault().phone, 2, "VIBER");
                                 break;
 
                         }
 
                     }
                 }
+
+                onEndSaveList(phones.Count());
             }
+
         }
     }
 }

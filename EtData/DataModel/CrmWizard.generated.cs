@@ -107,6 +107,7 @@ namespace DataModels
 		public ITable<FgroupGoodsBac>                 FgroupGoodsBac                 { get { return this.GetTable<FgroupGoodsBac>(); } }
 		public ITable<FinLoyaltyRepArticuls>          FinLoyaltyRepArticuls          { get { return this.GetTable<FinLoyaltyRepArticuls>(); } }
 		public ITable<FinLoyaltyRepGroups>            FinLoyaltyRepGroups            { get { return this.GetTable<FinLoyaltyRepGroups>(); } }
+		public ITable<Good>                           Goods                          { get { return this.GetTable<Good>(); } }
 		public ITable<GoodsShort>                     GoodsShort                     { get { return this.GetTable<GoodsShort>(); } }
 		public ITable<HoleBucketV1>                   HoleBucketV1                   { get { return this.GetTable<HoleBucketV1>(); } }
 		public ITable<LoyaltySellMovementImport1>     LoyaltySellMovementImport1     { get { return this.GetTable<LoyaltySellMovementImport1>(); } }
@@ -220,6 +221,8 @@ namespace DataModels
 		public ITable<StopList>                       StopList                       { get { return this.GetTable<StopList>(); } }
 		public ITable<StreetTypes>                    StreetTypes                    { get { return this.GetTable<StreetTypes>(); } }
 		public ITable<Subregion>                      Subregions                     { get { return this.GetTable<Subregion>(); } }
+		public ITable<T329>                           T329                           { get { return this.GetTable<T329>(); } }
+		public ITable<T343>                           T343                           { get { return this.GetTable<T343>(); } }
 		public ITable<Tmp329>                         Tmp329                         { get { return this.GetTable<Tmp329>(); } }
 		public ITable<UrgentBonusStates>              UrgentBonusStates              { get { return this.GetTable<UrgentBonusStates>(); } }
 		public ITable<VAllacationCustomersByAnimals>  VAllacationCustomersByAnimals  { get { return this.GetTable<VAllacationCustomersByAnimals>(); } }
@@ -514,6 +517,7 @@ namespace DataModels
 			public DateTime? max_term_date         { get; set; }
 			public long?     articuls_qty          { get; set; }
 			public long?     group_id_0            { get; set; }
+			public DateTime? date_send             { get; set; }
 		}
 
 		#endregion
@@ -1410,19 +1414,24 @@ namespace DataModels
 	[Table(Schema="calc", Name="campaigns_mk")]
 	public partial class CampaignsMk
 	{
-		[Column("id"),             PrimaryKey,  Identity] public long      Id            { get; set; } // bigint
-		[Column("name"),              Nullable          ] public string    Name          { get; set; } // nvarchar(255)
-		[Column("date_start"),        Nullable          ] public DateTime? DateStart     { get; set; } // date
-		[Column("date_end"),          Nullable          ] public DateTime? DateEnd       { get; set; } // date
-		[Column("created"),           Nullable          ] public DateTime? Created       { get; set; } // datetime
-		[Column("is_run"),         NotNull              ] public bool      IsRun         { get; set; } // bit
-		[Column("type_id"),        NotNull              ] public long      TypeId        { get; set; } // bigint
-		[Column("margin_markets"),    Nullable          ] public decimal?  MarginMarkets { get; set; } // decimal(18, 3)
-		[Column("group_id_0"),        Nullable          ] public long?     GroupId0      { get; set; } // bigint
-		[Column("group_id_1"),        Nullable          ] public long?     GroupId1      { get; set; } // bigint
-		[Column("markmo_id"),         Nullable          ] public long?     MarkmoId      { get; set; } // bigint
-		[Column("mailing_id"),        Nullable          ] public string    MailingId     { get; set; } // nvarchar(50)
-		[Column("date_send"),         Nullable          ] public DateTime? DateSend      { get; set; } // date
+		[Column("id"),                  PrimaryKey,  Identity] public long      Id               { get; set; } // bigint
+		[Column("name"),                   Nullable          ] public string    Name             { get; set; } // nvarchar(255)
+		[Column("date_start"),             Nullable          ] public DateTime? DateStart        { get; set; } // date
+		[Column("date_end"),               Nullable          ] public DateTime? DateEnd          { get; set; } // date
+		[Column("created"),                Nullable          ] public DateTime? Created          { get; set; } // datetime
+		[Column("is_run"),              NotNull              ] public bool      IsRun            { get; set; } // bit
+		[Column("type_id"),             NotNull              ] public long      TypeId           { get; set; } // bigint
+		[Column("margin_markets"),         Nullable          ] public decimal?  MarginMarkets    { get; set; } // decimal(18, 3)
+		[Column("group_id_0"),             Nullable          ] public long?     GroupId0         { get; set; } // bigint
+		[Column("group_id_1"),             Nullable          ] public long?     GroupId1         { get; set; } // bigint
+		[Column("markmo_id"),              Nullable          ] public long?     MarkmoId         { get; set; } // bigint
+		[Column("mailing_id"),             Nullable          ] public string    MailingId        { get; set; } // nvarchar(50)
+		[Column("date_send"),              Nullable          ] public DateTime? DateSend         { get; set; } // date
+		/// <summary>
+		/// 0 - не обработано, 1 - в обработке, 2 - обработан
+		/// </summary>
+		[Column("is_start_get_status"), NotNull              ] public byte      IsStartGetStatus { get; set; } // tinyint
+		[Column("hide"),                NotNull              ] public bool      Hide             { get; set; } // bit
 
 		#region Associations
 
@@ -2514,6 +2523,12 @@ namespace DataModels
 		[Column("sold_buy_amount"),      Nullable] public decimal?  SoldBuyAmount     { get; set; } // decimal(14, 3)
 		[Column("sold_sell_amount"),     Nullable] public decimal?  SoldSellAmount    { get; set; } // decimal(14, 3)
 		[Column("discount_amount"),      Nullable] public decimal?  DiscountAmount    { get; set; } // decimal(14, 4)
+	}
+
+	[Table(Schema="tmp", Name="goods")]
+	public partial class Good
+	{
+		[Column("good_id"), Nullable] public long? GoodId { get; set; } // bigint
 	}
 
 	[Table(Schema="dbo", Name="goods_short")]
@@ -4822,6 +4837,42 @@ namespace DataModels
 		[Column("name_ru"),                  NotNull] public string NameRu      { get; set; } // varchar(100)
 	}
 
+	[Table(Schema="tmp", Name="t329")]
+	public partial class T329
+	{
+		[Column("number"),              Nullable] public long?  Number          { get; set; } // bigint
+		[Column("name1"),               Nullable] public string Name1           { get; set; } // nvarchar(50)
+		[Column("name2"),            NotNull    ] public string Name2           { get; set; } // nvarchar(50)
+		[Column("name3"),            NotNull    ] public string Name3           { get; set; } // nvarchar(50)
+		[Column("gender"),              Nullable] public string Gender          { get; set; } // nvarchar(10)
+		[Column("barcode"),             Nullable] public string Barcode         { get; set; } // nvarchar(50)
+		[Column("mobile_phone"),        Nullable] public long?  MobilePhone     { get; set; } // bigint
+		[Column("control_group"),       Nullable] public string ControlGroup    { get; set; } // nvarchar(50)
+		[Column("delivery_channel"),    Nullable] public string DeliveryChannel { get; set; } // nvarchar(50)
+		[Column("market_name"),         Nullable] public string MarketName      { get; set; } // nvarchar(50)
+		[Column("free"),                Nullable] public string Free            { get; set; } // nvarchar(50)
+		[Column("crm_customer_id"),     Nullable] public long?  CrmCustomerId   { get; set; } // bigint
+		[Column("city_name"),        NotNull    ] public string CityName        { get; set; } // varchar(50)
+		[Column("city_type"),        NotNull    ] public string CityType        { get; set; } // nvarchar(50)
+	}
+
+	[Table(Schema="tmp", Name="t343")]
+	public partial class T343
+	{
+		[Column("number"),           Nullable] public long?  Number          { get; set; } // bigint
+		[Column("name1"),            Nullable] public string Name1           { get; set; } // nvarchar(50)
+		[Column("name2"),            Nullable] public string Name2           { get; set; } // nvarchar(50)
+		[Column("name3"),            Nullable] public string Name3           { get; set; } // nvarchar(50)
+		[Column("gender"),           Nullable] public string Gender          { get; set; } // nvarchar(10)
+		[Column("barcode"),          Nullable] public string Barcode         { get; set; } // nvarchar(50)
+		[Column("mobile_phone"),     Nullable] public long?  MobilePhone     { get; set; } // bigint
+		[Column("control_group"),    Nullable] public string ControlGroup    { get; set; } // nvarchar(50)
+		[Column("delivery_channel"), Nullable] public string DeliveryChannel { get; set; } // nvarchar(50)
+		[Column("market_name"),      Nullable] public string MarketName      { get; set; } // nvarchar(50)
+		[Column("free"),             Nullable] public string Free            { get; set; } // nvarchar(50)
+		[Column("crm_customer_id"),  Nullable] public long?  CrmCustomerId   { get; set; } // bigint
+	}
+
 	[Table(Schema="tmp", Name="tmp_329")]
 	public partial class Tmp329
 	{
@@ -5775,6 +5826,15 @@ namespace DataModels
 
 		#endregion
 
+		#region PDailyExtraPointsCalculated
+
+		public static int PDailyExtraPointsCalculated(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_extra_points_calculated]");
+		}
+
+		#endregion
+
 		#region PDailyExtraPointsFill
 
 		public static int PDailyExtraPointsFill(this DataConnection dataConnection, long? @campaign_id, DateTime? @calculated_date)
@@ -6253,6 +6313,15 @@ namespace DataModels
 		public static int PMoveDataV2(this DataConnection dataConnection)
 		{
 			return dataConnection.ExecuteProc("[calc].[p_move_data_v2]");
+		}
+
+		#endregion
+
+		#region PUpdateGenderFromName2
+
+		public static int PUpdateGenderFromName2(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_update_gender_from_name2]");
 		}
 
 		#endregion

@@ -72,7 +72,7 @@ namespace ReportsLoyalty.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<VCampaignsMkRun> GetCampaignsRunsListByTypeId(int id)
+        public IEnumerable<CampaignsMk> GetCampaignsRunsListByTypeId(int id)
         {
             using (GetData gt = new GetData())
             {
@@ -227,11 +227,12 @@ namespace ReportsLoyalty.Controllers
             using (GetData gt = new GetData())
             {
                 var c = gt.Campaigns.GetCampaignTypes();
-                foreach (campaign_types ca in c)
+                foreach (CampaignTypes ca in c)
                 {
-                    g.Add(new CampaignType {
-                        id = ca.id,
-                        name = ca.name
+                    g.Add(new CampaignType
+                    {
+                        id = ca.Id,
+                        name = ca.Name
                     });
                 }
             }
@@ -248,12 +249,12 @@ namespace ReportsLoyalty.Controllers
             using (GetData gt = new GetData())
             {
                 var c = gt.Campaigns.GetCampaignTypes();
-                foreach (campaign_types ca in c)
+                foreach (CampaignTypes ca in c)
                 {
                     g.Add(new CampaignType
                     {
-                        id = ca.id,
-                        name = ca.name
+                        id = ca.Id,
+                        name = ca.Name
                     });
                 }
             }

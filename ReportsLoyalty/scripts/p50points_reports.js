@@ -7,16 +7,16 @@ var get50PointsGrid = function () {
             model: Ext.define('50PointsCampaigns', {
                 extend: 'Ext.data.Model',
                 fields: [{
-                    name: 'id',
+                    name: 'Id',
                     type: 'int'
                 }, {
-                    name: 'name',
+                    name: 'Name',
                     type: 'string'
                 }, {
-                    name: 'date_start',
+                    name: 'DateStart',
                     type: 'date'
                 }, {
-                    name: 'date_end',
+                    name: 'DateEnd',
                     type: 'date'
                 }],
                 changeName: function () {
@@ -28,7 +28,7 @@ var get50PointsGrid = function () {
             }),
             autoDestroy: true,
             autoLoad: true,
-            idProperty: 'id',
+            idProperty: 'Id',
             proxy: {
                 type: 'rest',
                 url: 'api/DictCampaign/Get50PointsCampaigns/0', // Router.getHome() + 
@@ -38,13 +38,13 @@ var get50PointsGrid = function () {
                 reader: {
                     type: 'json',
                     rootProperty: 'data',
-                    idProperty: 'id',
+                    idProperty: 'Id',
                     totalProperty: 'total'
                 }
             },
             remoteSort: false,
             sorters: [{
-                property: 'id',
+                property: 'Id',
                 direction: 'ASC'
             }],
             pageSize: 50
@@ -62,19 +62,19 @@ var get50PointsGrid = function () {
         //title: false,
         hideHeaders: true,
         columns: [{
-            dataIndex: 'name',
+            dataIndex: 'Name',
             text: 'Назва кампанії',
-            id: 'name',
+            //id: 'Name',
             tdCls: 'custom-column',
             flex: 1,
             filter: {
                 type: 'string'
             },
             renderer: function (value, metadata, record) {
-                var d_start = record.get('date_start');
-                var d_end = record.get('date_end');
+                var d_start = record.get('DateStart');
+                var d_end = record.get('DateEnd');
                 
-                if (record.get('id') != 0) {
+                if (record.get('Id') != 0) {
                     return value + ' (' + d_start.toLocaleDateString() + '-' + d_end.toLocaleDateString() + ')';
                 } else {
                     return value;

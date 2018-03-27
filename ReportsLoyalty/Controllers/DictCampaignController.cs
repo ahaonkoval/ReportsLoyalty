@@ -8,6 +8,7 @@ using System.Web.Http;
 using LoyaltyDB;
 using LoyaltyDB.Models;
 using ReportsLoyalty.Models;
+using DataModels;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -49,29 +50,25 @@ namespace ReportsLoyalty.Controllers
 
             using (GetData data = new GetData())
             {
-                campaign_types t = new campaign_types
+                CampaignTypes t = new CampaignTypes
                 {
-                    id = 5,
-                    name = "50 балів на рахунку"
+                    Id = 5,
+                    Name = "50 балів на рахунку"
                 };
 
                 var cmps = data.Campaigns.GetCampaignsByType(t).ToList();
-                cmps.Add(new v_campaigns_mk {
-                    id = 0,
-                    name = "Всі",                    
+                cmps.Add(new CampaignsMk
+                {
+                    Id = 0,
+                    Name = "Всі",                    
                 });
 
                 object o = new
                 {                    
                     total = cmps.Count(),
-                    data = cmps.OrderBy(m => m.id)
+                    data = cmps.OrderBy(m => m.Id)
                 };
 
-                //Rto o = new Rto
-                //{
-                //    data = cmps.ToList(),
-                //    total = cmps.Count()
-                //};
                 return o;// o;
             }
         }

@@ -40,19 +40,13 @@ function WinCampaignDetails() {
         {
             xtype: 'tagfield',
             store: this.getStDepartments(),
-            //allowBlank: false,
             displayField: 'name',
             valueField: 'fgroup_id',
             //reference: 'name',
             //filterPickList: true,
             //queryMode: 'local',
             //publishes: 'value',
-            id: 'cmbCmpEditGrp_2',
-            //listeners: {
-            //    activate: function (ctrl, event, eOpts) {
-            //        ctrl.setStore(this.StGroups);
-            //    }
-            //}
+            id: 'cmbCmpEditGrp_2'
         }
     ),
 
@@ -158,23 +152,6 @@ function WinCampaignDetails() {
              group_id_2: {
                  displayName: 'ДЕПАРТАМЕНТ', ///'ГРУПА(групи)',/
                  editor: this.TagGroups,
-                 //editor: {
-                 //    xtype: 'tagfield',
-                 //    store: this.getStGroups(),//this.StGroups,
-                 //    //allowBlank: false,
-                 //    displayField: 'name',
-                 //    valueField: 'fgroup_id',
-                 //    //reference: 'name',
-                 //    //filterPickList: true,
-                 //    //queryMode: 'local',
-                 //    //publishes: 'value',
-                 //    id: 'cmbCmpEditGrp_2',
-                 //    //listeners: {
-                 //    //    activate: function (ctrl, event, eOpts) {
-                 //    //        ctrl.setStore(this.StGroups);
-                 //    //    }
-                 //    //}
-                 //},
                  renderer: function (value) {
                      var returned = '';
                      if (value != '') {
@@ -192,7 +169,6 @@ function WinCampaignDetails() {
                                      returned = returned + ', ' + rec.items[0].get('name');
                                  }
                              }
-
                          }
                          value = returned;
                      } else {
@@ -230,35 +206,14 @@ function WinCampaignDetails() {
                      xtype: 'textfield'
                  }
              },
-             //margin_lavel_0: {
-             //    displayName: 'Маржа по відділу',
-             //    editor: {
-             //        xtype: 'numberfield',
-             //        decimalPrecision: 3
-             //    }
-             //},
-             //margin_lavel_1: {
-             //    displayName: 'Маржа по департаменту',
-             //    editor: {
-             //        xtype: 'numberfield',
-             //        decimalPrecision: 3
-             //    }
-             //}
-             //,
-             //margin_lavel_2: {
-             //    displayName: 'Маржа по групі',
-             //    editor: {
-             //        xtype: 'numberfield',
-             //        decimalPrecision: 3
-             //    }
-             //},
-             //margin_lavel_3: {
-             //    displayName: 'Маржа по підгрупі',
-             //    editor: {
-             //        xtype: 'numberfield',
-             //        decimalPrecision: 3
-             //    }
-             //}
+             date_send: {
+                 displayName: 'Дата відправки повідомлень',
+                 renderer: Ext.util.Format.dateRenderer('d.m.Y'),
+                 editor: {
+                     xtype: 'datefield',
+                     format: 'd.m.Y'
+                 }
+             },
          }
      }),
     this.setPropertyGridData = function (record) {
@@ -285,6 +240,7 @@ function WinCampaignDetails() {
                 }
                 var date_start = rec.get('date_start') == '' ? new Date() : rec.get('date_start');
                 var date_end = rec.get('date_end') == '' ? new Date() : rec.get('date_end');
+                var date_send = rec.get('date_send') == '' ? new Date() : rec.get('date_send');
                 var source = {};
 
                 source['name']          = rec.get('name');
@@ -295,6 +251,7 @@ function WinCampaignDetails() {
                 source['group_id_2']    = fgroup_ids;
                 source['type_id']       = rec.get('type_id');
                 source['mailing_id']    = rec.get('mailing_id');
+                source['date_send']     = new Date(date_send);
 
                 grid.setSource(source);
                 win.show();                                                                  // <-- показываем окно
@@ -314,6 +271,7 @@ function WinCampaignDetails() {
         source['group_id_2']    = '';
         source['type_id']       = null;
         source['mailing_id']    = '';
+        source['date_send']     = null;
 
         grid.setSource(source);
         win.show();
@@ -371,7 +329,8 @@ function WinCampaignDetails() {
                                     group_id_0      : data.get('group_id_0').data.value,
                                     group_id_2      : data.get('group_id_2').data.value.toString(),
                                     type_id         : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                                    mailing_id      : data.get('mailing_id').data.value.toString()
+                                    mailing_id      : data.get('mailing_id').data.value.toString(),
+                                    date_send       : data.get('date_send').data.value
                                 };
 
                                 Ext.Ajax.request({
@@ -395,7 +354,8 @@ function WinCampaignDetails() {
                                                 date_end    : data.get('date_end').data.value,
                                                 group_id_0  : data.get('group_id_0').data.value,
                                                 group_id_2  : data.get('group_id_2').data.value.toString(),
-                                                mailing_id  : data.get('mailing_id').data.value.toString()
+                                                mailing_id  : data.get('mailing_id').data.value.toString(),
+                                                date_send   : data.get('date_send').data.value
                                             });
                                             //----<<<<------------------------------------------------
                                             var wnd = Ext.getCmp('win_campaign_details');
@@ -418,7 +378,8 @@ function WinCampaignDetails() {
                             group_id_0  : data.get('group_id_0').data.value,
                             group_id_2  : data.get('group_id_2').data.value.toString(),
                             type_id     : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                            mailing_id  : data.get('mailing_id').data.value.toString()
+                            mailing_id  : data.get('mailing_id').data.value.toString(),
+                            date_send   : data.get('date_send').data.value
                         };
                         Ext.Ajax.request({
                             url: 'api/campaign/SetCampaignData',
@@ -436,6 +397,7 @@ function WinCampaignDetails() {
                                     winCd.record.set('group_id_0', data.get('group_id_0').data.value);
                                     winCd.record.set('type_id', data.get('type_id').data.value);
                                     winCd.record.set('mailing_id', data.get('mailing_id').data.value);
+                                    winCd.record.set('date_send', data.get('date_send').data.value);
 
                                     winCd.record.commit();
                                     //----<<<<------------------------------------------------

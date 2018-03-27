@@ -18,6 +18,8 @@ namespace LoyaltyDB.Models
 
         public string mailing_id { get; set; }
 
+        public DateTime? date_send { get; set; }
+
         public Lcampaign()
         {
 

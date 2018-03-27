@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DataModels.CrmWizardDB;
 
 namespace LoyaltyDB
 {
@@ -14,9 +15,12 @@ namespace LoyaltyDB
             Le = le;
         }
 
-        public IEnumerable<tf_campaign_customers> GetCustomersCampaign(long campaign_id)
+        public IEnumerable<TGetCampaignCustomersResult> GetCustomersCampaign(long campaign_id)
         {
-            return Le.t_get_campaign_customers(campaign_id);
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.TGetCampaignCustomers(campaign_id).ToList();
+            }
         }
     }
 }

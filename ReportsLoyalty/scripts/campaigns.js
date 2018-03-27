@@ -3,13 +3,11 @@
 Ext.define('campaigns_mk', {
     extend: 'Ext.data.Model',
     fields: [{
-        name: 'id',
-        type: 'int'
+        name: 'id', type: 'int'
     }, {
         name: 'name'
     }, {
-        name: 'date_start',
-        type: "date",
+        name: 'date_start', type: "date",
         convert: function (v, record) {
             if (v != null) {
                 if (v.toString().indexOf('/') > -1) {
@@ -23,8 +21,7 @@ Ext.define('campaigns_mk', {
             }
         }
     }, {
-        name: 'date_end',
-        type: 'date',
+        name: 'date_end', type: 'date',
         convert: function (v, record) {
             if (v != null) {
                 if (v.toString().indexOf('/') > -1) {
@@ -38,46 +35,27 @@ Ext.define('campaigns_mk', {
             }
         }
     }, {
-        name: 'created',
-        type: 'date',
-        dateFormat: 'Y-m-d'
+        name: 'created', type: 'date', dateFormat: 'Y-m-d'
     }, {
-        name: 'is_run',
-        type: 'boolean'
+        name: 'is_run', type: 'boolean'
     }, {
-        name: 'type_id',
-        type: 'int'
+        name: 'type_id', type: 'int'
+    }, {
+        name: 'date_send', type: 'date',
+        dateFormat: 'Y-m-d',
+        convert: function (v, record) {
+            if (v != null) {
+                if (v.toString().indexOf('/') > -1) {
+                    return new Date(parseInt(v.substr(6)));
+                } else {
+                    return v;
+                }
+
+            } else {
+                return '';
+            }
+        }
     },
-    //{
-    //    name: 'margin_markets',
-    //    type: 'float'
-    //},
-    //{
-    //    name: 'margin_lavel_0',
-    //    type: 'float'
-    //}, {
-    //    name: 'margin_lavel_1',
-    //    type: 'float'
-    //}, {
-    //    name: 'margin_lavel_2',
-    //    type: 'float'
-    //}, {
-    //    name: 'margin_lavel_3',
-    //    type: 'float'
-    //},
-    //{
-    //    name: 'group_id',
-    //    type: 'int'
-    //}, {
-    //    name: 'group_name',
-    //    type: 'string'
-    //}, {
-    //    name: 'depart_id',
-    //    type: 'int'
-    //}, {
-    //    name: 'depart_name',
-    //    type: 'string'
-    //},
     {
         name: 'customers_qty',
         type: 'int'
@@ -102,19 +80,15 @@ Ext.define('campaigns_mk', {
                 if (v.toString().indexOf('/') > -1) {
 
                     var dot = new Date(parseInt(v.substr(6)));
-
-                    //var dateObj = new Date();
-                    var month = dot.getUTCMonth() + 1; //months from 1-12
+                    var month = dot.getUTCMonth() + 1;
                     var day = dot.getUTCDate();
                     var year = dot.getUTCFullYear();
 
-                    //var rtn = year + "/" + month + "/" + day;
                     if (day.toString().length == 1) day = '0' + day.toString();
                     if (month.toString().length == 1) month = '0' + month.toString();
 
                     var rtn = day + '.' + month + '.' + year;
                     return rtn;
-                    //return new Date(parseInt(v.substr(6)));
                 } else {
                     var d = new Date(v),
                     month = '' + (d.getMonth() + 1),
@@ -271,15 +245,17 @@ var getWinCampaigns = function () {
                 flex: 1,
                 dataIndex: 'name',
             },
-            //{
-            //    dataIndex: 'name',
-            //    text: 'Назва кампанії',
-            //    id: 'name',
-                //flex: 1,
-                //filter: {
-                //    type: 'string'
-                //}
-            //},
+            {
+                dataIndex: 'date_send',
+                xtype: 'datecolumn',
+                format: 'd.m.Y',//'Y-m-d', // H:i:s
+                text: 'Дата відправки',
+                width: 80,
+                headerWrap: true,
+                filter: {
+                    type: 'date'  // specify type here or in store fields config
+                }
+            },
             {
                 dataIndex: 'date_start',
                 xtype: 'datecolumn',
@@ -300,22 +276,19 @@ var getWinCampaigns = function () {
                 filter: {
                     type: 'date'  // specify type here or in store fields config
                 }
-                //filter: {
-                //    type: 'list',
-                //    store: optionsStore,
-                //    phpMode: true
-                //}
+
             },
             {
                 text: 'Артикули',
-                width: 70,
                 height: 20,                
                 columns: [
                     {
                         dataIndex: 'articuls_qty',
+                        width: 70,
+                        text: 'Кількість',
                     }, {
                         xtype: 'actioncolumn',
-                        width: 25,
+                        width: 23,
                         items: [{
                             tooltip: 'Управління артикулами',
                             icon: 'img/application.ico',
@@ -328,15 +301,15 @@ var getWinCampaigns = function () {
                 ]
             },
             {
-                text: 'Учасники',
-                width: 70,
+                text: 'Учасники',                
                 height: 20,
                 columns: [{
                     text: 'група/тест',
-                    dataIndex: 'customers_grp'
+                    dataIndex: 'customers_grp',
+                    width: 90
                 }, {
                     xtype: 'actioncolumn',
-                    width:25,
+                    width:23,
                     items: [{
                         tooltip: 'Перегляд',
                         icon: 'img/application.ico',
@@ -352,10 +325,10 @@ var getWinCampaigns = function () {
                     {
                         text: 'Коментарі',
                         dataIndex: 'max_term_date',
-                        width: 120
+                        width: 90
                     }, {
                         xtype: 'actioncolumn',
-                        width: 25,
+                        width: 23,
                         items: [{
                             tooltip: 'Перегляд умов',
                             icon: 'img/application.ico',
@@ -372,14 +345,12 @@ var getWinCampaigns = function () {
         return columns.slice(start || 0, finish);
     };
 
-    var columns = createColumns(9);
-
     var grid = Ext.create('Ext.grid.Panel', {
         stateful: true,
         stateId: 'stateful-filter-grid',
         border: false,
         store: store,
-        columns: columns,
+        columns: createColumns(9),
         plugins: 'gridfilters',
         loadMask: true,
         //features: [filters],
@@ -411,6 +382,76 @@ var getWinCampaigns = function () {
             }
         }
     });
+
+    var btnCreate = Ext.create('Ext.Button', {
+        text: 'Створити',
+        width: "100%",
+        renderTo: Ext.getBody(),
+        handler: function (ctrl, event) {
+            winCd.Show(null);
+        }
+    });
+
+    var btnEdit = Ext.create('Ext.Button', {
+        text: 'Редагувати',
+        width: "100%",
+        renderTo: Ext.getBody(),
+        scope: grid,
+        handler: function (ctrl, event) {
+            var selection_record = ctrl.scope.getSelection();
+            if (selection_record.length > 0)
+                winCd.Show(selection_record[0]);
+        }
+    });
+
+    var panel = Ext.create('Ext.panel.Panel', {
+        border: false,
+        layout: {
+            type: 'hbox',
+        },
+        renderTo: Ext.getBody(),
+        items: [
+            {
+                xtype: 'panel',
+                flex: 1,
+                height: '100%',
+                layout: 'fit',
+                items: [
+                    {
+                        xtype: 'panel',                        
+                        layout: 'fit',
+                        border: false,
+                        items: [
+                            grid
+                        ]
+                    }]
+            }, {
+                xtype: 'panel',
+                width: 120,
+                layout: {
+                    type: 'vbox',
+                    align: 'stretch',
+                    pack: 'start'
+                },
+                items: [{
+                    xtype: 'panel',
+                    border: false,
+                    padding: 2,
+                    items: [
+                        btnCreate
+                    ]
+                }, {
+                    xtype: 'panel',
+                    border: false,
+                    padding: 2,
+                    items: [
+                        btnEdit
+                    ]
+                }]
+            }
+        ]
+    });
+    
 
     var win_campaigns = Ext.create('Ext.Window', {
         title: 'Управління кампаниями',
@@ -468,16 +509,7 @@ var getWinCampaigns = function () {
                                 flex: 1,
                                 dock: 'top',
                                 items: [
-                                    {
-                                        xtype: 'button',
-                                        text: 'Створити',
-                                        itemId: 'campaignadd',
-                                        listeners: {
-                                            'click': function () {
-                                                winCd.Show(null);
-                                            }
-                                        }
-                                    }
+
                                 ]
                             }
                         ]
@@ -487,7 +519,7 @@ var getWinCampaigns = function () {
             xtype: 'panel',
             flex: 1,
             layout: 'fit',
-            items: [grid]
+            items: [panel]
         }],
         listeners: {
             'close': function (win) {

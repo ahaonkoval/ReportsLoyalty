@@ -8,20 +8,54 @@ using System.Configuration;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using LoyaltyDB;
 
 namespace SoftLineApi
 {
-    public class Api
+    public class StatusApi
     {
         Identification ident;
 
         string Uri { get; set; }
 
-        public Api() {
+        public StatusApi() {
             ident = new Identification();
             this.Uri = ConfigurationManager.AppSettings["Uri"];
         }
         #region PUBLIC
+
+        public void GetReplayByMailingId(int CampaignId)
+        {
+            DataApi da = new DataApi();
+            da.onEndSaveList += Da_onEndSaveList;
+
+            string mailingId = string.Empty;
+
+            using (GetData gd = new GetData())
+            {
+                mailingId = gd.Campaigns.GetMailingIdByCampaignId(CampaignId);
+            }
+            if (mailingId == null) mailingId = string.Empty;
+            if (mailingId == string.Empty)
+            {
+                SoftLineApi.StatusApi SoftlineApi = new SoftLineApi.StatusApi();
+                string response = SoftlineApi.Request(mailingId);
+                if (response != string.Empty)
+                {
+                    Replay p = SoftlineApi.StringToObject(response);
+                    if (p.contacts.Count > 0)
+                    {
+                        da.SaveStatuses(CampaignId, p);
+                    }
+                }
+            }                   
+        }
+
+        private void Da_onEndSaveList(int StatusCount)
+        {
+            //throw new NotImplementedException();
+        }
+
         public String Request(string NotificationId)
         {
             string source = string.Format(
@@ -68,6 +102,26 @@ namespace SoftLineApi
             Replay rp = JsonConvert.DeserializeObject<Replay>(m);
 
             return rp;
+        }
+
+        public static List<int> GetTrueStatus()
+        {
+            List<int> l = new List<int>();
+            l.Add(1);
+            l.Add(3);
+            return l;
+        }
+
+        public static List<int> GetFalseStatus()
+        {
+            List<int> l = new List<int>();
+            l.Add(0);
+            l.Add(2);
+            l.Add(4);
+            l.Add(5);
+            l.Add(6);
+            l.Add(7);
+            return l;
         }
         #endregion
 

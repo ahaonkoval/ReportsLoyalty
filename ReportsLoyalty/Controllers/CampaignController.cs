@@ -15,6 +15,7 @@ namespace ReportsLoyalty.Controllers
     {
         // GET: api/Campaign
         //public IEnumerable<campaigns_mk> Get()
+        #region Campaign
         public object Get()
         {
             var queryparams = Request.GetQueryNameValuePairs();
@@ -51,52 +52,48 @@ namespace ReportsLoyalty.Controllers
 
                 return om;
             }
+        }
+        /// <summary>
+        /// Збереження параметрів кампанії
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public long SetCampaignData([FromBody] dynamic value)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            string json = value.ToString();
+            LoyaltyDB.Models.Lcampaign cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.Lcampaign>(json);
 
-            //var cmps = data.Campaigns.GetCampaigns().Where(c => c.            
+            using (GetData gt = new GetData())
+            {
+                cmp = gt.Campaigns.SetCampaign(cmp);
+            }
 
-            //var response = new HttpResponseMessage();
-
-            //var str = new JavaScriptSerializer().Serialize(campaigns.ToList());
-            //str = string.Format("\"data\":{0}", str); campaigns.Count().ToString()
-            //str = string.Format("\"total\": \"{0}\", \"data\":{1}", campaigns_count.ToString(), str);
-            //str = "{" + str + "}";
-            //response.Content = new StringContent(str, Encoding.UTF8, "application/json");
-
-            //return response;
+            return cmp.campaign_id;
         }
 
-        //public HttpResponseMessage Get()
-        //{
-        //    var queryparams = Request.GetQueryNameValuePairs();
+        [HttpPost]
+        public int SetHide([FromBody] dynamic value)
+        {
+            int returned = 1;
 
-        //    var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
-        //    var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
-        //    var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+            try {
+                using (GetData gt = new GetData())
+                {
+                    gt.Campaigns.SetHideCampaign(0);
+                }
+            }
+            catch
+            {
+                returned = 0;
+            }
 
-        //    var isRun = queryparams.Where(w => w.Key == "isRun").FirstOrDefault();
-        //    //var SpecProduct = (SpecProductObj.Value == null ? string.Empty : SpecProductObj.Value.ToString());            
+            return returned;
+        }
+        #endregion
 
-        //    GetData data = new GetData();
-
-        //    //var cmps = data.Campaigns.GetCampaigns().Where(c => c.
-
-        //    var campaigns = data.Campaigns.GetCampaigns(Convert.ToBoolean(isRun.Value)).Where(
-        //            w => w.number >= start && w.number <= (start + limit)
-        //        ).OrderBy(o => o.id);
-
-        //    int campaigns_count = data.Campaigns.GetCampaignsCount(Convert.ToBoolean(isRun.Value));
-
-        //    var response = new HttpResponseMessage();
-
-        //    var str = new JavaScriptSerializer().Serialize(campaigns.ToList());
-        //    //str = string.Format("\"data\":{0}", str); campaigns.Count().ToString()
-        //    str = string.Format("\"total\": \"{0}\", \"data\":{1}", campaigns_count.ToString(), str);
-        //    str = "{" + str + "}";
-        //    response.Content = new StringContent(str, Encoding.UTF8, "application/json");
-
-        //    return response;
-        //}
-
+        #region CampaignsTerms
         [HttpGet]
         public HttpResponseMessage GetCampaignsTerms(long id)
         {
@@ -124,44 +121,29 @@ namespace ReportsLoyalty.Controllers
                 return response;
             }
         }
+        #endregion
+        //// GET: api/Campaign/5
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
-        // GET: api/Campaign/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// POST: api/Campaign
+        //[HttpPost]
+        //public void Post(string value) //[FromBody]
+        //{
+        //    int i = 0;
+        //}
 
-        // POST: api/Campaign
-        [HttpPost]
-        public void Post(string value) //[FromBody]
-        {
-            int i = 0;
-        }
+        //// PUT: api/Campaign/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // PUT: api/Campaign/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Campaign/5
-        public void Delete(int id)
-        {
-        }
-
-        [HttpPost]
-        public long SetCampaignData([FromBody] dynamic value)
-        {
-            var queryparams = Request.GetQueryNameValuePairs();
-            string json = value.ToString();
-            LoyaltyDB.Models.Lcampaign cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.Lcampaign>(json);
-
-            using (GetData gt = new GetData())
-            {
-                cmp = gt.Campaigns.SetCampaign(cmp);
-            }
-
-            return cmp.campaign_id;
-        }
+        //// DELETE: api/Campaign/5
+        //public void Delete(int id)
+        //{
+        //}
 
     }
 }
