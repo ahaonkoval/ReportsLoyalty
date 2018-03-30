@@ -370,7 +370,7 @@ namespace LoyaltyDB
 
                     db.CampaignsMk.Where(wc => wc.Id == cmp.campaign_id)
                         .Set(p => p.Name, cmp.name)
-                        .Set(p => p.TypeId, cmp.type_id)
+                        .Set(p => p.TypeId, cmp.type_id > 0 ? cmp.type_id : 6)
                         .Set(p => p.IsRun, Convert.ToBoolean(cmp.is_run))
                         .Set(p => p.DateStart, cmp.date_start)
                         .Set(p => p.DateEnd, cmp.date_end)

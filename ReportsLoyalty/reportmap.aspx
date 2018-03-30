@@ -22,7 +22,7 @@
 
     <script type="text/javascript" src="scripts/requests.js"></script>
     <script type="text/javascript" src="scripts/campaigns.js"></script>
-    <script type="text/javascript" src="scripts/campaign_details.js"></script>
+    <script type="text/javascript" src="scripts/campaign_settings.js"></script>
     <script type="text/javascript" src="scripts/campaigns_terms.js"></script>
     <script type="text/javascript" src="scripts/upload_status.js"></script>
     <script type="text/javascript" src="scripts/customers.js"></script>    

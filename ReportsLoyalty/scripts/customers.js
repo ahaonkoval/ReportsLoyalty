@@ -2,37 +2,24 @@
 var get_campaign_customers_model = function () {
     return Ext.define('tf_campaign_customers', {
         extend: 'Ext.data.Model',
-        fields: [{
-            name: 'number',
-            type: 'int'
-        }, {
-            name: 'name1',
-            type: 'string'
-        }, {
-            name: 'name2',
-            type: 'string'
-        }, {
-            name: 'name3',
-            type: 'string'
-        }, {
-            name: 'gender',
-            type: 'string'
-        }, {
-            name: 'barcode',
-            type: 'string'
-        }, {
-            name: 'mobile_phone',
-            type: 'string'
-        }, {
-            name: 'control_group',
-            type: 'string'
-        }, {
-            name: 'delivery_channel',
-            type: 'string'
-        }, {
-            name: 'market_name',
-            type: 'string'
-        }]
+        fields: [
+            { name: 'number', type: 'int' },
+            { name: 'name1', type: 'string' },
+            { name: 'name2', type: 'string' }, {
+                name: 'name3', type: 'string'
+            }, {
+                name: 'gender', type: 'string'
+            }, {
+                name: 'barcode', type: 'string'
+            }, {
+                name: 'mobile_phone', type: 'string'
+            }, {
+                name: 'control_group', type: 'string'
+            }, {
+                name: 'delivery_channel', type: 'string'
+            }, {
+                name: 'market_name', type: 'string'
+            }]
     })
 }
 
@@ -173,7 +160,8 @@ var grid_customers = function (campaign_id) {
 }
 
 var getCustomers = function winCustomers(campaign_id) {
-    //var grid = grid_customers(campaign_id);
+    
+    var cmp_id = campaign_id;
 
     win = Ext.create('Ext.Window', {
         //id: 'win_customers',
@@ -209,45 +197,53 @@ var getCustomers = function winCustomers(campaign_id) {
                             items: [
                                 grid_customers(campaign_id)
                             ]
-                            //iconCls: 'home',
-                            
-                        },
-                        {
-                            title: 'На вигрузку',
-                            border: false,
-                            //iconCls: 'user',
-                            loadMask: true,
-                            //html: 'Contact Screen'
-                            layout: 'fit',
-                            items: [
-                                {
-                                    xtype: 'panel',
-                                    id: 'participant_list_conteiner',
-                                    loadMask: true,
-                                    layout: 'fit'                                    
-                                }
-                            ]
+                            //iconCls: 'home',                            
                         }
+                        //{
+                        //    title: 'На вигрузку',
+                        //    border: false,
+                        //    //iconCls: 'user',
+                        //    loadMask: true,
+                        //    //html: 'Contact Screen'
+                        //    layout: 'fit',
+                        //    items: [
+                        //        {
+                        //            xtype: 'panel',
+                        //            id: 'participant_list_conteiner',
+                        //            loadMask: true,
+                        //            layout: 'fit'                                    
+                        //        }
+                        //    ]
+                        //},
+                        //{
+                        //    title: 'File',
+                        //    loadMask: true,
+                        //    layout: 'fit'
+                        //}
                     ],
                     listeners: {
                         'tabchange': function (tabPanel, tab) {
-                            var url = 'pages/participant_list.aspx?'
-                            url = url + 'campaign_id=' + campaign_id;
+                            var url = 'api/Customer/GetCustomersFile/1'
+                            window.open(url);
+                            //url = url + 'campaign_id=' + campaign_id;
 
-                            Ext.getCmp('participant_list_conteiner').removeAll(true);
+                            //var url = 'pages/participant_list.aspx?'
+                            //url = url + 'campaign_id=' + campaign_id;
 
-                            dynamicPanel = new Ext.Component({
-                                xtype: 'box',
-                                layout: 'fit',
-                                showMask: true,
-                                loadMask: true,
-                                border: false,
-                                autoEl: {
-                                    tag: 'iframe',
-                                    src: url
-                                }
-                            });
-                            Ext.getCmp('participant_list_conteiner').add(dynamicPanel);
+                            //Ext.getCmp('participant_list_conteiner').removeAll(true);
+
+                            //dynamicPanel = new Ext.Component({
+                            //    xtype: 'box',
+                            //    layout: 'fit',
+                            //    showMask: true,
+                            //    loadMask: true,
+                            //    border: false,
+                            //    autoEl: {
+                            //        tag: 'iframe',
+                            //        src: url
+                            //    }
+                            //});
+                            //Ext.getCmp('participant_list_conteiner').add(dynamicPanel);
 
                         }
                     }
@@ -256,7 +252,30 @@ var getCustomers = function winCustomers(campaign_id) {
                 //grid_customers(campaign_id)
             ]
         }],
-        buttons: [{
+        buttons: [
+            {
+                xtype: 'button',
+                text: 'Завантажити (ВСЕ)',
+                scope: cmp_id,
+                listeners: {
+                    'click': function (ctrl) {
+                        var url = 'api/Customer/GetCustomersFileLong/' + ctrl.scope;
+                        window.open(url);
+                    }
+                }
+            },
+            {
+            xtype: 'button',
+            text: 'Завантажити (коротко)',
+            scope: cmp_id,
+            listeners: {
+                'click': function (ctrl) {
+                    var url = 'api/Customer/GetCustomersFile/' + ctrl.scope;
+                    window.open(url);
+                }
+            }
+        },
+        {
             xtype: 'button',
             text: 'Зберегти',
             listeners: {

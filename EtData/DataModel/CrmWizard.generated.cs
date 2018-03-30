@@ -55,7 +55,11 @@ namespace DataModels
 		public ITable<CardsDeko13>                    CardsDeko13                    { get { return this.GetTable<CardsDeko13>(); } }
 		public ITable<CardsDeko32>                    CardsDeko32                    { get { return this.GetTable<CardsDeko32>(); } }
 		public ITable<Cardusing>                      Cardusings                     { get { return this.GetTable<Cardusing>(); } }
+		public ITable<Cashinvoice>                    Cashinvoices                   { get { return this.GetTable<Cashinvoice>(); } }
+		public ITable<CashinvoiceLine>                CashinvoiceLine                { get { return this.GetTable<CashinvoiceLine>(); } }
 		public ITable<CashinvoiceLine1>               CashinvoiceLine1               { get { return this.GetTable<CashinvoiceLine1>(); } }
+		public ITable<CashinvoiceLinePmonth>          CashinvoiceLinePmonth          { get { return this.GetTable<CashinvoiceLinePmonth>(); } }
+		public ITable<CashinvoicePmonth>              CashinvoicePmonth              { get { return this.GetTable<CashinvoicePmonth>(); } }
 		public ITable<Cashinvoices1>                  Cashinvoices1                  { get { return this.GetTable<Cashinvoices1>(); } }
 		public ITable<CrmBonusMovement>               CrmBonusMovement               { get { return this.GetTable<CrmBonusMovement>(); } }
 		public ITable<CrmCardsDekoReplace>            CrmCardsDekoReplace            { get { return this.GetTable<CrmCardsDekoReplace>(); } }
@@ -100,6 +104,8 @@ namespace DataModels
 		public ITable<DictSegment>                    DictSegment                    { get { return this.GetTable<DictSegment>(); } }
 		public ITable<DictSegmentGroup>               DictSegmentGroup               { get { return this.GetTable<DictSegmentGroup>(); } }
 		public ITable<DictSellpriceTypes>             DictSellpriceTypes             { get { return this.GetTable<DictSellpriceTypes>(); } }
+		public ITable<Doc>                            Docs                           { get { return this.GetTable<Doc>(); } }
+		public ITable<DocsPmonth>                     DocsPmonth                     { get { return this.GetTable<DocsPmonth>(); } }
 		public ITable<DocStatusHistory>               DocStatusHistory               { get { return this.GetTable<DocStatusHistory>(); } }
 		public ITable<DocTypes>                       DocTypes                       { get { return this.GetTable<DocTypes>(); } }
 		public ITable<Fgroup>                         Fgroups                        { get { return this.GetTable<Fgroup>(); } }
@@ -108,6 +114,7 @@ namespace DataModels
 		public ITable<FinLoyaltyRepArticuls>          FinLoyaltyRepArticuls          { get { return this.GetTable<FinLoyaltyRepArticuls>(); } }
 		public ITable<FinLoyaltyRepGroups>            FinLoyaltyRepGroups            { get { return this.GetTable<FinLoyaltyRepGroups>(); } }
 		public ITable<Good>                           Goods                          { get { return this.GetTable<Good>(); } }
+		public ITable<GoodsExtraPoints>               GoodsExtraPoints               { get { return this.GetTable<GoodsExtraPoints>(); } }
 		public ITable<GoodsShort>                     GoodsShort                     { get { return this.GetTable<GoodsShort>(); } }
 		public ITable<HoleBucketV1>                   HoleBucketV1                   { get { return this.GetTable<HoleBucketV1>(); } }
 		public ITable<LoyaltySellMovementImport1>     LoyaltySellMovementImport1     { get { return this.GetTable<LoyaltySellMovementImport1>(); } }
@@ -207,15 +214,21 @@ namespace DataModels
 		public ITable<Promos1>                        Promos1                        { get { return this.GetTable<Promos1>(); } }
 		public ITable<PromoTypes>                     PromoTypes                     { get { return this.GetTable<PromoTypes>(); } }
 		public ITable<Region>                         Regions                        { get { return this.GetTable<Region>(); } }
+		public ITable<Retailinvoice>                  Retailinvoices                 { get { return this.GetTable<Retailinvoice>(); } }
+		public ITable<RetailinvoiceLine>              RetailinvoiceLine              { get { return this.GetTable<RetailinvoiceLine>(); } }
 		public ITable<RetailinvoiceLine1>             RetailinvoiceLine1             { get { return this.GetTable<RetailinvoiceLine1>(); } }
+		public ITable<RetailinvoiceLinePmonth>        RetailinvoiceLinePmonth        { get { return this.GetTable<RetailinvoiceLinePmonth>(); } }
+		public ITable<RetailinvoicePmonth>            RetailinvoicePmonth            { get { return this.GetTable<RetailinvoicePmonth>(); } }
 		public ITable<Retailinvoices1>                Retailinvoices1                { get { return this.GetTable<Retailinvoices1>(); } }
 		public ITable<SeekReadyBonusesCg>             SeekReadyBonusesCg             { get { return this.GetTable<SeekReadyBonusesCg>(); } }
 		public ITable<SeekReadyBonusesKm>             SeekReadyBonusesKm             { get { return this.GetTable<SeekReadyBonusesKm>(); } }
 		public ITable<SeekSellMovementCg>             SeekSellMovementCg             { get { return this.GetTable<SeekSellMovementCg>(); } }
 		public ITable<SeekSellMovementKm>             SeekSellMovementKm             { get { return this.GetTable<SeekSellMovementKm>(); } }
+		public ITable<Sell>                           Sells                          { get { return this.GetTable<Sell>(); } }
 		public ITable<SellBuyPrice>                   SellBuyPrice                   { get { return this.GetTable<SellBuyPrice>(); } }
 		public ITable<SellMovement>                   SellMovement                   { get { return this.GetTable<SellMovement>(); } }
 		public ITable<SellMovementHistory>            SellMovementHistory            { get { return this.GetTable<SellMovementHistory>(); } }
+		public ITable<SellPmonth>                     SellPmonth                     { get { return this.GetTable<SellPmonth>(); } }
 		public ITable<ShortDocs1>                     ShortDocs1                     { get { return this.GetTable<ShortDocs1>(); } }
 		public ITable<Staff>                          Staffs                         { get { return this.GetTable<Staff>(); } }
 		public ITable<StopList>                       StopList                       { get { return this.GetTable<StopList>(); } }
@@ -223,6 +236,7 @@ namespace DataModels
 		public ITable<Subregion>                      Subregions                     { get { return this.GetTable<Subregion>(); } }
 		public ITable<T329>                           T329                           { get { return this.GetTable<T329>(); } }
 		public ITable<T343>                           T343                           { get { return this.GetTable<T343>(); } }
+		public ITable<T350>                           T350                           { get { return this.GetTable<T350>(); } }
 		public ITable<Tmp329>                         Tmp329                         { get { return this.GetTable<Tmp329>(); } }
 		public ITable<UrgentBonusStates>              UrgentBonusStates              { get { return this.GetTable<UrgentBonusStates>(); } }
 		public ITable<VAllacationCustomersByAnimals>  VAllacationCustomersByAnimals  { get { return this.GetTable<VAllacationCustomersByAnimals>(); } }
@@ -463,10 +477,12 @@ namespace DataModels
 		#region TGetCampaignCustomers
 
 		[Sql.TableFunction(Schema="calc", Name="t_get_campaign_customers")]
-		public ITable<TGetCampaignCustomersResult> TGetCampaignCustomers(long? @campaign_id)
+		public ITable<TGetCampaignCustomersResult> TGetCampaignCustomers(long? @campaign_id, long? @start, long? @limit)
 		{
 			return this.GetTable<TGetCampaignCustomersResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
-				@campaign_id);
+				@campaign_id,
+				@start,
+				@limit);
 		}
 
 		public partial class TGetCampaignCustomersResult
@@ -1696,6 +1712,30 @@ namespace DataModels
 		[Column("good_id"),                Nullable         ] public long?     GoodId            { get; set; } // bigint
 	}
 
+	[Table(Schema="tmp", Name="cashinvoice")]
+	public partial class Cashinvoice
+	{
+		[Column("market_id"),         Nullable] public int?      MarketId      { get; set; } // int
+		[Column("cashinvoice_id"), NotNull    ] public long      CashinvoiceId { get; set; } // bigint
+		[Column("card_id"),        NotNull    ] public long      CardId        { get; set; } // bigint
+		[Column("created"),           Nullable] public DateTime? Created       { get; set; } // datetime
+	}
+
+	[Table(Schema="tmp", Name="cashinvoice_line")]
+	public partial class CashinvoiceLine
+	{
+		[Column("market_id"),          Nullable] public int?      MarketId       { get; set; } // int
+		[Column("cashinvoice_id"),  NotNull    ] public long      CashinvoiceId  { get; set; } // bigint
+		[Column("good_id"),            Nullable] public long?     GoodId         { get; set; } // bigint
+		[Column("quantity"),           Nullable] public decimal?  Quantity       { get; set; } // decimal(38, 3)
+		[Column("price_nds"),          Nullable] public decimal?  PriceNds       { get; set; } // decimal(10, 2)
+		[Column("bonus_obtained"),     Nullable] public decimal?  BonusObtained  { get; set; } // decimal(38, 2)
+		[Column("bonus_used"),         Nullable] public decimal?  BonusUsed      { get; set; } // decimal(38, 2)
+		[Column("discount_amount"),    Nullable] public decimal?  DiscountAmount { get; set; } // decimal(38, 2)
+		[Column("u_card_id"),          Nullable] public long?     UCardId        { get; set; } // bigint
+		[Column("created"),            Nullable] public DateTime? Created        { get; set; } // datetime
+	}
+
 	[Table(Schema="dbo", Name="cashinvoice_line1")]
 	public partial class CashinvoiceLine1
 	{
@@ -1714,6 +1754,30 @@ namespace DataModels
 		[Column("tp_nds"),                  Nullable          ] public decimal? TpNds             { get; set; } // decimal(14, 6)
 		[Column("promo_code_using_id"),     Nullable          ] public long?    PromoCodeUsingId  { get; set; } // bigint
 		[Column("markmo_code_using_id"),    Nullable          ] public long?    MarkmoCodeUsingId { get; set; } // bigint
+	}
+
+	[Table(Schema="tmp", Name="cashinvoice_line_pmonth")]
+	public partial class CashinvoiceLinePmonth
+	{
+		[Column("market_id"),          Nullable] public int?      MarketId       { get; set; } // int
+		[Column("cashinvoice_id"),  NotNull    ] public long      CashinvoiceId  { get; set; } // bigint
+		[Column("good_id"),            Nullable] public long?     GoodId         { get; set; } // bigint
+		[Column("quantity"),           Nullable] public decimal?  Quantity       { get; set; } // decimal(38, 3)
+		[Column("price_nds"),          Nullable] public decimal?  PriceNds       { get; set; } // decimal(10, 2)
+		[Column("bonus_obtained"),     Nullable] public decimal?  BonusObtained  { get; set; } // decimal(38, 2)
+		[Column("bonus_used"),         Nullable] public decimal?  BonusUsed      { get; set; } // decimal(38, 2)
+		[Column("discount_amount"),    Nullable] public decimal?  DiscountAmount { get; set; } // decimal(38, 2)
+		[Column("u_card_id"),          Nullable] public long?     UCardId        { get; set; } // bigint
+		[Column("created"),            Nullable] public DateTime? Created        { get; set; } // datetime
+	}
+
+	[Table(Schema="tmp", Name="cashinvoice_pmonth")]
+	public partial class CashinvoicePmonth
+	{
+		[Column("market_id"),         Nullable] public int?      MarketId      { get; set; } // int
+		[Column("cashinvoice_id"), NotNull    ] public long      CashinvoiceId { get; set; } // bigint
+		[Column("card_id"),        NotNull    ] public long      CardId        { get; set; } // bigint
+		[Column("created"),           Nullable] public DateTime? Created       { get; set; } // datetime
 	}
 
 	[Table(Schema="dbo", Name="cashinvoices1")]
@@ -2409,6 +2473,38 @@ namespace DataModels
 		[Column("name"),    Nullable         ] public string Name { get; set; } // nvarchar(255)
 	}
 
+	[Table(Schema="tmp", Name="docs")]
+	public partial class Doc
+	{
+		[Column("doc_id"),      NotNull    ] public long      DocId     { get; set; } // bigint
+		[Column("market_id"),      Nullable] public int?      MarketId  { get; set; } // int
+		[Column("doc_type_id"),    Nullable] public int?      DocTypeId { get; set; } // int
+		[Column("name"),           Nullable] public string    Name      { get; set; } // varchar(30)
+		[Column("created"),        Nullable] public DateTime? Created   { get; set; } // datetime
+		[Column("amount"),         Nullable] public decimal?  Amount    { get; set; } // decimal(14, 4)
+		[Column("amount_nds"),     Nullable] public decimal?  AmountNds { get; set; } // decimal(14, 4)
+		[Column("paid"),           Nullable] public decimal?  Paid      { get; set; } // decimal(14, 4)
+		[Column("status_id"),      Nullable] public int?      StatusId  { get; set; } // int
+		[Column("parent"),         Nullable] public long?     Parent    { get; set; } // bigint
+		[Column("short_date"),     Nullable] public DateTime? ShortDate { get; set; } // date
+	}
+
+	[Table(Schema="tmp", Name="docs_pmonth")]
+	public partial class DocsPmonth
+	{
+		[Column("doc_id"),      NotNull    ] public long      DocId     { get; set; } // bigint
+		[Column("market_id"),      Nullable] public int?      MarketId  { get; set; } // int
+		[Column("doc_type_id"),    Nullable] public int?      DocTypeId { get; set; } // int
+		[Column("name"),           Nullable] public string    Name      { get; set; } // varchar(30)
+		[Column("created"),        Nullable] public DateTime? Created   { get; set; } // datetime
+		[Column("amount"),         Nullable] public decimal?  Amount    { get; set; } // decimal(14, 4)
+		[Column("amount_nds"),     Nullable] public decimal?  AmountNds { get; set; } // decimal(14, 4)
+		[Column("paid"),           Nullable] public decimal?  Paid      { get; set; } // decimal(14, 4)
+		[Column("status_id"),      Nullable] public int?      StatusId  { get; set; } // int
+		[Column("parent"),         Nullable] public long?     Parent    { get; set; } // bigint
+		[Column("short_date"),     Nullable] public DateTime? ShortDate { get; set; } // date
+	}
+
 	[Table(Schema="calc", Name="doc_status_history")]
 	public partial class DocStatusHistory
 	{
@@ -2527,6 +2623,12 @@ namespace DataModels
 
 	[Table(Schema="tmp", Name="goods")]
 	public partial class Good
+	{
+		[Column("good_id"), Nullable] public long? GoodId { get; set; } // bigint
+	}
+
+	[Table(Schema="tmp", Name="goods_extra_points")]
+	public partial class GoodsExtraPoints
 	{
 		[Column("good_id"), Nullable] public long? GoodId { get; set; } // bigint
 	}
@@ -4606,6 +4708,30 @@ namespace DataModels
 		[Column("name_ua"),      Nullable         ] public string NameUa   { get; set; } // varchar(100)
 	}
 
+	[Table(Schema="tmp", Name="retailinvoice")]
+	public partial class Retailinvoice
+	{
+		[Column("market_id"),           Nullable] public int?      MarketId        { get; set; } // int
+		[Column("retailinvoice_id"), NotNull    ] public long      RetailinvoiceId { get; set; } // bigint
+		[Column("card_id"),          NotNull    ] public long      CardId          { get; set; } // bigint
+		[Column("created"),             Nullable] public DateTime? Created         { get; set; } // datetime
+	}
+
+	[Table(Schema="tmp", Name="retailinvoice_line")]
+	public partial class RetailinvoiceLine
+	{
+		[Column("market_id"),           Nullable] public int?      MarketId        { get; set; } // int
+		[Column("retailinvoice_id"), NotNull    ] public long      RetailinvoiceId { get; set; } // bigint
+		[Column("good_id"),             Nullable] public long?     GoodId          { get; set; } // bigint
+		[Column("quantity"),            Nullable] public decimal?  Quantity        { get; set; } // decimal(38, 8)
+		[Column("price_nds"),           Nullable] public decimal?  PriceNds        { get; set; } // decimal(10, 2)
+		[Column("bonus_obtained"),      Nullable] public decimal?  BonusObtained   { get; set; } // decimal(38, 2)
+		[Column("bonus_used"),          Nullable] public decimal?  BonusUsed       { get; set; } // decimal(38, 2)
+		[Column("discount_amount"),     Nullable] public decimal?  DiscountAmount  { get; set; } // decimal(38, 2)
+		[Column("u_card_id"),           Nullable] public long?     UCardId         { get; set; } // bigint
+		[Column("created"),             Nullable] public DateTime? Created         { get; set; } // datetime
+	}
+
 	[Table(Schema="dbo", Name="retailinvoice_line1")]
 	public partial class RetailinvoiceLine1
 	{
@@ -4633,6 +4759,30 @@ namespace DataModels
 		[Column("tp_nds"),                   Nullable          ] public decimal? TpNds               { get; set; } // decimal(14, 6)
 		[Column("promo_code_using_id"),      Nullable          ] public long?    PromoCodeUsingId    { get; set; } // bigint
 		[Column("markmo_code_using_id"),     Nullable          ] public long?    MarkmoCodeUsingId   { get; set; } // bigint
+	}
+
+	[Table(Schema="tmp", Name="retailinvoice_line_pmonth")]
+	public partial class RetailinvoiceLinePmonth
+	{
+		[Column("market_id"),           Nullable] public int?      MarketId        { get; set; } // int
+		[Column("retailinvoice_id"), NotNull    ] public long      RetailinvoiceId { get; set; } // bigint
+		[Column("good_id"),             Nullable] public long?     GoodId          { get; set; } // bigint
+		[Column("quantity"),            Nullable] public decimal?  Quantity        { get; set; } // decimal(38, 8)
+		[Column("price_nds"),           Nullable] public decimal?  PriceNds        { get; set; } // decimal(10, 2)
+		[Column("bonus_obtained"),      Nullable] public decimal?  BonusObtained   { get; set; } // decimal(38, 2)
+		[Column("bonus_used"),          Nullable] public decimal?  BonusUsed       { get; set; } // decimal(38, 2)
+		[Column("discount_amount"),     Nullable] public decimal?  DiscountAmount  { get; set; } // decimal(38, 2)
+		[Column("u_card_id"),           Nullable] public long?     UCardId         { get; set; } // bigint
+		[Column("created"),             Nullable] public DateTime? Created         { get; set; } // datetime
+	}
+
+	[Table(Schema="tmp", Name="retailinvoice_pmonth")]
+	public partial class RetailinvoicePmonth
+	{
+		[Column("market_id"),           Nullable] public int?      MarketId        { get; set; } // int
+		[Column("retailinvoice_id"), NotNull    ] public long      RetailinvoiceId { get; set; } // bigint
+		[Column("card_id"),          NotNull    ] public long      CardId          { get; set; } // bigint
+		[Column("created"),             Nullable] public DateTime? Created         { get; set; } // datetime
 	}
 
 	[Table(Schema="dbo", Name="retailinvoices1")]
@@ -4728,6 +4878,21 @@ namespace DataModels
 		[Column("new_final_price"), Nullable] public decimal?  NewFinalPrice { get; set; } // numeric(14, 4)
 	}
 
+	[Table(Schema="tmp", Name="sell")]
+	public partial class Sell
+	{
+		[Column("market_id"),          Nullable] public int?      MarketId       { get; set; } // int
+		[Column("doc_id"),          NotNull    ] public long      DocId          { get; set; } // bigint
+		[Column("good_id"),            Nullable] public long?     GoodId         { get; set; } // bigint
+		[Column("quantity"),           Nullable] public decimal?  Quantity       { get; set; } // decimal(38, 3)
+		[Column("price_nds"),          Nullable] public decimal?  PriceNds       { get; set; } // decimal(10, 2)
+		[Column("bonus_obtained"),     Nullable] public decimal?  BonusObtained  { get; set; } // decimal(38, 2)
+		[Column("bonus_used"),         Nullable] public decimal?  BonusUsed      { get; set; } // decimal(38, 2)
+		[Column("discount_amount"),    Nullable] public decimal?  DiscountAmount { get; set; } // decimal(38, 2)
+		[Column("u_card_id"),          Nullable] public long?     UCardId        { get; set; } // bigint
+		[Column("created"),            Nullable] public DateTime? Created        { get; set; } // date
+	}
+
 	[Table(Schema="calc", Name="sell_buy_price")]
 	public partial class SellBuyPrice
 	{
@@ -4784,6 +4949,21 @@ namespace DataModels
 		[Column("promo_code_using_id"),     Nullable] public long?     PromoCodeUsingId  { get; set; } // bigint
 		[Column("markmo_code_using_id"),    Nullable] public long?     MarkmoCodeUsingId { get; set; } // bigint
 		[Column("crm_customer_id"),         Nullable] public long?     CrmCustomerId     { get; set; } // bigint
+	}
+
+	[Table(Schema="tmp", Name="sell_pmonth")]
+	public partial class SellPmonth
+	{
+		[Column("market_id"),          Nullable] public int?      MarketId       { get; set; } // int
+		[Column("doc_id"),          NotNull    ] public long      DocId          { get; set; } // bigint
+		[Column("good_id"),            Nullable] public long?     GoodId         { get; set; } // bigint
+		[Column("quantity"),           Nullable] public decimal?  Quantity       { get; set; } // decimal(38, 3)
+		[Column("price_nds"),          Nullable] public decimal?  PriceNds       { get; set; } // decimal(10, 2)
+		[Column("bonus_obtained"),     Nullable] public decimal?  BonusObtained  { get; set; } // decimal(38, 2)
+		[Column("bonus_used"),         Nullable] public decimal?  BonusUsed      { get; set; } // decimal(38, 2)
+		[Column("discount_amount"),    Nullable] public decimal?  DiscountAmount { get; set; } // decimal(38, 2)
+		[Column("u_card_id"),          Nullable] public long?     UCardId        { get; set; } // bigint
+		[Column("created"),            Nullable] public DateTime? Created        { get; set; } // date
 	}
 
 	[Table(Schema="dbo", Name="short_docs1")]
@@ -4871,6 +5051,23 @@ namespace DataModels
 		[Column("market_name"),      Nullable] public string MarketName      { get; set; } // nvarchar(50)
 		[Column("free"),             Nullable] public string Free            { get; set; } // nvarchar(50)
 		[Column("crm_customer_id"),  Nullable] public long?  CrmCustomerId   { get; set; } // bigint
+	}
+
+	[Table(Schema="tmp", Name="t350")]
+	public partial class T350
+	{
+		[Column("number"),              Nullable] public long?  Number          { get; set; } // bigint
+		[Column("name1"),               Nullable] public string Name1           { get; set; } // nvarchar(50)
+		[Column("name2"),            NotNull    ] public string Name2           { get; set; } // nvarchar(50)
+		[Column("name3"),            NotNull    ] public string Name3           { get; set; } // nvarchar(50)
+		[Column("gender"),              Nullable] public string Gender          { get; set; } // nvarchar(10)
+		[Column("barcode"),             Nullable] public string Barcode         { get; set; } // nvarchar(50)
+		[Column("mobile_phone"),        Nullable] public long?  MobilePhone     { get; set; } // bigint
+		[Column("control_group"),       Nullable] public string ControlGroup    { get; set; } // nvarchar(50)
+		[Column("delivery_channel"),    Nullable] public string DeliveryChannel { get; set; } // nvarchar(50)
+		[Column("market_name"),         Nullable] public string MarketName      { get; set; } // nvarchar(50)
+		[Column("free"),                Nullable] public string Free            { get; set; } // nvarchar(50)
+		[Column("crm_customer_id"),     Nullable] public long?  CrmCustomerId   { get; set; } // bigint
 	}
 
 	[Table(Schema="tmp", Name="tmp_329")]
@@ -5760,32 +5957,6 @@ namespace DataModels
 		{
 			return dataConnection.ExecuteProc("[calc].[p_birth_day_children_mk_fill]",
 				new DataParameter("@fill_date", @fill_date, DataType.Date));
-		}
-
-		#endregion
-
-		#region PBirthDayChildrenMkResponse
-
-		public static IEnumerable<PBirthDayChildrenMkResponseResult> PBirthDayChildrenMkResponse(this DataConnection dataConnection, DateTime? @date_start, DateTime? @date_end, bool? @in_market, long? @market_id, long? @f_group_id)
-		{
-			return dataConnection.QueryProc<PBirthDayChildrenMkResponseResult>("[calc].[p_birth_day_children_mk_response]",
-				new DataParameter("@date_start", @date_start, DataType.Date),
-				new DataParameter("@date_end",   @date_end,   DataType.Date),
-				new DataParameter("@in_market",  @in_market,  DataType.Boolean),
-				new DataParameter("@market_id",  @market_id,  DataType.Int64),
-				new DataParameter("@f_group_id", @f_group_id, DataType.Int64));
-		}
-
-		public partial class PBirthDayChildrenMkResponseResult
-		{
-			public string   market_name   { get; set; }
-			public long?    market_id     { get; set; }
-			public long?    qty_customers { get; set; }
-			public long?    qty_doc       { get; set; }
-			public decimal? sm            { get; set; }
-			public decimal? sm_buy        { get; set; }
-			public decimal? sum_discount  { get; set; }
-			public decimal? doc_avg       { get; set; }
 		}
 
 		#endregion

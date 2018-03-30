@@ -73,24 +73,24 @@ namespace ReportsLoyalty.Controllers
             return cmp.campaign_id;
         }
 
-        [HttpPost]
-        public int SetHide([FromBody] dynamic value)
-        {
-            int returned = 1;
+        //[HttpPost]
+        //public int SetHide([FromBody] dynamic value)
+        //{
+        //    int returned = 1;
 
-            try {
-                using (GetData gt = new GetData())
-                {
-                    gt.Campaigns.SetHideCampaign(0);
-                }
-            }
-            catch
-            {
-                returned = 0;
-            }
+        //    try {
+        //        using (GetData gt = new GetData())
+        //        {
+        //            gt.Campaigns.SetHideCampaign(0);
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        returned = 0;
+        //    }
 
-            return returned;
-        }
+        //    return returned;
+        //}
         #endregion
 
         #region CampaignsTerms
