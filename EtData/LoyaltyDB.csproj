@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -113,6 +114,8 @@
     <Compile Include="Models\Lcampaign.cs" />
     <Compile Include="Models\Lterminate.cs" />
     <Compile Include="Models\PackDocs.cs" />
+    <Compile Include="Models\ShortObjects\Participant.cs" />
+    <Compile Include="Models\ShortObjects\RecipentPhone.cs" />
     <Compile Include="Models\TDoc.cs" />
     <Compile Include="Models\TF_GetUnDoc.cs" />
     <Compile Include="Models\UPLControl.cs" />

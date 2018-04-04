@@ -1,70 +1,42 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SoftLineApi.Models;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using SoftLineApi.Models;
-using System.Configuration;
-using System.Net;
-using System.IO;
-using Newtonsoft.Json;
-using LoyaltyDB;
 
 namespace SoftLineApi
 {
-    public class StatusApi
+    public class SoftLine
     {
-        Identification ident;
+        public int PackageSize = 10000;
+
+        Identification ident;        
 
         string Uri { get; set; }
 
-        public StatusApi() {
+        public SoftLine() {
             ident = new Identification();
             this.Uri = ConfigurationManager.AppSettings["Uri"];
         }
-        #region PUBLIC
 
-        public void GetReplayByMailingId(int CampaignId)
-        {
-            DataApi da = new DataApi();
-            da.onEndSaveList += Da_onEndSaveList;
-
-            string mailingId = string.Empty;
-
-            using (GetData gd = new GetData())
-            {
-                mailingId = gd.Campaigns.GetMailingIdByCampaignId(CampaignId);
-            }
-            if (mailingId == null) mailingId = string.Empty;
-            if (mailingId == string.Empty)
-            {
-                SoftLineApi.StatusApi SoftlineApi = new SoftLineApi.StatusApi();
-                string response = SoftlineApi.Request(mailingId);
-                if (response != string.Empty)
-                {
-                    Replay p = SoftlineApi.StringToObject(response);
-                    if (p.contacts.Count > 0)
-                    {
-                        da.SaveStatuses(CampaignId, p);
-                    }
-                }
-            }                   
-        }
-
-        private void Da_onEndSaveList(int StatusCount)
-        {
-            //throw new NotImplementedException();
-        }
-
-        public String Request(string NotificationId)
+        public String Request(string NotificationId, int StartMessageId)
         {
             string source = string.Format(
                 "\"login\":\"{0}\"," +
                 "\"pwd\":\"{1}\"," +
-                "\"notification_id\":{2}",
+                "\"notification_id\":{2}," +
+                "\"start_message_id\":{3}," +
+                "\"report_size\":{4}",
                 this.ident.login,
                 this.ident.pwd,
-                NotificationId
+                NotificationId,
+                StartMessageId.ToString(),
+                PackageSize.ToString()
             );
 
             source = "{" + source + "}";
@@ -123,10 +95,5 @@ namespace SoftLineApi
             l.Add(7);
             return l;
         }
-        #endregion
-
-        #region PRIVATE
-
-        #endregion
     }
 }

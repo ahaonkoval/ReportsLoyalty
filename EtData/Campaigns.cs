@@ -6,24 +6,79 @@ using System.Threading.Tasks;
 using static DataModels.CrmWizardDB;
 using DataModels;
 using LinqToDB;
+using System.Transactions;
+using LoyaltyDB.Models.ShortObjects;
+using System.Data;
 
 namespace LoyaltyDB
 {
     public class Campaigns
     {
-        LoyaltyDB.LoyaltyEntities Le;
+        //LoyaltyDB.LoyaltyEntities Le;
 
-        public Campaigns(LoyaltyDB.LoyaltyEntities le) {
-            Le = le;
+        private List<Participant> сampaignParticipantCache;
+
+        public Campaigns(LoyaltyDB.LoyaltyEntities le)
+        {
+            //Le = le;
+        }
+
+        public void CreateCampaignParticipantCache(long _campaignId)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions
+                {
+                    IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted
+                }))
+                {
+                    var сamp = db.CampaignParticipant.Where(w => w.CampaignId == _campaignId);
+
+                    сampaignParticipantCache = db.CrmCustomers.Join(сamp,
+                        a => a.CrmCustomerId,
+                        b => b.CrmCustomerId,
+                        (a, b) => new Participant
+                        {
+                            MobilePhone = a.MobilePhone,
+                            CrmCustomerId = b.CrmCustomerId,
+                            PartId = b.Id,
+                            CampaignId = b.CampaignId
+                        }).ToList();
+                }
+            }
+        }
+
+        public void CampaignDeleteStatuses(int campaignId)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                db.CampaignPhoneStatus.Delete(o => o.CampaignId == campaignId);
+
+                db.CampaignSoftlineStatus.Delete(o => o.CampaignId == campaignId);
+            }
         }
 
         #region GET
 
-        public IEnumerable<CampaignsMk> GetCampaignsGetStatusMailing()
+        public long GetCampaignsGetStatusMailing()
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                return db.CampaignsMk.Where(w => w.IsStartGetStatus < 2).ToList();
+                using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions
+                {
+                    IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted
+                }))
+                {
+                    var cmp = db.CampaignsMk.Where(w => w.IsStartGetStatus < 2).ToList();
+                    if (cmp.Where(w => w.IsStartGetStatus == 1).Count() == 0)
+                    {
+                        return cmp.Where(w => w.IsStartGetStatus == 1).FirstOrDefault().Id;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
             }
         }
 
@@ -51,33 +106,18 @@ namespace LoyaltyDB
 
                 return db.CampaignsMk.Where(w => w.IsRun == true).Select(m => new CampaignsMk
                 {
-                        Created = m.Created,
-                        DateEnd = m.DateEnd,
-                        DateStart = m.DateStart,
-                        GroupId0 = m.GroupId0,
-                        GroupId1 = m.GroupId1,
-                        Id = m.Id,
-                        IsRun = m.IsRun,
-                        MarkmoId = m.MarkmoId,
-                        TypeId = m.TypeId,
-                        Name = string.Format("({0}), {1}", m.Id.ToString(), m.Name)
+                    Created = m.Created,
+                    DateEnd = m.DateEnd,
+                    DateStart = m.DateStart,
+                    GroupId0 = m.GroupId0,
+                    GroupId1 = m.GroupId1,
+                    Id = m.Id,
+                    IsRun = m.IsRun,
+                    MarkmoId = m.MarkmoId,
+                    TypeId = m.TypeId,
+                    Name = string.Format("({0}), {1}", m.Id.ToString(), m.Name)
                 }).ToList();
-
-                //return db.VCampaignsMkRun.ToList().Select(a => new VCampaignsMkRun
-                //{
-                //    Created = a.Created,
-                //    DateEnd = a.DateEnd,
-                //    DateStart = a.DateStart,
-                //    GroupId0 = a.GroupId0,
-                //    GroupId1 = a.GroupId1,
-                //    Id = a.Id,
-                //    IsRun = a.IsRun,
-                //    MarkmoId = a.MarkmoId,
-                //    TypeId = a.TypeId,
-                //    Name = string.Format("({0}), {1}", a.Id.ToString(), a.Name)
-                //});
-            }        
-            //return Le.v_campaigns_mk_run.ToList();
+            }
         }
         /// <summary>
         /// 
@@ -187,7 +227,7 @@ namespace LoyaltyDB
                 }
             }
 
-            return sb.ToString(); 
+            return sb.ToString();
         }
         /// <summary>
         /// 
@@ -211,7 +251,7 @@ namespace LoyaltyDB
                 string ls = string.Join(",", lst.ToArray());
 
                 return ls;
-            }                       
+            }
         }
 
         public string GetOtdNameByCampaignId(int id)
@@ -223,7 +263,7 @@ namespace LoyaltyDB
                 var GrpName1 = db.Fgroups.Where(wf => wf.FgroupId == campaign.GroupId0).FirstOrDefault();
 
                 return GrpName1.Name;
-            }                
+            }
         }
         /// <summary>
         /// 
@@ -259,7 +299,7 @@ namespace LoyaltyDB
             using (CrmWizardDB db = new CrmWizardDB())
             {
                 return db.CampaignTypes.ToList();
-            }                
+            }
         }
         /// <summary>
         /// 
@@ -272,7 +312,8 @@ namespace LoyaltyDB
             using (CrmWizardDB db = new CrmWizardDB())
             {
                 var list = db.CampaignsTerms.Where(w => w.CampaignId == id).ToList();
-                var lt = list.Select(x => new CampaignsTerms {
+                var lt = list.Select(x => new CampaignsTerms
+                {
                     Rn = index++,
                     CampaignsTermsId = Convert.ToInt64(x.CampaignsTermsId),
                     CampaignId = Convert.ToInt64(x.CampaignId),
@@ -325,7 +366,8 @@ namespace LoyaltyDB
                 if (db.CampaignsMk.Where(w => w.IsStartGetStatus == 1).Count() > 0)
                 {
                     returned = 0;
-                } else
+                }
+                else
                 {
                     db.CampaignsMk.Where(w => w.Id == CampaignId)
                         .Set(p => p.IsStartGetStatus, 1)
@@ -383,7 +425,8 @@ namespace LoyaltyDB
                 else if (cmp.campaign_id == -1)   // --<<-- Новая кампания
                 {
                     var id = db.CampaignsMk.InsertWithIdentity(() =>
-                        new CampaignsMk {
+                        new CampaignsMk
+                        {
                             DateEnd = cmp.date_end,
                             DateSend = cmp.date_send,
                             DateStart = cmp.date_start,
@@ -404,48 +447,8 @@ namespace LoyaltyDB
                                 CampaignId = cmp.campaign_id,
                                 GroupId = Convert.ToInt64(f)
                             });
-
-                            //Le.campaign_groups.Add(
-                            //    new LoyaltyDB.campaign_groups
-                            //    {
-                            //        campaign_id = cmp.campaign_id,
-                            //        group_id = Convert.ToInt64(f)
-                            //    });
                         }
                     }
-
-                    //campaigns_mk campaign = new campaigns_mk
-                    //{
-                    //    date_end = cmp.date_end,
-                    //    date_start = cmp.date_start,
-                    //    group_id_0 = cmp.group_id_0 == string.Empty ? 0 : Convert.ToInt64(cmp.group_id_0),
-                    //    is_run = Convert.ToBoolean(cmp.is_run),
-                    //    type_id = 6,
-                    //    name = cmp.name                        
-                    //};
-
-                    //if (cmp.type_id > 0) campaign.type_id = cmp.type_id;
-
-                    //Le.campaigns_mk.Add(campaign);
-                    //Le.SaveChanges();
-                    //Le.Entry(campaign);
-
-                    //cmp.campaign_id = campaign.id;
-
-                    //string[] f_groups = cmp.group_id_2.Split(',');
-                    //if (f_groups[0].Length > 0)
-                    //{
-                    //    foreach (string f in f_groups)
-                    //    {
-                    //        Le.campaign_groups.Add(
-                    //            new LoyaltyDB.campaign_groups
-                    //            {
-                    //                campaign_id = cmp.campaign_id,
-                    //                group_id = Convert.ToInt64(f)
-                    //            });
-                    //    }
-                    //}
-                    //Le.SaveChanges();
                 }
                 return cmp;
             }
@@ -456,83 +459,88 @@ namespace LoyaltyDB
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
-                db.CampaignsTerms.Insert(() => new CampaignsTerms {
+                db.CampaignsTerms.Insert(() => new CampaignsTerms
+                {
                     CampaignId = t.campaign_id,
                     Created = DateTime.Now,
                     Description = t.campaign_terms_details,
                     ShortComment = t.campaign_terms_short
                 });
-
-                //CampaignsTerms tm = new DataModels.CampaignsTerms
-                //{
-                //    CampaignId = t.campaign_id,
-                //    Created = DateTime.Now,
-                //    Description = t.campaign_terms_details,
-                //    ShortComment = t.campaign_terms_short
-                //};
             }
-
-            //campaigns_terms term = new campaigns_terms {
-            //    campaign_id = t.campaign_id,
-            //    short_comment = t.campaign_terms_short,
-            //    description = t.campaign_terms_details,
-            //    created = DateTime.Now
-            //};
-
-            //Le.campaigns_terms.Add(term);
-            //Le.SaveChanges();
         }
 
         #region MAILING
-        public void SetStatusCampaignMailing(long campaignId, string phone, int status, string chanel)
+        public void SetStatusCampaignMailing(long campaignId, RecipientPhone rp, int status, string chanel)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
-                db.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+                var participant = сampaignParticipantCache.Where(w => w.MobilePhone == rp.MobilePhone).FirstOrDefault();
 
-                if (phone.IndexOf("+") < 0)
-                    phone = string.Format("+{0}", phone);
-
-                var customers = db.CrmCustomers.Where(w => w.MobilePhone == phone);
-
-                var customersParticipant = db.CampaignParticipant.Join(customers,
-                    c => c.CrmCustomerId,
-                    p => p.CrmCustomerId,
-                    (c, p) => new { c.CrmCustomerId, p.MobilePhone, c.CampaignId, c.Id }
-                ).Where(w=> w.CampaignId == campaignId).ToList();
-
-                foreach (var cp in customersParticipant)
+                if (participant != null)
                 {
-                    db.CampaignParticipant.Where(w => w.Id == cp.Id)
-                        .Set(p => p.DeliveryStatus, status)
-                        .Set(p => p.DeliveryChannel, chanel)
-                        .Update();
+                    db.CampaignPhoneStatus.Insert(() => new DataModels.CampaignPhoneStatus
+                    {
+                        CampaignId = campaignId,
+                        CrmCustomerId = participant.CrmCustomerId,
+                        MobilePhone = participant.MobilePhone,
+                        PartId = participant.PartId,
+                        Status = status,
+                        Channel = chanel
+                    });
                 }
-
-                db.CommitTransaction();
             }
         }
 
-        //public string GetMailingIdByCampaignId(int campaignId)
-        //{
-        //    using (CrmWizardDB db = new DataModels.CrmWizardDB())
-        //    {
-        //        return db.CampaignsMk.Where(w => w.Id == campaignId).FirstOrDefault().MailingId;
-        //    }
-        //}
+        public void SetCampaignSoftlineStatus(long campaignId, int messageId, string mobilePhone, int status)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                db.CampaignSoftlineStatus.Insert(() => new CampaignSoftlineStatus
+                {
+                    CampaignId = campaignId,
+                    MessageId = messageId,
+                    MobilePhone = mobilePhone,
+                    Status = status
+                });
+            }
+        }
 
         public void SetPhonesFindMarkets(string phone, string status, string channel)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
 
-                db.PhonesFindMarkets.Insert(() => new PhonesFindMarkets {
+                db.PhonesFindMarkets.Insert(() => new PhonesFindMarkets
+                {
                     Chanell = channel,
                     Status = status,
                     Phone = phone
                 });
             }
         }
-        #endregion
+
+        public void FixCampaignStatus(long campaignId)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                string cmdText = @"
+                    update cp set cp.delivery_status = ps.[status] 
+                    from calc.campaign_participant cp (nolock)
+	                    inner join [calc].[campaign_phone_status] ps (nolock) 
+		                    on cp.crm_customer_id = ps.crm_customer_id and ps.campaign_id = cp.campaign_id
+                    where
+	                    cp.campaign_id = {0}
+                ";
+
+                cmdText = string.Format(cmdText, campaignId.ToString());
+                var cmd = db.CreateCommand();
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = cmdText;
+
+                if (cmd.Connection.State == ConnectionState.Closed)
+                    cmd.Connection.Open();
+            }
+            #endregion
+        }
     }
 }

@@ -48,11 +48,7 @@ namespace GetSiftLineStatus
         {
             using (GetData data = new GetData())
             {
-                var campaigns = data.Campaigns.GetCampaignsGetStatusMailing();
-                if (campaigns.Where(w => w.IsStartGetStatus == 1).Count() > 0)
-                {
-
-                }
+                long campaignId = data.Campaigns.GetCampaignsGetStatusMailing();
             }
         }
 

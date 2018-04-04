@@ -23,7 +23,7 @@ namespace DataModels
 	/// <summary>
 	/// Database       : crm_wizard
 	/// Data Source    : 10.7.131.218
-	/// Server Version : 13.00.4466
+	/// Server Version : 13.00.4474
 	/// </summary>
 	public partial class CrmWizardDB : LinqToDB.Data.DataConnection
 	{
@@ -42,7 +42,9 @@ namespace DataModels
 		public ITable<CampaignArticul>                CampaignArticul                { get { return this.GetTable<CampaignArticul>(); } }
 		public ITable<CampaignGroups>                 CampaignGroups                 { get { return this.GetTable<CampaignGroups>(); } }
 		public ITable<CampaignParticipant>            CampaignParticipant            { get { return this.GetTable<CampaignParticipant>(); } }
+		public ITable<CampaignPhoneStatus>            CampaignPhoneStatus            { get { return this.GetTable<CampaignPhoneStatus>(); } }
 		public ITable<CampaignsMk>                    CampaignsMk                    { get { return this.GetTable<CampaignsMk>(); } }
+		public ITable<CampaignSoftlineStatus>         CampaignSoftlineStatus         { get { return this.GetTable<CampaignSoftlineStatus>(); } }
 		public ITable<CampaignsStateDeliveryMessages> CampaignsStateDeliveryMessages { get { return this.GetTable<CampaignsStateDeliveryMessages>(); } }
 		public ITable<CampaignsTerms>                 CampaignsTerms                 { get { return this.GetTable<CampaignsTerms>(); } }
 		public ITable<CampaignSubGroups>              CampaignSubGroups              { get { return this.GetTable<CampaignSubGroups>(); } }
@@ -225,7 +227,8 @@ namespace DataModels
 		public ITable<SeekSellMovementCg>             SeekSellMovementCg             { get { return this.GetTable<SeekSellMovementCg>(); } }
 		public ITable<SeekSellMovementKm>             SeekSellMovementKm             { get { return this.GetTable<SeekSellMovementKm>(); } }
 		public ITable<Sell>                           Sells                          { get { return this.GetTable<Sell>(); } }
-		public ITable<SellBuyPrice>                   SellBuyPrice                   { get { return this.GetTable<SellBuyPrice>(); } }
+		public ITable<SellBuyPrice0402>               SellBuyPrice0402               { get { return this.GetTable<SellBuyPrice0402>(); } }
+		public ITable<SellBuyPrice3003>               SellBuyPrice3003               { get { return this.GetTable<SellBuyPrice3003>(); } }
 		public ITable<SellMovement>                   SellMovement                   { get { return this.GetTable<SellMovement>(); } }
 		public ITable<SellMovementHistory>            SellMovementHistory            { get { return this.GetTable<SellMovementHistory>(); } }
 		public ITable<SellPmonth>                     SellPmonth                     { get { return this.GetTable<SellPmonth>(); } }
@@ -1427,6 +1430,17 @@ namespace DataModels
 		[Column("status_list"),         Nullable          ] public string   StatusList      { get; set; } // nvarchar(50)
 	}
 
+	[Table(Schema="calc", Name="campaign_phone_status")]
+	public partial class CampaignPhoneStatus
+	{
+		[Column("part_id"),         NotNull    ] public long   PartId        { get; set; } // bigint
+		[Column("crm_customer_id"),    Nullable] public long?  CrmCustomerId { get; set; } // bigint
+		[Column("mobile_phone"),       Nullable] public string MobilePhone   { get; set; } // nvarchar(50)
+		[Column("campaign_id"),        Nullable] public long?  CampaignId    { get; set; } // bigint
+		[Column("channel"),            Nullable] public string Channel       { get; set; } // nvarchar(50)
+		[Column("status"),             Nullable] public int?   Status        { get; set; } // int
+	}
+
 	[Table(Schema="calc", Name="campaigns_mk")]
 	public partial class CampaignsMk
 	{
@@ -1482,6 +1496,15 @@ namespace DataModels
 		public IEnumerable<DailyMap> DailyMaps { get; set; }
 
 		#endregion
+	}
+
+	[Table(Schema="calc", Name="campaign_softline_status")]
+	public partial class CampaignSoftlineStatus
+	{
+		[Column("campaign_id"),  Nullable] public long?  CampaignId  { get; set; } // bigint
+		[Column("message_id"),   Nullable] public long?  MessageId   { get; set; } // bigint
+		[Column("mobile_phone"), Nullable] public string MobilePhone { get; set; } // nvarchar(50)
+		[Column("status"),       Nullable] public int?   Status      { get; set; } // int
 	}
 
 	[Table(Schema="calc", Name="campaigns_state_delivery_messages")]
@@ -4893,8 +4916,16 @@ namespace DataModels
 		[Column("created"),            Nullable] public DateTime? Created        { get; set; } // date
 	}
 
-	[Table(Schema="calc", Name="sell_buy_price")]
-	public partial class SellBuyPrice
+	[Table(Schema="calc", Name="sell_buy_price_04_02")]
+	public partial class SellBuyPrice0402
+	{
+		[Column("market_id"), NotNull    ] public long     MarketId { get; set; } // bigint
+		[Column("good_id"),   NotNull    ] public long     GoodId   { get; set; } // bigint
+		[Column("buy_price"),    Nullable] public decimal? BuyPrice { get; set; } // decimal(14, 5)
+	}
+
+	[Table(Schema="calc", Name="sell_buy_price_30_03")]
+	public partial class SellBuyPrice3003
 	{
 		[Column("market_id"), NotNull    ] public long     MarketId { get; set; } // bigint
 		[Column("good_id"),   NotNull    ] public long     GoodId   { get; set; } // bigint
@@ -5957,6 +5988,32 @@ namespace DataModels
 		{
 			return dataConnection.ExecuteProc("[calc].[p_birth_day_children_mk_fill]",
 				new DataParameter("@fill_date", @fill_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PBirthDayChildrenMkResponse
+
+		public static IEnumerable<PBirthDayChildrenMkResponseResult> PBirthDayChildrenMkResponse(this DataConnection dataConnection, DateTime? @date_start, DateTime? @date_end, bool? @in_market, long? @market_id, long? @f_group_id)
+		{
+			return dataConnection.QueryProc<PBirthDayChildrenMkResponseResult>("[calc].[p_birth_day_children_mk_response]",
+				new DataParameter("@date_start", @date_start, DataType.Date),
+				new DataParameter("@date_end",   @date_end,   DataType.Date),
+				new DataParameter("@in_market",  @in_market,  DataType.Boolean),
+				new DataParameter("@market_id",  @market_id,  DataType.Int64),
+				new DataParameter("@f_group_id", @f_group_id, DataType.Int64));
+		}
+
+		public partial class PBirthDayChildrenMkResponseResult
+		{
+			public string   market_name   { get; set; }
+			public long?    market_id     { get; set; }
+			public long?    qty_customers { get; set; }
+			public long?    qty_doc       { get; set; }
+			public decimal? sm            { get; set; }
+			public decimal? sm_buy        { get; set; }
+			public decimal? sum_discount  { get; set; }
+			public decimal? doc_avg       { get; set; }
 		}
 
 		#endregion

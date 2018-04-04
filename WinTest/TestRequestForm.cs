@@ -10,87 +10,49 @@ namespace WinTest
 {
     public partial class TestRequestForm : Form
     {
+        public delegate void InvokeSetStatusToList(int count, DateTime date);
+
+        Handler h;
         public TestRequestForm()
         {
             InitializeComponent();
+
+            h = new Handler(350);
+            h.onEndDownloadStatus += H_onEndDownloadStatus;
+            h.onPartDownloadStatus += H_onPartDownloadStatus;
         }
 
-        private void btnRequest_Click(object sender, EventArgs e)
+        void SetStatusToList(int count, DateTime date)
         {
-            SoftLineApi.StatusApi api = new SoftLineApi.StatusApi();
+            this.lstStatus.Items.Add(
+                string.Format("Завантажено {0}, станом на: {1}", count.ToString(), date.ToLongTimeString())
+                );
+        }
 
-            string message = TestData.getData();
-            //api.Request("2454812"); //2454812 2360876 2454812
-            //string message = api.Request("2454812");
+        private void H_onPartDownloadStatus(int count, DateTime date)
+        {
+            object[] prms = new object[2];
 
-            Replay p = api.StringToObject(message);
+            prms[0] = count;
+            prms[1] = date;
 
-            var phones = p.contacts.Select(o => o.phone).Distinct();
+            this.lstStatus.BeginInvoke(new InvokeSetStatusToList(SetStatusToList), prms);
+        }
 
-            //var statuses = p.contacts.Select(o => o.status).Distinct().ToArray();
+        private void btnRequestNew_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.RunWorkerAsync();
+        }
 
-            //string ms = string.Join(";", statuses);
-            //this.txt.Text = ms;
+        private void H_onEndDownloadStatus()
+        {
+            //throw new NotImplementedException();
+            MessageBox.Show("Закінчено...");
+        }
 
-            using (GetData gt = new GetData())
-            { 
-                List<int> l = StatusApi.GetFalseStatus();
-
-                foreach (string pn in phones)
-                {
-                    var clst = p.contacts.Where(w => w.phone == pn).ToList();
-
-                    if (clst.Count > 1) // Кількість записів про доставку більше одієї і тому потрібно визначити останній
-                    {
-                        if (clst.Where(w1 => w1.status == 1).Count() >= 1)
-                        {
-                            if (clst.Where(w1 => l.Contains(w1.status)).Count() >= 1)
-                            {
-                                gt.Campaigns.SetStatusCampaignMailing(
-                                    223,
-                                    pn,
-                                    1,
-                                    "SMS"
-                                );
-                            }
-                            else
-                            {
-                                gt.Campaigns.SetStatusCampaignMailing(
-                                    223,
-                                    pn,
-                                    1,
-                                    "VIBER"
-                                );
-                            }
-                        } else
-                        {
-                            gt.Campaigns.SetStatusCampaignMailing(
-                                223,
-                                pn,
-                                2,
-                                "SMS"
-                            );
-                        }
-                    }
-                    else // Кількість записів про доставку 1, і просто записуємо статус
-                    {
-                        switch (clst.FirstOrDefault().status)
-                        {
-                            case 1: // Доставлен
-                                gt.Campaigns.SetStatusCampaignMailing(223, clst.FirstOrDefault().phone, 1, "VIBER");
-                                break;
-                            case 3: // Прочитан 
-                                gt.Campaigns.SetStatusCampaignMailing(223, clst.FirstOrDefault().phone, 1, "VIBER");
-                                break;
-                            default:
-                                gt.Campaigns.SetStatusCampaignMailing(223, clst.FirstOrDefault().phone, 2, "VIBER");
-                                break;
-
-                        }
-
-                    }
-                }
-            }
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            h.GetReplayByMailingId();
         }
     }
 }

@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\001_02.ico" />
+    <Content Include="img\action_check.ico" />
     <Content Include="img\application.ico" />
     <Content Include="img\view.png" />
     <Content Include="img\Settings_16x16.png" />
