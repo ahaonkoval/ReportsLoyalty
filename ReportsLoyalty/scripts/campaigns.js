@@ -1,5 +1,6 @@
 ﻿
 /* MODEL */
+
 Ext.define('campaigns_mk', {
     extend: 'Ext.data.Model',
     fields: [{
@@ -99,8 +100,6 @@ Ext.define('campaigns_mk', {
                     if (day.length < 2) day = '0' + day;
 
                     return [day, month, year].join('.');
-                    //return [year, month, day].join('-');
-                    //return v;
                 }
 
             } else {
@@ -127,6 +126,9 @@ Ext.define('campaigns_mk', {
     }, {
         name: 'mailing_id',
         type: 'string'
+    }, {
+        name: 'is_start_get_status',
+        type: 'int'
     }]
 });
 
@@ -370,6 +372,8 @@ var getWinCampaigns = function () {
         listeners: {
             'rowdblclick': function (grid, record, e) {
                 /* открываєм окно редактирования */
+                //winCd.Show(record);
+                //var winCd = new WinCampaignDetails();
                 winCd.Show(record);
                 //win_campaign_details_show(record);
             }
@@ -378,7 +382,13 @@ var getWinCampaigns = function () {
             stripeRows: false,
             getRowClass: function (record) {
                 //return record.get('is_run') == true ? 'child-row' : 'adult-row';
-                return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
+                var css = record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
+                if (record.get('is_start_get_status') == 1) {
+                    return 'x-grid-row-getting-status';
+                } else {
+                    return css;
+                }
+                //record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
             }
         }
     });
@@ -395,6 +405,19 @@ var getWinCampaigns = function () {
     var btnEdit = Ext.create('Ext.Button', {
         text: 'Редагувати',
         width: "100%",
+        renderTo: Ext.getBody(),
+        scope: grid,
+        handler: function (ctrl, event) {
+            var selection_record = ctrl.scope.getSelection();
+            if (selection_record.length > 0)
+                winCd.Show(selection_record[0], grid.getStore());
+        }
+    });
+
+    var btnStartGettingMailingStatus = Ext.create('Ext.Button', {
+        text: 'Отримати статуси',
+        width: "100%",
+        wrap: true,
         renderTo: Ext.getBody(),
         scope: grid,
         handler: function (ctrl, event) {
@@ -446,6 +469,13 @@ var getWinCampaigns = function () {
                     padding: 2,
                     items: [
                         btnEdit
+                    ]
+                }, {
+                    xtype: 'panel',
+                    border: false,
+                    padding: 2,
+                    items: [
+                        btnStartGettingMailingStatus
                     ]
                 }]
             }
@@ -525,7 +555,7 @@ var getWinCampaigns = function () {
             'close': function (win) {
             },
             'hide': function (win) {
-                console.info('just hidden');
+                //console.info('just hidden');
             }
         }
     });

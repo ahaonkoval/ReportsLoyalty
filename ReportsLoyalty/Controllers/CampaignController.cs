@@ -53,46 +53,6 @@ namespace ReportsLoyalty.Controllers
                 return om;
             }
         }
-        /// <summary>
-        /// Збереження параметрів кампанії
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public long SetCampaignData([FromBody] dynamic value)
-        {
-            var queryparams = Request.GetQueryNameValuePairs();
-            string json = value.ToString();
-            LoyaltyDB.Models.Lcampaign cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.Lcampaign>(json);
-
-            using (GetData gt = new GetData())
-            {
-                cmp = gt.Campaigns.SetCampaign(cmp);
-            }
-
-            return cmp.campaign_id;
-        }
-
-        //[HttpPost]
-        //public int SetHide([FromBody] dynamic value)
-        //{
-        //    int returned = 1;
-
-        //    try {
-        //        using (GetData gt = new GetData())
-        //        {
-        //            gt.Campaigns.SetHideCampaign(0);
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        returned = 0;
-        //    }
-
-        //    return returned;
-        //}
-        #endregion
-
         #region CampaignsTerms
         [HttpGet]
         public HttpResponseMessage GetCampaignsTerms(long id)
@@ -121,7 +81,66 @@ namespace ReportsLoyalty.Controllers
                 return response;
             }
         }
+
+        //[HttpGet]
+        //public int SetHideCampaign()
+        //{
+        //    int returned = 1;
+        //    try
+        //    {
+        //        using (GetData gt = new GetData())
+        //        {
+        //            gt.Campaigns.SetHideCampaign(0);
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        returned = 0;
+        //    }
+        //    return returned;
+        //}
         #endregion
+
+        /// <summary>
+        /// Збереження параметрів кампанії
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public long SetCampaignData([FromBody] dynamic value)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            string typeRequest = queryparams.Where(w => w.Key == "callType").FirstOrDefault().Value;       
+            string json = value.ToString();
+            LoyaltyDB.Models.Lcampaign cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.Lcampaign>(json);
+
+            if (typeRequest == "SetCampaignData")
+            {               
+                using (GetData gt = new GetData())
+                {
+                    cmp = gt.Campaigns.SetCampaign(cmp);
+                    return cmp.campaign_id;
+                }
+            } else if (typeRequest == "SetHide")
+            {
+               using (GetData gt = new GetData())
+               {
+                    gt.Campaigns.SetHideCampaign(cmp.campaign_id);
+               }
+                return 0;
+            }
+
+            return 0;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+
+        #endregion
+
+
         //// GET: api/Campaign/5
         //public string Get(int id)
         //{

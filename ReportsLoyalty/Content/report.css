@@ -1,4 +1,5 @@
 ﻿
+
 .x-column-header-inner .x-column-header-text {
     white-space: normal;
 }
@@ -22,6 +23,11 @@
     background-color:rgba(237, 233, 199, 0.38);
 }
 
+.x-grid-row-getting-status .x-grid-cell {
+    font: normal 11px tahoma,arial,verdana,sans-serif;
+    background-color:rgb(204, 188, 66);
+}
+
 
 .menu_is_run
 { 
@@ -36,6 +42,18 @@
     font-weight: 100; 
     color: cadetblue; 
 }
+
+.lt-button button
+{
+    height: auto;
+}
+.lt-button .x-btn-inner
+{
+    white-space: normal;
+    line-height: normal;
+    height: auto;
+}
+
 /*
 .combo_box
 { 

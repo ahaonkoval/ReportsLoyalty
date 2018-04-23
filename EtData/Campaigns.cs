@@ -48,52 +48,7 @@ namespace LoyaltyDB
             }
         }
 
-        public void CampaignDeleteStatuses(int campaignId)
-        {
-            using (var db = new DataModels.CrmWizardDB())
-            {
-                db.CampaignPhoneStatus.Delete(o => o.CampaignId == campaignId);
-
-                db.CampaignSoftlineStatus.Delete(o => o.CampaignId == campaignId);
-            }
-        }
-
         #region GET
-
-        public long GetCampaignsGetStatusMailing()
-        {
-            using (var db = new DataModels.CrmWizardDB())
-            {
-                using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions
-                {
-                    IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted
-                }))
-                {
-                    var cmp = db.CampaignsMk.Where(w => w.IsStartGetStatus < 2).ToList();
-                    if (cmp.Where(w => w.IsStartGetStatus == 1).Count() == 0)
-                    {
-                        return cmp.Where(w => w.IsStartGetStatus == 1).FirstOrDefault().Id;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="CampaignId"></param>
-        /// <returns></returns>
-        public string GetMailingIdByCampaignId(int CampaignId)
-        {
-            using (var db = new DataModels.CrmWizardDB())
-            {
-                return db.CampaignsMk.Where(w => w.Id == CampaignId).FirstOrDefault().MailingId;
-            }
-        }
         /// <summary>
         /// 
         /// </summary>
@@ -196,7 +151,12 @@ namespace LoyaltyDB
             //return Le.campaigns_mk.Where(w => w.is_run == isRun && w.type_id == (type_id == 0 ? w.type_id : type_id)).Count();
             using (var db = new DataModels.CrmWizardDB())
             {
-                return db.CampaignsMk.Where(w => w.IsRun == (isRun == true ? isRun : w.IsRun) && w.TypeId == (type_id == 0 ? w.TypeId : type_id)).Count();
+                return db.CampaignsMk.Where(
+                    w => 
+                    w.IsRun == (isRun == true ? isRun : w.IsRun) 
+                    && w.TypeId == (type_id == 0 ? w.TypeId : type_id)
+                    && w.Hide == false
+                    ).Count();
             }
         }
         /// <summary>
@@ -253,7 +213,11 @@ namespace LoyaltyDB
                 return ls;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetOtdNameByCampaignId(int id)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
@@ -345,7 +309,7 @@ namespace LoyaltyDB
         /// Ховає кампанію зі списку
         /// </summary>
         /// <param name="CampaignId"></param>
-        public void SetHideCampaign(int CampaignId)
+        public void SetHideCampaign(long CampaignId)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
@@ -470,6 +434,79 @@ namespace LoyaltyDB
         }
 
         #region MAILING
+        /// <summary>
+        /// Встановлення статусу кампанії на обробку
+        /// </summary>
+        /// <param name="CampaignId"></param>
+        /// <returns></returns>
+        public bool SetStartGettingSoftlineStatus(long CampaignId)
+        {
+            bool returned = true;
+
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.Serializable }))
+                {
+                    var campaigns_start = db.CampaignsMk.Where(w => w.IsStartGetStatus == 1).ToList();
+                    if (campaigns_start.Count() == 0)
+                    {
+                        db.CampaignsMk.Where(w => w.Id == CampaignId)
+                            .Set(p => p.IsStartGetStatus, 1)
+                            .Update();
+                        returned = true;
+                    } else
+                    {
+                        returned = false;
+                    }
+                }
+            }
+            return returned;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public long GetCampaignsGettingStatusMailing()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions
+                {
+                    IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted
+                }))
+                {
+                    var cmp = db.CampaignsMk.Where(w => w.IsStartGetStatus < 2).ToList();
+                    if (cmp.Where(w => w.IsStartGetStatus == 1).Count() == 0)
+                    {
+                        return cmp.Where(w => w.IsStartGetStatus == 1).FirstOrDefault().Id;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// ИД розсилки для кампанії
+        /// </summary>
+        /// <param name="CampaignId"></param>
+        /// <returns></returns>
+        public string GetMailingIdByCampaignId(int CampaignId)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.CampaignsMk.Where(w => w.Id == CampaignId).FirstOrDefault().MailingId;
+            }
+        }
+        /// <summary>
+        /// Заповнення статусами 
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="rp"></param>
+        /// <param name="status"></param>
+        /// <param name="chanel"></param>
         public void SetStatusCampaignMailing(long campaignId, RecipientPhone rp, int status, string chanel)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
@@ -490,7 +527,13 @@ namespace LoyaltyDB
                 }
             }
         }
-
+        /// <summary>
+        /// Заповнення статусами таблицю статусів софтлана
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="mobilePhone"></param>
+        /// <param name="status"></param>
         public void SetCampaignSoftlineStatus(long campaignId, int messageId, string mobilePhone, int status)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
@@ -505,19 +548,19 @@ namespace LoyaltyDB
             }
         }
 
-        public void SetPhonesFindMarkets(string phone, string status, string channel)
-        {
-            using (CrmWizardDB db = new DataModels.CrmWizardDB())
-            {
+        //public void SetPhonesFindMarkets(string phone, string status, string channel)
+        //{
+        //    using (CrmWizardDB db = new DataModels.CrmWizardDB())
+        //    {
 
-                db.PhonesFindMarkets.Insert(() => new PhonesFindMarkets
-                {
-                    Chanell = channel,
-                    Status = status,
-                    Phone = phone
-                });
-            }
-        }
+        //        db.PhonesFindMarkets.Insert(() => new PhonesFindMarkets
+        //        {
+        //            Chanell = channel,
+        //            Status = status,
+        //            Phone = phone
+        //        });
+        //    }
+        //}
 
         public void FixCampaignStatus(long campaignId)
         {
@@ -540,7 +583,18 @@ namespace LoyaltyDB
                 if (cmd.Connection.State == ConnectionState.Closed)
                     cmd.Connection.Open();
             }
-            #endregion
+           
         }
+
+        public void CampaignDeleteStatuses(int campaignId)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                db.CampaignPhoneStatus.Delete(o => o.CampaignId == campaignId);
+
+                db.CampaignSoftlineStatus.Delete(o => o.CampaignId == campaignId);
+            }
+        }
+        #endregion
     }
 }

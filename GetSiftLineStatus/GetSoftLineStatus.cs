@@ -48,12 +48,13 @@ namespace GetSiftLineStatus
         {
             using (GetData data = new GetData())
             {
-                long campaignId = data.Campaigns.GetCampaignsGetStatusMailing();
+                long campaignId = data.Campaigns.GetCampaignsGettingStatusMailing();
             }
         }
 
         protected override void OnStop()
         {
+            this.timer.Stop();
         }
 
         public void Start(string[] args)

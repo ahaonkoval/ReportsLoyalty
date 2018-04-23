@@ -36,7 +36,7 @@ namespace DataTransformer
 
         public void Step()
         {
-            Td.TransformMovementStep();
+            //Td.TransformMovementStep();
         }
     }
 }

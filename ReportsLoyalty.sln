@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransformer", "DataTran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDebuggerHelper", "..\GooglePoints\ServiceDebuggerHelper\ServiceDebuggerHelper.csproj", "{E058864C-20A7-43C0-8EFF-0E4EB9D02855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetSiftLineStatus", "GetSiftLineStatus\GetSiftLineStatus.csproj", "{8E8875A9-81A9-4FBF-BF19-42B7DA6F48EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetSoftLineStatus", "GetSiftLineStatus\GetSoftLineStatus.csproj", "{8E8875A9-81A9-4FBF-BF19-42B7DA6F48EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

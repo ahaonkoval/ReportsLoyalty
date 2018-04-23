@@ -46,6 +46,8 @@
 	/*
 		GetSchemaOptions.IncludedSchemas = new[] { "calc" };
 	*/
+	GetSchemaOptions.ExcludedSchemas = new[] { "tmp", "cbac" };
+
 
 	NamespaceName                 = "DataModels";       // Namespace of the generated classes.
 

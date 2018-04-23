@@ -30,6 +30,7 @@
     <script type="text/javascript" src="scripts/p50points_reports.js"></script>
 
     <link rel="stylesheet" type="text/css" href="Content/report.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/4.1.1/resources/css/ext-all.css/" />--%>
     <link rel="stylesheet" type="text/css" href="scripts/jslib/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
 </head>
 <body>
@@ -67,8 +68,38 @@
                 }
             });
 
-            var viewport = Ext.create('Ext.container.Viewport', {
+            var buttonSplit = Ext.create('Ext.button.Split', {
+                renderTo: Ext.getBody(),
+                text: 'Управління активностями',
+                // handle a click on the button itself
+                //handler: function () {
+                //    alert("The button was clicked");
+                //},
+                menu: new Ext.menu.Menu({
+                    items: [
+                        {
+                            text: 'Управління Stop List',
+                            formBind: true,
+                            listeners: {
+                                click: function (ctrl) {
+                                    getWinStopList().show();
+                                }
+                            }
+                        },
+                        {
+                            text: 'Управление активностями',
+                            formBind: true,
+                            listeners: {
+                                click: function () {
+                                    getWinCampaigns().show();
+                                }
+                            }
+                        }
+                    ]
+                })
+            });
 
+            var viewport = Ext.create('Ext.container.Viewport', {
                 layout: 'border',
                 items: [{
                     region: 'north',
@@ -88,27 +119,27 @@
                             //        }
                             //    }
                             //},
-                            {
-                                text: 'Stop list',
-                                formBind: true,
-                                listeners: {
-                                    click: function (ctrl) {
-                                        getWinStopList().show();
-                                        //alert(ctrl);
-                                    }
-                                }
-                            },
-                            {
-                                text: 'Управление активностями',
-                                formBind: true,
-                                listeners: {
-                                    click: function () {
-                                        //win_campaigns.show();
-                                        //win_campaigns_show();
-                                        getWinCampaigns().show();
-                                    }
-                                }
-                            },
+                            //{
+                            //    text: 'Stop list',
+                            //    formBind: true,
+                            //    listeners: {
+                            //        click: function (ctrl) {
+                            //            getWinStopList().show();
+                            //        }
+                            //    }
+                            //},
+                            //{
+                            //    text: 'Управление активностями',
+                            //    formBind: true,
+                            //    listeners: {
+                            //        click: function () {
+                            //            //win_campaigns.show();
+                            //            //win_campaigns_show();
+                            //            getWinCampaigns().show();
+                            //        }
+                            //    }
+                            //},
+                            buttonSplit,
                             {
                                 text: 'Вийти',
                                 formBind: true,
