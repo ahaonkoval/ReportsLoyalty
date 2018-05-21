@@ -23,13 +23,17 @@ namespace LoyaltyDB
 
         public Articuls Art;
 
+        public PersonalCampaign PC;
+
         public GetData()
         {
             Le = new LoyaltyDB.LoyaltyEntities();
+
             Campaigns = new LoyaltyDB.Campaigns(Le);
             Dict = new LoyaltyDB.Dict(Le);
             Customers = new LoyaltyDB.Customers(Le);
             Art = new LoyaltyDB.Articuls();
+            PC = new PersonalCampaign();
         }
 
         public void Dispose()

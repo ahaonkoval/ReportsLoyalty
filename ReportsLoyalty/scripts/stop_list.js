@@ -44,7 +44,7 @@ var getWinStopList = function () {
             property: 'StopListId',
             direction: 'ASC'
         }],
-        pageSize: 5
+        pageSize: 10
     });
 
     var createColumns = function (finish, start) {

@@ -17,7 +17,7 @@ namespace WinTest
         {
             InitializeComponent();
 
-            h = new Handler(350);
+            h = new Handler(396);
             h.onEndDownloadStatus += H_onEndDownloadStatus;
             h.onPartDownloadStatus += H_onPartDownloadStatus;
         }

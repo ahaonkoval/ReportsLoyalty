@@ -15,8 +15,8 @@ var showExtraPoints = function () {
         store: dict.getStoreMarkets(),
         multiSelect: true,
         queryMode: 'local',
-        valueField: 'short_name',
-        displayField: 'market_name',
+        valueField: 'ShortName',
+        displayField: 'MarketName',
         width: 300,
         labelWidth: 50,
         emptyText: 'Всі',
@@ -24,12 +24,12 @@ var showExtraPoints = function () {
         renderTo: Ext.getBody(),
         tpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
-                '<div class="x-boundlist-item">{market_name}</div>', 
+                '<div class="x-boundlist-item">{MarketName}</div>',
             '</tpl>'
         ),
         displayTpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
-                '{short_name};',
+                '{ShortName};',
             '</tpl>'
         ),
         listeners: {
@@ -325,8 +325,8 @@ var showPersonalOffers = function () {
         store: dict.getStoreMarkets(),
         multiSelect: true,
         queryMode: 'local',
-        valueField: 'short_name',
-        displayField: 'market_name',
+        valueField: 'ShortName',
+        displayField: 'MarketName',
         width: 300,
         labelWidth: 50,
         emptyText: 'Всі',
@@ -334,12 +334,12 @@ var showPersonalOffers = function () {
         renderTo: Ext.getBody(),
         tpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
-                '<div class="x-boundlist-item">{market_name}</div>',
+                '<div class="x-boundlist-item">{MarketName}</div>',
             '</tpl>'
         ),
         displayTpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
-                '{short_name};',
+                '{ShortName};',
             '</tpl>'
         ),
         listeners: {
@@ -526,8 +526,8 @@ var showBirthDayUPL = function () {
         store: dict.getStoreMarkets(),
         multiSelect: true,
         queryMode: 'local',
-        valueField: 'short_name',
-        displayField: 'market_name',
+        valueField: 'ShortName',
+        displayField: 'MarketName',
         width: 300,
         labelWidth: 50,
         emptyText: 'Всі',
@@ -535,12 +535,12 @@ var showBirthDayUPL = function () {
         renderTo: Ext.getBody(),
         tpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
-                '<div class="x-boundlist-item">{market_name}</div>',
+                '<div class="x-boundlist-item">{MarketName}</div>',
             '</tpl>'
         ),
         displayTpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
-                '{short_name};',
+                '{ShortName};',
             '</tpl>'
         ),
         listeners: {
@@ -702,8 +702,8 @@ var showBirthDayChildrenUPL = function () {
         store: dict.getStoreMarkets(),
         multiSelect: true,
         queryMode: 'local',
-        valueField: 'short_name',
-        displayField: 'market_name',
+        valueField: 'ShortName',
+        displayField: 'MarketName',
         width: 300,
         labelWidth: 50,
         emptyText: 'Всі',
@@ -711,12 +711,12 @@ var showBirthDayChildrenUPL = function () {
         renderTo: Ext.getBody(),
         tpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
-                '<div class="x-boundlist-item">{market_name}</div>',
+                '<div class="x-boundlist-item">{MarketName}</div>',
             '</tpl>'
         ),
         displayTpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
-                '{short_name};',
+                '{ShortName};',
             '</tpl>'
         ),
         listeners: {
@@ -911,8 +911,8 @@ var show50pointsReport = function () {
                         width: 250,
                         store: dict.getStoreMarkets(),
                         queryMode: 'local',
-                        displayField: 'market_name',
-                        valueField: 'id',
+                        displayField: 'MarketName',
+                        valueField: 'Id',
                         renderTo: Ext.getBody()
                     }, {
                         xtype: 'tbseparator'

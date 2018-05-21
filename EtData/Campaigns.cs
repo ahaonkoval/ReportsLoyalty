@@ -226,7 +226,7 @@ namespace LoyaltyDB
 
                 var GrpName1 = db.Fgroups.Where(wf => wf.FgroupId == campaign.GroupId0).FirstOrDefault();
 
-                return GrpName1.Name;
+                return GrpName1 == null ? string.Empty : GrpName1.Name;
             }
         }
         /// <summary>
@@ -351,7 +351,7 @@ namespace LoyaltyDB
         /// </summary>
         /// <param name="cmp"></param>
         /// <returns></returns>
-        public LoyaltyDB.Models.Lcampaign SetCampaign(LoyaltyDB.Models.Lcampaign cmp)
+        public LoyaltyDB.Models.CampaignConvert SetCampaign(LoyaltyDB.Models.CampaignConvert cmp)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {

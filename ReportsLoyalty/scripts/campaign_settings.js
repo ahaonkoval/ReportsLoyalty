@@ -301,7 +301,7 @@ function WinCampaignDetails() {
         buttons: [
             {
                 xtype: 'button',
-                text: 'Сховати',
+                text: 'Сховати кампанію',
                 scope: this,
                 listeners: {
                     'click': function (ctrl) {
@@ -313,12 +313,12 @@ function WinCampaignDetails() {
 
                         Ext.Msg.confirm(
                             "Увага!",
-                            Ext.String.format("Сховати кампанію '{0}'?", 
-                            record.get('name')), 
+                            Ext.String.format("Сховати кампанію '{0}'?",
+                            record.get('name')),
                             function (txtGet) {
                                 if (txtGet === "yes") {
                                     var o = {
-                                        campaign_id : record.get('id'),
+                                        campaign_id: record.get('id'),
                                         name: record.get('name'),
                                         date_start: record.get('date_start'),
                                         date_end: record.get('date_end'),
@@ -348,22 +348,54 @@ function WinCampaignDetails() {
                                     });
 
                                 }
-                            })
+                            });
                         }
                 }
-            }, {
-                xtype: 'button',
-                text: 'Отримати статуси',
-                scope: this,
-                listeners: {
-                    'click': function (ctrl) {
-                        var property_grd = Ext.getCmp('property_grd');
-                        var store = property_grd.getStore();
-                        var record = ctrl.scope.record;
-                        var storeList = ctrl.scope.storeListCampaigns; 
-                    }
-                }
             },
+            //{
+            //    xtype: 'button',
+            //    text: 'Отримати статуси',
+            //    scope: this,
+            //    listeners: {
+            //        'click': function (ctrl) {
+            //            var property_grd = Ext.getCmp('property_grd');
+            //            var store = property_grd.getStore();
+            //            var record = ctrl.scope.record;
+            //            var storeList = ctrl.scope.storeListCampaigns;
+
+            //            Ext.Msg.confirm(
+            //                "Увага!",
+            //                Ext.String.format("Сховати кампанію '{0}'?",
+            //                record.get('name')),
+            //                function (txtGet) {
+            //                    if (txtGet === "yes") {
+            //                        var o = {
+            //                            CampaignId: record.get('id'),
+            //                            Name: record.get('name')
+            //                        };
+            //                        Ext.Ajax.request({
+            //                            url: 'api/campaign/SetCampaignData',
+            //                            method: 'POST',
+            //                            params: { callType: 'SetStartRequesStatus' },
+            //                            jsonData: o,
+            //                            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            //                            success: function (respons) {
+            //                                var wnd = Ext.getCmp('win_campaign_details');
+            //                                wnd.hide();
+            //                                storeList.load();
+            //                                //store.load();
+
+            //                            },
+            //                            failure: function (error) {
+
+            //                            }
+            //                        });
+
+            //                    }
+            //                });
+            //        }
+            //    }
+            //},
             '->',
             {
             xtype: 'button',

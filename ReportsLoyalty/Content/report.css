@@ -1,6 +1,4 @@
-﻿
-
-.x-column-header-inner .x-column-header-text {
+﻿.x-column-header-inner .x-column-header-text {
     white-space: normal;
 }
  
@@ -10,7 +8,7 @@
     padding-bottom: 3px !important;
     text-align: center;
     top: 2%;
-    font: normal 12px tahoma,arial,verdana,sans-serif;
+    font: normal 11px tahoma,arial,verdana,sans-serif;
 }
 
 .x-grid-row .x-grid-cell {
@@ -52,6 +50,37 @@
     white-space: normal;
     line-height: normal;
     height: auto;
+}
+
+.grid-header-phone .x-column-header-text {
+    -webkit-transform: rotate(90deg);
+
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+
+    display:inline-table;
+    /*display: inline-block;*/
+
+    /*padding-right: 1px !important;*/
+    
+    /*-moz-transform: rotate(90deg);*/
+    /*-o-transform: rotate(90deg);*/
+    /*-ms-transform: rotate(90deg);*/
+    /*transform: rotate(90deg);*/
+    
+    /* transform doesn't work on inline elements */
+    
+
+    /* need to hard code a height for this to work */
+    /* you could use Ext.util.TextMetrics if you needed to dynamically determine the text size */
+    /*height: 40px;*/
+}
+
+.x-ie8 .grid-header-phone .x-column-header-text {
+    /* IE8 doesn't have css transform */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 
 /*

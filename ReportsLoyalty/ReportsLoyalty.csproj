@@ -147,6 +147,7 @@
     <Content Include="scripts\customers.js" />
     <Content Include="scripts\campaigns.js" />
     <Content Include="scripts\p50points_reports.js" />
+    <Content Include="scripts\PersonalInteractiv.js" />
     <Content Include="scripts\pl_indicators.js" />
     <Content Include="scripts\stop_list.js" />
     <Content Include="scripts\upload_status.js" />
@@ -6438,6 +6439,7 @@
     <Compile Include="Controllers\DictCampaignController.cs" />
     <Compile Include="Controllers\DictController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TermController.cs" />
     <Compile Include="crm_wizardDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -6720,7 +6722,9 @@
     <EmbeddedResource Include="reports\CountersDocsAndSell.rdlc" />
     <EmbeddedResource Include="reports\customers\participant_list.rdlc" />
     <EmbeddedResource Include="reports\extra_points\rep_customers_allocated.rdlc" />
+    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers - Копировать %282%29.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers - Копировать.rdlc" />
+    <EmbeddedResource Include="reports\personal_offers\rep_market_details.rdlc" />
     <EmbeddedResource Include="reports\profile_participant\is_not_sms_sent.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators_diagrams.rdlc" />

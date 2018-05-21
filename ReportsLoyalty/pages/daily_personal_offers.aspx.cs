@@ -34,18 +34,42 @@ namespace ReportsLoyalty.pages.personal_offers
             int n;
             bool is_numeric_market_id = int.TryParse(market_id, out n);
 
-            this.sds_expected_effect.SelectCommand = "rep.p_get_daily_pers_expected_effect";
-            this.sds_expected_effect.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
+            //this.sds_expected_effect.SelectCommand = "rep.p_get_daily_pers_expected_effect";
+            //this.sds_expected_effect.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;
+            //this.sds_expected_effect.SelectParameters.Clear();
+            //this.sds_expected_effect.SelectParameters.Add("campaign_id", campaign_id);
+            //this.sds_expected_effect.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
+            //if (is_numeric_market_id) {
+            //    if (n != 0)
+            //        this.sds_expected_effect.SelectParameters.Add("market_id", market_id);
+            //} else {
+            //    this.sds_expected_effect.SelectParameters.Add("market_lst", market_id);
+            //}
+            //this.sds_expected_effect.SelectParameters.Add("control_group", ctrl);
+
+            //List<ReportParameter> paramList = new List<ReportParameter>();
+            //paramList.Add(new ReportParameter("RowsPerPage", "50", false));
+            //ReportViewerPersonalOffers.LocalReport.SetParameters(paramList);
+
+            this.sds_expected_effect.SelectCommand = "SELECT * FROM rep.t_get_personal_markmo_report(@campaign_id, @controlGroup, @date, null, @marketLst) Order by market_id";
+            this.sds_expected_effect.SelectCommandType = SqlDataSourceCommandType.Text;
             this.sds_expected_effect.SelectParameters.Clear();
             this.sds_expected_effect.SelectParameters.Add("campaign_id", campaign_id);
             this.sds_expected_effect.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-            if (is_numeric_market_id) {
-                if (n != 0)
-                    this.sds_expected_effect.SelectParameters.Add("market_id", market_id);
-            } else {
-                this.sds_expected_effect.SelectParameters.Add("market_lst", market_id);
+            //this.sds_expected_effect.SelectParameters.Add("controlGroup", DbType.Boolean, dt.ToString("yyyy-MM-dd"));
+
+            if (is_numeric_market_id)
+            {
+                //if (n != 0)
+                    //this.sds_expected_effect.SelectParameters.Add("market_id", market_id);
             }
-            this.sds_expected_effect.SelectParameters.Add("control_group", ctrl);
+            else
+            {
+                
+            }
+            this.sds_expected_effect.SelectParameters.Add("marketLst", market_id);
+            this.sds_expected_effect.SelectParameters.Add("controlGroup", ctrl);
+
             //------------------------------------------------------------------------------------------------//
             //this.sds_days_allocated.SelectCommand = "rep.p_get_daily_pers_map_allocation";
             //this.sds_days_allocated.SelectCommandType = SqlDataSourceCommandType.StoredProcedure;

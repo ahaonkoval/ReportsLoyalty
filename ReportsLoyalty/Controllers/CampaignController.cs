@@ -81,16 +81,23 @@ namespace ReportsLoyalty.Controllers
                 return response;
             }
         }
+        #endregion
 
         //[HttpGet]
-        //public int SetHideCampaign()
+        //public object GetPersonalCampaignReport()
         //{
         //    int returned = 1;
         //    try
         //    {
         //        using (GetData gt = new GetData())
         //        {
-        //            gt.Campaigns.SetHideCampaign(0);
+        //            var queryparams = Request.GetQueryNameValuePairs();
+        //            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+        //            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+        //            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+
+        //            //gt.PC.GetCampaignResultByMarkets();
         //        }
         //    }
         //    catch
@@ -99,7 +106,7 @@ namespace ReportsLoyalty.Controllers
         //    }
         //    return returned;
         //}
-        #endregion
+
 
         /// <summary>
         /// Збереження параметрів кампанії
@@ -109,13 +116,15 @@ namespace ReportsLoyalty.Controllers
         [HttpPost]
         public long SetCampaignData([FromBody] dynamic value)
         {
+            long returned = 0;
+
             var queryparams = Request.GetQueryNameValuePairs();
             string typeRequest = queryparams.Where(w => w.Key == "callType").FirstOrDefault().Value;       
-            string json = value.ToString();
-            LoyaltyDB.Models.Lcampaign cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.Lcampaign>(json);
+            string json = value.ToString();            
 
             if (typeRequest == "SetCampaignData")
-            {               
+            {
+                LoyaltyDB.Models.CampaignConvert cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.CampaignConvert>(json);
                 using (GetData gt = new GetData())
                 {
                     cmp = gt.Campaigns.SetCampaign(cmp);
@@ -123,14 +132,26 @@ namespace ReportsLoyalty.Controllers
                 }
             } else if (typeRequest == "SetHide")
             {
+               LoyaltyDB.Models.CampaignConvert cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.CampaignConvert>(json);
                using (GetData gt = new GetData())
                {
                     gt.Campaigns.SetHideCampaign(cmp.campaign_id);
                }
-                return 0;
+                return returned;
+            } else if (typeRequest == "SetStartRequesStatus")
+            {
+                using (GetData gt = new GetData())
+                {
+                    LoyaltyDB.Models.LcShort Campaign = JsonConvert.DeserializeObject<LoyaltyDB.Models.LcShort>(json);
+                    if (gt.Campaigns.SetStartGettingSoftlineStatus(Campaign.CampaignId))
+                    {
+
+                    }
+                }
+                return returned;
             }
 
-            return 0;
+            return returned; 
         }
         /// <summary>
         /// 

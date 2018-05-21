@@ -12,7 +12,12 @@ function Dict() {
                     type: 'json',
                     root: 'v_campaigns_mk_run'
                 }
-            }
+            },
+            remoteSort: false,
+            sorters: [{
+                property: 'id',
+                direction: 'DESC'
+            }],
         });
 
         return Ext.create('Ext.data.Store', {
@@ -23,15 +28,15 @@ function Dict() {
     },
     ///
     this.getStoreMarkets = function () {
-        var model = Ext.define('dict_markets', {
+        var model = Ext.define('DictMarkets', {
             extend: 'Ext.data.Model',
-            fields: ['id', 'market_name'],
+            fields: ['Id', 'ShortName', 'MarketName'],
             proxy: {
                 type: 'rest',
                 url: 'api/dict/GetDictMarkets/1',
                 reader: {
                     type: 'json',
-                    root: 'dict_markets'
+                    root: 'DictMarkets'
                 }
             }
         });

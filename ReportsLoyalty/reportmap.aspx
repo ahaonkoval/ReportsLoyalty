@@ -29,6 +29,8 @@
     <script type="text/javascript" src="scripts/pl_indicators.js"></script>
     <script type="text/javascript" src="scripts/p50points_reports.js"></script>
 
+    <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
+
     <link rel="stylesheet" type="text/css" href="Content/report.css"/>
     <%--<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/4.1.1/resources/css/ext-all.css/" />--%>
     <link rel="stylesheet" type="text/css" href="scripts/jslib/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
@@ -209,6 +211,12 @@
                                 border: false,
                                 name: 'name',
                                 html: '<a href="#" onclick="show50pointsReport();" class="menu_is_run">Результати акцій "50 і більше балів"</a>',
+                                margin: '2 2 2 10'
+                            }, {
+                                xtype: 'panel',
+                                border: false,
+                                name: 'name',
+                                html: '<a href="#" onclick="showPersonalInteractiv();" class="menu_is_run">Приклад</a>',
                                 margin: '2 2 2 10'
                             }]
                         //    {

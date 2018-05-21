@@ -347,52 +347,6 @@ var getWinCampaigns = function () {
         return columns.slice(start || 0, finish);
     };
 
-    var grid = Ext.create('Ext.grid.Panel', {
-        stateful: true,
-        stateId: 'stateful-filter-grid',
-        border: false,
-        store: store,
-        columns: createColumns(9),
-        plugins: 'gridfilters',
-        loadMask: true,
-        //features: [filters],
-        dockedItems: [Ext.create('Ext.toolbar.Paging', {
-            dock: 'bottom',
-            store: store,
-            listeners: {
-                beforechange(ctrl, page, eOpts) {
-                    // ураааааа!!!!
-                    store.getProxy().extraParams.isRun = checkboxIsRun.getValue();
-                    store.getProxy().extraParams.TypeId = comboBox.getValue();
-                    //store.getProxy().extraParams.blogid = 1;
-                }
-            }
-        })],
-        emptyText: 'Записів більше нема',
-        listeners: {
-            'rowdblclick': function (grid, record, e) {
-                /* открываєм окно редактирования */
-                //winCd.Show(record);
-                //var winCd = new WinCampaignDetails();
-                winCd.Show(record);
-                //win_campaign_details_show(record);
-            }
-        },
-        viewConfig: {
-            stripeRows: false,
-            getRowClass: function (record) {
-                //return record.get('is_run') == true ? 'child-row' : 'adult-row';
-                var css = record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
-                if (record.get('is_start_get_status') == 1) {
-                    return 'x-grid-row-getting-status';
-                } else {
-                    return css;
-                }
-                //record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
-            }
-        }
-    });
-
     var btnCreate = Ext.create('Ext.Button', {
         text: 'Створити',
         width: "100%",
@@ -423,7 +377,94 @@ var getWinCampaigns = function () {
         handler: function (ctrl, event) {
             var selection_record = ctrl.scope.getSelection();
             if (selection_record.length > 0)
-                winCd.Show(selection_record[0]);
+                //winCd.Show(selection_record[0]);
+                //        var property_grd = Ext.getCmp('property_grd');
+                //        var store = property_grd.getStore();
+                //        var record = ctrl.scope.record;
+                //        var storeList = ctrl.scope.storeListCampaigns;
+
+                        Ext.Msg.confirm(
+                            "Увага!",
+                            Ext.String.format("Запустити процес отримання статусів доставки повідомлень кампанії '{0}'?",
+                            record.get('name')),
+                            function (txtGet) {
+                                if (txtGet === "yes") {
+                                    var o = {
+                                        CampaignId: record.get('id'),
+                                        Name: record.get('name')
+                                    };
+                                    Ext.Ajax.request({
+                                        url: 'api/campaign/SetCampaignData',
+                                        method: 'POST',
+                                        params: { callType: 'SetStartRequesStatus' },
+                                        jsonData: o,
+                                        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                                        success: function (respons) {
+                                            var wnd = Ext.getCmp('win_campaign_details');
+                                            wnd.hide();
+                                            storeList.load();
+                                            //store.load();
+
+                                        },
+                                        failure: function (error) {
+
+                                        }
+                                    });
+
+                                }
+                            });
+        }
+    });
+
+    var grid = Ext.create('Ext.grid.Panel', {
+        stateful: true,
+        stateId: 'stateful-filter-grid',
+        border: false,
+        store: store,
+        columns: createColumns(9),
+        plugins: 'gridfilters',
+        loadMask: true,
+        //features: [filters],
+        dockedItems: [Ext.create('Ext.toolbar.Paging', {
+            dock: 'bottom',
+            store: store,
+            listeners: {
+                beforechange(ctrl, page, eOpts) {
+                    // ураааааа!!!!
+                    store.getProxy().extraParams.isRun = checkboxIsRun.getValue();
+                    store.getProxy().extraParams.TypeId = comboBox.getValue();
+                    //store.getProxy().extraParams.blogid = 1;
+                }
+            }
+        })],
+        emptyText: 'Записів більше нема',
+        listeners: {
+            'rowdblclick': function (grid, record, e) {
+                /* открываєм окно редактирования */
+                winCd.Show(record);
+            },
+            selectionchange ( ctrl, selected, eOpts )  {
+                //alert(selected);
+                if (selected[0].get('mailing_id') == "")
+                {
+                    btnStartGettingMailingStatus.setHidden(true);
+                } else {
+                    btnStartGettingMailingStatus.setHidden(false);
+                }
+            }
+        },
+        viewConfig: {
+            stripeRows: false,
+            getRowClass: function (record) {
+                //return record.get('is_run') == true ? 'child-row' : 'adult-row';
+                var css = record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
+                if (record.get('is_start_get_status') == 1) {
+                    return 'x-grid-row-getting-status';
+                } else {
+                    return css;
+                }
+                //record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
+            }
         }
     });
 

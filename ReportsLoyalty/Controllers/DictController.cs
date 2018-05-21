@@ -23,24 +23,31 @@ namespace ReportsLoyalty.Controllers
         }
 
         // GET: api/Dict/5
-        public string Get(int id)
+        public object Get(int id)
         {
-            return "value";
+            switch (id)
+            {
+                case 1: // Стан завантаження остновних показників
+                    break;
+            }
+
+            return new object();
         }
-
-        // POST: api/Dict
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        // PUT: api/Dict/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
 
         // DELETE: api/Dict/5
         public void Delete(int id)
         {
+        }
+
+        [HttpGet]
+        public object GetDownloadStatus()
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+            return new object();
         }
 
         [HttpGet]
@@ -66,7 +73,6 @@ namespace ReportsLoyalty.Controllers
                 return o_data;
             }
         }
-
         /// <summary>
         /// 
         /// </summary>
@@ -76,7 +82,7 @@ namespace ReportsLoyalty.Controllers
         {
             using (GetData gt = new GetData())
             {
-                return gt.Campaigns.GetCampaignsRuns().Where(w => w.TypeId == id).ToList();
+                return gt.Campaigns.GetCampaignsRuns().Where(w => w.TypeId == id).ToList().OrderByDescending(o => o.Id);
             }
             //return gt.Campaigns.GetCampaignsRuns().Where(w => w.type_id == id).ToList();//.Select(m => new v_campaigns_mk_run {                });
         }
@@ -84,21 +90,21 @@ namespace ReportsLoyalty.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<dict_markets> GetDictMarkets()
+        public IEnumerable<DictMarkets> GetDictMarkets()
         {
             GetData gt = new GetData();
 
-            List<dict_markets> markets = gt.Dict.GetDictMarkets().Where(w => w.is_start == true).ToList();
+            List<DictMarkets> markets = gt.Dict.GetDictMarkets().Where(w => w.IsStart == true).ToList();
             markets.Add(
-                    new dict_markets
+                    new DictMarkets
                     {
-                        id = 0,
-                        short_name = "all",
-                        market_name = "ВСІ"                        
+                        Id = 0,
+                        ShortName = "all",
+                        MarketName = "ВСІ"                        
                     }
                 );
 
-            return markets.OrderBy(o => o.id);
+            return markets.OrderBy(o => o.Id);
         }
 
         public IEnumerable<string> GetDisabledDates(int id)
@@ -129,12 +135,12 @@ namespace ReportsLoyalty.Controllers
 
             using (GetData gt = new GetData())
             {
-                var fgroups = gt.Dict.GetGroups(id).OrderBy(o => o.name);
-                foreach (v_fgroups f in fgroups)
+                var fgroups = gt.Dict.GetGroups(id).OrderBy(o => o.Name).ToList();
+                foreach (VFgroups f in fgroups)
                 {
                     g.Add(new FGroup {
-                       fgroup_id = f.fgroup_id,
-                       name = f.name
+                       fgroup_id = f.FgroupId,
+                       name = f.Name
                     });
                 }
             }
@@ -197,12 +203,12 @@ namespace ReportsLoyalty.Controllers
             using (GetData gt = new GetData())
             {
                 var fgroups = gt.Dict.GetGroupsByParentId(id);
-                foreach (v_fgroups f in fgroups)
+                foreach (VFgroups f in fgroups)
                 {
                     g.Add(new FGroup
                     {
-                        fgroup_id = f.fgroup_id,
-                        name = f.name
+                        fgroup_id = f.FgroupId,
+                        name = f.Name
                     });
                 }
             }

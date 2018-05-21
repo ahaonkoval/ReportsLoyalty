@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LinqToDB;
+using DataModels;
 
 namespace LoyaltyDB
 {
@@ -17,9 +18,13 @@ namespace LoyaltyDB
             Le = le;
         }
 
-        public IEnumerable<dict_markets> GetDictMarkets()
+        public IEnumerable<DictMarkets> GetDictMarkets()
         {
-            return Le.dict_markets.ToList();
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.DictMarkets.ToList();
+            }
+            //return Le.dict_markets.ToList();
         }
 
         public Decimal GetFractionParticipantSaleByCampaignId(int id)
@@ -27,14 +32,23 @@ namespace LoyaltyDB
             return 0;
         }
 
-        public IEnumerable<v_fgroups> GetGroups(int level_id)
+        public IEnumerable<VFgroups> GetGroups(int level_id)
         {
-            return Le.v_fgroups.Where(w => w.level_id == level_id).OrderBy(o => o.fgroup_id);
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.VFgroups.Where(w => w.LevelId == level_id).OrderBy(o => o.FgroupId).ToList();
+            }
+
+            //return Le.v_fgroups.Where(w => w.level_id == level_id).OrderBy(o => o.fgroup_id);
         }
 
-        public IEnumerable<v_fgroups> GetGroupsByParentId(int parent_id)
+        public IEnumerable<VFgroups> GetGroupsByParentId(int parent_id)
         {
-            return Le.v_fgroups.Where(w => w.parent_id == parent_id).OrderBy(o => o.fgroup_id);
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.VFgroups.Where(w => w.ParentId == parent_id).OrderBy(o => o.FgroupId);
+            }
+            //return Le.v_fgroups.Where(w => w.parent_id == parent_id).OrderBy(o => o.fgroup_id);
         }
         /// <summary>
         /// 

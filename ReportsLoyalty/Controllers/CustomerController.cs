@@ -99,7 +99,7 @@ namespace ReportsLoyalty.Controllers
                 result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                 {
                     FileName = string.Format(
-                    "({0}) {1}.csv", id.ToString(), gd.Campaigns.GetCampaignNameById(id)
+                    "({0}).csv", id.ToString()//, gd.Campaigns.GetCampaignNameById(id)
                     )
                 };
 

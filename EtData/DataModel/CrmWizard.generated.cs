@@ -23,226 +23,223 @@ namespace DataModels
 	/// <summary>
 	/// Database       : crm_wizard
 	/// Data Source    : 10.7.131.218
-	/// Server Version : 13.00.4474
+	/// Server Version : 13.00.5026
 	/// </summary>
 	public partial class CrmWizardDB : LinqToDB.Data.DataConnection
 	{
-		public ITable<ArticulsVtm>                   ArticulsVtm                   { get { return this.GetTable<ArticulsVtm>(); } }
-		public ITable<BillLine1>                     BillLine1                     { get { return this.GetTable<BillLine1>(); } }
-		public ITable<Bills1>                        Bills1                        { get { return this.GetTable<Bills1>(); } }
-		public ITable<BlockFgroups>                  BlockFgroups                  { get { return this.GetTable<BlockFgroups>(); } }
-		public ITable<BlockGoods>                    BlockGoods                    { get { return this.GetTable<BlockGoods>(); } }
-		public ITable<BonusFgroups>                  BonusFgroups                  { get { return this.GetTable<BonusFgroups>(); } }
-		public ITable<BonusGoods>                    BonusGoods                    { get { return this.GetTable<BonusGoods>(); } }
-		public ITable<BonusMovement>                 BonusMovement                 { get { return this.GetTable<BonusMovement>(); } }
-		public ITable<BonusStates>                   BonusStates                   { get { return this.GetTable<BonusStates>(); } }
-		public ITable<BuyerreturnLine1>              BuyerreturnLine1              { get { return this.GetTable<BuyerreturnLine1>(); } }
-		public ITable<Buyerreturns1>                 Buyerreturns1                 { get { return this.GetTable<Buyerreturns1>(); } }
-		public ITable<CampaignArticul>               CampaignArticul               { get { return this.GetTable<CampaignArticul>(); } }
-		public ITable<CampaignGroups>                CampaignGroups                { get { return this.GetTable<CampaignGroups>(); } }
-		public ITable<CampaignParticipant>           CampaignParticipant           { get { return this.GetTable<CampaignParticipant>(); } }
-		public ITable<CampaignPhoneStatus>           CampaignPhoneStatus           { get { return this.GetTable<CampaignPhoneStatus>(); } }
-		public ITable<CampaignsMk>                   CampaignsMk                   { get { return this.GetTable<CampaignsMk>(); } }
-		public ITable<CampaignSoftlineStatus>        CampaignSoftlineStatus        { get { return this.GetTable<CampaignSoftlineStatus>(); } }
-		public ITable<CampaignsTerms>                CampaignsTerms                { get { return this.GetTable<CampaignsTerms>(); } }
-		public ITable<CampaignTypes>                 CampaignTypes                 { get { return this.GetTable<CampaignTypes>(); } }
-		public ITable<Card>                          Cards                         { get { return this.GetTable<Card>(); } }
-		public ITable<CardReplace>                   CardReplace                   { get { return this.GetTable<CardReplace>(); } }
-		public ITable<Cards200t>                     Cards200t                     { get { return this.GetTable<Cards200t>(); } }
-		public ITable<Cards200tEan13>                Cards200tEan13                { get { return this.GetTable<Cards200tEan13>(); } }
-		public ITable<Cardusing>                     Cardusings                    { get { return this.GetTable<Cardusing>(); } }
-		public ITable<CashinvoiceLine1>              CashinvoiceLine1              { get { return this.GetTable<CashinvoiceLine1>(); } }
-		public ITable<Cashinvoices1>                 Cashinvoices1                 { get { return this.GetTable<Cashinvoices1>(); } }
-		public ITable<CommonBuy>                     CommonBuy                     { get { return this.GetTable<CommonBuy>(); } }
-		public ITable<ComplectSet>                   ComplectSet                   { get { return this.GetTable<ComplectSet>(); } }
-		public ITable<CrmBonusMovement>              CrmBonusMovement              { get { return this.GetTable<CrmBonusMovement>(); } }
-		public ITable<CrmCardsDekoReplace>           CrmCardsDekoReplace           { get { return this.GetTable<CrmCardsDekoReplace>(); } }
-		public ITable<CrmCities>                     CrmCities                     { get { return this.GetTable<CrmCities>(); } }
-		public ITable<CrmCityTypes>                  CrmCityTypes                  { get { return this.GetTable<CrmCityTypes>(); } }
-		public ITable<CrmCustomerBonusByDocs>        CrmCustomerBonusByDocs        { get { return this.GetTable<CrmCustomerBonusByDocs>(); } }
-		public ITable<CrmCustomerBonusByDocsBac>     CrmCustomerBonusByDocsBac     { get { return this.GetTable<CrmCustomerBonusByDocsBac>(); } }
-		public ITable<CrmCustomerEnquiries>          CrmCustomerEnquiries          { get { return this.GetTable<CrmCustomerEnquiries>(); } }
-		public ITable<CrmCustomerEnquiryStatus>      CrmCustomerEnquiryStatus      { get { return this.GetTable<CrmCustomerEnquiryStatus>(); } }
-		public ITable<CrmCustomerKids>               CrmCustomerKids               { get { return this.GetTable<CrmCustomerKids>(); } }
-		public ITable<CrmCustomerKm>                 CrmCustomerKm                 { get { return this.GetTable<CrmCustomerKm>(); } }
-		public ITable<CrmCustomers>                  CrmCustomers                  { get { return this.GetTable<CrmCustomers>(); } }
-		public ITable<CrmCustomerStatus>             CrmCustomerStatus             { get { return this.GetTable<CrmCustomerStatus>(); } }
-		public ITable<CrmGiftCustomers>              CrmGiftCustomers              { get { return this.GetTable<CrmGiftCustomers>(); } }
-		public ITable<CrmGiftItems>                  CrmGiftItems                  { get { return this.GetTable<CrmGiftItems>(); } }
-		public ITable<CrmGifts>                      CrmGifts                      { get { return this.GetTable<CrmGifts>(); } }
-		public ITable<CrmIntersportMovement>         CrmIntersportMovement         { get { return this.GetTable<CrmIntersportMovement>(); } }
-		public ITable<CrmIsviber>                    CrmIsviber                    { get { return this.GetTable<CrmIsviber>(); } }
-		public ITable<CrmWizardLog>                  CrmWizardLog                  { get { return this.GetTable<CrmWizardLog>(); } }
-		public ITable<CrmWizardUpdates>              CrmWizardUpdates              { get { return this.GetTable<CrmWizardUpdates>(); } }
-		public ITable<CustomerKafeDiscounts>         CustomerKafeDiscounts         { get { return this.GetTable<CustomerKafeDiscounts>(); } }
-		public ITable<CustomerKids>                  CustomerKids                  { get { return this.GetTable<CustomerKids>(); } }
-		public ITable<CustomersAgeMap>               CustomersAgeMap               { get { return this.GetTable<CustomersAgeMap>(); } }
-		public ITable<CustomersBonusAdd>             CustomersBonusAdd             { get { return this.GetTable<CustomersBonusAdd>(); } }
-		public ITable<CustomersDoc>                  CustomersDoc                  { get { return this.GetTable<CustomersDoc>(); } }
-		public ITable<CustomersKidsAgeMap>           CustomersKidsAgeMap           { get { return this.GetTable<CustomersKidsAgeMap>(); } }
-		public ITable<DailyAllocationTypes>          DailyAllocationTypes          { get { return this.GetTable<DailyAllocationTypes>(); } }
-		public ITable<DailyMap>                      DailyMap                      { get { return this.GetTable<DailyMap>(); } }
-		public ITable<DailyMarketRests>              DailyMarketRests              { get { return this.GetTable<DailyMarketRests>(); } }
-		public ITable<DailyReportArticulIndicators>  DailyReportArticulIndicators  { get { return this.GetTable<DailyReportArticulIndicators>(); } }
-		public ITable<DailyReportBasicIndicators>    DailyReportBasicIndicators    { get { return this.GetTable<DailyReportBasicIndicators>(); } }
-		public ITable<DailyReportMapAllocation>      DailyReportMapAllocation      { get { return this.GetTable<DailyReportMapAllocation>(); } }
-		public ITable<DictCardStatus>                DictCardStatus                { get { return this.GetTable<DictCardStatus>(); } }
-		public ITable<DictCustomerStatus>            DictCustomerStatus            { get { return this.GetTable<DictCustomerStatus>(); } }
-		public ITable<DictGoods>                     DictGoods                     { get { return this.GetTable<DictGoods>(); } }
-		public ITable<DictKassas>                    DictKassas                    { get { return this.GetTable<DictKassas>(); } }
-		public ITable<DictMarkets>                   DictMarkets                   { get { return this.GetTable<DictMarkets>(); } }
-		public ITable<DictSegment>                   DictSegment                   { get { return this.GetTable<DictSegment>(); } }
-		public ITable<DictSegmentGroup>              DictSegmentGroup              { get { return this.GetTable<DictSegmentGroup>(); } }
-		public ITable<DictSellpriceTypes>            DictSellpriceTypes            { get { return this.GetTable<DictSellpriceTypes>(); } }
-		public ITable<DocStatusHistory>              DocStatusHistory              { get { return this.GetTable<DocStatusHistory>(); } }
-		public ITable<DocTypes>                      DocTypes                      { get { return this.GetTable<DocTypes>(); } }
-		public ITable<Fgroup>                        Fgroups                       { get { return this.GetTable<Fgroup>(); } }
-		public ITable<FgroupGoods>                   FgroupGoods                   { get { return this.GetTable<FgroupGoods>(); } }
-		public ITable<FgroupGoodsBac>                FgroupGoodsBac                { get { return this.GetTable<FgroupGoodsBac>(); } }
-		public ITable<FinLoyaltyRepArticuls>         FinLoyaltyRepArticuls         { get { return this.GetTable<FinLoyaltyRepArticuls>(); } }
-		public ITable<FinLoyaltyRepGroups>           FinLoyaltyRepGroups           { get { return this.GetTable<FinLoyaltyRepGroups>(); } }
-		public ITable<GoodsShort>                    GoodsShort                    { get { return this.GetTable<GoodsShort>(); } }
-		public ITable<HoleBucketV1>                  HoleBucketV1                  { get { return this.GetTable<HoleBucketV1>(); } }
-		public ITable<LoyaltySellMovementImport1>    LoyaltySellMovementImport1    { get { return this.GetTable<LoyaltySellMovementImport1>(); } }
-		public ITable<LoyaltySellMovementImport10>   LoyaltySellMovementImport10   { get { return this.GetTable<LoyaltySellMovementImport10>(); } }
-		public ITable<LoyaltySellMovementImport11>   LoyaltySellMovementImport11   { get { return this.GetTable<LoyaltySellMovementImport11>(); } }
-		public ITable<LoyaltySellMovementImport12>   LoyaltySellMovementImport12   { get { return this.GetTable<LoyaltySellMovementImport12>(); } }
-		public ITable<LoyaltySellMovementImport13>   LoyaltySellMovementImport13   { get { return this.GetTable<LoyaltySellMovementImport13>(); } }
-		public ITable<LoyaltySellMovementImport14>   LoyaltySellMovementImport14   { get { return this.GetTable<LoyaltySellMovementImport14>(); } }
-		public ITable<LoyaltySellMovementImport15>   LoyaltySellMovementImport15   { get { return this.GetTable<LoyaltySellMovementImport15>(); } }
-		public ITable<LoyaltySellMovementImport16>   LoyaltySellMovementImport16   { get { return this.GetTable<LoyaltySellMovementImport16>(); } }
-		public ITable<LoyaltySellMovementImport17>   LoyaltySellMovementImport17   { get { return this.GetTable<LoyaltySellMovementImport17>(); } }
-		public ITable<LoyaltySellMovementImport18>   LoyaltySellMovementImport18   { get { return this.GetTable<LoyaltySellMovementImport18>(); } }
-		public ITable<LoyaltySellMovementImport19>   LoyaltySellMovementImport19   { get { return this.GetTable<LoyaltySellMovementImport19>(); } }
-		public ITable<LoyaltySellMovementImport2>    LoyaltySellMovementImport2    { get { return this.GetTable<LoyaltySellMovementImport2>(); } }
-		public ITable<LoyaltySellMovementImport20>   LoyaltySellMovementImport20   { get { return this.GetTable<LoyaltySellMovementImport20>(); } }
-		public ITable<LoyaltySellMovementImport21>   LoyaltySellMovementImport21   { get { return this.GetTable<LoyaltySellMovementImport21>(); } }
-		public ITable<LoyaltySellMovementImport22>   LoyaltySellMovementImport22   { get { return this.GetTable<LoyaltySellMovementImport22>(); } }
-		public ITable<LoyaltySellMovementImport23>   LoyaltySellMovementImport23   { get { return this.GetTable<LoyaltySellMovementImport23>(); } }
-		public ITable<LoyaltySellMovementImport24>   LoyaltySellMovementImport24   { get { return this.GetTable<LoyaltySellMovementImport24>(); } }
-		public ITable<LoyaltySellMovementImport25>   LoyaltySellMovementImport25   { get { return this.GetTable<LoyaltySellMovementImport25>(); } }
-		public ITable<LoyaltySellMovementImport26>   LoyaltySellMovementImport26   { get { return this.GetTable<LoyaltySellMovementImport26>(); } }
-		public ITable<LoyaltySellMovementImport27>   LoyaltySellMovementImport27   { get { return this.GetTable<LoyaltySellMovementImport27>(); } }
-		public ITable<LoyaltySellMovementImport28>   LoyaltySellMovementImport28   { get { return this.GetTable<LoyaltySellMovementImport28>(); } }
-		public ITable<LoyaltySellMovementImport29>   LoyaltySellMovementImport29   { get { return this.GetTable<LoyaltySellMovementImport29>(); } }
-		public ITable<LoyaltySellMovementImport3>    LoyaltySellMovementImport3    { get { return this.GetTable<LoyaltySellMovementImport3>(); } }
-		public ITable<LoyaltySellMovementImport30>   LoyaltySellMovementImport30   { get { return this.GetTable<LoyaltySellMovementImport30>(); } }
-		public ITable<LoyaltySellMovementImport301>  LoyaltySellMovementImport301  { get { return this.GetTable<LoyaltySellMovementImport301>(); } }
-		public ITable<LoyaltySellMovementImport31>   LoyaltySellMovementImport31   { get { return this.GetTable<LoyaltySellMovementImport31>(); } }
-		public ITable<LoyaltySellMovementImport32>   LoyaltySellMovementImport32   { get { return this.GetTable<LoyaltySellMovementImport32>(); } }
-		public ITable<LoyaltySellMovementImport33>   LoyaltySellMovementImport33   { get { return this.GetTable<LoyaltySellMovementImport33>(); } }
-		public ITable<LoyaltySellMovementImport34>   LoyaltySellMovementImport34   { get { return this.GetTable<LoyaltySellMovementImport34>(); } }
-		public ITable<LoyaltySellMovementImport35>   LoyaltySellMovementImport35   { get { return this.GetTable<LoyaltySellMovementImport35>(); } }
-		public ITable<LoyaltySellMovementImport36>   LoyaltySellMovementImport36   { get { return this.GetTable<LoyaltySellMovementImport36>(); } }
-		public ITable<LoyaltySellMovementImport37>   LoyaltySellMovementImport37   { get { return this.GetTable<LoyaltySellMovementImport37>(); } }
-		public ITable<LoyaltySellMovementImport38>   LoyaltySellMovementImport38   { get { return this.GetTable<LoyaltySellMovementImport38>(); } }
-		public ITable<LoyaltySellMovementImport39>   LoyaltySellMovementImport39   { get { return this.GetTable<LoyaltySellMovementImport39>(); } }
-		public ITable<LoyaltySellMovementImport4>    LoyaltySellMovementImport4    { get { return this.GetTable<LoyaltySellMovementImport4>(); } }
-		public ITable<LoyaltySellMovementImport40>   LoyaltySellMovementImport40   { get { return this.GetTable<LoyaltySellMovementImport40>(); } }
-		public ITable<LoyaltySellMovementImport41>   LoyaltySellMovementImport41   { get { return this.GetTable<LoyaltySellMovementImport41>(); } }
-		public ITable<LoyaltySellMovementImport42>   LoyaltySellMovementImport42   { get { return this.GetTable<LoyaltySellMovementImport42>(); } }
-		public ITable<LoyaltySellMovementImport43>   LoyaltySellMovementImport43   { get { return this.GetTable<LoyaltySellMovementImport43>(); } }
-		public ITable<LoyaltySellMovementImport44>   LoyaltySellMovementImport44   { get { return this.GetTable<LoyaltySellMovementImport44>(); } }
-		public ITable<LoyaltySellMovementImport45>   LoyaltySellMovementImport45   { get { return this.GetTable<LoyaltySellMovementImport45>(); } }
-		public ITable<LoyaltySellMovementImport46>   LoyaltySellMovementImport46   { get { return this.GetTable<LoyaltySellMovementImport46>(); } }
-		public ITable<LoyaltySellMovementImport47>   LoyaltySellMovementImport47   { get { return this.GetTable<LoyaltySellMovementImport47>(); } }
-		public ITable<LoyaltySellMovementImport48>   LoyaltySellMovementImport48   { get { return this.GetTable<LoyaltySellMovementImport48>(); } }
-		public ITable<LoyaltySellMovementImport49>   LoyaltySellMovementImport49   { get { return this.GetTable<LoyaltySellMovementImport49>(); } }
-		public ITable<LoyaltySellMovementImport5>    LoyaltySellMovementImport5    { get { return this.GetTable<LoyaltySellMovementImport5>(); } }
-		public ITable<LoyaltySellMovementImport50>   LoyaltySellMovementImport50   { get { return this.GetTable<LoyaltySellMovementImport50>(); } }
-		public ITable<LoyaltySellMovementImport51>   LoyaltySellMovementImport51   { get { return this.GetTable<LoyaltySellMovementImport51>(); } }
-		public ITable<LoyaltySellMovementImport52>   LoyaltySellMovementImport52   { get { return this.GetTable<LoyaltySellMovementImport52>(); } }
-		public ITable<LoyaltySellMovementImport53>   LoyaltySellMovementImport53   { get { return this.GetTable<LoyaltySellMovementImport53>(); } }
-		public ITable<LoyaltySellMovementImport54>   LoyaltySellMovementImport54   { get { return this.GetTable<LoyaltySellMovementImport54>(); } }
-		public ITable<LoyaltySellMovementImport55>   LoyaltySellMovementImport55   { get { return this.GetTable<LoyaltySellMovementImport55>(); } }
-		public ITable<LoyaltySellMovementImport56>   LoyaltySellMovementImport56   { get { return this.GetTable<LoyaltySellMovementImport56>(); } }
-		public ITable<LoyaltySellMovementImport57>   LoyaltySellMovementImport57   { get { return this.GetTable<LoyaltySellMovementImport57>(); } }
-		public ITable<LoyaltySellMovementImport58>   LoyaltySellMovementImport58   { get { return this.GetTable<LoyaltySellMovementImport58>(); } }
-		public ITable<LoyaltySellMovementImport59>   LoyaltySellMovementImport59   { get { return this.GetTable<LoyaltySellMovementImport59>(); } }
-		public ITable<LoyaltySellMovementImport6>    LoyaltySellMovementImport6    { get { return this.GetTable<LoyaltySellMovementImport6>(); } }
-		public ITable<LoyaltySellMovementImport60>   LoyaltySellMovementImport60   { get { return this.GetTable<LoyaltySellMovementImport60>(); } }
-		public ITable<LoyaltySellMovementImport7>    LoyaltySellMovementImport7    { get { return this.GetTable<LoyaltySellMovementImport7>(); } }
-		public ITable<LoyaltySellMovementImport8>    LoyaltySellMovementImport8    { get { return this.GetTable<LoyaltySellMovementImport8>(); } }
-		public ITable<LoyaltySellMovementImport9>    LoyaltySellMovementImport9    { get { return this.GetTable<LoyaltySellMovementImport9>(); } }
-		public ITable<MapDiffDay>                    MapDiffDay                    { get { return this.GetTable<MapDiffDay>(); } }
-		public ITable<MapDiffDayLong>                MapDiffDayLong                { get { return this.GetTable<MapDiffDayLong>(); } }
-		public ITable<MapDiffDayLongV2>              MapDiffDayLongV2              { get { return this.GetTable<MapDiffDayLongV2>(); } }
-		public ITable<MapDiffDistance>               MapDiffDistance               { get { return this.GetTable<MapDiffDistance>(); } }
-		public ITable<MapDiffSm>                     MapDiffSm                     { get { return this.GetTable<MapDiffSm>(); } }
-		public ITable<MapDiffSmLong>                 MapDiffSmLong                 { get { return this.GetTable<MapDiffSmLong>(); } }
-		public ITable<MapDiffVisit>                  MapDiffVisit                  { get { return this.GetTable<MapDiffVisit>(); } }
-		public ITable<MarketRests>                   MarketRests                   { get { return this.GetTable<MarketRests>(); } }
-		public ITable<MarkmoCodeUsing>               MarkmoCodeUsing               { get { return this.GetTable<MarkmoCodeUsing>(); } }
-		public ITable<MarkmoCustomers>               MarkmoCustomers               { get { return this.GetTable<MarkmoCustomers>(); } }
-		public ITable<MarkmoData>                    MarkmoData                    { get { return this.GetTable<MarkmoData>(); } }
-		public ITable<MarkmoFgroupRegister>          MarkmoFgroupRegister          { get { return this.GetTable<MarkmoFgroupRegister>(); } }
-		public ITable<MarkmoGoodRegister>            MarkmoGoodRegister            { get { return this.GetTable<MarkmoGoodRegister>(); } }
-		public ITable<MarkmoRules>                   MarkmoRules                   { get { return this.GetTable<MarkmoRules>(); } }
-		public ITable<MarkmoRuleTypes>               MarkmoRuleTypes               { get { return this.GetTable<MarkmoRuleTypes>(); } }
-		public ITable<Markmos1>                      Markmos1                      { get { return this.GetTable<Markmos1>(); } }
-		public ITable<MarkmoTypes>                   MarkmoTypes                   { get { return this.GetTable<MarkmoTypes>(); } }
-		public ITable<NotificationViber>             NotificationViber             { get { return this.GetTable<NotificationViber>(); } }
-		public ITable<NotificationViberResponce>     NotificationViberResponce     { get { return this.GetTable<NotificationViberResponce>(); } }
-		public ITable<OrdersbookLine1>               OrdersbookLine1               { get { return this.GetTable<OrdersbookLine1>(); } }
-		public ITable<Ordersbooks1>                  Ordersbooks1                  { get { return this.GetTable<Ordersbooks1>(); } }
-		public ITable<OutcomeinvoiceLine1>           OutcomeinvoiceLine1           { get { return this.GetTable<OutcomeinvoiceLine1>(); } }
-		public ITable<Outcomeinvoices1>              Outcomeinvoices1              { get { return this.GetTable<Outcomeinvoices1>(); } }
-		public ITable<OutflowCustomers>              OutflowCustomers              { get { return this.GetTable<OutflowCustomers>(); } }
-		public ITable<OutflowDictStatuses>           OutflowDictStatuses           { get { return this.GetTable<OutflowDictStatuses>(); } }
-		public ITable<OutflowHistory>                OutflowHistory                { get { return this.GetTable<OutflowHistory>(); } }
-		public ITable<Payment>                       Payments                      { get { return this.GetTable<Payment>(); } }
-		public ITable<ProcExecuteLog>                ProcExecuteLog                { get { return this.GetTable<ProcExecuteLog>(); } }
-		public ITable<Producer>                      Producers                     { get { return this.GetTable<Producer>(); } }
-		public ITable<PromoRegister>                 PromoRegister                 { get { return this.GetTable<PromoRegister>(); } }
-		public ITable<Promos1>                       Promos1                       { get { return this.GetTable<Promos1>(); } }
-		public ITable<PromoTypes>                    PromoTypes                    { get { return this.GetTable<PromoTypes>(); } }
-		public ITable<Region>                        Regions                       { get { return this.GetTable<Region>(); } }
-		public ITable<RetailinvoiceLine1>            RetailinvoiceLine1            { get { return this.GetTable<RetailinvoiceLine1>(); } }
-		public ITable<Retailinvoices1>               Retailinvoices1               { get { return this.GetTable<Retailinvoices1>(); } }
-		public ITable<SeekReadyBonusesCg>            SeekReadyBonusesCg            { get { return this.GetTable<SeekReadyBonusesCg>(); } }
-		public ITable<SeekReadyBonusesKm>            SeekReadyBonusesKm            { get { return this.GetTable<SeekReadyBonusesKm>(); } }
-		public ITable<SeekSellMovementCg>            SeekSellMovementCg            { get { return this.GetTable<SeekSellMovementCg>(); } }
-		public ITable<SeekSellMovementKm>            SeekSellMovementKm            { get { return this.GetTable<SeekSellMovementKm>(); } }
-		public ITable<SellBuyPrice>                  SellBuyPrice                  { get { return this.GetTable<SellBuyPrice>(); } }
-		public ITable<SellBuyPrice0402>              SellBuyPrice0402              { get { return this.GetTable<SellBuyPrice0402>(); } }
-		public ITable<SellBuyPrice3003>              SellBuyPrice3003              { get { return this.GetTable<SellBuyPrice3003>(); } }
-		public ITable<SellMovement>                  SellMovement                  { get { return this.GetTable<SellMovement>(); } }
-		public ITable<SellMovementHistory>           SellMovementHistory           { get { return this.GetTable<SellMovementHistory>(); } }
-		public ITable<ShortDocs1>                    ShortDocs1                    { get { return this.GetTable<ShortDocs1>(); } }
-		public ITable<Staff>                         Staffs                        { get { return this.GetTable<Staff>(); } }
-		public ITable<StopList>                      StopList                      { get { return this.GetTable<StopList>(); } }
-		public ITable<StreetTypes>                   StreetTypes                   { get { return this.GetTable<StreetTypes>(); } }
-		public ITable<Subregion>                     Subregions                    { get { return this.GetTable<Subregion>(); } }
-		public ITable<UrgentBonusStates>             UrgentBonusStates             { get { return this.GetTable<UrgentBonusStates>(); } }
-		public ITable<VAllacationCustomersByAnimals> VAllacationCustomersByAnimals { get { return this.GetTable<VAllacationCustomersByAnimals>(); } }
-		public ITable<VAllocationCustomersByHaveCar> VAllocationCustomersByHaveCar { get { return this.GetTable<VAllocationCustomersByHaveCar>(); } }
-		public ITable<VAllocationCustomersByHobby>   VAllocationCustomersByHobby   { get { return this.GetTable<VAllocationCustomersByHobby>(); } }
-		public ITable<VAllocationCustomersForAge>    VAllocationCustomersForAge    { get { return this.GetTable<VAllocationCustomersForAge>(); } }
-		public ITable<VAllocationKidsForAge>         VAllocationKidsForAge         { get { return this.GetTable<VAllocationKidsForAge>(); } }
-		public ITable<VAllSell>                      VAllSell                      { get { return this.GetTable<VAllSell>(); } }
-		public ITable<VBasicIndicators>              VBasicIndicators              { get { return this.GetTable<VBasicIndicators>(); } }
-		public ITable<VCampaignGoodsShort>           VCampaignGoodsShort           { get { return this.GetTable<VCampaignGoodsShort>(); } }
-		public ITable<VCampaignsMk>                  VCampaignsMk                  { get { return this.GetTable<VCampaignsMk>(); } }
-		public ITable<VCampaignsMkRun>               VCampaignsMkRun               { get { return this.GetTable<VCampaignsMkRun>(); } }
-		public ITable<VCardCountByGroup>             VCardCountByGroup             { get { return this.GetTable<VCardCountByGroup>(); } }
-		public ITable<VCardCustomers>                VCardCustomers                { get { return this.GetTable<VCardCustomers>(); } }
-		public ITable<VCardCustomersTrue>            VCardCustomersTrue            { get { return this.GetTable<VCardCustomersTrue>(); } }
-		public ITable<VCardSell>                     VCardSell                     { get { return this.GetTable<VCardSell>(); } }
-		public ITable<VCardSellShort>                VCardSellShort                { get { return this.GetTable<VCardSellShort>(); } }
-		public ITable<VCrmBonusMovement>             VCrmBonusMovement             { get { return this.GetTable<VCrmBonusMovement>(); } }
-		public ITable<VCustomersAverageAmountPerday> VCustomersAverageAmountPerday { get { return this.GetTable<VCustomersAverageAmountPerday>(); } }
-		public ITable<VCustomersCard>                VCustomersCard                { get { return this.GetTable<VCustomersCard>(); } }
-		public ITable<VCustomersCardAll>             VCustomersCardAll             { get { return this.GetTable<VCustomersCardAll>(); } }
-		public ITable<VCustomersSell>                VCustomersSell                { get { return this.GetTable<VCustomersSell>(); } }
-		public ITable<VCustomersSellAll>             VCustomersSellAll             { get { return this.GetTable<VCustomersSellAll>(); } }
-		public ITable<VCustomersSellAllShort>        VCustomersSellAllShort        { get { return this.GetTable<VCustomersSellAllShort>(); } }
-		public ITable<VCustomersSellAllV2>           VCustomersSellAllV2           { get { return this.GetTable<VCustomersSellAllV2>(); } }
-		public ITable<VCustomersSellShort>           VCustomersSellShort           { get { return this.GetTable<VCustomersSellShort>(); } }
-		public ITable<VDictGoods>                    VDictGoods                    { get { return this.GetTable<VDictGoods>(); } }
-		public ITable<VFgroups>                      VFgroups                      { get { return this.GetTable<VFgroups>(); } }
-		public ITable<VGetDocDetailsAll>             VGetDocDetailsAll             { get { return this.GetTable<VGetDocDetailsAll>(); } }
-		public ITable<VTradeLine>                    VTradeLine                    { get { return this.GetTable<VTradeLine>(); } }
-		public ITable<WinnerParticipant>             WinnerParticipant             { get { return this.GetTable<WinnerParticipant>(); } }
+		public ITable<Agent>                                  Agents                                 { get { return this.GetTable<Agent>(); } }
+		public ITable<ArticulsVtm>                            ArticulsVtm                            { get { return this.GetTable<ArticulsVtm>(); } }
+		public ITable<BillLine1>                              BillLine1                              { get { return this.GetTable<BillLine1>(); } }
+		public ITable<Bills1>                                 Bills1                                 { get { return this.GetTable<Bills1>(); } }
+		public ITable<BlockFgroups>                           BlockFgroups                           { get { return this.GetTable<BlockFgroups>(); } }
+		public ITable<BlockGoods>                             BlockGoods                             { get { return this.GetTable<BlockGoods>(); } }
+		public ITable<BonusFgroups>                           BonusFgroups                           { get { return this.GetTable<BonusFgroups>(); } }
+		public ITable<BonusGoods>                             BonusGoods                             { get { return this.GetTable<BonusGoods>(); } }
+		public ITable<BonusMovement>                          BonusMovement                          { get { return this.GetTable<BonusMovement>(); } }
+		public ITable<BonusStates>                            BonusStates                            { get { return this.GetTable<BonusStates>(); } }
+		public ITable<BuyerreturnLine1>                       BuyerreturnLine1                       { get { return this.GetTable<BuyerreturnLine1>(); } }
+		public ITable<Buyerreturns1>                          Buyerreturns1                          { get { return this.GetTable<Buyerreturns1>(); } }
+		public ITable<CampaignArticul>                        CampaignArticul                        { get { return this.GetTable<CampaignArticul>(); } }
+		public ITable<CampaignGroups>                         CampaignGroups                         { get { return this.GetTable<CampaignGroups>(); } }
+		public ITable<CampaignParticipant>                    CampaignParticipant                    { get { return this.GetTable<CampaignParticipant>(); } }
+		public ITable<CampaignPhoneStatus>                    CampaignPhoneStatus                    { get { return this.GetTable<CampaignPhoneStatus>(); } }
+		public ITable<CampaignsMk>                            CampaignsMk                            { get { return this.GetTable<CampaignsMk>(); } }
+		public ITable<CampaignSoftlineStatus>                 CampaignSoftlineStatus                 { get { return this.GetTable<CampaignSoftlineStatus>(); } }
+		public ITable<CampaignsTerms>                         CampaignsTerms                         { get { return this.GetTable<CampaignsTerms>(); } }
+		public ITable<CampaignTypes>                          CampaignTypes                          { get { return this.GetTable<CampaignTypes>(); } }
+		public ITable<Card>                                   Cards                                  { get { return this.GetTable<Card>(); } }
+		public ITable<CardReplace>                            CardReplace                            { get { return this.GetTable<CardReplace>(); } }
+		public ITable<Cards200t>                              Cards200t                              { get { return this.GetTable<Cards200t>(); } }
+		public ITable<Cards200tEan13>                         Cards200tEan13                         { get { return this.GetTable<Cards200tEan13>(); } }
+		public ITable<Cardusing>                              Cardusings                             { get { return this.GetTable<Cardusing>(); } }
+		public ITable<CashinvoiceLine1>                       CashinvoiceLine1                       { get { return this.GetTable<CashinvoiceLine1>(); } }
+		public ITable<Cashinvoices1>                          Cashinvoices1                          { get { return this.GetTable<Cashinvoices1>(); } }
+		public ITable<CommonBuy>                              CommonBuy                              { get { return this.GetTable<CommonBuy>(); } }
+		public ITable<ComplectSet>                            ComplectSet                            { get { return this.GetTable<ComplectSet>(); } }
+		public ITable<CrmBonusMovement>                       CrmBonusMovement                       { get { return this.GetTable<CrmBonusMovement>(); } }
+		public ITable<CrmCardsDekoReplace>                    CrmCardsDekoReplace                    { get { return this.GetTable<CrmCardsDekoReplace>(); } }
+		public ITable<CrmCities>                              CrmCities                              { get { return this.GetTable<CrmCities>(); } }
+		public ITable<CrmCityTypes>                           CrmCityTypes                           { get { return this.GetTable<CrmCityTypes>(); } }
+		public ITable<CrmCustomerEnquiries>                   CrmCustomerEnquiries                   { get { return this.GetTable<CrmCustomerEnquiries>(); } }
+		public ITable<CrmCustomerEnquiryStatus>               CrmCustomerEnquiryStatus               { get { return this.GetTable<CrmCustomerEnquiryStatus>(); } }
+		public ITable<CrmCustomerKids>                        CrmCustomerKids                        { get { return this.GetTable<CrmCustomerKids>(); } }
+		public ITable<CrmCustomerKm>                          CrmCustomerKm                          { get { return this.GetTable<CrmCustomerKm>(); } }
+		public ITable<CrmCustomers>                           CrmCustomers                           { get { return this.GetTable<CrmCustomers>(); } }
+		public ITable<CrmCustomerStatus>                      CrmCustomerStatus                      { get { return this.GetTable<CrmCustomerStatus>(); } }
+		public ITable<CrmGiftCustomers>                       CrmGiftCustomers                       { get { return this.GetTable<CrmGiftCustomers>(); } }
+		public ITable<CrmGiftItems>                           CrmGiftItems                           { get { return this.GetTable<CrmGiftItems>(); } }
+		public ITable<CrmGifts>                               CrmGifts                               { get { return this.GetTable<CrmGifts>(); } }
+		public ITable<CrmIntersportMovement>                  CrmIntersportMovement                  { get { return this.GetTable<CrmIntersportMovement>(); } }
+		public ITable<CrmIsviber>                             CrmIsviber                             { get { return this.GetTable<CrmIsviber>(); } }
+		public ITable<CrmWizardLog>                           CrmWizardLog                           { get { return this.GetTable<CrmWizardLog>(); } }
+		public ITable<CrmWizardUpdates>                       CrmWizardUpdates                       { get { return this.GetTable<CrmWizardUpdates>(); } }
+		public ITable<CustomerKafeDiscounts>                  CustomerKafeDiscounts                  { get { return this.GetTable<CustomerKafeDiscounts>(); } }
+		public ITable<CustomerKids>                           CustomerKids                           { get { return this.GetTable<CustomerKids>(); } }
+		public ITable<CustomersAgeMap>                        CustomersAgeMap                        { get { return this.GetTable<CustomersAgeMap>(); } }
+		public ITable<CustomersBonusState>                    CustomersBonusState                    { get { return this.GetTable<CustomersBonusState>(); } }
+		public ITable<CustomersDoc>                           CustomersDoc                           { get { return this.GetTable<CustomersDoc>(); } }
+		public ITable<CustomersKidsAgeMap>                    CustomersKidsAgeMap                    { get { return this.GetTable<CustomersKidsAgeMap>(); } }
+		public ITable<CustomersState>                         CustomersState                         { get { return this.GetTable<CustomersState>(); } }
+		public ITable<DailyAllocationTypes>                   DailyAllocationTypes                   { get { return this.GetTable<DailyAllocationTypes>(); } }
+		public ITable<DailyMap>                               DailyMap                               { get { return this.GetTable<DailyMap>(); } }
+		public ITable<DailyMarketRests>                       DailyMarketRests                       { get { return this.GetTable<DailyMarketRests>(); } }
+		public ITable<DailyReportArticulIndicators>           DailyReportArticulIndicators           { get { return this.GetTable<DailyReportArticulIndicators>(); } }
+		public ITable<DailyReportBasicIndicators>             DailyReportBasicIndicators             { get { return this.GetTable<DailyReportBasicIndicators>(); } }
+		public ITable<DailyReportMapAllocation>               DailyReportMapAllocation               { get { return this.GetTable<DailyReportMapAllocation>(); } }
+		public ITable<DictCardStatus>                         DictCardStatus                         { get { return this.GetTable<DictCardStatus>(); } }
+		public ITable<DictCustomerStatus>                     DictCustomerStatus                     { get { return this.GetTable<DictCustomerStatus>(); } }
+		public ITable<DictGoods>                              DictGoods                              { get { return this.GetTable<DictGoods>(); } }
+		public ITable<DictKassas>                             DictKassas                             { get { return this.GetTable<DictKassas>(); } }
+		public ITable<DictMarkets>                            DictMarkets                            { get { return this.GetTable<DictMarkets>(); } }
+		public ITable<DictSegment>                            DictSegment                            { get { return this.GetTable<DictSegment>(); } }
+		public ITable<DictSegmentGroup>                       DictSegmentGroup                       { get { return this.GetTable<DictSegmentGroup>(); } }
+		public ITable<DictSellpriceTypes>                     DictSellpriceTypes                     { get { return this.GetTable<DictSellpriceTypes>(); } }
+		public ITable<DocStatusHistory>                       DocStatusHistory                       { get { return this.GetTable<DocStatusHistory>(); } }
+		public ITable<DocTypes>                               DocTypes                               { get { return this.GetTable<DocTypes>(); } }
+		public ITable<Fgroup>                                 Fgroups                                { get { return this.GetTable<Fgroup>(); } }
+		public ITable<FgroupGoods>                            FgroupGoods                            { get { return this.GetTable<FgroupGoods>(); } }
+		public ITable<FgroupGoodsBac>                         FgroupGoodsBac                         { get { return this.GetTable<FgroupGoodsBac>(); } }
+		public ITable<FinLoyaltyRepArticuls>                  FinLoyaltyRepArticuls                  { get { return this.GetTable<FinLoyaltyRepArticuls>(); } }
+		public ITable<FinLoyaltyRepGroups>                    FinLoyaltyRepGroups                    { get { return this.GetTable<FinLoyaltyRepGroups>(); } }
+		public ITable<GoodsShort>                             GoodsShort                             { get { return this.GetTable<GoodsShort>(); } }
+		public ITable<HoleBucketV1>                           HoleBucketV1                           { get { return this.GetTable<HoleBucketV1>(); } }
+		public ITable<LoyaltySellMovementImport1>             LoyaltySellMovementImport1             { get { return this.GetTable<LoyaltySellMovementImport1>(); } }
+		public ITable<LoyaltySellMovementImport10>            LoyaltySellMovementImport10            { get { return this.GetTable<LoyaltySellMovementImport10>(); } }
+		public ITable<LoyaltySellMovementImport11>            LoyaltySellMovementImport11            { get { return this.GetTable<LoyaltySellMovementImport11>(); } }
+		public ITable<LoyaltySellMovementImport12>            LoyaltySellMovementImport12            { get { return this.GetTable<LoyaltySellMovementImport12>(); } }
+		public ITable<LoyaltySellMovementImport13>            LoyaltySellMovementImport13            { get { return this.GetTable<LoyaltySellMovementImport13>(); } }
+		public ITable<LoyaltySellMovementImport14>            LoyaltySellMovementImport14            { get { return this.GetTable<LoyaltySellMovementImport14>(); } }
+		public ITable<LoyaltySellMovementImport15>            LoyaltySellMovementImport15            { get { return this.GetTable<LoyaltySellMovementImport15>(); } }
+		public ITable<LoyaltySellMovementImport16>            LoyaltySellMovementImport16            { get { return this.GetTable<LoyaltySellMovementImport16>(); } }
+		public ITable<LoyaltySellMovementImport17>            LoyaltySellMovementImport17            { get { return this.GetTable<LoyaltySellMovementImport17>(); } }
+		public ITable<LoyaltySellMovementImport18>            LoyaltySellMovementImport18            { get { return this.GetTable<LoyaltySellMovementImport18>(); } }
+		public ITable<LoyaltySellMovementImport19>            LoyaltySellMovementImport19            { get { return this.GetTable<LoyaltySellMovementImport19>(); } }
+		public ITable<LoyaltySellMovementImport2>             LoyaltySellMovementImport2             { get { return this.GetTable<LoyaltySellMovementImport2>(); } }
+		public ITable<LoyaltySellMovementImport20>            LoyaltySellMovementImport20            { get { return this.GetTable<LoyaltySellMovementImport20>(); } }
+		public ITable<LoyaltySellMovementImport21>            LoyaltySellMovementImport21            { get { return this.GetTable<LoyaltySellMovementImport21>(); } }
+		public ITable<LoyaltySellMovementImport22>            LoyaltySellMovementImport22            { get { return this.GetTable<LoyaltySellMovementImport22>(); } }
+		public ITable<LoyaltySellMovementImport23>            LoyaltySellMovementImport23            { get { return this.GetTable<LoyaltySellMovementImport23>(); } }
+		public ITable<LoyaltySellMovementImport24>            LoyaltySellMovementImport24            { get { return this.GetTable<LoyaltySellMovementImport24>(); } }
+		public ITable<LoyaltySellMovementImport25>            LoyaltySellMovementImport25            { get { return this.GetTable<LoyaltySellMovementImport25>(); } }
+		public ITable<LoyaltySellMovementImport26>            LoyaltySellMovementImport26            { get { return this.GetTable<LoyaltySellMovementImport26>(); } }
+		public ITable<LoyaltySellMovementImport27>            LoyaltySellMovementImport27            { get { return this.GetTable<LoyaltySellMovementImport27>(); } }
+		public ITable<LoyaltySellMovementImport28>            LoyaltySellMovementImport28            { get { return this.GetTable<LoyaltySellMovementImport28>(); } }
+		public ITable<LoyaltySellMovementImport29>            LoyaltySellMovementImport29            { get { return this.GetTable<LoyaltySellMovementImport29>(); } }
+		public ITable<LoyaltySellMovementImport3>             LoyaltySellMovementImport3             { get { return this.GetTable<LoyaltySellMovementImport3>(); } }
+		public ITable<LoyaltySellMovementImport30>            LoyaltySellMovementImport30            { get { return this.GetTable<LoyaltySellMovementImport30>(); } }
+		public ITable<LoyaltySellMovementImport301>           LoyaltySellMovementImport301           { get { return this.GetTable<LoyaltySellMovementImport301>(); } }
+		public ITable<LoyaltySellMovementImport31>            LoyaltySellMovementImport31            { get { return this.GetTable<LoyaltySellMovementImport31>(); } }
+		public ITable<LoyaltySellMovementImport32>            LoyaltySellMovementImport32            { get { return this.GetTable<LoyaltySellMovementImport32>(); } }
+		public ITable<LoyaltySellMovementImport33>            LoyaltySellMovementImport33            { get { return this.GetTable<LoyaltySellMovementImport33>(); } }
+		public ITable<LoyaltySellMovementImport34>            LoyaltySellMovementImport34            { get { return this.GetTable<LoyaltySellMovementImport34>(); } }
+		public ITable<LoyaltySellMovementImport35>            LoyaltySellMovementImport35            { get { return this.GetTable<LoyaltySellMovementImport35>(); } }
+		public ITable<LoyaltySellMovementImport36>            LoyaltySellMovementImport36            { get { return this.GetTable<LoyaltySellMovementImport36>(); } }
+		public ITable<LoyaltySellMovementImport37>            LoyaltySellMovementImport37            { get { return this.GetTable<LoyaltySellMovementImport37>(); } }
+		public ITable<LoyaltySellMovementImport38>            LoyaltySellMovementImport38            { get { return this.GetTable<LoyaltySellMovementImport38>(); } }
+		public ITable<LoyaltySellMovementImport39>            LoyaltySellMovementImport39            { get { return this.GetTable<LoyaltySellMovementImport39>(); } }
+		public ITable<LoyaltySellMovementImport4>             LoyaltySellMovementImport4             { get { return this.GetTable<LoyaltySellMovementImport4>(); } }
+		public ITable<LoyaltySellMovementImport40>            LoyaltySellMovementImport40            { get { return this.GetTable<LoyaltySellMovementImport40>(); } }
+		public ITable<LoyaltySellMovementImport41>            LoyaltySellMovementImport41            { get { return this.GetTable<LoyaltySellMovementImport41>(); } }
+		public ITable<LoyaltySellMovementImport42>            LoyaltySellMovementImport42            { get { return this.GetTable<LoyaltySellMovementImport42>(); } }
+		public ITable<LoyaltySellMovementImport43>            LoyaltySellMovementImport43            { get { return this.GetTable<LoyaltySellMovementImport43>(); } }
+		public ITable<LoyaltySellMovementImport44>            LoyaltySellMovementImport44            { get { return this.GetTable<LoyaltySellMovementImport44>(); } }
+		public ITable<LoyaltySellMovementImport45>            LoyaltySellMovementImport45            { get { return this.GetTable<LoyaltySellMovementImport45>(); } }
+		public ITable<LoyaltySellMovementImport46>            LoyaltySellMovementImport46            { get { return this.GetTable<LoyaltySellMovementImport46>(); } }
+		public ITable<LoyaltySellMovementImport47>            LoyaltySellMovementImport47            { get { return this.GetTable<LoyaltySellMovementImport47>(); } }
+		public ITable<LoyaltySellMovementImport48>            LoyaltySellMovementImport48            { get { return this.GetTable<LoyaltySellMovementImport48>(); } }
+		public ITable<LoyaltySellMovementImport49>            LoyaltySellMovementImport49            { get { return this.GetTable<LoyaltySellMovementImport49>(); } }
+		public ITable<LoyaltySellMovementImport5>             LoyaltySellMovementImport5             { get { return this.GetTable<LoyaltySellMovementImport5>(); } }
+		public ITable<LoyaltySellMovementImport50>            LoyaltySellMovementImport50            { get { return this.GetTable<LoyaltySellMovementImport50>(); } }
+		public ITable<LoyaltySellMovementImport51>            LoyaltySellMovementImport51            { get { return this.GetTable<LoyaltySellMovementImport51>(); } }
+		public ITable<LoyaltySellMovementImport52>            LoyaltySellMovementImport52            { get { return this.GetTable<LoyaltySellMovementImport52>(); } }
+		public ITable<LoyaltySellMovementImport53>            LoyaltySellMovementImport53            { get { return this.GetTable<LoyaltySellMovementImport53>(); } }
+		public ITable<LoyaltySellMovementImport54>            LoyaltySellMovementImport54            { get { return this.GetTable<LoyaltySellMovementImport54>(); } }
+		public ITable<LoyaltySellMovementImport55>            LoyaltySellMovementImport55            { get { return this.GetTable<LoyaltySellMovementImport55>(); } }
+		public ITable<LoyaltySellMovementImport56>            LoyaltySellMovementImport56            { get { return this.GetTable<LoyaltySellMovementImport56>(); } }
+		public ITable<LoyaltySellMovementImport57>            LoyaltySellMovementImport57            { get { return this.GetTable<LoyaltySellMovementImport57>(); } }
+		public ITable<LoyaltySellMovementImport58>            LoyaltySellMovementImport58            { get { return this.GetTable<LoyaltySellMovementImport58>(); } }
+		public ITable<LoyaltySellMovementImport59>            LoyaltySellMovementImport59            { get { return this.GetTable<LoyaltySellMovementImport59>(); } }
+		public ITable<LoyaltySellMovementImport6>             LoyaltySellMovementImport6             { get { return this.GetTable<LoyaltySellMovementImport6>(); } }
+		public ITable<LoyaltySellMovementImport60>            LoyaltySellMovementImport60            { get { return this.GetTable<LoyaltySellMovementImport60>(); } }
+		public ITable<LoyaltySellMovementImport7>             LoyaltySellMovementImport7             { get { return this.GetTable<LoyaltySellMovementImport7>(); } }
+		public ITable<LoyaltySellMovementImport8>             LoyaltySellMovementImport8             { get { return this.GetTable<LoyaltySellMovementImport8>(); } }
+		public ITable<LoyaltySellMovementImport9>             LoyaltySellMovementImport9             { get { return this.GetTable<LoyaltySellMovementImport9>(); } }
+		public ITable<MapDiffDay>                             MapDiffDay                             { get { return this.GetTable<MapDiffDay>(); } }
+		public ITable<MapDiffDayLong>                         MapDiffDayLong                         { get { return this.GetTable<MapDiffDayLong>(); } }
+		public ITable<MapDiffDayLongV2>                       MapDiffDayLongV2                       { get { return this.GetTable<MapDiffDayLongV2>(); } }
+		public ITable<MapDiffDistance>                        MapDiffDistance                        { get { return this.GetTable<MapDiffDistance>(); } }
+		public ITable<MapDiffSm>                              MapDiffSm                              { get { return this.GetTable<MapDiffSm>(); } }
+		public ITable<MapDiffSmLong>                          MapDiffSmLong                          { get { return this.GetTable<MapDiffSmLong>(); } }
+		public ITable<MapDiffVisit>                           MapDiffVisit                           { get { return this.GetTable<MapDiffVisit>(); } }
+		public ITable<Market>                                 Markets                                { get { return this.GetTable<Market>(); } }
+		public ITable<MarketRests>                            MarketRests                            { get { return this.GetTable<MarketRests>(); } }
+		public ITable<MarkmoCodeUsing>                        MarkmoCodeUsing                        { get { return this.GetTable<MarkmoCodeUsing>(); } }
+		public ITable<MarkmoCustomers>                        MarkmoCustomers                        { get { return this.GetTable<MarkmoCustomers>(); } }
+		public ITable<MarkmoData>                             MarkmoData                             { get { return this.GetTable<MarkmoData>(); } }
+		public ITable<MarkmoFgroupRegister>                   MarkmoFgroupRegister                   { get { return this.GetTable<MarkmoFgroupRegister>(); } }
+		public ITable<MarkmoGoodRegister>                     MarkmoGoodRegister                     { get { return this.GetTable<MarkmoGoodRegister>(); } }
+		public ITable<MarkmoRules>                            MarkmoRules                            { get { return this.GetTable<MarkmoRules>(); } }
+		public ITable<MarkmoRuleTypes>                        MarkmoRuleTypes                        { get { return this.GetTable<MarkmoRuleTypes>(); } }
+		public ITable<Markmos1>                               Markmos1                               { get { return this.GetTable<Markmos1>(); } }
+		public ITable<MarkmoTypes>                            MarkmoTypes                            { get { return this.GetTable<MarkmoTypes>(); } }
+		public ITable<NotificationViber>                      NotificationViber                      { get { return this.GetTable<NotificationViber>(); } }
+		public ITable<NotificationViberResponce>              NotificationViberResponce              { get { return this.GetTable<NotificationViberResponce>(); } }
+		public ITable<OrdersbookLine1>                        OrdersbookLine1                        { get { return this.GetTable<OrdersbookLine1>(); } }
+		public ITable<Ordersbooks1>                           Ordersbooks1                           { get { return this.GetTable<Ordersbooks1>(); } }
+		public ITable<OutcomeinvoiceLine1>                    OutcomeinvoiceLine1                    { get { return this.GetTable<OutcomeinvoiceLine1>(); } }
+		public ITable<Outcomeinvoices1>                       Outcomeinvoices1                       { get { return this.GetTable<Outcomeinvoices1>(); } }
+		public ITable<OutflowCustomers>                       OutflowCustomers                       { get { return this.GetTable<OutflowCustomers>(); } }
+		public ITable<OutflowDictStatuses>                    OutflowDictStatuses                    { get { return this.GetTable<OutflowDictStatuses>(); } }
+		public ITable<OutflowHistory>                         OutflowHistory                         { get { return this.GetTable<OutflowHistory>(); } }
+		public ITable<Payment>                                Payments                               { get { return this.GetTable<Payment>(); } }
+		public ITable<ProcExecuteLog>                         ProcExecuteLog                         { get { return this.GetTable<ProcExecuteLog>(); } }
+		public ITable<Producer>                               Producers                              { get { return this.GetTable<Producer>(); } }
+		public ITable<PromoRegister>                          PromoRegister                          { get { return this.GetTable<PromoRegister>(); } }
+		public ITable<Promos1>                                Promos1                                { get { return this.GetTable<Promos1>(); } }
+		public ITable<PromoTypes>                             PromoTypes                             { get { return this.GetTable<PromoTypes>(); } }
+		public ITable<Region>                                 Regions                                { get { return this.GetTable<Region>(); } }
+		public ITable<RetailinvoiceLine1>                     RetailinvoiceLine1                     { get { return this.GetTable<RetailinvoiceLine1>(); } }
+		public ITable<Retailinvoices1>                        Retailinvoices1                        { get { return this.GetTable<Retailinvoices1>(); } }
+		public ITable<SellBuyPrice>                           SellBuyPrice                           { get { return this.GetTable<SellBuyPrice>(); } }
+		public ITable<SellMovement>                           SellMovement                           { get { return this.GetTable<SellMovement>(); } }
+		public ITable<SellMovementHistory>                    SellMovementHistory                    { get { return this.GetTable<SellMovementHistory>(); } }
+		public ITable<ShortDocs1>                             ShortDocs1                             { get { return this.GetTable<ShortDocs1>(); } }
+		public ITable<Staff>                                  Staffs                                 { get { return this.GetTable<Staff>(); } }
+		public ITable<StopList>                               StopList                               { get { return this.GetTable<StopList>(); } }
+		public ITable<StreetTypes>                            StreetTypes                            { get { return this.GetTable<StreetTypes>(); } }
+		public ITable<Subregion>                              Subregions                             { get { return this.GetTable<Subregion>(); } }
+		public ITable<UrgentBonusStates>                      UrgentBonusStates                      { get { return this.GetTable<UrgentBonusStates>(); } }
+		public ITable<VAllacationCustomersByAnimals>          VAllacationCustomersByAnimals          { get { return this.GetTable<VAllacationCustomersByAnimals>(); } }
+		public ITable<VAllocationCustomersByHaveCar>          VAllocationCustomersByHaveCar          { get { return this.GetTable<VAllocationCustomersByHaveCar>(); } }
+		public ITable<VAllocationCustomersByHobby>            VAllocationCustomersByHobby            { get { return this.GetTable<VAllocationCustomersByHobby>(); } }
+		public ITable<VAllocationCustomersForAge>             VAllocationCustomersForAge             { get { return this.GetTable<VAllocationCustomersForAge>(); } }
+		public ITable<VAllocationKidsForAge>                  VAllocationKidsForAge                  { get { return this.GetTable<VAllocationKidsForAge>(); } }
+		public ITable<VAllSell>                               VAllSell                               { get { return this.GetTable<VAllSell>(); } }
+		public ITable<VBasicIndicators>                       VBasicIndicators                       { get { return this.GetTable<VBasicIndicators>(); } }
+		public ITable<VCampaignGoodsShort>                    VCampaignGoodsShort                    { get { return this.GetTable<VCampaignGoodsShort>(); } }
+		public ITable<VCampaignParticipantMarket>             VCampaignParticipantMarket             { get { return this.GetTable<VCampaignParticipantMarket>(); } }
+		public ITable<VCampaignParticipantMarketControlGroup> VCampaignParticipantMarketControlGroup { get { return this.GetTable<VCampaignParticipantMarketControlGroup>(); } }
+		public ITable<VCampaignsMk>                           VCampaignsMk                           { get { return this.GetTable<VCampaignsMk>(); } }
+		public ITable<VCampaignsMkRun>                        VCampaignsMkRun                        { get { return this.GetTable<VCampaignsMkRun>(); } }
+		public ITable<VCardCountByGroup>                      VCardCountByGroup                      { get { return this.GetTable<VCardCountByGroup>(); } }
+		public ITable<VCardCustomers>                         VCardCustomers                         { get { return this.GetTable<VCardCustomers>(); } }
+		public ITable<VCardCustomersTrue>                     VCardCustomersTrue                     { get { return this.GetTable<VCardCustomersTrue>(); } }
+		public ITable<VCardSell>                              VCardSell                              { get { return this.GetTable<VCardSell>(); } }
+		public ITable<VCardSellShort>                         VCardSellShort                         { get { return this.GetTable<VCardSellShort>(); } }
+		public ITable<VCrmBonusMovement>                      VCrmBonusMovement                      { get { return this.GetTable<VCrmBonusMovement>(); } }
+		public ITable<VCustomersAverageAmountPerday>          VCustomersAverageAmountPerday          { get { return this.GetTable<VCustomersAverageAmountPerday>(); } }
+		public ITable<VCustomersCard>                         VCustomersCard                         { get { return this.GetTable<VCustomersCard>(); } }
+		public ITable<VCustomersCardAll>                      VCustomersCardAll                      { get { return this.GetTable<VCustomersCardAll>(); } }
+		public ITable<VCustomersSell>                         VCustomersSell                         { get { return this.GetTable<VCustomersSell>(); } }
+		public ITable<VCustomersSellAll>                      VCustomersSellAll                      { get { return this.GetTable<VCustomersSellAll>(); } }
+		public ITable<VCustomersSellAllShort>                 VCustomersSellAllShort                 { get { return this.GetTable<VCustomersSellAllShort>(); } }
+		public ITable<VCustomersSellAllV2>                    VCustomersSellAllV2                    { get { return this.GetTable<VCustomersSellAllV2>(); } }
+		public ITable<VCustomersSellShort>                    VCustomersSellShort                    { get { return this.GetTable<VCustomersSellShort>(); } }
+		public ITable<VDictGoods>                             VDictGoods                             { get { return this.GetTable<VDictGoods>(); } }
+		public ITable<VFgroups>                               VFgroups                               { get { return this.GetTable<VFgroups>(); } }
+		public ITable<VGetDocDetailsAll>                      VGetDocDetailsAll                      { get { return this.GetTable<VGetDocDetailsAll>(); } }
+		public ITable<VTradeLine>                             VTradeLine                             { get { return this.GetTable<VTradeLine>(); } }
+		public ITable<WinnerParticipant>                      WinnerParticipant                      { get { return this.GetTable<WinnerParticipant>(); } }
 
 		public CrmWizardDB()
 		{
@@ -953,6 +950,54 @@ namespace DataModels
 
 		#endregion
 
+		#region TGetPersonalMarkmoReport
+
+		[Sql.TableFunction(Schema="rep", Name="t_get_personal_markmo_report")]
+		public ITable<TGetPersonalMarkmoReportResult> TGetPersonalMarkmoReport(int? @campaign_id, bool? @control_group, DateTime? @date, int? @market_id, string @market_lst)
+		{
+			return this.GetTable<TGetPersonalMarkmoReportResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+				@campaign_id,
+				@control_group,
+				@date,
+				@market_id,
+				@market_lst);
+		}
+
+		public partial class TGetPersonalMarkmoReportResult
+		{
+			public long?    market_id            { get; set; }
+			public string   shopping_center      { get; set; }
+			public decimal? doc_qty_art          { get; set; }
+			public decimal? customers_qty_art    { get; set; }
+			public decimal? sm_discount          { get; set; }
+			public decimal? avg_art              { get; set; }
+			public double?  sm_art               { get; set; }
+			public decimal? doc_qty_group        { get; set; }
+			public decimal? customers_qty_group  { get; set; }
+			public decimal? avg_group            { get; set; }
+			public double?  sm_group             { get; set; }
+			public decimal? doc_qty_depart       { get; set; }
+			public decimal? customers_qty_depart { get; set; }
+			public decimal? avg_depart           { get; set; }
+			public double?  sm_depart            { get; set; }
+			public decimal? doc_qty_market       { get; set; }
+			public decimal? customers_qty_market { get; set; }
+			public decimal? avg_market           { get; set; }
+			public double?  sm_market            { get; set; }
+			public double?  sm_discount_all      { get; set; }
+			public double?  sm_buy_art           { get; set; }
+			public double?  sm_buy_group         { get; set; }
+			public double?  sm_buy_depart        { get; set; }
+			public double?  sm_buy_market        { get; set; }
+			public decimal? margin_art           { get; set; }
+			public decimal? margin_group         { get; set; }
+			public decimal? margin_depart        { get; set; }
+			public decimal? margin_market        { get; set; }
+			public long?    qty_customers        { get; set; }
+		}
+
+		#endregion
+
 		#region TGetProgramIndicators
 
 		[Sql.TableFunction(Schema="rep", Name="t_get_program_indicators")]
@@ -1133,6 +1178,14 @@ namespace DataModels
 		}
 
 		#endregion
+	}
+
+	[Table(Schema="dbo", Name="agents")]
+	public partial class Agent
+	{
+		[Column("agent_id"),      PrimaryKey,  NotNull] public long   AgentId     { get; set; } // bigint
+		[Column("name"),             Nullable         ] public string Name        { get; set; } // varchar(300)
+		[Column("agent_type_id"),    Nullable         ] public int?   AgentTypeId { get; set; } // int
 	}
 
 	[Table(Schema="dbo", Name="articuls_vtm")]
@@ -1702,66 +1755,6 @@ namespace DataModels
 		[Column("name"),            Nullable         ] public string Name       { get; set; } // nvarchar(50)
 	}
 
-	[Table(Schema="calc", Name="crm_customer_bonus_by_docs")]
-	public partial class CrmCustomerBonusByDocs
-	{
-		[Column("crm_customer_id"),                                          NotNull    ] public long      CrmCustomerId     { get; set; } // bigint
-		[Column("id"),                                                       NotNull    ] public long      Id                { get; set; } // bigint
-		[Column("doc_id"),                                                      Nullable] public long?     DocId             { get; set; } // bigint
-		[Column("doc_name"),                                                    Nullable] public string    DocName           { get; set; } // nvarchar(50)
-		[Column("created"),                                                     Nullable] public DateTime? Created           { get; set; } // datetime
-		[Column("level"),                                                       Nullable] public int?      Level             { get; set; } // int
-		[Column("total_before"),                                                Nullable] public decimal?  TotalBefore       { get; set; } // decimal(18, 2)
-		[Column("total_after"),                                                 Nullable] public decimal?  TotalAfter        { get; set; } // decimal(18, 2)
-		[Column("bonus_before"),                                                Nullable] public decimal?  BonusBefore       { get; set; } // decimal(18, 2)
-		[Column("bonus_obtained"),                                              Nullable] public decimal?  BonusObtained     { get; set; } // decimal(18, 2)
-		[Column("bonus_used"),                                                  Nullable] public decimal?  BonusUsed         { get; set; } // decimal(18, 2)
-		[Column("bonus_after"),                                                 Nullable] public decimal?  BonusAfter        { get; set; } // decimal(18, 2)
-		[Column("change_before"),                                               Nullable] public decimal?  ChangeBefore      { get; set; } // decimal(18, 2)
-		[Column("change_obtained"),                                             Nullable] public decimal?  ChangeObtained    { get; set; } // decimal(18, 2)
-		[Column("change_used"),                                                 Nullable] public decimal?  ChangeUsed        { get; set; } // decimal(18, 2)
-		[Column("change_after"),                                                Nullable] public decimal?  ChangeAfter       { get; set; } // decimal(18, 2)
-		[Column("card_name"),                                                   Nullable] public string    CardName          { get; set; } // nvarchar(255)
-		[Column("cashflow_before"),                                             Nullable] public decimal?  CashflowBefore    { get; set; } // decimal(18, 2)
-		[Column("cashflow"),                                                    Nullable] public decimal?  Cashflow          { get; set; } // decimal(18, 2)
-		[Column("cashflow_after"),                                              Nullable] public decimal?  CashflowAfter     { get; set; } // decimal(18, 2)
-		[Column("doc_form"),                                                    Nullable] public string    DocForm           { get; set; } // nvarchar(255)
-		[Column("markmo_id"),                                                   Nullable] public long?     MarkmoId          { get; set; } // bigint
-		[Column("markmo_name"),                                                 Nullable] public string    MarkmoName        { get; set; } // nvarchar(255)
-		[Column("markmo_description"),                                          Nullable] public string    MarkmoDescription { get; set; } // nvarchar(2000)
-		[Column("short_date",         SkipOnInsert=true, SkipOnUpdate=true),    Nullable] public DateTime? ShortDate         { get; set; } // date
-	}
-
-	[Table(Schema="calc", Name="crm_customer_bonus_by_docs_bac")]
-	public partial class CrmCustomerBonusByDocsBac
-	{
-		[Column("crm_customer_id"),    NotNull    ] public long      CrmCustomerId     { get; set; } // bigint
-		[Column("id"),                 NotNull    ] public long      Id                { get; set; } // bigint
-		[Column("doc_id"),                Nullable] public long?     DocId             { get; set; } // bigint
-		[Column("doc_name"),              Nullable] public string    DocName           { get; set; } // nvarchar(50)
-		[Column("created"),               Nullable] public DateTime? Created           { get; set; } // datetime
-		[Column("level"),                 Nullable] public int?      Level             { get; set; } // int
-		[Column("total_before"),          Nullable] public decimal?  TotalBefore       { get; set; } // decimal(18, 2)
-		[Column("total_after"),           Nullable] public decimal?  TotalAfter        { get; set; } // decimal(18, 2)
-		[Column("bonus_before"),          Nullable] public decimal?  BonusBefore       { get; set; } // decimal(18, 2)
-		[Column("bonus_obtained"),        Nullable] public decimal?  BonusObtained     { get; set; } // decimal(18, 2)
-		[Column("bonus_used"),            Nullable] public decimal?  BonusUsed         { get; set; } // decimal(18, 2)
-		[Column("bonus_after"),           Nullable] public decimal?  BonusAfter        { get; set; } // decimal(18, 2)
-		[Column("change_before"),         Nullable] public decimal?  ChangeBefore      { get; set; } // decimal(18, 2)
-		[Column("change_obtained"),       Nullable] public decimal?  ChangeObtained    { get; set; } // decimal(18, 2)
-		[Column("change_used"),           Nullable] public decimal?  ChangeUsed        { get; set; } // decimal(18, 2)
-		[Column("change_after"),          Nullable] public decimal?  ChangeAfter       { get; set; } // decimal(18, 2)
-		[Column("card_name"),             Nullable] public string    CardName          { get; set; } // nvarchar(255)
-		[Column("cashflow_before"),       Nullable] public decimal?  CashflowBefore    { get; set; } // decimal(18, 2)
-		[Column("cashflow"),              Nullable] public decimal?  Cashflow          { get; set; } // decimal(18, 2)
-		[Column("cashflow_after"),        Nullable] public decimal?  CashflowAfter     { get; set; } // decimal(18, 2)
-		[Column("doc_form"),              Nullable] public string    DocForm           { get; set; } // nvarchar(255)
-		[Column("markmo_id"),             Nullable] public long?     MarkmoId          { get; set; } // bigint
-		[Column("markmo_name"),           Nullable] public string    MarkmoName        { get; set; } // nvarchar(255)
-		[Column("markmo_description"),    Nullable] public string    MarkmoDescription { get; set; } // nvarchar(2000)
-		[Column("short_date"),            Nullable] public DateTime? ShortDate         { get; set; } // date
-	}
-
 	[Table(Schema="dbo", Name="crm_customer_enquiries")]
 	public partial class CrmCustomerEnquiries
 	{
@@ -1988,15 +1981,15 @@ namespace DataModels
 		[Column("end_value"),   Nullable            ] public int?   EndValue   { get; set; } // int
 	}
 
-	[Table(Schema="calc", Name="customers_bonus_add")]
-	public partial class CustomersBonusAdd
+	[Table(Schema="calc", Name="customers_bonus_state")]
+	public partial class CustomersBonusState
 	{
-		[Column("market_id"),       Nullable] public long?     MarketId      { get; set; } // bigint
-		[Column("crm_customer_id"), Nullable] public long?     CrmCustomerId { get; set; } // bigint
-		[Column("doc_id"),          Nullable] public long?     DocId         { get; set; } // bigint
-		[Column("bonus"),           Nullable] public decimal?  Bonus         { get; set; } // decimal(18, 2)
-		[Column("created"),         Nullable] public DateTime? Created       { get; set; } // datetime
-		[Column("short_date"),      Nullable] public DateTime? ShortDate     { get; set; } // date
+		[Column("card_id"),         Nullable] public long?    CardId        { get; set; } // bigint
+		[Column("crm_customer_id"), Nullable] public long?    CrmCustomerId { get; set; } // bigint
+		[Column("barcode"),         Nullable] public string   Barcode       { get; set; } // nvarchar(50)
+		[Column("bonus_obtained"),  Nullable] public decimal? BonusObtained { get; set; } // decimal(18, 2)
+		[Column("bonus_used"),      Nullable] public decimal? BonusUsed     { get; set; } // decimal(18, 2)
+		[Column("bonus_after"),     Nullable] public decimal? BonusAfter    { get; set; } // decimal(18, 2)
 	}
 
 	[Table(Schema="calc", Name="customers_doc")]
@@ -2017,6 +2010,19 @@ namespace DataModels
 		[Column("name"),        Nullable            ] public string Name       { get; set; } // nvarchar(50)
 		[Column("start_value"), Nullable            ] public int?   StartValue { get; set; } // int
 		[Column("end_value"),   Nullable            ] public int?   EndValue   { get; set; } // int
+	}
+
+	[Table(Schema="calc", Name="customers_state")]
+	public partial class CustomersState
+	{
+		[Column("state_id"),            PrimaryKey, Identity] public long      StateId            { get; set; } // bigint
+		[Column("crm_customer_id"),     Nullable            ] public long?     CrmCustomerId      { get; set; } // bigint
+		[Column("issued_market_id"),    Nullable            ] public long?     IssuedMarketId     { get; set; } // bigint
+		[Column("start_participation"), Nullable            ] public DateTime? StartParticipation { get; set; } // date
+		[Column("qty_visits"),          Nullable            ] public long?     QtyVisits          { get; set; } // bigint
+		[Column("qty_docs"),            Nullable            ] public long?     QtyDocs            { get; set; } // bigint
+		[Column("obert"),               Nullable            ] public decimal?  Obert              { get; set; } // decimal(18, 2)
+		[Column("doc_avg"),             Nullable            ] public decimal?  DocAvg             { get; set; } // decimal(18, 2)
 	}
 
 	[Table(Schema="calc", Name="daily_allocation_types")]
@@ -3081,6 +3087,7 @@ namespace DataModels
 		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
 		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
 		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
+		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import31")]
@@ -4089,6 +4096,14 @@ namespace DataModels
 		[Column("name_long"), Nullable            ] public string NameLong { get; set; } // nvarchar(50)
 	}
 
+	[Table(Schema="dbo", Name="markets")]
+	public partial class Market
+	{
+		[Column("market_id"),  PrimaryKey,  NotNull] public int    MarketId  { get; set; } // int
+		[Column("name"),          Nullable         ] public string Name      { get; set; } // varchar(300)
+		[Column("doc_prefix"),    Nullable         ] public string DocPrefix { get; set; } // varchar(10)
+	}
+
 	[Table(Schema="dbo", Name="market_rests")]
 	public partial class MarketRests
 	{
@@ -4574,100 +4589,12 @@ namespace DataModels
 		[Column("discount_requested"),       Nullable         ] public bool?    DiscountRequested   { get; set; } // bit
 	}
 
-	[Table(Schema="dbo", Name="seek_ready_bonuses_cg")]
-	public partial class SeekReadyBonusesCg
-	{
-		[Column("start_date"),  NotNull    ] public DateTime StartDate  { get; set; } // datetime
-		[Column("end_date"),    NotNull    ] public DateTime EndDate    { get; set; } // datetime
-		[Column("articul"),        Nullable] public string   Articul    { get; set; } // varchar(8)
-		[Column("oldbonus"),       Nullable] public decimal? Oldbonus   { get; set; } // numeric(12, 2)
-		[Column("buy_price"),      Nullable] public decimal? BuyPrice   { get; set; } // numeric(14, 4)
-		[Column("sell_price"),     Nullable] public decimal? SellPrice  { get; set; } // numeric(14, 2)
-		[Column("old_margin"),     Nullable] public decimal? OldMargin  { get; set; } // numeric(12, 2)
-		[Column("rest"),           Nullable] public decimal? Rest       { get; set; } // numeric(14, 3)
-		[Column("abc_blocked"),    Nullable] public byte?    AbcBlocked { get; set; } // tinyint
-		[Column("newmargin"),      Nullable] public decimal? Newmargin  { get; set; } // numeric(12, 4)
-		[Column("newbonus"),       Nullable] public decimal? Newbonus   { get; set; } // numeric(32, 2)
-		[Column("f3_name"),        Nullable] public string   F3Name     { get; set; } // varchar(150)
-		[Column("f2_name"),        Nullable] public string   F2Name     { get; set; } // varchar(150)
-		[Column("f1_name"),        Nullable] public string   F1Name     { get; set; } // varchar(150)
-		[Column("f0_name"),        Nullable] public string   F0Name     { get; set; } // varchar(150)
-		[Column("good_id"),     NotNull    ] public long     GoodId     { get; set; } // bigint
-	}
-
-	[Table(Schema="dbo", Name="seek_ready_bonuses_km")]
-	public partial class SeekReadyBonusesKm
-	{
-		[Column("start_date"),  NotNull    ] public DateTime StartDate  { get; set; } // datetime
-		[Column("end_date"),    NotNull    ] public DateTime EndDate    { get; set; } // datetime
-		[Column("articul"),        Nullable] public string   Articul    { get; set; } // varchar(8)
-		[Column("oldbonus"),       Nullable] public decimal? Oldbonus   { get; set; } // numeric(12, 2)
-		[Column("buy_price"),      Nullable] public decimal? BuyPrice   { get; set; } // numeric(14, 4)
-		[Column("sell_price"),     Nullable] public decimal? SellPrice  { get; set; } // numeric(14, 2)
-		[Column("old_margin"),     Nullable] public decimal? OldMargin  { get; set; } // numeric(12, 2)
-		[Column("rest"),           Nullable] public decimal? Rest       { get; set; } // numeric(14, 3)
-		[Column("abc_blocked"),    Nullable] public byte?    AbcBlocked { get; set; } // tinyint
-		[Column("newmargin"),      Nullable] public decimal? Newmargin  { get; set; } // numeric(12, 4)
-		[Column("newbonus"),       Nullable] public decimal? Newbonus   { get; set; } // numeric(32, 2)
-		[Column("f3_name"),        Nullable] public string   F3Name     { get; set; } // varchar(150)
-		[Column("f2_name"),        Nullable] public string   F2Name     { get; set; } // varchar(150)
-		[Column("f1_name"),        Nullable] public string   F1Name     { get; set; } // varchar(150)
-		[Column("f0_name"),        Nullable] public string   F0Name     { get; set; } // varchar(150)
-		[Column("good_id"),     NotNull    ] public long     GoodId     { get; set; } // bigint
-	}
-
-	[Table(Schema="dbo", Name="seek_sell_movement_cg")]
-	public partial class SeekSellMovementCg
-	{
-		[Column("good_id"),         Nullable] public long?     GoodId        { get; set; } // bigint
-		[Column("doc_id"),          Nullable] public long?     DocId         { get; set; } // bigint
-		[Column("doc_type_id"),     Nullable] public int?      DocTypeId     { get; set; } // int
-		[Column("sell_price"),      Nullable] public decimal?  SellPrice     { get; set; } // numeric(14, 4)
-		[Column("quantity"),        Nullable] public decimal?  Quantity      { get; set; } // numeric(14, 4)
-		[Column("created"),         Nullable] public DateTime? Created       { get; set; } // datetime
-		[Column("discount_block"),  Nullable] public byte?     DiscountBlock { get; set; } // tinyint
-		[Column("buy_price"),       Nullable] public decimal?  BuyPrice      { get; set; } // numeric(14, 4)
-		[Column("old_final_price"), Nullable] public decimal?  OldFinalPrice { get; set; } // numeric(14, 4)
-		[Column("new_final_price"), Nullable] public decimal?  NewFinalPrice { get; set; } // numeric(14, 4)
-	}
-
-	[Table(Schema="dbo", Name="seek_sell_movement_km")]
-	public partial class SeekSellMovementKm
-	{
-		[Column("good_id"),         Nullable] public long?     GoodId        { get; set; } // bigint
-		[Column("doc_id"),          Nullable] public long?     DocId         { get; set; } // bigint
-		[Column("doc_type_id"),     Nullable] public int?      DocTypeId     { get; set; } // int
-		[Column("sell_price"),      Nullable] public decimal?  SellPrice     { get; set; } // numeric(14, 4)
-		[Column("quantity"),        Nullable] public decimal?  Quantity      { get; set; } // numeric(14, 4)
-		[Column("created"),         Nullable] public DateTime? Created       { get; set; } // datetime
-		[Column("discount_block"),  Nullable] public byte?     DiscountBlock { get; set; } // tinyint
-		[Column("buy_price"),       Nullable] public decimal?  BuyPrice      { get; set; } // numeric(14, 4)
-		[Column("old_final_price"), Nullable] public decimal?  OldFinalPrice { get; set; } // numeric(14, 4)
-		[Column("new_final_price"), Nullable] public decimal?  NewFinalPrice { get; set; } // numeric(14, 4)
-	}
-
 	[Table(Schema="calc", Name="sell_buy_price")]
 	public partial class SellBuyPrice
 	{
 		[Column("market_id"), NotNull    ] public long     MarketId { get; set; } // bigint
 		[Column("good_id"),   NotNull    ] public long     GoodId   { get; set; } // bigint
-		[Column("buy_price"),    Nullable] public decimal? BuyPrice { get; set; } // decimal(14, 5)
-	}
-
-	[Table(Schema="calc", Name="sell_buy_price_04_02")]
-	public partial class SellBuyPrice0402
-	{
-		[Column("market_id"), NotNull    ] public long     MarketId { get; set; } // bigint
-		[Column("good_id"),   NotNull    ] public long     GoodId   { get; set; } // bigint
-		[Column("buy_price"),    Nullable] public decimal? BuyPrice { get; set; } // decimal(14, 5)
-	}
-
-	[Table(Schema="calc", Name="sell_buy_price_30_03")]
-	public partial class SellBuyPrice3003
-	{
-		[Column("market_id"), NotNull    ] public long     MarketId { get; set; } // bigint
-		[Column("good_id"),   NotNull    ] public long     GoodId   { get; set; } // bigint
-		[Column("buy_price"),    Nullable] public decimal? BuyPrice { get; set; } // decimal(14, 5)
+		[Column("buy_price"),    Nullable] public decimal? BuyPrice { get; set; } // decimal(16, 6)
 	}
 
 	[Table(Schema="dbo", Name="sell_movement")]
@@ -4692,7 +4619,8 @@ namespace DataModels
 		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
 		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
 		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(14, 5)
+		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
+		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
 	}
 
 	[Table(Schema="calc", Name="sell_movement_history")]
@@ -4889,6 +4817,22 @@ namespace DataModels
 		[Column("name"),           Nullable] public string Name       { get; set; } // varchar(200)
 		[Column("campaign_id"),    Nullable] public long?  CampaignId { get; set; } // bigint
 		[Column("market_id"),      Nullable] public int?   MarketId   { get; set; } // int
+	}
+
+	[Table(Schema="calc", Name="v_campaign_participant_market", IsView=true)]
+	public partial class VCampaignParticipantMarket
+	{
+		[Column("campaign_id"), Nullable] public long? CampaignId { get; set; } // bigint
+		[Column("market_id"),   Nullable] public long? MarketId   { get; set; } // bigint
+		[Column("qty"),         Nullable] public long? Qty        { get; set; } // bigint
+	}
+
+	[Table(Schema="calc", Name="v_campaign_participant_market_control_group", IsView=true)]
+	public partial class VCampaignParticipantMarketControlGroup
+	{
+		[Column("campaign_id"), Nullable] public long? CampaignId { get; set; } // bigint
+		[Column("market_id"),   Nullable] public long? MarketId   { get; set; } // bigint
+		[Column("qty"),         Nullable] public long? Qty        { get; set; } // bigint
 	}
 
 	[Table(Schema="calc", Name="v_campaigns_mk", IsView=true)]
@@ -5693,15 +5637,6 @@ namespace DataModels
 
 		#endregion
 
-		#region PDailyFillCurrentTable
-
-		public static int PDailyFillCurrentTable(this DataConnection dataConnection)
-		{
-			return dataConnection.ExecuteProc("[calc].[p_daily_fill_current_table]");
-		}
-
-		#endregion
-
 		#region PDailyPersDayFill
 
 		public static IEnumerable<PDailyPersDayFillResult> PDailyPersDayFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group)
@@ -6093,6 +6028,52 @@ namespace DataModels
 
 		#endregion
 
+		#region PGetPersonalMarkmoReport
+
+		public static IEnumerable<PGetPersonalMarkmoReportResult> PGetPersonalMarkmoReport(this DataConnection dataConnection, int? @campaign_id, bool? @control_group, DateTime? @date, int? @market_id, string @market_lst)
+		{
+			return dataConnection.QueryProc<PGetPersonalMarkmoReportResult>("[rep].[p_get_personal_markmo_report]",
+				new DataParameter("@campaign_id",   @campaign_id,   DataType.Int32),
+				new DataParameter("@control_group", @control_group, DataType.Boolean),
+				new DataParameter("@date",          @date,          DataType.Date),
+				new DataParameter("@market_id",     @market_id,     DataType.Int32),
+				new DataParameter("@market_lst",    @market_lst,    DataType.NVarChar));
+		}
+
+		public partial class PGetPersonalMarkmoReportResult
+		{
+			public string   city                 { get; set; }
+			public decimal? doc_qty_art          { get; set; }
+			public decimal? customers_qty_art    { get; set; }
+			public decimal? sm_discount          { get; set; }
+			public decimal? avg_art              { get; set; }
+			public double?  sm_art               { get; set; }
+			public decimal? doc_qty_group        { get; set; }
+			public decimal? customers_qty_group  { get; set; }
+			public decimal? avg_group            { get; set; }
+			public double?  sm_group             { get; set; }
+			public decimal? doc_qty_depart       { get; set; }
+			public decimal? customers_qty_depart { get; set; }
+			public decimal? avg_depart           { get; set; }
+			public double?  sm_depart            { get; set; }
+			public decimal? doc_qty_market       { get; set; }
+			public decimal? customers_qty_market { get; set; }
+			public decimal? avg_market           { get; set; }
+			public double?  sm_market            { get; set; }
+			public double?  sm_discount_all      { get; set; }
+			public double?  sm_buy_art           { get; set; }
+			public double?  sm_buy_group         { get; set; }
+			public double?  sm_buy_depart        { get; set; }
+			public double?  sm_buy_market        { get; set; }
+			public decimal? margin_art           { get; set; }
+			public decimal? margin_group         { get; set; }
+			public decimal? margin_depart        { get; set; }
+			public decimal? margin_market        { get; set; }
+			public long?    qty_customers        { get; set; }
+		}
+
+		#endregion
+
 		#region PGetSaleWithExtraPoints
 
 		public static IEnumerable<PGetSaleWithExtraPointsResult> PGetSaleWithExtraPoints(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, int? @market_id, string @market_lst)
@@ -6124,15 +6105,6 @@ namespace DataModels
 			public double   sm              { get; set; }
 			public double   sm_doc_all      { get; set; }
 			public decimal  present         { get; set; }
-		}
-
-		#endregion
-
-		#region PMoveDataV2
-
-		public static int PMoveDataV2(this DataConnection dataConnection)
-		{
-			return dataConnection.ExecuteProc("[calc].[p_move_data_v2]");
 		}
 
 		#endregion
@@ -6312,6 +6284,12 @@ namespace DataModels
 
 	public static partial class TableExtensions
 	{
+		public static Agent Find(this ITable<Agent> table, long AgentId)
+		{
+			return table.FirstOrDefault(t =>
+				t.AgentId == AgentId);
+		}
+
 		public static BillLine1 Find(this ITable<BillLine1> table, long BillLineId)
 		{
 			return table.FirstOrDefault(t =>
@@ -6552,6 +6530,12 @@ namespace DataModels
 				t.Id == Id);
 		}
 
+		public static CustomersState Find(this ITable<CustomersState> table, long StateId)
+		{
+			return table.FirstOrDefault(t =>
+				t.StateId == StateId);
+		}
+
 		public static DailyAllocationTypes Find(this ITable<DailyAllocationTypes> table, long Id)
 		{
 			return table.FirstOrDefault(t =>
@@ -6660,6 +6644,12 @@ namespace DataModels
 		{
 			return table.FirstOrDefault(t =>
 				t.Id == Id);
+		}
+
+		public static Market Find(this ITable<Market> table, int MarketId)
+		{
+			return table.FirstOrDefault(t =>
+				t.MarketId == MarketId);
 		}
 
 		public static MarketRests Find(this ITable<MarketRests> table, long MarketId, long GoodId)

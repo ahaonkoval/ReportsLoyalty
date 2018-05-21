@@ -111,7 +111,7 @@
     <Compile Include="markmo_types.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Lcampaign.cs" />
+    <Compile Include="Models\CampaignConvert.cs" />
     <Compile Include="Models\Lterminate.cs" />
     <Compile Include="Models\PackDocs.cs" />
     <Compile Include="Models\ShortObjects\Participant.cs" />
@@ -119,6 +119,7 @@
     <Compile Include="Models\TDoc.cs" />
     <Compile Include="Models\TF_GetUnDoc.cs" />
     <Compile Include="Models\UPLControl.cs" />
+    <Compile Include="PersonalCampaign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="p_get_trade_with_extra_points_Result.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
