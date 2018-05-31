@@ -196,7 +196,7 @@ var getWinCampaigns = function () {
         //},
         proxy: {
             type: 'ajax',
-            url: ('api/Campaign/'),
+            url: ('api/Campaign'),
 
             //url: (local ? url.local : url.remote),
             reader: {

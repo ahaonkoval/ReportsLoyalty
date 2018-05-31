@@ -13,7 +13,7 @@ namespace SoftLineApi
 {
     public class SoftLine
     {
-        public int PackageSize = 10000;
+        public int PackageSize = 1000;
 
         Identification ident;        
 

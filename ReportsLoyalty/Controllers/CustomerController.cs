@@ -111,7 +111,7 @@ namespace ReportsLoyalty.Controllers
         {
             using (GetData gd = new GetData())
             {
-                string filename = string.Format("({0}) {1}.csv", campaignId.ToString(), gd.Campaigns.GetCampaignNameById(campaignId));
+                string filename = string.Format("({0}).csv", campaignId.ToString());//, gd.Campaigns.GetCampaignNameById(campaignId));
                 var path = string.Empty;
                 try
                 {
@@ -162,7 +162,7 @@ namespace ReportsLoyalty.Controllers
         {
             using (GetData gd = new GetData())
             {
-                string filename = string.Format("({0}) {1}.csv", campaignId.ToString(), gd.Campaigns.GetCampaignNameById(campaignId));
+                string filename = string.Format("({0}).csv", campaignId.ToString());
                 var path = string.Empty;
                 try
                 {

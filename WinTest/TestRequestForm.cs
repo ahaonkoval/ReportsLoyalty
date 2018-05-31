@@ -16,10 +16,6 @@ namespace WinTest
         public TestRequestForm()
         {
             InitializeComponent();
-
-            h = new Handler(396);
-            h.onEndDownloadStatus += H_onEndDownloadStatus;
-            h.onPartDownloadStatus += H_onPartDownloadStatus;
         }
 
         void SetStatusToList(int count, DateTime date)
@@ -52,6 +48,13 @@ namespace WinTest
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            h = new Handler(
+                Convert.ToInt32(this.txtCampaignId.Text)
+                );
+
+            h.onEndDownloadStatus += H_onEndDownloadStatus;
+            h.onPartDownloadStatus += H_onPartDownloadStatus;
+
             h.GetReplayByMailingId();
         }
     }

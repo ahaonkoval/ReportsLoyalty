@@ -31,20 +31,22 @@
             this.lstStatus = new System.Windows.Forms.ListBox();
             this.btnRequestNew = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.txtCampaignId = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstStatus
             // 
             this.lstStatus.FormattingEnabled = true;
             this.lstStatus.ItemHeight = 15;
-            this.lstStatus.Location = new System.Drawing.Point(12, 12);
+            this.lstStatus.Location = new System.Drawing.Point(12, 42);
             this.lstStatus.Name = "lstStatus";
-            this.lstStatus.Size = new System.Drawing.Size(343, 274);
+            this.lstStatus.Size = new System.Drawing.Size(343, 304);
             this.lstStatus.TabIndex = 1;
             // 
             // btnRequestNew
             // 
-            this.btnRequestNew.Location = new System.Drawing.Point(12, 294);
+            this.btnRequestNew.Location = new System.Drawing.Point(12, 358);
             this.btnRequestNew.Name = "btnRequestNew";
             this.btnRequestNew.Size = new System.Drawing.Size(343, 27);
             this.btnRequestNew.TabIndex = 4;
@@ -56,17 +58,36 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
+            // txtCampaignId
+            // 
+            this.txtCampaignId.Location = new System.Drawing.Point(255, 12);
+            this.txtCampaignId.Name = "txtCampaignId";
+            this.txtCampaignId.Size = new System.Drawing.Size(100, 23);
+            this.txtCampaignId.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(230, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(22, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "ID:";
+            // 
             // TestRequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 333);
+            this.ClientSize = new System.Drawing.Size(367, 397);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtCampaignId);
             this.Controls.Add(this.btnRequestNew);
             this.Controls.Add(this.lstStatus);
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "TestRequestForm";
             this.Text = "TestRequestForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -74,6 +95,8 @@
         private System.Windows.Forms.ListBox lstStatus;
         private System.Windows.Forms.Button btnRequestNew;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox txtCampaignId;
+        private System.Windows.Forms.Label label1;
     }
 }
 

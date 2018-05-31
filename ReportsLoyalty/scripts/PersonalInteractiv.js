@@ -141,6 +141,7 @@ var showPersonalInteractiv = function ()
                         dataIndex: 'doc_qty_group',
                         text: 'К-сть док.',
                         menuDisabled: true,
+                        height: 60,
                     },
                     {
                         width: 60,
@@ -175,7 +176,6 @@ var showPersonalInteractiv = function ()
                 ]
             },
             {
-
                 text: 'Відділ',
                 columns: [
                     {
@@ -183,6 +183,7 @@ var showPersonalInteractiv = function ()
                         dataIndex: 'doc_qty_depart',
                         text: 'К-сть док.',
                         menuDisabled: true,
+                        height: 60,
                     },
                     {
                         width: 60,
@@ -223,6 +224,7 @@ var showPersonalInteractiv = function ()
                         dataIndex: 'doc_qty_market',
                         text: 'К-сть док.',
                         menuDisabled: true,
+                        height: 60,
                     },
                     {
                         width: 60,
@@ -292,15 +294,8 @@ var showPersonalInteractiv = function ()
         listeners: {
             rowdblclick: function (grid, record, e) {
                 /* открываєм окно редактирования */
-                //winCd.Show(record);
             },
             selectionchange (ctrl, selected, eOpts) {
-                //alert(selected);
-                //if (selected[0].get('mailing_id') == "") {
-                //    btnStartGettingMailingStatus.setHidden(true);
-                //} else {
-                //    btnStartGettingMailingStatus.setHidden(false);
-                //}
             }
         },
         plugins: {
@@ -318,25 +313,314 @@ var showPersonalInteractiv = function ()
                     var contain = element.child('.x-panel', true);
                     if (contain == null) {
 
-                        var subPanel = Ext.create('Ext.panel.Panel', {
-                            height: 150
-                            //html: '<p>World!</p>'
+                        var storeMarket = Ext.create('Ext.data.JsonStore',
+                               {
+                                   autoLoad: false,
+                                   autoDestroy: true,
+                                   proxy: {
+                                       type: 'ajax',
+                                       url: ('api/report'),
+                                       reader: {
+                                           type: 'json',
+                                           root: 'data',
+                                           idProperty: 'id',
+                                           totalProperty: 'total'
+                                       }
+                                   },
+                                   remoteSort: false,
+                                   sorters: [
+                                       {
+                                           property: 'market_id',
+                                           direction: 'ASC'
+                                       }
+                                   ],
+                                   pageSize: 50,
+                                   fields: [
+                                            { name: 'market_id', type: 'int' },
+                                            { name: 'Prms', type: 'string' },
+                                            { name: '_10', type: 'number' },
+                                            { name: '_20', type: 'number' },
+                                            { name: '_30', type: 'number' },
+                                            { name: '_40', type: 'number' },
+                                            { name: '_50', type: 'number' },
+                                            { name: '_60', type: 'number' },
+                                            { name: '_70', type: 'number' },
+                                            { name: '_80', type: 'number' },
+                                            { name: '_90', type: 'number' },
+                                            { name: '_100', type: 'number' },
+                                            { name: '_210', type: 'number' },
+                                            { name: '_310', type: 'number' },
+                                            { name: '_800', type: 'number' },
+                                            { name: '_0', type: 'number' },
+                                   ]
+                               });
+
+                        var gridMarket = Ext.create('Ext.grid.Panel', {
+                            stateful: true,
+                            stateId: 'stateful-filter-grid',
+                            border: false,
+                            store: storeMarket,
+                            columns: [
+                                {
+                                    width: 100, dataIndex: 'Prms', text: 'Параметр', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_310', text: '310', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_10', text: '10', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_20', text: '20', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_30', text: '30', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_40', text: '40', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_50', text: '50', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_60', text: '60', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_70', text: '70', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_80', text: '80', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_90', text: '90', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_100', text: '100', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_800', text: '800', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_210', text: '210', menuDisabled: true, align: 'center'
+                                }, {
+                                    width: 70, dataIndex: '_0', text: 'н/у', menuDisabled: true, align: 'center'
+                                }
+                            ],
+                            loadMask: true
                         });
 
+                        var p = Ext.create('Ext.panel.Panel', {
+                            layout: 'fit',
+                            //id: 'pnl' + record.get('market_id'),
+                            html: '<div id="graph' + record.get('market_id') + '" style="width:100%; height:200px;"></div>',
+                            scope: record.get('market_id'),
+                            listeners: {                                
+                                afterrender: function (ctrl, eOpts) {
+
+                                    var store = Ext.create('Ext.data.JsonStore',
+                                    {
+                                        autoLoad: false,
+                                        autoDestroy: true,
+                                        proxy: {
+                                            type: 'ajax',
+                                            url: ('api/report'),
+                                            reader: {
+                                                type: 'json',
+                                                root: 'data',
+                                                idProperty: 'id',
+                                                totalProperty: 'total'
+                                            }
+                                        },
+                                        remoteSort: false,
+                                        sorters: [
+                                            {
+                                                property: 'market_id',
+                                                direction: 'ASC'
+                                            }
+                                        ],
+                                        pageSize: 50,
+                                        fields: [
+                                            { name: 'market_id', type: 'int' },
+                                            { name: 'Name', type: 'string' },
+                                            { name: 'qty_docs', type: 'int' },
+                                            { name: 'qty_customers', type: 'int' },
+                                            { name: 'obert', type: 'int' },
+                                            { name: 'department', type: 'string' }
+                                        ]
+                                    });
+
+                                    store.loadPage(1, {
+                                        params: {
+                                            TypeLoad: 'market_otd',
+                                            CampaignId: comboBoxCampaigns.getValue(),
+                                            RDate: datefieldCampaigns.getValue(),
+                                            MarketId: record.get('market_id'),
+                                            ControlGrp: cbfControlGrp.getValue()
+                                        },
+                                        callback: function (records, operation, success) {
+
+                                            var rc = []
+
+                                            records.forEach(function (record) {
+                                                //console.log(record);
+                                                var o = {
+                                                    Name: record.data.Name,
+                                                    QtyCustomers: record.data.qty_customers,
+                                                    QtyDocs: record.data.qty_docs,
+                                                    Obert: record.data.obert,
+                                                    Department: record.data.department
+                                                };
+                                                rc.push(o);
+                                            });
+
+                                            Morris.Bar({
+                                                element: 'graph' + ctrl.scope,
+                                                data: rc,
+                                                xkey: 'Department',
+                                                ykeys: ['QtyDocs', 'QtyCustomers'], // , 'Obert'
+                                                labels: ['К-сть док:', 'К-сть УПЛ:'] //, 'Obert'
+                                                //labels: ['Y', 'Z', 'A']
+                                            }).on('click',
+                                                function (i, row) {
+                                                    console.log(i, row);
+                                                }
+                                            );
+                                        }
+                                    });
+                                }
+                            }
+                        });
+
+                        /*  ===============================================================================================================================================  */
+
+                        var p_obert = Ext.create('Ext.panel.Panel', {
+                            layout: 'fit',
+                            //id: 'pnl' + record.get('market_id'),
+                            html: '<div id="obert' + record.get('market_id') + '" style="width:100%; height:200px;"></div>',
+                            scope: record.get('market_id'),
+                            listeners: {                                
+                                afterrender: function (ctrl, eOpts) {
+
+                                    var store = Ext.create('Ext.data.JsonStore',
+                                    {
+                                        autoLoad: false,
+                                        autoDestroy: true,
+                                        proxy: {
+                                            type: 'ajax',
+                                            url: ('api/report'),
+                                            reader: {
+                                                type: 'json',
+                                                root: 'data',
+                                                idProperty: 'id',
+                                                totalProperty: 'total'
+                                            }
+                                        },
+                                        remoteSort: false,
+                                        sorters: [
+                                            {
+                                                property: 'market_id',
+                                                direction: 'ASC'
+                                            }
+                                        ],
+                                        pageSize: 50,
+                                        fields: [
+                                            { name: 'market_id', type: 'int' },
+                                            { name: 'Name', type: 'string' },
+                                            { name: 'qty_docs', type: 'int' },
+                                            { name: 'qty_customers', type: 'int' },
+                                            { name: 'obert', type: 'int' },
+                                            { name: 'department', type: 'string' }
+                                        ]
+                                    });
+
+                                    store.loadPage(1, {
+                                        params: {
+                                            TypeLoad: 'market_otd',
+                                            CampaignId: comboBoxCampaigns.getValue(),
+                                            RDate: datefieldCampaigns.getValue(),
+                                            MarketId: record.get('market_id'),
+                                            ControlGrp: cbfControlGrp.getValue()
+                                        },
+                                        callback: function (records, operation, success) {
+
+                                            var rc = []
+
+                                            records.forEach(function (record) {
+                                                var o = {
+                                                    Name: record.data.Name,
+                                                    QtyCustomers: record.data.qty_customers,
+                                                    QtyDocs: record.data.qty_docs,
+                                                    Obert: record.data.obert,
+                                                    Department: record.data.department
+                                                };
+                                                rc.push(o);
+                                            });
+
+                                            Morris.Bar({
+                                                element: 'obert' + ctrl.scope,
+                                                data: rc,
+                                                xkey: 'Department',
+                                                ykeys: ['Obert'], 
+                                                labels: ['Оберт'] //, 'Obert'
+                                                //labels: ['Y', 'Z', 'A']
+                                            }).on('click',
+                                                function (i, row) {
+                                                    console.log(i, row);
+                                                }
+                                            );
+                                        }
+                                    });
+                                }
+                            }
+                        });
+
+                        /*  ===============================================================================================================================================  */
+
+                        var subPanel = Ext.create('Ext.panel.Panel', {
+                            height: 250,
+                            layout: 'fit',
+                            items: [
+                                {
+                                    xtype: 'tabpanel',
+                                    items: [{
+                                        xtype: 'panel',
+                                        title: 'По маркету',
+                                        items: [gridMarket],
+                                        scrollable: true
+                                    },{
+                                        title: 'Графік УПЛ - Документи',
+                                        layout: 'fit',
+                                        items: [p]
+                                    }, {
+
+                                        xtype: 'panel',
+                                        title: 'Графік - Оберт',
+                                        items: [p_obert],
+                                    }]
+                                }]
+                        });                        
+
                         subPanel.render(element);
+
+                        storeMarket.loadPage(1, {
+                            params: {
+                                TypeLoad: 'market_otd_pivot',//'market_otd',
+                                CampaignId: comboBoxCampaigns.getValue(),
+                                RDate: datefieldCampaigns.getValue(),
+                                MarketId: record.get('market_id'),
+                                ControlGrp: cbfControlGrp.getValue()
+                            },
+                            callback: function (records, operation, success) {
+
+                                //Morris.Bar({
+                                //    element: 'graph' + record.get('market_id'), 
+                                //    data: [
+                                //      { x: 'Name 1', y: 3, z: 10 },
+                                //      { x: 'Name 2', y: 2 },
+                                //      { x: 'Name 3', y: 5 },
+                                //      { x: 'Name 4', y: 2 }
+                                //    ],
+                                //    xkey: 'x',
+                                //    ykeys: ['y', 'z'],
+                                //    labels: ['Y']
+                                //    //labels: ['Y', 'Z', 'A']
+                                //}).on('click', 
+                                //    function (i, row) {
+                                //        console.log(i, row);
+                                //    }
+                                //);
+                            }
+                        });
                     }
                 }
             }
-            //getRowClass: function (record) {
-                //return record.get('is_run') == true ? 'child-row' : 'adult-row';
-                //var css = record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
-                //if (record.get('is_start_get_status') == 1) {
-                //    return 'x-grid-row-getting-status';
-                //} else {
-                //    return css;
-                //}
-                //record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
-            //}
         }
     });
 
@@ -419,7 +703,6 @@ var showPersonalInteractiv = function ()
         }
     });
 
-
     var cbfControlGrp = Ext.create('Ext.form.field.Checkbox', { //Ext.form.CheckBoxField
         
     });
@@ -464,11 +747,6 @@ var showPersonalInteractiv = function ()
                         text: 'Контрольна група:'
                     },
                     cbfControlGrp,
-                    //,{
-                    //    xtype: 'checkboxfield',
-                    //    id: 'ch_control_group_personal_offers',
-                    //    name: 'salami'
-                    //},
                     {
                         xtype: 'button',
                         width: 100,
@@ -478,6 +756,7 @@ var showPersonalInteractiv = function ()
                             var store = ctrl.scope;
                             store.loadPage(1, {
                                 params: {
+                                    TypeLoad: 'base',
                                     CampaignId: comboBoxCampaigns.getValue(),
                                     RDate: datefieldCampaigns.getValue(),
                                     MarketLst: comboBoxMarkets.getValue(),
@@ -512,4 +791,9 @@ var showPersonalInteractiv = function ()
     //});
 
     center.setActiveTab(tab);
+
+}
+
+var GrafOn = function (i, row) {
+    console.log(i, row);
 }

@@ -24,28 +24,80 @@ namespace ReportsLoyalty.Controllers
                     var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
                     var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
 
-                    var CampaignId = queryparams.Where(w => w.Key == "CampaignId").FirstOrDefault();
-                    var RDate = queryparams.Where(w => w.Key == "RDate").FirstOrDefault();
-                    var MarketLst = queryparams.Where(w => w.Key == "MarketLst").FirstOrDefault();
-                    var ControlGrp = queryparams.Where(w => w.Key == "ControlGrp").FirstOrDefault();
+                    var TypeLoad = queryparams.Where(w => w.Key == "TypeLoad").FirstOrDefault();
 
-
-                    var ReportCmp = gt.PC.GetCampaignResultByMarkets(
-                        Convert.ToInt32(CampaignId.Value),
-                        Convert.ToBoolean(ControlGrp.Value),
-                        Convert.ToDateTime(RDate.Value),
-                        MarketLst.Value);
-
-                    object om = new
+                    if (TypeLoad.Value != null)
                     {
-                        total = ReportCmp.Count(),
-                        data = ReportCmp
-                    };
+                        switch (TypeLoad.Value)
+                        {
+                            case "base":
+                                {
+                                    var CampaignId = queryparams.Where(w => w.Key == "CampaignId").FirstOrDefault();
+                                    var RDate = queryparams.Where(w => w.Key == "RDate").FirstOrDefault();
+                                    var MarketLst = queryparams.Where(w => w.Key == "MarketLst").FirstOrDefault();
+                                    var ControlGrp = queryparams.Where(w => w.Key == "ControlGrp").FirstOrDefault();
 
-                    return om;                    
+                                    var ReportCmp = gt.PC.GetCampaignResultByMarkets(
+                                        Convert.ToInt32(CampaignId.Value),
+                                        Convert.ToBoolean(ControlGrp.Value),
+                                        Convert.ToDateTime(RDate.Value),
+                                        MarketLst.Value);
+
+                                    object om = new
+                                    {
+                                        total = ReportCmp.Count(),
+                                        data = ReportCmp
+                                    };
+
+                                    return om;
+                                }
+                            case "market_otd":
+                                {
+                                    var CampaignId = queryparams.Where(w => w.Key == "CampaignId").FirstOrDefault();
+                                    var RDate = queryparams.Where(w => w.Key == "RDate").FirstOrDefault();
+                                    var MarketId = queryparams.Where(w => w.Key == "MarketId").FirstOrDefault();
+                                    var ControlGrp = queryparams.Where(w => w.Key == "ControlGrp").FirstOrDefault();
+
+                                    var ReportCmp = gt.PC.GetPersonalMarkmoMarketDetails(
+                                            Convert.ToInt32(CampaignId.Value),
+                                            Convert.ToBoolean(ControlGrp.Value),
+                                            Convert.ToDateTime(RDate.Value),
+                                            Convert.ToInt32(MarketId.Value));
+
+                                    object om = new
+                                    {
+                                        total = ReportCmp.Count(),
+                                        data = ReportCmp
+                                    };
+
+                                    return om;
+                                }
+                            case "market_otd_pivot":
+                                {
+                                    var CampaignId = queryparams.Where(w => w.Key == "CampaignId").FirstOrDefault();
+                                    var RDate = queryparams.Where(w => w.Key == "RDate").FirstOrDefault();
+                                    var MarketId = queryparams.Where(w => w.Key == "MarketId").FirstOrDefault();
+                                    var ControlGrp = queryparams.Where(w => w.Key == "ControlGrp").FirstOrDefault();
+
+                                    var ReportCmp = gt.PC.GetPersonalMarkmoMarketDetailsPivot(
+                                            Convert.ToInt32(CampaignId.Value),
+                                            Convert.ToBoolean(ControlGrp.Value),
+                                            Convert.ToDateTime(RDate.Value),
+                                            Convert.ToInt32(MarketId.Value));
+
+                                    object om = new
+                                    {
+                                        total = ReportCmp.Count(),
+                                        data = ReportCmp
+                                    };
+
+                                    return om;
+                                }
+                        }
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 returned = 0;
             }

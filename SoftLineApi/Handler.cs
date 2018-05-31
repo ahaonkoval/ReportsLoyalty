@@ -56,7 +56,7 @@ namespace SoftLineApi
             // 
             if (this.LastId == 0)
             {
-                dk.DeleteStatuses(this.campaignId);
+                //dk.DeleteStatuses(this.campaignId);
             }
 
             if (mailingId == null) mailingId = string.Empty;

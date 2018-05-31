@@ -43,8 +43,8 @@ namespace LoyaltyDB
 		                --crd.barcode,
 		                c.mobile_phone,
 		                iif(isnull(vb.is_viber, 0)=1,'VIBER', a.delivery_channel) delivery_channel,
-		                dm.[market_name]
-		                --a.crm_customer_id
+		                dm.[market_name],
+		                a.crm_customer_id
 	                FROM 
 		                calc.campaign_participant a with (nolock)
 			                inner join 
@@ -89,6 +89,7 @@ namespace LoyaltyDB
 		                c.mobile_phone,
 		                iif(isnull(vb.is_viber, 0)=1,'VIBER', a.delivery_channel) delivery_channel,
 		                dm.[market_name],
+                        a.crm_customer_id,
 		                isnull(a.free,'') free
 	                FROM 
 		                calc.campaign_participant a with (nolock)

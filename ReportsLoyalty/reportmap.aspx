@@ -31,8 +31,17 @@
 
     <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="Content/report.css"/>
-    <%--<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/4.1.1/resources/css/ext-all.css/" />--%>
+    <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>--%>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+    <script src="scripts/charts/morris.js-0.5.1/morris.js"></script>
+    <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>--%>
+    <%--<script src="lib/example.js"></script>--%>
+
+<%--    <link rel="stylesheet" href="lib/example.css"/>--%>
+    <%--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css"/>--%>
+    <link rel="stylesheet" href="scripts/charts/morris.js-0.5.1/morris.css"/>
+
+    <link rel="stylesheet" type="text/css" href="Content/report.css"/>    
     <link rel="stylesheet" type="text/css" href="scripts/jslib/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
 </head>
 <body>
@@ -73,10 +82,6 @@
             var buttonSplit = Ext.create('Ext.button.Split', {
                 renderTo: Ext.getBody(),
                 text: 'Управління активностями',
-                // handle a click on the button itself
-                //handler: function () {
-                //    alert("The button was clicked");
-                //},
                 menu: new Ext.menu.Menu({
                     items: [
                         {
@@ -101,6 +106,36 @@
                 })
             });
 
+            var buttonPersonal = Ext.create('Ext.button.Split', {
+                renderTo: Ext.getBody(),
+                text: 'Персональні пропозиції',
+                width: 290,
+                menu: new Ext.menu.Menu({
+                    items: [
+                        {
+                            text: 'Інтерактив',
+                            width: 280,
+                            formBind: true,
+                            listeners: {
+                                click: function (ctrl) {
+                                    showPersonalInteractiv();
+                                }
+                            }
+                        },
+                        {
+                            text: 'Друкований звіт',
+                            formBind: true,
+                            listeners: {
+                                click: function () {
+                                    showPersonalOffers();
+                                }
+                            }
+                        }
+                    ]
+                })
+            });
+
+
             var viewport = Ext.create('Ext.container.Viewport', {
                 layout: 'border',
                 items: [{
@@ -112,35 +147,6 @@
                         border: false,
                         height: 35,
                         buttons: [
-                            //{
-                            //    text: 'Перевірка завантаження',
-                            //    formBind: true,
-                            //    listeners: {
-                            //        click: function () {
-                            //            winUploadStatus.Show();
-                            //        }
-                            //    }
-                            //},
-                            //{
-                            //    text: 'Stop list',
-                            //    formBind: true,
-                            //    listeners: {
-                            //        click: function (ctrl) {
-                            //            getWinStopList().show();
-                            //        }
-                            //    }
-                            //},
-                            //{
-                            //    text: 'Управление активностями',
-                            //    formBind: true,
-                            //    listeners: {
-                            //        click: function () {
-                            //            //win_campaigns.show();
-                            //            //win_campaigns_show();
-                            //            getWinCampaigns().show();
-                            //        }
-                            //    }
-                            //},
                             buttonSplit,
                             {
                                 text: 'Вийти',
@@ -179,13 +185,16 @@
                                 name: 'name',
                                 html: '<a href="#" onclick="showExtraPoints();" class="menu_is_run">Екстра-Бали</a>',
                                 margin: '2 2 2 10'
-                            }, {
-                                xtype: 'panel',
-                                border: false,
-                                name: 'name',
-                                html: '<a href="#" onclick="showPersonalOffers();" class="menu_is_run">Персональні пропозиції</a>',
-                                margin: '2 2 2 10'
-                            }, {
+                            },
+                            buttonPersonal,
+                            //{
+                            //    xtype: 'panel',
+                            //    border: false,
+                            //    name: 'name',
+                            //    html: '<a href="#" onclick="showPersonalOffers();" class="menu_is_run">Персональні пропозиції</a>',
+                            //    margin: '2 2 2 10'
+                            //}
+                            , {
                                 xtype: 'panel',
                                 border: false,
                                 name: 'name',
@@ -212,13 +221,15 @@
                                 name: 'name',
                                 html: '<a href="#" onclick="show50pointsReport();" class="menu_is_run">Результати акцій "50 і більше балів"</a>',
                                 margin: '2 2 2 10'
-                            }, {
-                                xtype: 'panel',
-                                border: false,
-                                name: 'name',
-                                html: '<a href="#" onclick="showPersonalInteractiv();" class="menu_is_run">Приклад</a>',
-                                margin: '2 2 2 10'
-                            }]
+                            },
+                            //{
+                            //    xtype: 'panel',
+                            //    border: false,
+                            //    name: 'name',
+                            //    html: '<a href="#" onclick="showPersonalInteractiv();" class="menu_is_run">Приклад</a>',
+                            //    margin: '2 2 2 10'
+                            //}
+                            ]
                         //    {
                         //        xtype: 'panel',
                         //        border: false,
@@ -320,55 +331,6 @@
                     //    html: 'The first tab\'s content. Others may be added dynamically'
                     //}
                 }]
-                //{
-                //    xtype: 'form',
-                //    reference: 'form',
-                //    title: 'Редагування списку обзвона участників...',
-                //    width: 1200,
-                //    height: 550,
-                //    border: true,
-                //    layout: {
-                //        type: 'vbox',
-                //        align: 'stretch',
-                //        pack: 'start'
-                //    },
-                //    items: [
-                //        {
-                //            xtype: 'panel',
-                //            border: false,
-                //            height: 20
-                //            //items: [
-                //            //    getSelectStatus()
-                //            //]
-                //        },
-                //        {
-                //            xtype: 'panel',
-                //            border: false,
-                //            buttons: [
-                //                {
-                //                    text: 'LogOut',
-                //                    formBind: true,
-                //                    listeners: {
-                //                        click: function () {
-                //                            $.ajax({
-                //                                url: 'api/login/logout/1',
-                //                                type: 'get',
-                //                                success: function (a) {
-                //                                    if (a == 'true') {
-                //                                        window.location.href = "login.aspx";
-                //                                    }
-                //                                }
-                //                            });
-                //                        }
-                //                    }
-                //                }
-
-                //            ]
-                //            //items: [
-                //            //    getGridEdit()]
-                //        }
-                //    ]
-                //}
 
             });
         });
