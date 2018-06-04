@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 using LoyaltyDB;
 using System.Text.RegularExpressions;
 
-namespace ReportsLoyalty.pages.personal_offers
+namespace ReportsLoyalty.pages.personal_offers_details
 {
     public partial class personal_offers : System.Web.UI.Page
     {

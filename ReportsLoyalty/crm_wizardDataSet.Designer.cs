@@ -56,6 +56,8 @@ namespace ReportsLoyalty {
         
         private t_get_personal_markmo_reportDataTable tablet_get_personal_markmo_report;
         
+        private t_get_personal_markmo_market_details_pivotDataTable tablet_get_personal_markmo_market_details_pivot;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -131,6 +133,9 @@ namespace ReportsLoyalty {
                 }
                 if ((ds.Tables["t_get_personal_markmo_report"] != null)) {
                     base.Tables.Add(new t_get_personal_markmo_reportDataTable(ds.Tables["t_get_personal_markmo_report"]));
+                }
+                if ((ds.Tables["t_get_personal_markmo_market_details_pivot"] != null)) {
+                    base.Tables.Add(new t_get_personal_markmo_market_details_pivotDataTable(ds.Tables["t_get_personal_markmo_market_details_pivot"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -312,6 +317,16 @@ namespace ReportsLoyalty {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public t_get_personal_markmo_market_details_pivotDataTable t_get_personal_markmo_market_details_pivot {
+            get {
+                return this.tablet_get_personal_markmo_market_details_pivot;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -424,6 +439,9 @@ namespace ReportsLoyalty {
                 }
                 if ((ds.Tables["t_get_personal_markmo_report"] != null)) {
                     base.Tables.Add(new t_get_personal_markmo_reportDataTable(ds.Tables["t_get_personal_markmo_report"]));
+                }
+                if ((ds.Tables["t_get_personal_markmo_market_details_pivot"] != null)) {
+                    base.Tables.Add(new t_get_personal_markmo_market_details_pivotDataTable(ds.Tables["t_get_personal_markmo_market_details_pivot"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -554,6 +572,12 @@ namespace ReportsLoyalty {
                     this.tablet_get_personal_markmo_report.InitVars();
                 }
             }
+            this.tablet_get_personal_markmo_market_details_pivot = ((t_get_personal_markmo_market_details_pivotDataTable)(base.Tables["t_get_personal_markmo_market_details_pivot"]));
+            if ((initTable == true)) {
+                if ((this.tablet_get_personal_markmo_market_details_pivot != null)) {
+                    this.tablet_get_personal_markmo_market_details_pivot.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -596,6 +620,8 @@ namespace ReportsLoyalty {
             base.Tables.Add(this.tablep_get_trade_with_extra_points);
             this.tablet_get_personal_markmo_report = new t_get_personal_markmo_reportDataTable();
             base.Tables.Add(this.tablet_get_personal_markmo_report);
+            this.tablet_get_personal_markmo_market_details_pivot = new t_get_personal_markmo_market_details_pivotDataTable();
+            base.Tables.Add(this.tablet_get_personal_markmo_market_details_pivot);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -691,6 +717,12 @@ namespace ReportsLoyalty {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializet_get_personal_markmo_report() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializet_get_personal_markmo_market_details_pivot() {
             return false;
         }
         
@@ -796,6 +828,9 @@ namespace ReportsLoyalty {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void t_get_personal_markmo_reportRowChangeEventHandler(object sender, t_get_personal_markmo_reportRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void t_get_personal_markmo_market_details_pivotRowChangeEventHandler(object sender, t_get_personal_markmo_market_details_pivotRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -6921,6 +6956,480 @@ namespace ReportsLoyalty {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class t_get_personal_markmo_market_details_pivotDataTable : global::System.Data.TypedTableBase<t_get_personal_markmo_market_details_pivotRow> {
+            
+            private global::System.Data.DataColumn columnmarket_id;
+            
+            private global::System.Data.DataColumn columnPrms;
+            
+            private global::System.Data.DataColumn columna10;
+            
+            private global::System.Data.DataColumn columna20;
+            
+            private global::System.Data.DataColumn columna30;
+            
+            private global::System.Data.DataColumn columna40;
+            
+            private global::System.Data.DataColumn columna50;
+            
+            private global::System.Data.DataColumn columna60;
+            
+            private global::System.Data.DataColumn columna70;
+            
+            private global::System.Data.DataColumn columna80;
+            
+            private global::System.Data.DataColumn columna90;
+            
+            private global::System.Data.DataColumn columna100;
+            
+            private global::System.Data.DataColumn columna210;
+            
+            private global::System.Data.DataColumn columna310;
+            
+            private global::System.Data.DataColumn columna800;
+            
+            private global::System.Data.DataColumn columna0;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_get_personal_markmo_market_details_pivotDataTable() {
+                this.TableName = "t_get_personal_markmo_market_details_pivot";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal t_get_personal_markmo_market_details_pivotDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected t_get_personal_markmo_market_details_pivotDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn market_idColumn {
+                get {
+                    return this.columnmarket_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PrmsColumn {
+                get {
+                    return this.columnPrms;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a10Column {
+                get {
+                    return this.columna10;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a20Column {
+                get {
+                    return this.columna20;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a30Column {
+                get {
+                    return this.columna30;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a40Column {
+                get {
+                    return this.columna40;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a50Column {
+                get {
+                    return this.columna50;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a60Column {
+                get {
+                    return this.columna60;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a70Column {
+                get {
+                    return this.columna70;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a80Column {
+                get {
+                    return this.columna80;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a90Column {
+                get {
+                    return this.columna90;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a100Column {
+                get {
+                    return this.columna100;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a210Column {
+                get {
+                    return this.columna210;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a310Column {
+                get {
+                    return this.columna310;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a800Column {
+                get {
+                    return this.columna800;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn a0Column {
+                get {
+                    return this.columna0;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_get_personal_markmo_market_details_pivotRow this[int index] {
+                get {
+                    return ((t_get_personal_markmo_market_details_pivotRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event t_get_personal_markmo_market_details_pivotRowChangeEventHandler t_get_personal_markmo_market_details_pivotRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event t_get_personal_markmo_market_details_pivotRowChangeEventHandler t_get_personal_markmo_market_details_pivotRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event t_get_personal_markmo_market_details_pivotRowChangeEventHandler t_get_personal_markmo_market_details_pivotRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event t_get_personal_markmo_market_details_pivotRowChangeEventHandler t_get_personal_markmo_market_details_pivotRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Addt_get_personal_markmo_market_details_pivotRow(t_get_personal_markmo_market_details_pivotRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_get_personal_markmo_market_details_pivotRow Addt_get_personal_markmo_market_details_pivotRow(
+                        long market_id, 
+                        string Prms, 
+                        float a10, 
+                        float a20, 
+                        float a30, 
+                        float a40, 
+                        float a50, 
+                        float a60, 
+                        float a70, 
+                        float a80, 
+                        float a90, 
+                        float a100, 
+                        float a210, 
+                        float a310, 
+                        float a800, 
+                        float a0) {
+                t_get_personal_markmo_market_details_pivotRow rowt_get_personal_markmo_market_details_pivotRow = ((t_get_personal_markmo_market_details_pivotRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        market_id,
+                        Prms,
+                        a10,
+                        a20,
+                        a30,
+                        a40,
+                        a50,
+                        a60,
+                        a70,
+                        a80,
+                        a90,
+                        a100,
+                        a210,
+                        a310,
+                        a800,
+                        a0};
+                rowt_get_personal_markmo_market_details_pivotRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowt_get_personal_markmo_market_details_pivotRow);
+                return rowt_get_personal_markmo_market_details_pivotRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                t_get_personal_markmo_market_details_pivotDataTable cln = ((t_get_personal_markmo_market_details_pivotDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new t_get_personal_markmo_market_details_pivotDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnmarket_id = base.Columns["market_id"];
+                this.columnPrms = base.Columns["Prms"];
+                this.columna10 = base.Columns["a10"];
+                this.columna20 = base.Columns["a20"];
+                this.columna30 = base.Columns["a30"];
+                this.columna40 = base.Columns["a40"];
+                this.columna50 = base.Columns["a50"];
+                this.columna60 = base.Columns["a60"];
+                this.columna70 = base.Columns["a70"];
+                this.columna80 = base.Columns["a80"];
+                this.columna90 = base.Columns["a90"];
+                this.columna100 = base.Columns["a100"];
+                this.columna210 = base.Columns["a210"];
+                this.columna310 = base.Columns["a310"];
+                this.columna800 = base.Columns["a800"];
+                this.columna0 = base.Columns["a0"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnmarket_id = new global::System.Data.DataColumn("market_id", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmarket_id);
+                this.columnPrms = new global::System.Data.DataColumn("Prms", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrms);
+                this.columna10 = new global::System.Data.DataColumn("a10", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna10);
+                this.columna20 = new global::System.Data.DataColumn("a20", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna20);
+                this.columna30 = new global::System.Data.DataColumn("a30", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna30);
+                this.columna40 = new global::System.Data.DataColumn("a40", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna40);
+                this.columna50 = new global::System.Data.DataColumn("a50", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna50);
+                this.columna60 = new global::System.Data.DataColumn("a60", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna60);
+                this.columna70 = new global::System.Data.DataColumn("a70", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna70);
+                this.columna80 = new global::System.Data.DataColumn("a80", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna80);
+                this.columna90 = new global::System.Data.DataColumn("a90", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna90);
+                this.columna100 = new global::System.Data.DataColumn("a100", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna100);
+                this.columna210 = new global::System.Data.DataColumn("a210", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna210);
+                this.columna310 = new global::System.Data.DataColumn("a310", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna310);
+                this.columna800 = new global::System.Data.DataColumn("a800", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna800);
+                this.columna0 = new global::System.Data.DataColumn("a0", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columna0);
+                this.columnPrms.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_get_personal_markmo_market_details_pivotRow Newt_get_personal_markmo_market_details_pivotRow() {
+                return ((t_get_personal_markmo_market_details_pivotRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new t_get_personal_markmo_market_details_pivotRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(t_get_personal_markmo_market_details_pivotRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.t_get_personal_markmo_market_details_pivotRowChanged != null)) {
+                    this.t_get_personal_markmo_market_details_pivotRowChanged(this, new t_get_personal_markmo_market_details_pivotRowChangeEvent(((t_get_personal_markmo_market_details_pivotRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.t_get_personal_markmo_market_details_pivotRowChanging != null)) {
+                    this.t_get_personal_markmo_market_details_pivotRowChanging(this, new t_get_personal_markmo_market_details_pivotRowChangeEvent(((t_get_personal_markmo_market_details_pivotRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.t_get_personal_markmo_market_details_pivotRowDeleted != null)) {
+                    this.t_get_personal_markmo_market_details_pivotRowDeleted(this, new t_get_personal_markmo_market_details_pivotRowChangeEvent(((t_get_personal_markmo_market_details_pivotRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.t_get_personal_markmo_market_details_pivotRowDeleting != null)) {
+                    this.t_get_personal_markmo_market_details_pivotRowDeleting(this, new t_get_personal_markmo_market_details_pivotRowChangeEvent(((t_get_personal_markmo_market_details_pivotRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Removet_get_personal_markmo_market_details_pivotRow(t_get_personal_markmo_market_details_pivotRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                crm_wizardDataSet ds = new crm_wizardDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "t_get_personal_markmo_market_details_pivotDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class p_get_sale_with_extra_pointsRow : global::System.Data.DataRow {
@@ -11519,6 +12028,485 @@ namespace ReportsLoyalty {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class t_get_personal_markmo_market_details_pivotRow : global::System.Data.DataRow {
+            
+            private t_get_personal_markmo_market_details_pivotDataTable tablet_get_personal_markmo_market_details_pivot;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal t_get_personal_markmo_market_details_pivotRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablet_get_personal_markmo_market_details_pivot = ((t_get_personal_markmo_market_details_pivotDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long market_id {
+                get {
+                    try {
+                        return ((long)(this[this.tablet_get_personal_markmo_market_details_pivot.market_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'market_id\' в таблице \'t_get_personal_markmo_market_details_" +
+                                "pivot\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.market_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Prms {
+                get {
+                    try {
+                        return ((string)(this[this.tablet_get_personal_markmo_market_details_pivot.PrmsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Prms\' в таблице \'t_get_personal_markmo_market_details_pivot" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.PrmsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a10 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a10Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a10\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a10Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a20 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a20Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a20\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a20Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a30 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a30Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a30\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a30Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a40 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a40Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a40\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a40Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a50 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a50Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a50\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a50Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a60 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a60Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a60\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a60Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a70 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a70Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a70\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a70Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a80 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a80Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a80\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a80Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a90 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a90Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a90\' в таблице \'t_get_personal_markmo_market_details_pivot\'" +
+                                " равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a90Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a100 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a100Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a100\' в таблице \'t_get_personal_markmo_market_details_pivot" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a100Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a210 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a210Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a210\' в таблице \'t_get_personal_markmo_market_details_pivot" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a210Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a310 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a310Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a310\' в таблице \'t_get_personal_markmo_market_details_pivot" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a310Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a800 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a800Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a800\' в таблице \'t_get_personal_markmo_market_details_pivot" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a800Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float a0 {
+                get {
+                    try {
+                        return ((float)(this[this.tablet_get_personal_markmo_market_details_pivot.a0Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'a0\' в таблице \'t_get_personal_markmo_market_details_pivot\' " +
+                                "равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_market_details_pivot.a0Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ismarket_idNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.market_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setmarket_idNull() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.market_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPrmsNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.PrmsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPrmsNull() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.PrmsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa10Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a10Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta10Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a10Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa20Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a20Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta20Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a20Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa30Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a30Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta30Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a30Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa40Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a40Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta40Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a40Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa50Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a50Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta50Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a50Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa60Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a60Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta60Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a60Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa70Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a70Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta70Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a70Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa80Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a80Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta80Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a80Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa90Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a90Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta90Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a90Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa100Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a100Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta100Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a100Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa210Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a210Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta210Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a210Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa310Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a310Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta310Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a310Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa800Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a800Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta800Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a800Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isa0Null() {
+                return this.IsNull(this.tablet_get_personal_markmo_market_details_pivot.a0Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Seta0Null() {
+                this[this.tablet_get_personal_markmo_market_details_pivot.a0Column] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -12048,6 +13036,40 @@ namespace ReportsLoyalty {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public t_get_personal_markmo_reportRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class t_get_personal_markmo_market_details_pivotRowChangeEvent : global::System.EventArgs {
+            
+            private t_get_personal_markmo_market_details_pivotRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_get_personal_markmo_market_details_pivotRowChangeEvent(t_get_personal_markmo_market_details_pivotRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_get_personal_markmo_market_details_pivotRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -15893,6 +16915,224 @@ FROM            rep.t_get_personal_markmo_report(@campaign_id, @controlGroup, @d
                 this.Adapter.SelectCommand.Parameters[3].Value = ((string)(marketLst));
             }
             crm_wizardDataSet.t_get_personal_markmo_reportDataTable dataTable = new crm_wizardDataSet.t_get_personal_markmo_reportDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class t_get_personal_markmo_market_details_pivotTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public t_get_personal_markmo_market_details_pivotTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "t_get_personal_markmo_market_details_pivot";
+            tableMapping.ColumnMappings.Add("market_id", "market_id");
+            tableMapping.ColumnMappings.Add("Prms", "Prms");
+            tableMapping.ColumnMappings.Add("a10", "a10");
+            tableMapping.ColumnMappings.Add("a20", "a20");
+            tableMapping.ColumnMappings.Add("a30", "a30");
+            tableMapping.ColumnMappings.Add("a40", "a40");
+            tableMapping.ColumnMappings.Add("a50", "a50");
+            tableMapping.ColumnMappings.Add("a60", "a60");
+            tableMapping.ColumnMappings.Add("a70", "a70");
+            tableMapping.ColumnMappings.Add("a80", "a80");
+            tableMapping.ColumnMappings.Add("a90", "a90");
+            tableMapping.ColumnMappings.Add("a100", "a100");
+            tableMapping.ColumnMappings.Add("a210", "a210");
+            tableMapping.ColumnMappings.Add("a310", "a310");
+            tableMapping.ColumnMappings.Add("a800", "a800");
+            tableMapping.ColumnMappings.Add("a0", "a0");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["crm_wizard_connect_string"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT        
+market_id, 
+Prms, 
+[10] as a10, 
+[20] as a20, 
+[30] as a30, 
+[40] as a40, 
+[50] as a50, 
+[60] as a60,
+[70] as a70, 
+[80] as a80, 
+[90] as a90, 
+[100] as a100, 
+[210] as a210, 
+[310] as a310, 
+[800] as a800, 
+[0] as a0
+FROM            rep.t_get_personal_markmo_market_details_pivot(@campaign_id, @control_group, @date) AS a";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@campaign_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@control_group", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(crm_wizardDataSet.t_get_personal_markmo_market_details_pivotDataTable dataTable, int campaign_id, bool control_group, string date) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(campaign_id));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((bool)(control_group));
+            if ((date == null)) {
+                throw new global::System.ArgumentNullException("date");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(date));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual crm_wizardDataSet.t_get_personal_markmo_market_details_pivotDataTable GetData(int campaign_id, bool control_group, string date) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(campaign_id));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((bool)(control_group));
+            if ((date == null)) {
+                throw new global::System.ArgumentNullException("date");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(date));
+            }
+            crm_wizardDataSet.t_get_personal_markmo_market_details_pivotDataTable dataTable = new crm_wizardDataSet.t_get_personal_markmo_market_details_pivotDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

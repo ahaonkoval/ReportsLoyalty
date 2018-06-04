@@ -314,10 +314,10 @@ var showExtraPoints = function () {
     center.setActiveTab(tab);
 }
 
-var showPersonalOffers = function () {
+var showPersonalOffers = function (report_name, type) {
     var center = Ext.getCmp('pnlCenter');
 
-    var p_personal_offers = Ext.getCmp('p_personal_offers');
+    var p_personal_offers = Ext.getCmp('p_personal_offers' + type);
     if (p_personal_offers != null) return;
 
     var comboBox = Ext.create('Ext.form.ComboBox', {
@@ -357,9 +357,13 @@ var showPersonalOffers = function () {
 
     });
 
+    var Name = 'Персональні пропозиції'
+    if (type == 'dt')
+        Name = 'Персональні пропозиції (Детально)'
+
     tab = center.add({
-        id: 'p_personal_offers',
-        title: 'Персональні пропозиції',
+        id: 'p_personal_offers' + type,
+        title: Name,
         extend: 'Ext.panel.Panel',
         closable: true,
         layout: 'fit',
@@ -379,7 +383,7 @@ var showPersonalOffers = function () {
                                 xtype: 'label',
                                 text: 'Акції'
                             }, {
-                                id: 'cmbCampaigns_personal_offers',
+                                id: 'cmbCampaigns_personal_offers' + type,
                                 xtype: 'combobox',
                                 width: 420,
                                 store: dict.getStoreCampaigns(2),//st_campaign_extra_points,
@@ -393,7 +397,7 @@ var showPersonalOffers = function () {
                                 xtype: 'label',
                                 text: 'На дату:'
                             }, {
-                                id: 'dtDateState_personal_offers',
+                                id: 'dtDateState_personal_offers' + type,
                                 xtype: 'datefield',
                                 format: "d/m/Y",
                                 minDate: new Date(),
@@ -402,12 +406,12 @@ var showPersonalOffers = function () {
                                     scope: this,
                                     expand: function (field, eOpts) {
                                         //var dtDateState = Ext.getCmp('dtDateState_personal_offers');
-                                        var cmbCampaigns = Ext.getCmp('cmbCampaigns_personal_offers');
+                                        var cmbCampaigns = Ext.getCmp('cmbCampaigns_personal_offers' + type);
                                         if (cmbCampaigns != null) {
                                             if (cmbCampaigns.getValue() != null) {
                                                 getDisabledDatesById(
-                                                    Ext.getCmp('cmbCampaigns_personal_offers').getValue(),
-                                                    Ext.getCmp('dtDateState_personal_offers'));
+                                                    Ext.getCmp('cmbCampaigns_personal_offers' + type).getValue(),
+                                                    Ext.getCmp('dtDateState_personal_offers' + type));
                                             }
                                         }
                                     }
@@ -416,25 +420,12 @@ var showPersonalOffers = function () {
                                 xtype: 'tbseparator'
                             },
                             comboBox,
-                            //{
-                            //    xtype: 'label',
-                            //    text: 'Магазин:'
-                            //}, {
-                            //    id: 'cmbMarkets_personal_offers',
-                            //    xtype: 'combobox',
-                            //    width: 200,
-                            //    store: dict.getStoreMarkets(),//st_dict_markets,
-                            //    queryMode: 'local',
-                            //    displayField: 'market_name',
-                            //    valueField: 'id',
-                            //    renderTo: Ext.getBody()
-                            //},
                             {
                                 xtype: 'label',
                                 text: 'Контрольна група:'
                             }, {
                                 xtype: 'checkboxfield',
-                                id: 'ch_control_group_personal_offers',
+                                id: 'ch_control_group_personal_offers' + type,
                                 name : 'salami'
                             }, {
                                 xtype: 'button',
@@ -442,9 +433,11 @@ var showPersonalOffers = function () {
                                 text: 'Показати',
                                 handler: function () {
 
-                                    var url = 'pages/daily_personal_offers.aspx?'
+                                    //var url = 'pages/daily_personal_offers.aspx?'
+                                    var url = 'pages/' + report_name + '?'
+                                    
 
-                                    var cmbCampaigns = Ext.getCmp('cmbCampaigns_personal_offers');
+                                    var cmbCampaigns = Ext.getCmp('cmbCampaigns_personal_offers' + type);
                                     var campaign_id = cmbCampaigns.getValue();
                                     if (campaign_id == null) {
                                         Ext.Msg.alert('Увага', 'Акція не вибрана', Ext.emptyFn);
@@ -452,7 +445,7 @@ var showPersonalOffers = function () {
                                     }
                                     url = url + 'campaign_id=' + campaign_id;
 
-                                    var dtDateState = Ext.getCmp('dtDateState_personal_offers');
+                                    var dtDateState = Ext.getCmp('dtDateState_personal_offers' + type);
                                     var date_st = dtDateState.getValue();
                                     if (date_st == null) {
                                         url = url + '&date_st=' + date_st
@@ -467,22 +460,22 @@ var showPersonalOffers = function () {
                                     if (market_id == null) market_id = 0;
                                     url = url + '&market_id=' + market_id;
 
-                                    var control_group = Ext.getCmp('ch_control_group_personal_offers');
+                                    var control_group = Ext.getCmp('ch_control_group_personal_offers' + type);
                                     var ctrl = control_group.getValue();
                                     if (ctrl == null) {
                                         ctrl = true;
                                     } 
                                     url = url + '&ctrl=' + ctrl;
 
-                                    var report_box = Ext.getCmp('rep_box_personal_offers');
+                                    var report_box = Ext.getCmp('rep_box_personal_offers' + type);
                                     if (report_box != null) {
-                                        Ext.getCmp('p_rep_conteiner_personal_offers').remove(report_box);
+                                        Ext.getCmp('p_rep_conteiner_personal_offers' + type).remove(report_box);
                                     }
 
                                     //url = url + '&height=' + (center.getWidth() - 30)
 
                                     dynamicPanel = new Ext.Component({
-                                        id: 'rep_box_personal_offers',
+                                        id: 'rep_box_personal_offers' + type,
                                         xtype: 'box',
                                         layout: 'fit',
                                         showMask: true,
@@ -491,14 +484,14 @@ var showPersonalOffers = function () {
                                             src: url
                                         }
                                     });
-                                    Ext.getCmp('p_rep_conteiner_personal_offers').add(dynamicPanel);
+                                    Ext.getCmp('p_rep_conteiner_personal_offers' + type).add(dynamicPanel);
                                 }
                             }]
                     }
                 }, {
                     xtype: 'panel',
                     layout: 'fit',
-                    id: 'p_rep_conteiner_personal_offers',
+                    id: 'p_rep_conteiner_personal_offers'+ type,
                     flex: 1
                 }]
             }

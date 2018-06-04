@@ -3,8 +3,8 @@ var showPersonalInteractiv = function ()
 {
     var center = Ext.getCmp('pnlCenter');
 
-    var p_personal_offers = Ext.getCmp('p_personal_offers');
-    if (p_personal_offers != null) return;
+    var p_personal_offers_view = Ext.getCmp('p_personal_offers_view');
+    if (p_personal_offers_view != null) return;
 
     var storeReport = Ext.create('Ext.data.JsonStore',
         {
@@ -133,7 +133,6 @@ var showPersonalInteractiv = function ()
                 ]
             },
             {
-
                 text: 'Департамент',
                 columns: [
                     {
@@ -599,23 +598,6 @@ var showPersonalInteractiv = function ()
                             },
                             callback: function (records, operation, success) {
 
-                                //Morris.Bar({
-                                //    element: 'graph' + record.get('market_id'), 
-                                //    data: [
-                                //      { x: 'Name 1', y: 3, z: 10 },
-                                //      { x: 'Name 2', y: 2 },
-                                //      { x: 'Name 3', y: 5 },
-                                //      { x: 'Name 4', y: 2 }
-                                //    ],
-                                //    xkey: 'x',
-                                //    ykeys: ['y', 'z'],
-                                //    labels: ['Y']
-                                //    //labels: ['Y', 'Z', 'A']
-                                //}).on('click', 
-                                //    function (i, row) {
-                                //        console.log(i, row);
-                                //    }
-                                //);
                             }
                         });
                     }
@@ -707,10 +689,9 @@ var showPersonalInteractiv = function ()
         
     });
 
-
     tab = center.add({
-        id: 'p_personal_offers',
-        title: 'Персональні пропозиції',
+        id: 'p_personal_offers_view',
+        title: 'Персональні пропозиції (перегляд)',
         extend: 'Ext.panel.Panel',
         closable: true,
         layout: 'fit',
@@ -770,7 +751,7 @@ var showPersonalInteractiv = function ()
             }, {
                 xtype: 'panel',
                 layout: 'fit',
-                id: 'p_rep_conteiner_personal_offers',
+                //id: 'p_rep_conteiner_personal_offers',
                 flex: 1,
                 items: [
                     grid
@@ -779,21 +760,5 @@ var showPersonalInteractiv = function ()
         }
     });
 
-    //storeReport.load();
-
-    //storeReport.load({
-    //    params: {
-    //        CampaignId: comboBoxCampaigns.getValue(),
-    //        RDate: '01.01.01',
-    //        MarketLst: '123',
-    //        ControlGrp: '0'
-    //    }
-    //});
-
     center.setActiveTab(tab);
-
-}
-
-var GrafOn = function (i, row) {
-    console.log(i, row);
 }

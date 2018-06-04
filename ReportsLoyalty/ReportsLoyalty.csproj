@@ -135,6 +135,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="pages\daily_personal_offers_details.aspx" />
     <Content Include="scripts\charts\morris.js-0.5.1\.gitignore" />
     <Content Include="scripts\charts\morris.js-0.5.1\examples\area-as-line.html" />
     <Content Include="scripts\charts\morris.js-0.5.1\examples\area.html" />
@@ -192,6 +193,7 @@
     <Content Include="scripts\customers.js" />
     <Content Include="scripts\campaigns.js" />
     <None Include="scripts\jslib\jquery-3.3.1.intellisense.js" />
+    <Content Include="scripts\jslib\raphael-min.js" />
     <Content Include="scripts\jslib\jquery-3.3.1.js" />
     <Content Include="scripts\jslib\jquery-3.3.1.min.js" />
     <Content Include="scripts\jslib\jquery-3.3.1.slim.js" />
@@ -3456,6 +3458,13 @@
     <Compile Include="pages\counter_docs.aspx.designer.cs">
       <DependentUpon>counter_docs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\daily_personal_offers_details.aspx.cs">
+      <DependentUpon>daily_personal_offers_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\daily_personal_offers_details.aspx.designer.cs">
+      <DependentUpon>daily_personal_offers_details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\extra_point_articul_rating.aspx.cs">
       <DependentUpon>extra_point_articul_rating.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3640,8 +3649,8 @@
     <EmbeddedResource Include="reports\customers\participant_list.rdlc" />
     <EmbeddedResource Include="reports\extra_points\rep_customers_allocated.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers - Копировать %282%29.rdlc" />
-    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers - Копировать %283%29.rdlc" />
-    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers - Копировать.rdlc" />
+    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers_all.rdlc" />
+    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers_all_old.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_market_details.rdlc" />
     <EmbeddedResource Include="reports\profile_participant\is_not_sms_sent.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators.rdlc" />
@@ -3650,7 +3659,7 @@
     <EmbeddedResource Include="reports\BirthDayUPL\BirthDayChildrenUPL.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_daily_days_allocated.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_daily_distance_allocated.rdlc" />
-    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers.rdlc" />
+    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers_details.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_daily_pers_trade_rating_2.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_daily_pers_trade_rating_0.rdlc" />
     <EmbeddedResource Include="reports\extra_points\rep_diff_day_with_extra_points.rdlc" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="daily_personal_offers.aspx.cs" Inherits="ReportsLoyalty.pages.personal_offers.personal_offers" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="daily_personal_offers_details.aspx.cs" Inherits="ReportsLoyalty.pages.personal_offers.personal_offers" %>
 <%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
         <div style="margin:0; padding:0; height:10000px;">
             <div style="margin:0; padding:0; height:10000px;">
                 <rsweb:ReportViewer ID="ReportViewerPersonalOffers" runat="server" AsyncRendering="False" Width="100%" Height="100%" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
-                    <LocalReport ReportPath="reports\personal_offers\rep_daily_personal_offers_all.rdlc" EnableHyperlinks="True">
+                    <LocalReport ReportPath="reports\personal_offers\rep_daily_personal_offers_details.rdlc" EnableHyperlinks="True">
                         <DataSources>
                             <rsweb:ReportDataSource DataSourceId="sds_expected_effect" Name="ds_pers_expected_effect" />
                             <rsweb:ReportDataSource DataSourceId="sds_market_details" Name="ds_market_details" />

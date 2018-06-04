@@ -3176,12 +3176,18 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>3.68764cm</Height>
+              <Height>1.62389cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Subreport Name="MarketDetails">
+                    <Subreport Name="Subreport1">
                       <ReportName>rep_market_details</ReportName>
+                      <Parameters>
+                        <Parameter Name="m_id">
+                          <Value>=Fields!market_id.Value</Value>
+                        </Parameter>
+                      </Parameters>
+                      <ZIndex>1</ZIndex>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -3189,7 +3195,6 @@
                       </Style>
                     </Subreport>
                     <ColSpan>27</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4221,7 +4226,7 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>2.5cm</Size>
+                <Size>0.07938cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox80">
                     <CanGrow>true</CanGrow>
@@ -4278,7 +4283,7 @@
             </TablixMember>
             <TablixMember>
               <TablixHeader>
-                <Size>2.5cm</Size>
+                <Size>0.07938cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox81">
                     <CanGrow>true</CanGrow>
@@ -4287,7 +4292,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>market id</Value>
+                            <Value />
                             <Style>
                               <FontFamily>Calibri</FontFamily>
                               <FontWeight>Bold</FontWeight>
@@ -4345,7 +4350,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>2.5cm</Size>
+                <Size>0.07938cm</Size>
                 <CellContents>
                   <Textbox Name="market_id">
                     <CanGrow>true</CanGrow>
@@ -4391,13 +4396,16 @@
                   </TablixMembers>
                 </TablixMember>
                 <TablixMember>
+                  <Visibility>
+                    <ToggleItem>market_id</ToggleItem>
+                  </Visibility>
                   <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
               </TablixMembers>
             </TablixMember>
             <TablixMember>
               <TablixHeader>
-                <Size>2.5cm</Size>
+                <Size>0.07938cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox83">
                     <CanGrow>true</CanGrow>
@@ -4458,8 +4466,8 @@
         </TablixRowHierarchy>
         <KeepTogether>true</KeepTogether>
         <DataSetName>ds_pers_expected_effect</DataSetName>
-        <Height>7.44694cm</Height>
-        <Width>39.20803cm</Width>
+        <Height>5.38319cm</Height>
+        <Width>36.7874cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -4469,10 +4477,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2.93187in</Height>
+    <Height>2.11937in</Height>
     <Style />
   </Body>
-  <Width>15.43623in</Width>
+  <Width>20.30911in</Width>
   <Page>
     <PageHeader>
       <Height>0.6cm</Height>
@@ -4690,6 +4698,86 @@
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
         <rd:TableAdapterName>t_get_personal_markmo_reportTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="ds_market_details">
+      <Query>
+        <DataSourceName>crm_wizardDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="market_id">
+          <DataField>market_id</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Prms">
+          <DataField>Prms</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="a10">
+          <DataField>a10</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a20">
+          <DataField>a20</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a30">
+          <DataField>a30</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a40">
+          <DataField>a40</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a50">
+          <DataField>a50</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a60">
+          <DataField>a60</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a70">
+          <DataField>a70</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a80">
+          <DataField>a80</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a90">
+          <DataField>a90</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a100">
+          <DataField>a100</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a210">
+          <DataField>a210</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a310">
+          <DataField>a310</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a800">
+          <DataField>a800</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="a0">
+          <DataField>a0</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>crm_wizardDataSet</rd:DataSetName>
+        <rd:SchemaPath>D:\develops\GitHub\ReportLoyalty\ReportsLoyalty\crm_wizardDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>t_get_personal_markmo_market_details_pivot</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>t_get_personal_markmo_market_details_pivotTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

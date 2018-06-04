@@ -17,7 +17,6 @@
     <script type="text/javascript" src="scripts/dict.js"></script>
 
     <script type="text/javascript" src="scripts/articuls.js"></script>
-
     <script type="text/javascript" src="scripts/stop_list.js"></script>
 
     <script type="text/javascript" src="scripts/requests.js"></script>
@@ -32,7 +31,8 @@
     <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
 
     <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>--%>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+    <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>--%>
+    <script src="scripts/jslib/raphael-min.js"></script>
     <script src="scripts/charts/morris.js-0.5.1/morris.js"></script>
     <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>--%>
     <%--<script src="lib/example.js"></script>--%>
@@ -78,7 +78,7 @@
                     store: Ext.create('Ext.data.ArrayStore', {}) // A dummy empty data store
                 }
             });
-
+            /* Кнопка управлкеня кампаниями */
             var buttonSplit = Ext.create('Ext.button.Split', {
                 renderTo: Ext.getBody(),
                 text: 'Управління активностями',
@@ -105,7 +105,7 @@
                     ]
                 })
             });
-
+            /* Кнопка запуска отчетов персональных предложений */
             var buttonPersonal = Ext.create('Ext.button.Split', {
                 renderTo: Ext.getBody(),
                 text: 'Персональні пропозиції',
@@ -113,7 +113,7 @@
                 menu: new Ext.menu.Menu({
                     items: [
                         {
-                            text: 'Інтерактив',
+                            text: 'Перегляд',
                             width: 280,
                             formBind: true,
                             listeners: {
@@ -123,11 +123,19 @@
                             }
                         },
                         {
-                            text: 'Друкований звіт',
+                            text: 'Друковати звіт',
                             formBind: true,
                             listeners: {
                                 click: function () {
-                                    showPersonalOffers();
+                                    showPersonalOffers('daily_personal_offers.aspx', 'all');
+                                }
+                            }
+                        }, {
+                            text: 'Друковати звіт (Детально)',
+                            formBind: true,
+                            listeners: {
+                                click: function () {
+                                    showPersonalOffers('daily_personal_offers_details.aspx', 'dt');
                                 }
                             }
                         }
@@ -135,6 +143,7 @@
                 })
             });
 
+            
 
             var viewport = Ext.create('Ext.container.Viewport', {
                 layout: 'border',
