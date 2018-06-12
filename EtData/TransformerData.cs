@@ -368,16 +368,16 @@ namespace LoyaltyDB
         //    }
         //}
 
-        void SetDocStatus(CrmWizardDB db, CrmWizardDB.TFGetUnprocessedDocumentsResult doc, int status)
-        {
-            db.DocStatusHistory.Insert(() => new DocStatusHistory
-            {
-                DocId = doc.doc_id,
-                DocStatus = status,
-                Created = DateTime.Now,
-                Updated = DateTime.Now
-            });
-        }
+        //void SetDocStatus(CrmWizardDB db, CrmWizardDB.TFGetUnprocessedDocumentsResult doc, int status)
+        //{
+        //    db.DocStatusHistory.Insert(() => new DocStatusHistory
+        //    {
+        //        DocId = doc.doc_id,
+        //        DocStatus = status,
+        //        Created = DateTime.Now,
+        //        Updated = DateTime.Now
+        //    });
+        //}
 
         public void Dispose()
         {

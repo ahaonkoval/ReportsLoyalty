@@ -34,3 +34,16 @@ var getDisabledDatesById = function (id, datefield) {
         }
     });
 };
+
+var getCampaignsDatesById = function (id, ctrl) {
+    var disabledDates = [];
+    $.ajax({
+        url: 'api/dict/GetDisabledDates/' + id,
+        type: 'get',
+        success: function (dates) {
+            $.each(dates, function (key, item) {
+                disabledDates.push(item);
+            });
+        }
+    });
+};

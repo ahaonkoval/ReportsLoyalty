@@ -352,50 +352,35 @@ function WinCampaignDetails() {
                         }
                 }
             },
-            //{
-            //    xtype: 'button',
-            //    text: 'Отримати статуси',
-            //    scope: this,
-            //    listeners: {
-            //        'click': function (ctrl) {
-            //            var property_grd = Ext.getCmp('property_grd');
-            //            var store = property_grd.getStore();
-            //            var record = ctrl.scope.record;
-            //            var storeList = ctrl.scope.storeListCampaigns;
+            {
+                xtype: 'button',
+                text: 'Перерахувати',
+                scope: this,
+                listeners: {
+                    'click': function (ctrl) {
+                        var rec = ctrl.scope.record;
 
-            //            Ext.Msg.confirm(
-            //                "Увага!",
-            //                Ext.String.format("Сховати кампанію '{0}'?",
-            //                record.get('name')),
-            //                function (txtGet) {
-            //                    if (txtGet === "yes") {
-            //                        var o = {
-            //                            CampaignId: record.get('id'),
-            //                            Name: record.get('name')
-            //                        };
-            //                        Ext.Ajax.request({
-            //                            url: 'api/campaign/SetCampaignData',
-            //                            method: 'POST',
-            //                            params: { callType: 'SetStartRequesStatus' },
-            //                            jsonData: o,
-            //                            headers: { 'Content-Type': 'application/json; charset=utf-8' },
-            //                            success: function (respons) {
-            //                                var wnd = Ext.getCmp('win_campaign_details');
-            //                                wnd.hide();
-            //                                storeList.load();
-            //                                //store.load();
+                        $.ajax({
+                            url: 'api/start/0',
+                            type: 'get',
+                            data: {
+                                TypeRequest: 10,
+                                cData: ''
+                            },
+                            success: function (state) {
+                                var st = Ext.decode(state);
 
-            //                            },
-            //                            failure: function (error) {
+                                if (st.Status == '2') {
+                                    winStartCalcualted(rec.get('id'));
+                                }
 
-            //                            }
-            //                        });
+                            }
+                        });
 
-            //                    }
-            //                });
-            //        }
-            //    }
-            //},
+                        
+                    }
+                }
+            },
             '->',
             {
             xtype: 'button',
@@ -545,6 +530,116 @@ function WinCampaignDetails() {
 
 var winCd = new WinCampaignDetails();
 
+function winStartCalcualted(campaignId) {
+    // 'api/dict/GetDisabledDates/' + id,
+    var store = Ext.create('Ext.data.JsonStore', {
+        //id: 'store_campaign_mk',
+        autoLoad: true,
+        // store configs
+        autoDestroy: true,
+        model: Ext.define('DatesModels', {
+            extend: 'Ext.data.Model',
+            fields: [{
+                name: 'Name',
+                type: 'string'
+            }, {
+                name: 'IsCalculated',
+                type: 'boolean'
+            }, {
+                name: 'Value',
+                type: 'date'
+            }]
+        }),
+        proxy: {
+            type: 'ajax',
+            url: ('api/dict/GetCampaignDates/' + campaignId),
+            reader: {
+                type: 'json',
+                root: 'data',
+                idProperty: 'Name',
+                totalProperty: 'total'
+            }
+        },
+        remoteSort: true,
+        //sorters: [{
+        //    property: 'Value',
+        //    direction: 'DESC'
+        //}],
+        pageSize: 250
+    });
+
+    var grid = Ext.create('Ext.grid.Panel', {
+        stateful: true,
+        stateId: 'stateful-filter-grid',
+        border: false,
+        store: store,
+        columns: [{
+            dataIndex: 'Name',
+            text: 'Дати кампанії',
+            filterable: false,
+            width: 150
+        }, {
+            xtype: 'checkcolumn',
+            dataIndex: 'IsCalculated',
+            text: 'Перераховано',
+            filterable: false,
+            width: 150, processEvent: function () { return false; }
+        }],
+        plugins: 'gridfilters',
+        loadMask: true,
+        emptyText: 'Записів більше нема',
+    });
+
+    var win = Ext.create('Ext.Window', {
+        title: 'Перерахунок кампанії (оберіть дату)',
+        width: 400,
+        height: 300,
+        modal: true,
+        closable: true,
+        layout: {
+            type: 'fit',
+        },
+        items: {
+            xtype: 'panel',
+            autoScroll: true,
+            items: [ grid ]
+        }, buttons: [
+            {
+                xtype: 'button',
+                text: 'Перерахувати',
+                scope: grid,
+                listeners: {
+                    'click': function (ctrl) {
+                        var sell = ctrl.scope.getSelection();
+                        if (sell.length > 0)
+                        {
+                            current_data = ctrl.scope.getSelection()[0].get('Name');
+                            $.ajax({
+                                url: 'api/Start/' + campaignId,
+                                type: 'get',
+                                data: {
+                                    TypeRequest:1, 
+                                    cData: current_data
+                                },
+                                success: function (a) {
+                                    //alert(a);
+                                }
+                            });
+                            win.hide();
+                        } else {
+                            Ext.MessageBox.alert('Увага!', 'Не вкзана дата!', null);
+                        }
+                    }
+                }
+            }
+        ]
+    });
+
+    win.show();
+}
+
+
+
 //var setPropertyGridData = function (record) {
 //this.storeListCampaigns
 //};
@@ -653,3 +748,48 @@ var winCd = new WinCampaignDetails();
 //        })
 //    }
 //});
+
+//{
+//    xtype: 'button',
+//    text: 'Отримати статуси',
+//    scope: this,
+//    listeners: {
+//        'click': function (ctrl) {
+//            var property_grd = Ext.getCmp('property_grd');
+//            var store = property_grd.getStore();
+//            var record = ctrl.scope.record;
+//            var storeList = ctrl.scope.storeListCampaigns;
+
+//            Ext.Msg.confirm(
+//                "Увага!",
+//                Ext.String.format("Сховати кампанію '{0}'?",
+//                record.get('name')),
+//                function (txtGet) {
+//                    if (txtGet === "yes") {
+//                        var o = {
+//                            CampaignId: record.get('id'),
+//                            Name: record.get('name')
+//                        };
+//                        Ext.Ajax.request({
+//                            url: 'api/campaign/SetCampaignData',
+//                            method: 'POST',
+//                            params: { callType: 'SetStartRequesStatus' },
+//                            jsonData: o,
+//                            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+//                            success: function (respons) {
+//                                var wnd = Ext.getCmp('win_campaign_details');
+//                                wnd.hide();
+//                                storeList.load();
+//                                //store.load();
+
+//                            },
+//                            failure: function (error) {
+
+//                            }
+//                        });
+
+//                    }
+//                });
+//        }
+//    }
+//},

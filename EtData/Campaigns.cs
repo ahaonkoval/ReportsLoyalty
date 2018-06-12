@@ -9,6 +9,8 @@ using LinqToDB;
 using System.Transactions;
 using LoyaltyDB.Models.ShortObjects;
 using System.Data;
+using System.Data.SqlClient;
+using System.Net.Http;
 
 namespace LoyaltyDB
 {
@@ -47,6 +49,90 @@ namespace LoyaltyDB
                 }
             }
         }
+
+        #region Управління перерахунком кампаній
+        /* GET  -------------------------------------------------------------------------------------- */
+        /// <summary>
+        /// Повертає останній статус
+        /// </summary>
+        /// <returns></returns>
+        public CalculationLog GetCalculationLogLast()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.CalculationLog.OrderByDescending(o => o.Id).First();
+            }
+        }
+
+        public string GetCalculationCampaignName()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                var lg = db.CalculationLog.OrderByDescending(o => o.Id).First();
+                return db.CampaignsMk.Where(w => w.Id == lg.CampaignId).First().Name;
+            }
+        }
+
+        
+        /* SET  -------------------------------------------------------------------------------------- */
+        public void SetStartCalculation(int campaignId, DateTime currentDate)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                var l = db.CalculationLog.OrderByDescending(o => o.Id).First();
+                if (l.Status != 1)
+                {
+
+                    var campaign = db.CampaignsMk.Where(w => w.Id == campaignId).First();
+
+                    switch (campaign.TypeId)
+                    {
+                        case 1:
+                            {
+
+                            }
+                            break;
+                        case 2:
+                            {
+                                //db.CalculationLog.Insert(() => new CalculationLog {
+                                //    CampaignId = campaignId, Created = DateTime.Now, NameCalc = "calc.p_daily_pers_expected_effect_fill", Status = 1
+                                //});
+
+                                StartCalculationPersonalOffer(campaignId, currentDate, db.ConnectionString);
+                            }
+                            break;
+                    }                    
+                }
+            }
+        }
+
+        void StartCalculationPersonalOffer(int campaignId, DateTime currentDate, string connectString)
+        {
+            using (SqlConnection c = new SqlConnection(connectString))
+            {
+                try
+                {
+                    SqlCommand cmd = c.CreateCommand();
+                    cmd.CommandTimeout = 100000000;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = c;
+                    cmd.CommandText = "calc.p_daily_pers_expected_effect_fill";
+                    cmd.Parameters.AddWithValue("@campaign_id", campaignId);
+                    cmd.Parameters.AddWithValue("@date_fill", currentDate);
+
+                    if (c.State != ConnectionState.Open)
+                        c.Open();
+                    cmd.ExecuteNonQuery();
+
+                } catch (Exception ex)
+                {
+                    int i = 0;
+                    // TODO Логировать ошибку
+                }
+            }
+        }
+
+        #endregion
 
         #region GET
         /// <summary>
@@ -113,6 +199,19 @@ namespace LoyaltyDB
                 return db.CampaignsMk.Where(w => w.Id == id).FirstOrDefault().DateEnd;
             }
             //return Le.v_campaigns_mk.Where(m => m.id == id).First().date_end;
+        }
+
+        public bool GetIsCalculated(int campaignId, DateTime dt)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                var dm = db.DailyMap.Where(w => w.CampaignId == campaignId && w.CalculationDate == dt);
+                if (dm.Count() == 0)
+                {
+                    return false;
+                }
+                else { return true; }
+            }
         }
         /// <summary>
         /// 

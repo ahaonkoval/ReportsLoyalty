@@ -39,6 +39,7 @@ namespace DataModels
 		public ITable<BonusStates>                            BonusStates                            { get { return this.GetTable<BonusStates>(); } }
 		public ITable<BuyerreturnLine1>                       BuyerreturnLine1                       { get { return this.GetTable<BuyerreturnLine1>(); } }
 		public ITable<Buyerreturns1>                          Buyerreturns1                          { get { return this.GetTable<Buyerreturns1>(); } }
+		public ITable<CalculationLog>                         CalculationLog                         { get { return this.GetTable<CalculationLog>(); } }
 		public ITable<CampaignArticul>                        CampaignArticul                        { get { return this.GetTable<CampaignArticul>(); } }
 		public ITable<CampaignGroups>                         CampaignGroups                         { get { return this.GetTable<CampaignGroups>(); } }
 		public ITable<CampaignParticipant>                    CampaignParticipant                    { get { return this.GetTable<CampaignParticipant>(); } }
@@ -78,7 +79,6 @@ namespace DataModels
 		public ITable<CustomerKids>                           CustomerKids                           { get { return this.GetTable<CustomerKids>(); } }
 		public ITable<CustomersAgeMap>                        CustomersAgeMap                        { get { return this.GetTable<CustomersAgeMap>(); } }
 		public ITable<CustomersBonusState>                    CustomersBonusState                    { get { return this.GetTable<CustomersBonusState>(); } }
-		public ITable<CustomersDoc>                           CustomersDoc                           { get { return this.GetTable<CustomersDoc>(); } }
 		public ITable<CustomersIndicators>                    CustomersIndicators                    { get { return this.GetTable<CustomersIndicators>(); } }
 		public ITable<CustomersKidsAgeMap>                    CustomersKidsAgeMap                    { get { return this.GetTable<CustomersKidsAgeMap>(); } }
 		public ITable<CustomersProfile>                       CustomersProfile                       { get { return this.GetTable<CustomersProfile>(); } }
@@ -205,7 +205,6 @@ namespace DataModels
 		public ITable<Retailinvoices1>                        Retailinvoices1                        { get { return this.GetTable<Retailinvoices1>(); } }
 		public ITable<SellBuyPrice>                           SellBuyPrice                           { get { return this.GetTable<SellBuyPrice>(); } }
 		public ITable<SellMovement>                           SellMovement                           { get { return this.GetTable<SellMovement>(); } }
-		public ITable<SellMovementHistory>                    SellMovementHistory                    { get { return this.GetTable<SellMovementHistory>(); } }
 		public ITable<ShortDocs1>                             ShortDocs1                             { get { return this.GetTable<ShortDocs1>(); } }
 		public ITable<Staff>                                  Staffs                                 { get { return this.GetTable<Staff>(); } }
 		public ITable<StopList>                               StopList                               { get { return this.GetTable<StopList>(); } }
@@ -760,36 +759,6 @@ namespace DataModels
 
 		#endregion
 
-		#region TGetInvoiceLine
-
-		[Sql.TableFunction(Schema="dbo", Name="t_get_invoice_line")]
-		public ITable<TGetInvoiceLineResult> TGetInvoiceLine(long? @card_id)
-		{
-			return this.GetTable<TGetInvoiceLineResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
-				@card_id);
-		}
-
-		public partial class TGetInvoiceLineResult
-		{
-			public long     invoice_id           { get; set; }
-			public long     invoice_line_id      { get; set; }
-			public long?    good_id              { get; set; }
-			public decimal? quantity             { get; set; }
-			public decimal? price                { get; set; }
-			public decimal? price_nds            { get; set; }
-			public long?    pack_id              { get; set; }
-			public long?    market_id            { get; set; }
-			public decimal? real_price_nds       { get; set; }
-			public decimal  bonus_obtained       { get; set; }
-			public decimal  bonus_used           { get; set; }
-			public decimal  discount_amount      { get; set; }
-			public decimal? tp_nds               { get; set; }
-			public long?    promo_code_using_id  { get; set; }
-			public long?    markmo_code_using_id { get; set; }
-		}
-
-		#endregion
-
 		#region TGetIsNotSmsSent
 
 		[Sql.TableFunction(Schema="rep", Name="t_get_is_not_sms_sent")]
@@ -805,6 +774,24 @@ namespace DataModels
 		{
 			public string market_name     { get; set; }
 			public long?  is_not_sms_sent { get; set; }
+		}
+
+		#endregion
+
+		#region TGetMap
+
+		[Sql.TableFunction(Schema="calc", Name="t_get_map")]
+		public ITable<TGetMapResult> TGetMap()
+		{
+			return this.GetTable<TGetMapResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+		}
+
+		public partial class TGetMapResult
+		{
+			public int      id      { get; set; }
+			public decimal? V_START { get; set; }
+			public decimal? V_END   { get; set; }
+			public string   V_NAME  { get; set; }
 		}
 
 		#endregion
@@ -1058,28 +1045,6 @@ namespace DataModels
 
 		#endregion
 
-		#region TGetProgramIndicators
-
-		[Sql.TableFunction(Schema="rep", Name="t_get_program_indicators")]
-		public ITable<TGetProgramIndicatorsResult> TGetProgramIndicators(DateTime? @date_start, DateTime? @date_end, long? @market_id)
-		{
-			return this.GetTable<TGetProgramIndicatorsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
-				@date_start,
-				@date_end,
-				@market_id);
-		}
-
-		public partial class TGetProgramIndicatorsResult
-		{
-			public string   market                  { get; set; }
-			public decimal? avg_doc_sum_participant { get; set; }
-			public decimal? avg_sum_adeded_points   { get; set; }
-			public decimal? avg_sum_buy_participant { get; set; }
-			public decimal? avg_bonus_by_day        { get; set; }
-		}
-
-		#endregion
-
 		#region TGetStateBonus
 
 		[Sql.TableFunction(Schema="calc", Name="t_get_state_bonus")]
@@ -1174,26 +1139,6 @@ namespace DataModels
 		{
 			public int    id    { get; set; }
 			public string value { get; set; }
-		}
-
-		#endregion
-
-		#region TFGetUnprocessedDocuments
-
-		[Sql.TableFunction(Schema="calc", Name="TF_Get_UnprocessedDocuments")]
-		public ITable<TFGetUnprocessedDocumentsResult> TFGetUnprocessedDocuments()
-		{
-			return this.GetTable<TFGetUnprocessedDocumentsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
-		}
-
-		public partial class TFGetUnprocessedDocumentsResult
-		{
-			public long      doc_id      { get; set; }
-			public int?      doc_type_id { get; set; }
-			public string    doc_name    { get; set; }
-			public DateTime? short_date  { get; set; }
-			public long?     parent      { get; set; }
-			public int?      market_id   { get; set; }
 		}
 
 		#endregion
@@ -1445,6 +1390,19 @@ namespace DataModels
 		[Column("roll_author_id"),         Nullable         ] public long?     RollAuthorId      { get; set; } // bigint
 		[Column("roll_date"),              Nullable         ] public DateTime? RollDate          { get; set; } // datetime
 		[Column("is_virtual"),             Nullable         ] public bool?     IsVirtual         { get; set; } // bit
+	}
+
+	[Table(Schema="calc", Name="calculation_log")]
+	public partial class CalculationLog
+	{
+		[Column("id"),          PrimaryKey, Identity] public long      Id         { get; set; } // bigint
+		[Column("campaign_id"), Nullable            ] public long?     CampaignId { get; set; } // bigint
+		[Column("name_calc"),   Nullable            ] public string    NameCalc   { get; set; } // nvarchar(50)
+		[Column("created"),     Nullable            ] public DateTime? Created    { get; set; } // datetime
+		/// <summary>
+		/// 1 - начата обработка 2 - закончена
+		/// </summary>
+		[Column("status"),      Nullable            ] public int?      Status     { get; set; } // int
 	}
 
 	[Table(Schema="calc", Name="campaign_articul")]
@@ -2075,17 +2033,6 @@ namespace DataModels
 		[Column("bonus_obtained"),  Nullable] public decimal? BonusObtained { get; set; } // decimal(18, 2)
 		[Column("bonus_used"),      Nullable] public decimal? BonusUsed     { get; set; } // decimal(18, 2)
 		[Column("bonus_after"),     Nullable] public decimal? BonusAfter    { get; set; } // decimal(18, 2)
-	}
-
-	[Table(Schema="calc", Name="customers_doc")]
-	public partial class CustomersDoc
-	{
-		[Column("market_id"),       Nullable] public long?     MarketId      { get; set; } // bigint
-		[Column("crm_customer_id"), Nullable] public long?     CrmCustomerId { get; set; } // bigint
-		[Column("doc_id"),          Nullable] public long?     DocId         { get; set; } // bigint
-		[Column("doc_sm"),          Nullable] public decimal?  DocSm         { get; set; } // decimal(18, 2)
-		[Column("created"),         Nullable] public DateTime? Created       { get; set; } // datetime
-		[Column("short_date"),      Nullable] public DateTime? ShortDate     { get; set; } // date
 	}
 
 	[Table(Schema="calc", Name="customers_indicators")]
@@ -4765,31 +4712,6 @@ namespace DataModels
 		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
 	}
 
-	[Table(Schema="calc", Name="sell_movement_history")]
-	public partial class SellMovementHistory
-	{
-		[Column("short_date"),              Nullable] public DateTime? ShortDate         { get; set; } // date
-		[Column("created"),                 Nullable] public DateTime? Created           { get; set; } // datetime
-		[Column("good_id"),              NotNull    ] public long      GoodId            { get; set; } // bigint
-		[Column("doc_id"),               NotNull    ] public long      DocId             { get; set; } // bigint
-		[Column("doc_type_id"),          NotNull    ] public long      DocTypeId         { get; set; } // bigint
-		[Column("market_id"),            NotNull    ] public long      MarketId          { get; set; } // bigint
-		[Column("store_id"),             NotNull    ] public long      StoreId           { get; set; } // bigint
-		[Column("parent_id"),            NotNull    ] public long      ParentId          { get; set; } // bigint
-		[Column("price"),                NotNull    ] public decimal   Price             { get; set; } // decimal(10, 2)
-		[Column("qty"),                     Nullable] public decimal?  Qty               { get; set; } // decimal(12, 4)
-		[Column("real_price"),              Nullable] public decimal?  RealPrice         { get; set; } // decimal(14, 5)
-		[Column("fin_price"),               Nullable] public decimal?  FinPrice          { get; set; } // decimal(14, 5)
-		[Column("buy_price"),               Nullable] public decimal?  BuyPrice          { get; set; } // decimal(14, 5)
-		[Column("real_price_nds"),          Nullable] public decimal?  RealPriceNds      { get; set; } // decimal(10, 2)
-		[Column("bonus_obtained"),       NotNull    ] public decimal   BonusObtained     { get; set; } // decimal(8, 2)
-		[Column("bonus_used"),           NotNull    ] public decimal   BonusUsed         { get; set; } // decimal(8, 2)
-		[Column("discount_amount"),      NotNull    ] public decimal   DiscountAmount    { get; set; } // decimal(8, 2)
-		[Column("promo_code_using_id"),     Nullable] public long?     PromoCodeUsingId  { get; set; } // bigint
-		[Column("markmo_code_using_id"),    Nullable] public long?     MarkmoCodeUsingId { get; set; } // bigint
-		[Column("crm_customer_id"),         Nullable] public long?     CrmCustomerId     { get; set; } // bigint
-	}
-
 	[Table(Schema="dbo", Name="short_docs1")]
 	public partial class ShortDocs1
 	{
@@ -6369,6 +6291,16 @@ namespace DataModels
 		}
 
 		#endregion
+
+		#region FnMoncheriDiscount
+
+		[Sql.Function(Name="dbo.fn_moncheri_discount", ServerSideOnly=true)]
+		public static decimal? FnMoncheriDiscount(decimal? @pamount_nds)
+		{
+			throw new InvalidOperationException();
+		}
+
+		#endregion
 	}
 
 	public static partial class TableExtensions
@@ -6431,6 +6363,12 @@ namespace DataModels
 		{
 			return table.FirstOrDefault(t =>
 				t.BuyerreturnId == BuyerreturnId);
+		}
+
+		public static CalculationLog Find(this ITable<CalculationLog> table, long Id)
+		{
+			return table.FirstOrDefault(t =>
+				t.Id == Id);
 		}
 
 		public static CampaignArticul Find(this ITable<CampaignArticul> table, int Id)

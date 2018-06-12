@@ -81,33 +81,20 @@ namespace ReportsLoyalty.Controllers
                 return response;
             }
         }
+
+        [HttpGet]
+        public string StartCalculation(int id)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
+            using (GetData data = new GetData())
+            {
+                data.Campaigns.SetStartCalculation(id, Convert.ToDateTime(dt));
+            }
+
+            return string.Empty;
+        }
         #endregion
-
-        //[HttpGet]
-        //public object GetPersonalCampaignReport()
-        //{
-        //    int returned = 1;
-        //    try
-        //    {
-        //        using (GetData gt = new GetData())
-        //        {
-        //            var queryparams = Request.GetQueryNameValuePairs();
-        //            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
-        //            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
-        //            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
-
-
-        //            //gt.PC.GetCampaignResultByMarkets();
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        returned = 0;
-        //    }
-        //    return returned;
-        //}
-
-
         /// <summary>
         /// Збереження параметрів кампанії
         /// </summary>

@@ -9,10 +9,6 @@
     <script type="text/javascript" src="scripts/jslib/ext/ext-all.js"></script>
     <script type="text/javascript" src="scripts/jslib/jquery-3.1.1.min.js"></script>
 
-    <%--<script type="text/javascript" src="scripts/jslib/Phone.js"></script>--%>
-<%--    <script type="text/javascript" src="scripts/jslib/jquery.maskedinput-1.2.2.min.js"></script>--%>
-<%--    <script type="text/javascript" src="scripts/jslib/phoneField.js"></script>--%>
-
     <script type="text/javascript" src="scripts/markmo_indicators.js"></script>
     <script type="text/javascript" src="scripts/dict.js"></script>
 
@@ -48,8 +44,15 @@
     
     <script>        
 
-        var checker = setInterval(function () { checkauth() }, 5000);
+        var dsField = Ext.create({
+            xtype: 'displayfield',
+            name: 'displayfield1',
+            margin: 5,
+            fieldLabel: 'Останні дії:',
+            value: ''
+        });
 
+        var checker = setInterval(function () { checkauth() }, 5000);       
         function checkauth() {
             $.ajax({
                 url: 'api/login/check/1',
@@ -57,7 +60,32 @@
                 success: function (a) {
                     if (a != true) {
                         window.location.href = "login.aspx"
+                    } else {
+
                     }
+                }
+            });
+        }
+
+        var getState = setInterval(function () { getST() }, 5000);
+        function getST() {
+            $.ajax({
+                url: 'api/start/0',
+                type: 'get',
+                data: {
+                    TypeRequest: 10,
+                    cData: ''
+                },
+                success: function (state) {
+                    var st = Ext.decode(state);
+
+                    if (st.Status == '2') {
+                        dsField.setValue('Перераховано: ' + st.CampaignName);
+                    }
+                    if (st.Status == '1') {
+                        dsField.setValue('ПЕРЕРАХОВУЄТЬСЯ: ' + st.CampaignName);
+                    }
+                    
                 }
             });
         }
@@ -141,9 +169,7 @@
                         }
                     ]
                 })
-            });
-
-            
+            });            
 
             var viewport = Ext.create('Ext.container.Viewport', {
                 layout: 'border',
@@ -196,27 +222,13 @@
                                 margin: '2 2 2 10'
                             },
                             buttonPersonal,
-                            //{
-                            //    xtype: 'panel',
-                            //    border: false,
-                            //    name: 'name',
-                            //    html: '<a href="#" onclick="showPersonalOffers();" class="menu_is_run">Персональні пропозиції</a>',
-                            //    margin: '2 2 2 10'
-                            //}
-                            , {
+                            {
                                 xtype: 'panel',
                                 border: false,
                                 name: 'name',
                                 html: '<a href="#" onclick="showBirthDayUPL();" class="menu_is_run">МК До дня народження УПЛ</a>',
                                 margin: '2 2 2 10'
                             },
-                            //{
-                            //    xtype: 'panel',
-                            //    border: false,
-                            //    name: 'name',
-                            //    html: '<a href="#" onclick="showBirthDayChildrenUPL();" class="menu_is_run">МК До дня народження ДІТЕЙ УПЛ"</a>',
-                            //    margin: '2 2 2 10'
-                            //},
                             {
                                 xtype: 'panel',
                                 border: false,
@@ -230,23 +242,8 @@
                                 name: 'name',
                                 html: '<a href="#" onclick="show50pointsReport();" class="menu_is_run">Результати акцій "50 і більше балів"</a>',
                                 margin: '2 2 2 10'
-                            },
-                            //{
-                            //    xtype: 'panel',
-                            //    border: false,
-                            //    name: 'name',
-                            //    html: '<a href="#" onclick="showPersonalInteractiv();" class="menu_is_run">Приклад</a>',
-                            //    margin: '2 2 2 10'
-                            //}
+                            }
                             ]
-                        //    {
-                        //        xtype: 'panel',
-                        //        border: false,
-                        //        name: 'name',
-                        //        html: '<a href="#" onclick="showParticipantBySex();">Тестова сторінка екстра-бали</a>',
-                        //        margin: '2 2 2 10',
-                        //        visible: false
-                        //}
                         },
                         {
                             xtype: 'panel',
@@ -298,17 +295,39 @@
                             ]
                         }]
                     }
-                    // could use a TreePanel or AccordionLayout for navigational items
                 },
-                //{
-                //    region: 'south',
-                //    title: 'South Panel',
-                //    collapsible: true,
-                //    html: 'Information goes here',
-                //    split: true,
-                //    height: 100,
-                //    minHeight: 100
-                //},
+                {
+                    region: 'south',
+                    //title: 'South Panel',
+                    collapsible: false,
+                    //html: 'Information goes here',
+                    split: true,
+                    height: 40,
+                    minHeight: 40,
+                    header: false,
+                    layout: {
+                        type: 'hbox',
+                        pack: 'start',
+                        align: 'stretch'
+                    },
+                    items: [
+                        {
+                            xtype: 'panel',
+                            width: '33.3%'
+                        },
+                        {
+                            xtype: 'panel',
+                            width: '33.3%'
+                        },
+                        {
+                            xtype: 'panel',
+                            width: '33.3%',
+                            items: [
+                                dsField
+                            ]
+                        }
+                    ]
+                },
                 //{
                 //    region: 'east',
                 //    title: 'East Panel',
@@ -317,7 +336,7 @@
                 //    width: 150,
                 //    visible:false
                 //}
-                , {
+                {
                     region: 'center',
                     id: 'pnlCenter',
                     name: 'pnlCenter',

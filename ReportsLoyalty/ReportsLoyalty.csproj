@@ -3407,6 +3407,7 @@
     <Compile Include="Controllers\DictController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\StartController.cs" />
     <Compile Include="Controllers\TermController.cs" />
     <Compile Include="crm_wizardDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -3429,7 +3430,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoyalityIndicators.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Models\FGroup_id.cs" />
+    <Compile Include="Models\Models.cs" />
     <Compile Include="pages\basic_indicators.aspx.cs">
       <DependentUpon>basic_indicators.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

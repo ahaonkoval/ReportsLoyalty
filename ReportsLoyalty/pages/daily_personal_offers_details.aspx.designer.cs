@@ -7,10 +7,9 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace ReportsLoyalty.pages.personal_offers {
-    
-    
-    public partial class personal_offers {
+namespace ReportsLoyalty.pages.personal_offers_details
+{   
+    public partial class personal_offers_details {
         
         /// <summary>
         /// form1 элемент управления.

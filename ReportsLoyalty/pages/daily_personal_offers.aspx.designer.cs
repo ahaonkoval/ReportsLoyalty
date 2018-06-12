@@ -7,7 +7,7 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace ReportsLoyalty.pages.personal_offers_details
+namespace ReportsLoyalty.pages.personal_offers
 {
     
     

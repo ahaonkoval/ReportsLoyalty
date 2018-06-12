@@ -117,7 +117,6 @@
     <Compile Include="Models\ShortObjects\Participant.cs" />
     <Compile Include="Models\ShortObjects\RecipentPhone.cs" />
     <Compile Include="Models\TDoc.cs" />
-    <Compile Include="Models\TF_GetUnDoc.cs" />
     <Compile Include="Models\UPLControl.cs" />
     <Compile Include="PersonalCampaign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

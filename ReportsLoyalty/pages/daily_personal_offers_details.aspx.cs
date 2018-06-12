@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace ReportsLoyalty.pages.personal_offers_details
 {
-    public partial class personal_offers : System.Web.UI.Page
+    public partial class personal_offers_details : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

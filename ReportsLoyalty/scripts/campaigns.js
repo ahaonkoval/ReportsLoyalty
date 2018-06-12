@@ -341,80 +341,30 @@ var getWinCampaigns = function () {
                         }]
                     }
                 ]
-            }
+            },
+            //{
+            //    xtype: 'actioncolumn',
+            //    width: 23,
+            //    items: [{
+            //        tooltip: 'Перерахувати',
+            //        icon: 'img/application.ico',
+            //        handler: function (view, rowIndex, colIndex, item, e, record, row) {
+            //            var campaign_id = record.get('id');
+            //            $.ajax({
+            //                url: 'api/campaign/StartCalculation/' + campaign_id,
+            //                type: 'get',
+            //                data: { cData: '2018-06-07'},
+            //                success: function (a) {
+
+            //                }
+            //            });
+            //        }
+            //    }]
+            //}
         ];
 
         return columns.slice(start || 0, finish);
     };
-
-    var btnCreate = Ext.create('Ext.Button', {
-        text: 'Створити',
-        width: "100%",
-        renderTo: Ext.getBody(),
-        handler: function (ctrl, event) {
-            winCd.Show(null);
-        }
-    });
-
-    var btnEdit = Ext.create('Ext.Button', {
-        text: 'Редагувати',
-        width: "100%",
-        renderTo: Ext.getBody(),
-        scope: grid,
-        handler: function (ctrl, event) {
-            var selection_record = ctrl.scope.getSelection();
-            if (selection_record.length > 0)
-                winCd.Show(selection_record[0], grid.getStore());
-        }
-    });
-
-    var btnStartGettingMailingStatus = Ext.create('Ext.Button', {
-        text: 'Отримати статуси',
-        width: "100%",
-        wrap: true,
-        renderTo: Ext.getBody(),
-        scope: grid,
-        handler: function (ctrl, event) {
-            var selection_record = ctrl.scope.getSelection();
-            if (selection_record.length > 0)
-                //winCd.Show(selection_record[0]);
-                //        var property_grd = Ext.getCmp('property_grd');
-                //        var store = property_grd.getStore();
-                //        var record = ctrl.scope.record;
-                //        var storeList = ctrl.scope.storeListCampaigns;
-
-                        Ext.Msg.confirm(
-                            "Увага!",
-                            Ext.String.format("Запустити процес отримання статусів доставки повідомлень кампанії '{0}'?",
-                            record.get('name')),
-                            function (txtGet) {
-                                if (txtGet === "yes") {
-                                    var o = {
-                                        CampaignId: record.get('id'),
-                                        Name: record.get('name')
-                                    };
-                                    Ext.Ajax.request({
-                                        url: 'api/campaign/SetCampaignData',
-                                        method: 'POST',
-                                        params: { callType: 'SetStartRequesStatus' },
-                                        jsonData: o,
-                                        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-                                        success: function (respons) {
-                                            var wnd = Ext.getCmp('win_campaign_details');
-                                            wnd.hide();
-                                            storeList.load();
-                                            //store.load();
-
-                                        },
-                                        failure: function (error) {
-
-                                        }
-                                    });
-
-                                }
-                            });
-        }
-    });
 
     var grid = Ext.create('Ext.grid.Panel', {
         stateful: true,
@@ -465,6 +415,75 @@ var getWinCampaigns = function () {
                 }
                 //record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
             }
+        }
+    });
+
+    var btnCreate = Ext.create('Ext.Button', {
+        text: 'Створити',
+        width: "100%",
+        renderTo: Ext.getBody(),
+        handler: function (ctrl, event) {
+            winCd.Show(null);
+        }
+    });
+
+    var btnEdit = Ext.create('Ext.Button', {
+        text: 'Редагувати',
+        width: "100%",
+        renderTo: Ext.getBody(),
+        scope: grid,
+        handler: function (ctrl, event) {
+            var selection_record = ctrl.scope.getSelection();
+            if (selection_record.length > 0)
+                winCd.Show(selection_record[0], grid.getStore());
+        }
+    });
+
+    var btnStartGettingMailingStatus = Ext.create('Ext.Button', {
+        text: 'Отримати статуси',
+        width: "100%",
+        wrap: true,
+        renderTo: Ext.getBody(),
+        scope: grid,
+        handler: function (ctrl, event) {
+            var selection_record = ctrl.scope.getSelection();
+            if (selection_record.length > 0)
+                //winCd.Show(selection_record[0]);
+                //        var property_grd = Ext.getCmp('property_grd');
+                //        var store = property_grd.getStore();
+                //        var record = ctrl.scope.record;
+                //        var storeList = ctrl.scope.storeListCampaigns;
+
+                Ext.Msg.confirm(
+                    "Увага!",
+                    Ext.String.format("Запустити процес отримання статусів доставки повідомлень кампанії '{0}'?",
+                    record.get('name')),
+                    function (txtGet) {
+                        if (txtGet === "yes") {
+                            var o = {
+                                CampaignId: record.get('id'),
+                                Name: record.get('name')
+                            };
+                            Ext.Ajax.request({
+                                url: 'api/campaign/SetCampaignData',
+                                method: 'POST',
+                                params: { callType: 'SetStartRequesStatus' },
+                                jsonData: o,
+                                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                                success: function (respons) {
+                                    var wnd = Ext.getCmp('win_campaign_details');
+                                    wnd.hide();
+                                    storeList.load();
+                                    //store.load();
+
+                                },
+                                failure: function (error) {
+
+                                }
+                            });
+
+                        }
+                    });
         }
     });
 
@@ -523,7 +542,6 @@ var getWinCampaigns = function () {
         ]
     });
     
-
     var win_campaigns = Ext.create('Ext.Window', {
         title: 'Управління кампаниями',
         width: '90%',

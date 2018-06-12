@@ -109,21 +109,53 @@ namespace ReportsLoyalty.Controllers
 
         public IEnumerable<string> GetDisabledDates(int id)
         {
-            GetData gt = new GetData();
-            List<string> lst = new List<string>();
-            DateTime? StartDate = gt.Campaigns.GetStartDateById(id);
-            DateTime? EndDate = gt.Campaigns.GetEndDateById(id);
-            
-            if (StartDate == null) { StartDate = DateTime.Now; }
-            if (EndDate == null) { EndDate = DateTime.Now; }
+            using (GetData gt = new GetData()) {
+                List<string> lst = new List<string>();
+                DateTime? StartDate = gt.Campaigns.GetStartDateById(id);
+                DateTime? EndDate = gt.Campaigns.GetEndDateById(id);
 
-            for (int i = 1; i <= 360; i++)
-            {
-                lst.Add(StartDate.Value.AddDays(i * -1).ToString("dd.MM.yyyy"));
-                lst.Add(EndDate.Value.AddDays(i * 1).ToString("dd.MM.yyyy"));
+                if (StartDate == null) { StartDate = DateTime.Now; }
+                if (EndDate == null) { EndDate = DateTime.Now; }
+
+                for (int i = 1; i <= 360; i++)
+                {
+                    lst.Add(StartDate.Value.AddDays(i * -1).ToString("dd.MM.yyyy"));
+                    lst.Add(EndDate.Value.AddDays(i * 1).ToString("dd.MM.yyyy"));
+                }
+                return lst;
             }
-            return lst;
         }
+
+        public object GetCampaignDates(int id)
+        {
+            using (GetData gt = new GetData())
+            {
+                List<Dates> lst = new List<Dates>();
+                DateTime? StartDate = gt.Campaigns.GetStartDateById(id);
+                DateTime? EndDate = gt.Campaigns.GetEndDateById(id);
+
+                while (StartDate <= EndDate)
+                {
+
+                    lst.Add(new Models.Dates {
+                        Name = StartDate.Value.ToString("dd.MM.yyyy"),
+                        IsCalculated = gt.Campaigns.GetIsCalculated(id, StartDate.Value),
+                        Value = StartDate.Value
+                    });
+                    StartDate = StartDate.Value.AddDays(1);                    
+                }
+
+                object o_data = new
+                {
+                    total = lst.Count,
+                    data = lst.ToList().OrderByDescending(o => o.Value)
+                };
+
+                return o_data;
+            }
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
