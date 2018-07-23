@@ -73,16 +73,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestRequestForm.cs">
+    <Compile Include="frmGetData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestRequestForm.Designer.cs">
-      <DependentUpon>TestRequestForm.cs</DependentUpon>
+    <Compile Include="frmGetData.Designer.cs">
+      <DependentUpon>frmGetData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoadFile.Designer.cs">
+      <DependentUpon>frmLoadFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoaderForm.Designer.cs">
+      <DependentUpon>LoaderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadSoftLineStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DownloadSoftLineStatusForm.Designer.cs">
+      <DependentUpon>DownloadSoftLineStatusForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="TestRequestForm.resx">
-      <DependentUpon>TestRequestForm.cs</DependentUpon>
+    <EmbeddedResource Include="frmGetData.resx">
+      <DependentUpon>frmGetData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoadFile.resx">
+      <DependentUpon>frmLoadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoaderForm.resx">
+      <DependentUpon>LoaderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DownloadSoftLineStatusForm.resx">
+      <DependentUpon>DownloadSoftLineStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -111,6 +138,10 @@
     <ProjectReference Include="..\EtData\LoyaltyDB.csproj">
       <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
       <Name>LoyaltyDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelLibrary\ExcelLibrary.csproj">
+      <Project>{b9fa1851-cefd-4eb9-8c1b-550abfe44d75}</Project>
+      <Name>ExcelLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReportsLoyalty\ReportsLoyalty.csproj">
       <Project>{1677BB6D-DEE7-4A69-89C1-4DD5A215F6B2}</Project>

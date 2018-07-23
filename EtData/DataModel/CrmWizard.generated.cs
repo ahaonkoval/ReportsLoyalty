@@ -1011,36 +1011,40 @@ namespace DataModels
 
 		public partial class TGetPersonalMarkmoReportResult
 		{
-			public long?    market_id            { get; set; }
-			public string   short_name           { get; set; }
-			public string   shopping_center      { get; set; }
-			public decimal? doc_qty_art          { get; set; }
-			public decimal? customers_qty_art    { get; set; }
-			public decimal? sm_discount          { get; set; }
-			public decimal? avg_art              { get; set; }
-			public double?  sm_art               { get; set; }
-			public decimal? doc_qty_group        { get; set; }
-			public decimal? customers_qty_group  { get; set; }
-			public decimal? avg_group            { get; set; }
-			public double?  sm_group             { get; set; }
-			public decimal? doc_qty_depart       { get; set; }
-			public decimal? customers_qty_depart { get; set; }
-			public decimal? avg_depart           { get; set; }
-			public double?  sm_depart            { get; set; }
-			public decimal? doc_qty_market       { get; set; }
-			public decimal? customers_qty_market { get; set; }
-			public decimal? avg_market           { get; set; }
-			public double?  sm_market            { get; set; }
-			public double?  sm_discount_all      { get; set; }
-			public double?  sm_buy_art           { get; set; }
-			public double?  sm_buy_group         { get; set; }
-			public double?  sm_buy_depart        { get; set; }
-			public double?  sm_buy_market        { get; set; }
-			public decimal? margin_art           { get; set; }
-			public decimal? margin_group         { get; set; }
-			public decimal? margin_depart        { get; set; }
-			public decimal? margin_market        { get; set; }
-			public long?    qty_customers        { get; set; }
+			public long?    market_id                { get; set; }
+			public string   short_name               { get; set; }
+			public string   shopping_center          { get; set; }
+			public decimal? doc_qty_art              { get; set; }
+			public decimal? customers_qty_art        { get; set; }
+			public decimal? sm_discount              { get; set; }
+			public decimal? avg_art                  { get; set; }
+			public double?  sm_art                   { get; set; }
+			public decimal? doc_qty_group            { get; set; }
+			public decimal? customers_qty_group      { get; set; }
+			public decimal? avg_group                { get; set; }
+			public double?  sm_group                 { get; set; }
+			public decimal? doc_qty_depart           { get; set; }
+			public decimal? customers_qty_depart     { get; set; }
+			public decimal? avg_depart               { get; set; }
+			public double?  sm_depart                { get; set; }
+			public decimal? doc_qty_market           { get; set; }
+			public decimal? customers_qty_market     { get; set; }
+			public decimal? avg_market               { get; set; }
+			public double?  sm_market                { get; set; }
+			public double?  sm_discount_all          { get; set; }
+			public double?  sm_buy_art               { get; set; }
+			public double?  sm_buy_group             { get; set; }
+			public double?  sm_buy_depart            { get; set; }
+			public double?  sm_buy_market            { get; set; }
+			public decimal? margin_art               { get; set; }
+			public decimal? margin_group             { get; set; }
+			public decimal? margin_depart            { get; set; }
+			public decimal? margin_market            { get; set; }
+			public long?    qty_customers            { get; set; }
+			public decimal? sm_bonus_obtained_art    { get; set; }
+			public decimal? sm_bonus_obtained_group  { get; set; }
+			public decimal? sm_bonus_obtained_depart { get; set; }
+			public decimal? sm_bonus_obtained_market { get; set; }
 		}
 
 		#endregion
@@ -1397,7 +1401,7 @@ namespace DataModels
 	{
 		[Column("id"),          PrimaryKey, Identity] public long      Id         { get; set; } // bigint
 		[Column("campaign_id"), Nullable            ] public long?     CampaignId { get; set; } // bigint
-		[Column("name_calc"),   Nullable            ] public string    NameCalc   { get; set; } // nvarchar(50)
+		[Column("name_calc"),   Nullable            ] public string    NameCalc   { get; set; } // nvarchar(4000)
 		[Column("created"),     Nullable            ] public DateTime? Created    { get; set; } // datetime
 		/// <summary>
 		/// 1 - начата обработка 2 - закончена
@@ -1534,6 +1538,7 @@ namespace DataModels
 		[Column("message_id"),   Nullable] public long?  MessageId   { get; set; } // bigint
 		[Column("mobile_phone"), Nullable] public string MobilePhone { get; set; } // nvarchar(50)
 		[Column("status"),       Nullable] public int?   Status      { get; set; } // int
+		[Column("chanel"),       Nullable] public string Chanel      { get; set; } // nvarchar(50)
 	}
 
 	[Table(Schema="calc", Name="campaigns_terms")]
@@ -2271,6 +2276,16 @@ namespace DataModels
 		[Column("value_28"),           Nullable            ] public string Value28          { get; set; } // nvarchar(50)
 		[Column("value_29"),           Nullable            ] public string Value29          { get; set; } // nvarchar(50)
 		[Column("value_30"),           Nullable            ] public string Value30          { get; set; } // nvarchar(50)
+		[Column("value_31"),           Nullable            ] public string Value31          { get; set; } // nvarchar(50)
+		[Column("value_32"),           Nullable            ] public string Value32          { get; set; } // nvarchar(50)
+		[Column("value_33"),           Nullable            ] public string Value33          { get; set; } // nvarchar(50)
+		[Column("value_34"),           Nullable            ] public string Value34          { get; set; } // nvarchar(50)
+		[Column("value_35"),           Nullable            ] public string Value35          { get; set; } // nvarchar(50)
+		[Column("value_36"),           Nullable            ] public string Value36          { get; set; } // nvarchar(50)
+		[Column("value_37"),           Nullable            ] public string Value37          { get; set; } // nvarchar(50)
+		[Column("value_38"),           Nullable            ] public string Value38          { get; set; } // nvarchar(50)
+		[Column("value_39"),           Nullable            ] public string Value39          { get; set; } // nvarchar(50)
+		[Column("value_40"),           Nullable            ] public string Value40          { get; set; } // nvarchar(50)
 
 		#region Associations
 
@@ -5576,6 +5591,15 @@ namespace DataModels
 
 		#endregion
 
+		#region MpFillAutozkzBughSales
+
+		public static int MpFillAutozkzBughSales(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[dbo].[mp_fill_autozkz_bugh_sales]");
+		}
+
+		#endregion
+
 		#region P50PointsReportFill
 
 		public static int P50PointsReportFill(this DataConnection dataConnection, int? @campaign_id)
@@ -5658,6 +5682,35 @@ namespace DataModels
 
 		#endregion
 
+		#region PDailyExtraPointsCalculated
+
+		public static int PDailyExtraPointsCalculated(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_extra_points_calculated]");
+		}
+
+		#endregion
+
+		#region PDailyExtraPointsFill
+
+		public static int PDailyExtraPointsFill(this DataConnection dataConnection, long? @campaign_id, DateTime? @calculated_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_extra_points_fill]",
+				new DataParameter("@campaign_id",     @campaign_id,     DataType.Int64),
+				new DataParameter("@calculated_date", @calculated_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDailyPersCalculatedPersonalOffers
+
+		public static int PDailyPersCalculatedPersonalOffers(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_pers_calculated_personal_offers]");
+		}
+
+		#endregion
+
 		#region PDailyPersDayFill
 
 		public static IEnumerable<PDailyPersDayFillResult> PDailyPersDayFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group)
@@ -5694,6 +5747,30 @@ namespace DataModels
 			public long?  market_id     { get; set; }
 			public string name          { get; set; }
 			public int?   customers_qty { get; set; }
+		}
+
+		#endregion
+
+		#region PDailyPersExpectedEffectCreate
+
+		public static int PDailyPersExpectedEffectCreate(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group, long? @sell_market_id)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_pers_expected_effect_create]",
+				new DataParameter("@campaign_id",    @campaign_id,    DataType.Int32),
+				new DataParameter("@date",           @date,           DataType.Date),
+				new DataParameter("@control_group",  @control_group,  DataType.Boolean),
+				new DataParameter("@sell_market_id", @sell_market_id, DataType.Int64));
+		}
+
+		#endregion
+
+		#region PDailyPersExpectedEffectFill
+
+		public static int PDailyPersExpectedEffectFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date_fill)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_pers_expected_effect_fill]",
+				new DataParameter("@campaign_id", @campaign_id, DataType.Int32),
+				new DataParameter("@date_fill",   @date_fill,   DataType.Date));
 		}
 
 		#endregion
@@ -5895,35 +5972,39 @@ namespace DataModels
 
 		public partial class PGetDailyPersExpectedEffectResult
 		{
-			public string   city                 { get; set; }
-			public string   is_channel           { get; set; }
-			public decimal? doc_qty_art          { get; set; }
-			public decimal? customers_qty_art    { get; set; }
-			public decimal? sm_discount          { get; set; }
-			public decimal? avg_art              { get; set; }
-			public double?  sm_art               { get; set; }
-			public decimal? doc_qty_group        { get; set; }
-			public decimal? customers_qty_group  { get; set; }
-			public decimal? avg_group            { get; set; }
-			public double?  sm_group             { get; set; }
-			public decimal? doc_qty_depart       { get; set; }
-			public decimal? customers_qty_depart { get; set; }
-			public decimal? avg_depart           { get; set; }
-			public double?  sm_depart            { get; set; }
-			public decimal? doc_qty_market       { get; set; }
-			public decimal? customers_qty_market { get; set; }
-			public decimal? avg_market           { get; set; }
-			public double?  sm_market            { get; set; }
-			public double?  sm_discount_all      { get; set; }
-			public double?  sm_buy_art           { get; set; }
-			public double?  sm_buy_group         { get; set; }
-			public double?  sm_buy_depart        { get; set; }
-			public double?  sm_buy_market        { get; set; }
-			public decimal? margin_art           { get; set; }
-			public decimal? margin_group         { get; set; }
-			public decimal? margin_depart        { get; set; }
-			public decimal? margin_market        { get; set; }
-			public long?    qty_customers        { get; set; }
+			public string   city                     { get; set; }
+			public string   is_channel               { get; set; }
+			public decimal? doc_qty_art              { get; set; }
+			public decimal? customers_qty_art        { get; set; }
+			public decimal? sm_discount              { get; set; }
+			public decimal? avg_art                  { get; set; }
+			public double?  sm_art                   { get; set; }
+			public decimal? doc_qty_group            { get; set; }
+			public decimal? customers_qty_group      { get; set; }
+			public decimal? avg_group                { get; set; }
+			public double?  sm_group                 { get; set; }
+			public decimal? doc_qty_depart           { get; set; }
+			public decimal? customers_qty_depart     { get; set; }
+			public decimal? avg_depart               { get; set; }
+			public double?  sm_depart                { get; set; }
+			public decimal? doc_qty_market           { get; set; }
+			public decimal? customers_qty_market     { get; set; }
+			public decimal? avg_market               { get; set; }
+			public double?  sm_market                { get; set; }
+			public double?  sm_discount_all          { get; set; }
+			public double?  sm_buy_art               { get; set; }
+			public double?  sm_buy_group             { get; set; }
+			public double?  sm_buy_depart            { get; set; }
+			public double?  sm_buy_market            { get; set; }
+			public decimal? margin_art               { get; set; }
+			public decimal? margin_group             { get; set; }
+			public decimal? margin_depart            { get; set; }
+			public decimal? margin_market            { get; set; }
+			public long?    qty_customers            { get; set; }
+			public decimal  sm_bonus_obtained_art    { get; set; }
+			public decimal  sm_bonus_obtained_group  { get; set; }
+			public decimal  sm_bonus_obtained_depart { get; set; }
+			public decimal  sm_bonus_obtained_market { get; set; }
 		}
 
 		#endregion

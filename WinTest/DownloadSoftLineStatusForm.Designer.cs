@@ -1,6 +1,6 @@
 ﻿namespace WinTest
 {
-    partial class TestRequestForm
+    partial class DownloadSoftLineStatusForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.

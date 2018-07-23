@@ -8,12 +8,12 @@ using System.Collections.Generic;
 
 namespace WinTest
 {
-    public partial class TestRequestForm : Form
+    public partial class DownloadSoftLineStatusForm : Form
     {
         public delegate void InvokeSetStatusToList(int count, DateTime date);
 
         Handler h;
-        public TestRequestForm()
+        public DownloadSoftLineStatusForm()
         {
             InitializeComponent();
         }

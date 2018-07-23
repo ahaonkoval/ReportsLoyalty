@@ -372,6 +372,8 @@ function WinCampaignDetails() {
 
                                 if (st.Status == '2') {
                                     winStartCalcualted(rec.get('id'));
+                                } else {
+                                    Ext.MessageBox.alert('Увага!', 'Перераховується: ' + st.CampaignName + ' (' + st.CampaignId + ')', null);
                                 }
 
                             }

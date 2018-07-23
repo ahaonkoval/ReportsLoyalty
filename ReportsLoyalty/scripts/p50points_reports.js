@@ -130,7 +130,7 @@ var get50PointsGrid = function () {
                 
                 //alert('');
                 var hi = Ext.getCmp('h_p50p_campaign_id');
-                hi.setValue(record.data.id);
+                hi.setValue(record.data.Id);
 
                 
             }

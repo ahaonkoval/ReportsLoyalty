@@ -65,7 +65,12 @@ namespace ReportsLoyalty.pages.personal_offers
                 using (GetData gdt = new GetData())
                 {
                     ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("CampaignName",
-                        gdt.Campaigns.GetCampaignNameById(Convert.ToInt32(campaign_id))
+                        
+                        string.Format(" {0}, Дата початку: {1}, Дата кінця: {2}", 
+                            gdt.Campaigns.GetCampaignNameById(Convert.ToInt32(campaign_id)), 
+                            gdt.Campaigns.GetStartDateById(Convert.ToInt32(campaign_id)).Value.ToString("dd.MM.yyyy"),
+                            gdt.Campaigns.GetEndDateById(Convert.ToInt32(campaign_id)).Value.ToString("dd.MM.yyyy")
+                            )
                     ));
 
                     string DepartmentName = gdt.Campaigns.GetCurrentDepartamentNameById(Convert.ToInt32(campaign_id));

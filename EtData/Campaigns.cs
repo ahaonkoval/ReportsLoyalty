@@ -89,7 +89,7 @@ namespace LoyaltyDB
                     {
                         case 1:
                             {
-
+                                StartCalculationExtraPoints(campaignId, currentDate, db.ConnectionString);
                             }
                             break;
                         case 2:
@@ -102,6 +102,32 @@ namespace LoyaltyDB
                             }
                             break;
                     }                    
+                }
+            }
+        }
+
+        void StartCalculationExtraPoints(int campaignId, DateTime currentDate, string connectString) {
+            using (SqlConnection c = new SqlConnection(connectString))
+            {
+                try
+                {
+                    SqlCommand cmd = c.CreateCommand();
+                    cmd.CommandTimeout = 100000000;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = c;
+                    cmd.CommandText = "calc.p_daily_extra_points_fill";
+                    cmd.Parameters.AddWithValue("@campaign_id", campaignId);
+                    cmd.Parameters.AddWithValue("@calculated_date", currentDate);
+
+                    if (c.State != ConnectionState.Open)
+                        c.Open();
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    int i = 0;
+                    // TODO Логировать ошибку
                 }
             }
         }
@@ -135,6 +161,13 @@ namespace LoyaltyDB
         #endregion
 
         #region GET
+        public CampaignsMk GetCampaignById(int campaignId)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.CampaignsMk.Where(w => w.Id == campaignId).FirstOrDefault();
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -518,6 +551,10 @@ namespace LoyaltyDB
         }
 
         #endregion
+        /// <summary>
+        /// умови кампаніїї, *** опис
+        /// </summary>
+        /// <param name="t"></param>
         public void CreateTerm(Models.Lterminate t)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
@@ -647,19 +684,66 @@ namespace LoyaltyDB
             }
         }
 
-        //public void SetPhonesFindMarkets(string phone, string status, string channel)
-        //{
-        //    using (CrmWizardDB db = new DataModels.CrmWizardDB())
-        //    {
+        public void SetSoftLineStatusEnd(int campaignId)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                using (SqlConnection c = new SqlConnection(db.ConnectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = c.CreateCommand();
+                        cmd.CommandTimeout = 100000000;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Connection = c;
+                        cmd.CommandText = @"
+                            UPDATE a 
+	                            SET a.delivery_status = iif(m.crm_customer_id is null, 0, 1)
+                            FROM [calc].[campaign_participant] a (nolock) 
+                            LEFT JOIN 
+	                            (
+		                            select 
+                                        distinct c.crm_customer_id 
+                                    from dbo.crm_customers c (nolock) inner join (
+			                            select * from [calc].[campaign_softline_status] a (nolock) 
+                                            where a.campaign_id = @campaign_id and a.[status] in (1, 3)) m
+			                                    on c.mobile_phone = '+'+m.mobile_phone
+	                            ) m 
+                            on a.crm_customer_id = m.crm_customer_id
+                            where
+	                            a.campaign_id = @campaign_id
+                        ";
 
-        //        db.PhonesFindMarkets.Insert(() => new PhonesFindMarkets
-        //        {
-        //            Chanell = channel,
-        //            Status = status,
-        //            Phone = phone
-        //        });
-        //    }
-        //}
+                        cmd.Parameters.AddWithValue("@campaign_id", campaignId);
+
+                        if (c.State != ConnectionState.Open)
+                            c.Open();
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        //int i = 0;
+                        // TODO Логировать ошибку
+                    }
+                }
+            }
+        }
+
+        public void SetCampaignSoftlineStatus(long campaignId, int messageId, string mobilePhone, int status, string chanel)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                db.CampaignSoftlineStatus.Insert(() => new CampaignSoftlineStatus
+                {
+                    CampaignId = campaignId,
+                    MessageId = messageId,
+                    MobilePhone = mobilePhone,
+                    Status = status,
+                    Chanel = chanel
+                });
+            }
+        }
 
         public void FixCampaignStatus(long campaignId)
         {

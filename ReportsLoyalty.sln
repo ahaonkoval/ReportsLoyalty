@@ -9,13 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyDB", "EtData\Loyalty
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftLineApi", "SoftLineApi\SoftLineApi.csproj", "{8DB11E23-B720-43DF-802A-8265D783793D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTest", "WinTest\WinTest.csproj", "{37272374-7B37-41EA-AC91-9FE5B3848CCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinLoader", "WinTest\WinLoader.csproj", "{37272374-7B37-41EA-AC91-9FE5B3848CCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransformer", "DataTransformer\DataTransformer\DataTransformer.csproj", "{A67068FF-BF9F-42F5-85BD-BAAB601F9AE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDebuggerHelper", "..\GooglePoints\ServiceDebuggerHelper\ServiceDebuggerHelper.csproj", "{E058864C-20A7-43C0-8EFF-0E4EB9D02855}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetSoftLineStatus", "GetSiftLineStatus\GetSoftLineStatus.csproj", "{8E8875A9-81A9-4FBF-BF19-42B7DA6F48EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelLibrary", "ExcelLibrary\ExcelLibrary.csproj", "{B9FA1851-CEFD-4EB9-8C1B-550ABFE44D75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8E8875A9-81A9-4FBF-BF19-42B7DA6F48EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E8875A9-81A9-4FBF-BF19-42B7DA6F48EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E8875A9-81A9-4FBF-BF19-42B7DA6F48EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FA1851-CEFD-4EB9-8C1B-550ABFE44D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FA1851-CEFD-4EB9-8C1B-550ABFE44D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FA1851-CEFD-4EB9-8C1B-550ABFE44D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FA1851-CEFD-4EB9-8C1B-550ABFE44D75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
