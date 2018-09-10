@@ -66,6 +66,7 @@ namespace WinTest
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 //string FileName = openFileDialog.FileName;
+                this.lblFileName.Text = openFileDialog.FileName;
                 LoadExcel(openFileDialog.FileName);
             }
         }
@@ -205,6 +206,7 @@ namespace WinTest
                 openFileDialog.Filter = "Excel файлы (*.csv)|*.csv|Все файлы (*.*)|*.*";
                 if (openFileDialog.ShowDialog(this) == DialogResult.OK)
                 {
+                    this.lblCSVFile.Text = openFileDialog.FileName;
                     this._pathCSV = openFileDialog.FileName;
                     this.bWorkerCSV.RunWorkerAsync();
                 }

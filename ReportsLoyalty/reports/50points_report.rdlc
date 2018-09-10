@@ -1912,11 +1912,21 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>2.38542in</Height>
+    <Height>1.71908in</Height>
     <Style />
   </Body>
   <Width>10.38123in</Width>
   <Page>
+    <PageFooter>
+      <Height>0.88703cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>

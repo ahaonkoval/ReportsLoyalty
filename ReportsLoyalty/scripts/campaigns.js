@@ -64,6 +64,11 @@ Ext.define('campaigns_mk', {
         name: 'customers_qty_control',
         type: 'int'
     }, {
+        name: 'customers_qty_delivered',
+        type: 'int'
+    },
+    //customers_qty_delivered
+    {
         name: 'customers_grp',
         type: 'string',
         convert: function (v, record) {
@@ -308,7 +313,11 @@ var getWinCampaigns = function () {
                 columns: [{
                     text: 'група/тест',
                     dataIndex: 'customers_grp',
-                    width: 90
+                    width: 110
+                }, {
+                    text: 'доставлено',
+                    dataIndex: 'customers_qty_delivered',
+                    width: 80
                 }, {
                     xtype: 'actioncolumn',
                     width:23,
@@ -393,7 +402,9 @@ var getWinCampaigns = function () {
                 /* открываєм окно редактирования */
                 winCd.Show(record);
             },
-            selectionchange ( ctrl, selected, eOpts )  {
+            selectionchange (ctrl, selected, eOpts) {
+                if (selected[0] == undefined)
+                    return;
                 //alert(selected);
                 if (selected[0].get('mailing_id') == "")
                 {

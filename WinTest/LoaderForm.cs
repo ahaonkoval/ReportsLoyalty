@@ -14,6 +14,9 @@ namespace WinTest
     {
         private int childFormNumber = 0;
 
+        private string ConnectionString { get {
+                return "data source=10.7.131.218;initial catalog=crm_wizard;persist security info=True;user id=crm_wizard;password=andre2013;multipleactiveresultsets=True;connect timeout=1200000000"; } }
+
         public LoaderForm()
         {
             InitializeComponent();
@@ -70,7 +73,7 @@ namespace WinTest
 
         private void menuGetData_Click(object sender, EventArgs e)
         {
-            frmGetData frm = new frmGetData();
+            frmGetData frm = new frmGetData(ConnectionString);
             frm.MdiParent = this;
             frm.Show();
         }
