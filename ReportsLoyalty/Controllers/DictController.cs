@@ -73,6 +73,27 @@ namespace ReportsLoyalty.Controllers
                 return o_data;
             }
         }
+
+        [HttpGet]
+        public object GetTmpSchemaTableList()
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+            using (GetData gt = new GetData())
+            {
+                var lst = gt.Dict.GetTmpSchemaTableList();
+                object o_data = new
+                {
+                    total = lst.Count(),
+                    data = lst
+                };
+
+                return o_data;
+            }
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -176,8 +176,10 @@ namespace WinTest
                 data.Campaigns.SetSoftLineStatusEnd(this.CampaignId);
             }
 
-            this.Enabled = true;
-            MessageBox.Show("Закінчено!");
+            //this.Enabled = true;
+            WinLoader.Helpers.FormsHelper.SetEnabled(this, true);
+            //MessageBox.Show("Закінчено!");
+            this.Text = "ЗАВАНТАЖЕНО!!!";
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -189,7 +191,8 @@ namespace WinTest
 
                 bWorker.RunWorkerAsync();
 
-                this.Enabled = false;
+                WinLoader.Helpers.FormsHelper.SetEnabled(this, false);
+                //this.Enabled = false;
             } else
             {
                 MessageBox.Show("Вкажіть ID кампанії!");

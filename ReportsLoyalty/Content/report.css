@@ -21,6 +21,11 @@
     background-color:rgba(237, 233, 199, 0.38);
 }
 
+.x-grid-row-block .x-grid-cell {
+    font: normal 11px tahoma,arial,verdana,sans-serif;
+    background-color:rgba(108, 108, 106, 0.38);
+}
+
 .x-grid-row-getting-status .x-grid-cell {
     font: normal 11px tahoma,arial,verdana,sans-serif;
     background-color:rgb(204, 188, 66);
@@ -99,17 +104,18 @@ textarea
   width:100%;
   height:100%;
 }
-
+*/
 .boxsizingBorder {
-  border:1px solid #999999;
-  /*margin:0px 0;
-  padding:0px;*/
-    /*width: 100%;
-    height: 100%;*/
-    /*-webkit-box-sizing: border-box;
+  /*border:1px solid #999999;
+  width: 1000px;*/
+  margin:0px 0;
+  padding:0px;
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
-            box-sizing: border-box;*/
-}*/
+            box-sizing: border-box;
+}
 
 
 /*.x-grid-row .custom-column { 
@@ -153,3 +159,40 @@ textarea
     color: #404040;
 }*/
 
+.x-panel-header.x-header.x-header-noborder.x-docked.x-unselectable.x-panel-header-default.x-horizontal.x-panel-header-horizontal.x-panel-header-default-horizontal.x-top.x-panel-header-top.x-panel-header-default-top.x-box-layout-ct.x-accordion-hd.x-accordion-hd-sibling-expanded {
+    background-color: #D2E7F7 !important;
+    font-weight: bold;
+}
+
+.x-panel-header.x-header.x-header-noborder.x-docked.x-unselectable.x-panel-header-default.x-horizontal.x-panel-header-horizontal.x-panel-header-default-horizontal.x-top.x-panel-header-top.x-panel-header-default-top.x-box-layout-ct.x-accordion-hd {
+    background-color: #D2E7F7 !important;
+    font-weight: bold;
+}
+
+body#ext-element-1 {
+    /*background-color: #596470 !important; */
+    background-image: url(http://dev.sencha.com/ext/5.1.0/examples/kitchensink/crisp-en/resources/images/square.gif) !important;
+    background-repeat: repeat;
+    -moz-animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    -moz-animation-name: slide-up;
+    -webkit-animation-name: slide-up;
+}
+
+@-moz-keyframes slide-up {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+
+@-webkit-keyframes slide-up {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}

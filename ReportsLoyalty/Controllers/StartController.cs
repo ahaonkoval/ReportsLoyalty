@@ -18,14 +18,13 @@ namespace ReportsLoyalty.Controllers
             string RT = string.Empty;
 
             var queryparams = Request.GetQueryNameValuePairs();
-            var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
             var TypeRequest = queryparams.Where(w => w.Key == "TypeRequest").FirstOrDefault().Value;
 
             switch (Convert.ToInt32(TypeRequest))
             {
-                case 1:                    
+                case 1:
+                    var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
                     Global.SP.Start(id, Convert.ToDateTime(dt));
-                    
                     break;
                 case 10:
                     /* */
@@ -33,19 +32,52 @@ namespace ReportsLoyalty.Controllers
                     {
                         var m = od.Campaigns.GetCalculationLogLast();
 
-                        CampaignInfo ci = new Models.CampaignInfo
+                        if (m != null)
                         {
-                            CampaignId = m.CampaignId.Value.ToString(),
-                            CampaignName = od.Campaigns.GetCalculationCampaignName(),
-                            Created = m.Created.Value.ToString("dd.MM.yyyy"),
-                            Status = m.Status.Value.ToString()
-                        };
-                        RT = Newtonsoft.Json.JsonConvert.SerializeObject(ci);
+                            CampaignInfo ci = new Models.CampaignInfo
+                            {
+                                CampaignId = m.CampaignId.Value.ToString(),
+                                CampaignName = od.Campaigns.GetCalculationCampaignName(),
+                                Created = m.Created.Value.ToString("dd.MM.yyyy"),
+                                Status = m.Status.Value.ToString()
+                            };
+                            RT = Newtonsoft.Json.JsonConvert.SerializeObject(ci);
+
+                        } else
+                        {
+                            CampaignInfo ci = new Models.CampaignInfo
+                            {
+                                CampaignId = "0",
+                                CampaignName = string.Empty,
+                                Created = DateTime.Now.ToString("dd.MM.yyyy"),
+                                Status = "0"
+                            };
+                            RT = Newtonsoft.Json.JsonConvert.SerializeObject(ci);
+                        }
+                       
                     }
+                    break;
+                case 20:
+                    var campaignId = queryparams.Where(w => w.Key == "CampaignId").FirstOrDefault().Value;
+                    var TableName = queryparams.Where(w => w.Key == "TableName").FirstOrDefault().Value;
+                    var toDelete = queryparams.Where(w => w.Key == "toDelete").FirstOrDefault().Value;
+
+                    Global.SP.StartFillCampaignFromTableList(Convert.ToInt32(campaignId), TableName, Convert.ToBoolean(toDelete));
                     break;
             }
 
             return RT;
+        }
+
+        [HttpGet]
+        public string GetFilledCampaignId()
+        {
+            string returned = string.Empty;
+            using (GetData data = new GetData())
+            {
+                returned = data.Dict.GetFillingCampaignId().ToString();
+            }
+            return returned;
         }
     }
 }

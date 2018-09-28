@@ -497,7 +497,7 @@ namespace DataModels
 			public long?     number                  { get; set; }
 			public long?     customers_qty           { get; set; }
 			public long?     customers_qty_control   { get; set; }
-			public DateTime? max_term_date           { get; set; }
+			public string    max_term_date           { get; set; }
 			public long?     articuls_qty            { get; set; }
 			public long?     group_id_0              { get; set; }
 			public DateTime? date_send               { get; set; }
@@ -1498,6 +1498,7 @@ namespace DataModels
 		[Column("created"),            NotNull              ] public DateTime Created          { get; set; } // datetime
 		[Column("short_comment"),         Nullable          ] public string   ShortComment     { get; set; } // nvarchar(800)
 		[Column("description"),           Nullable          ] public string   Description      { get; set; } // nvarchar(max)
+		[Column("link"),                  Nullable          ] public string   Link             { get; set; } // nvarchar(1000)
 		[Column(),                        Nullable          ] public int?     Rn               { get; set; } // int
 	}
 
@@ -2084,6 +2085,7 @@ namespace DataModels
 		[Column("obert"),               Nullable            ] public decimal?  Obert              { get; set; } // decimal(18, 2)
 		[Column("doc_avg"),             Nullable            ] public decimal?  DocAvg             { get; set; } // decimal(18, 2)
 		[Column("doc_max"),             Nullable            ] public decimal?  DocMax             { get; set; } // decimal(18, 2)
+		[Column("dist_between_visits"), Nullable            ] public decimal?  DistBetweenVisits  { get; set; } // decimal(18, 2)
 	}
 
 	[Table(Schema="calc", Name="daily_allocation_types")]
@@ -5462,15 +5464,6 @@ namespace DataModels
 
 		#endregion
 
-		#region PDailyPersCalculatedPersonalOffers
-
-		public static int PDailyPersCalculatedPersonalOffers(this DataConnection dataConnection)
-		{
-			return dataConnection.ExecuteProc("[calc].[p_daily_pers_calculated_personal_offers]");
-		}
-
-		#endregion
-
 		#region PDailyPersDayFill
 
 		public static IEnumerable<PDailyPersDayFillResult> PDailyPersDayFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group)
@@ -5507,30 +5500,6 @@ namespace DataModels
 			public long?  market_id     { get; set; }
 			public string name          { get; set; }
 			public int?   customers_qty { get; set; }
-		}
-
-		#endregion
-
-		#region PDailyPersExpectedEffectCreate
-
-		public static int PDailyPersExpectedEffectCreate(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group, long? @sell_market_id)
-		{
-			return dataConnection.ExecuteProc("[calc].[p_daily_pers_expected_effect_create]",
-				new DataParameter("@campaign_id",    @campaign_id,    DataType.Int32),
-				new DataParameter("@date",           @date,           DataType.Date),
-				new DataParameter("@control_group",  @control_group,  DataType.Boolean),
-				new DataParameter("@sell_market_id", @sell_market_id, DataType.Int64));
-		}
-
-		#endregion
-
-		#region PDailyPersExpectedEffectFill
-
-		public static int PDailyPersExpectedEffectFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date_fill)
-		{
-			return dataConnection.ExecuteProc("[calc].[p_daily_pers_expected_effect_fill]",
-				new DataParameter("@campaign_id", @campaign_id, DataType.Int32),
-				new DataParameter("@date_fill",   @date_fill,   DataType.Date));
 		}
 
 		#endregion
@@ -5890,6 +5859,20 @@ namespace DataModels
 
 		#endregion
 
+		#region PGetFillingCampaignId
+
+		public static IEnumerable<PGetFillingCampaignIdResult> PGetFillingCampaignId(this DataConnection dataConnection)
+		{
+			return dataConnection.QueryProc<PGetFillingCampaignIdResult>("[calc].[p_get_filling_campaign_id]");
+		}
+
+		public partial class PGetFillingCampaignIdResult
+		{
+			public int campaign_id { get; set; }
+		}
+
+		#endregion
+
 		#region PGetPersonalMarkmoReport
 
 		public static IEnumerable<PGetPersonalMarkmoReportResult> PGetPersonalMarkmoReport(this DataConnection dataConnection, int? @campaign_id, bool? @control_group, DateTime? @date, int? @market_id, string @market_lst)
@@ -5971,11 +5954,18 @@ namespace DataModels
 
 		#endregion
 
-		#region PUpdateGenderFromName2
+		#region PGetTmpTableList
 
-		public static int PUpdateGenderFromName2(this DataConnection dataConnection)
+		public static IEnumerable<PGetTmpTableListResult> PGetTmpTableList(this DataConnection dataConnection)
 		{
-			return dataConnection.ExecuteProc("[calc].[p_update_gender_from_name2]");
+			return dataConnection.QueryProc<PGetTmpTableListResult>("[calc].[p_get_tmp_table_list]");
+		}
+
+		public partial class PGetTmpTableListResult
+		{
+			public int    object_id { get; set; }
+			public string name      { get; set; }
+			public string row_count { get; set; }
 		}
 
 		#endregion

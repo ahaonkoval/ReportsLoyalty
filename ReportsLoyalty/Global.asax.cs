@@ -55,5 +55,18 @@ namespace ReportsLoyalty
                 data.Campaigns.SetStartCalculation(campaignId, dt);
             }
         }
+
+        public void StartFillCampaignFromTableList(int campaignId, string table, bool toDelete) {
+            var t = Task.Run(() => StartFillCampaignFromTableListData(campaignId, table, toDelete));
+            t.Wait();
+        }
+
+        void StartFillCampaignFromTableListData(int campaignId, string table, bool toDelete)
+        {
+            using (GetData data = new GetData())
+            {
+                data.Campaigns.StartFillCustomers(campaignId, table, toDelete);
+            }
+        }
     }
 }

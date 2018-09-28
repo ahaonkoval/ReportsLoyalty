@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LinqToDB;
 using DataModels;
+using static DataModels.CrmWizardDBStoredProcedures;
 
 namespace LoyaltyDB
 {
@@ -18,6 +19,13 @@ namespace LoyaltyDB
             Le = le;
         }
 
+        public Dict()
+        {
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DictMarkets> GetDictMarkets()
         {
             using (var db = new DataModels.CrmWizardDB())
@@ -27,11 +35,16 @@ namespace LoyaltyDB
             //return Le.dict_markets.ToList();
         }
 
-        public Decimal GetFractionParticipantSaleByCampaignId(int id)
-        {
-            return 0;
-        }
+        //public Decimal GetFractionParticipantSaleByCampaignId(int id)
+        //{
+        //    return 0;
+        //}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="level_id"></param>
+        /// <returns></returns>
         public IEnumerable<VFgroups> GetGroups(int level_id)
         {
             using (var db = new DataModels.CrmWizardDB())
@@ -41,7 +54,11 @@ namespace LoyaltyDB
 
             //return Le.v_fgroups.Where(w => w.level_id == level_id).OrderBy(o => o.fgroup_id);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parent_id"></param>
+        /// <returns></returns>
         public IEnumerable<VFgroups> GetGroupsByParentId(int parent_id)
         {
             using (var db = new DataModels.CrmWizardDB())
@@ -95,36 +112,6 @@ namespace LoyaltyDB
         {
             List<UPLControl> l_ctrl = new List<UPLControl>();
 
-            //var uc = Le.p_get_daily_upload_control(DateTime.Now.AddDays(-1), 0);
-            //foreach (UPLOAD_CONTROL c in uc)
-            //{
-            //    if (c.customers_qty != null)
-            //    {
-            //        l_ctrl.Add(
-            //            new Models.UPLControl
-            //            {
-            //                card_issued_qty = c.card_issued_qty.Value,
-            //                City = c.city,
-            //                Customers_qty = c.customers_qty.Value,
-            //                diff_card_issued_qty = c.diff_card_issued_qty.Value,
-            //                Diff_customers_qty = c.diff_customers_qty.Value,
-            //                diff_knk_qty = c.diff_knk_qty.Value,
-            //                diff_qty_doc = c.diff_qty_doc.Value,
-            //                diff_qty_sell_record_qty = c.diff_qty_sell_record_qty.Value,
-            //                diff_rrz_qty = c.diff_rrz_qty.Value,
-            //                is_alert_card_issued_qty = Convert.ToBoolean(c.is_alert_card_issued_qty),
-            //                is_alert_customers_qty = Convert.ToBoolean(c.is_alert_customers_qty),
-            //                is_alert_knk_qty = Convert.ToBoolean(c.is_alert_knk_qty),
-            //                is_alert_qty_doc = Convert.ToBoolean(c.is_alert_qty_doc),
-            //                is_alert_qty_sell_record_qty = Convert.ToBoolean(c.is_alert_qty_sell_record_qty),
-            //                is_alert_rrz_qty = Convert.ToBoolean(c.is_alert_rrz_qty),
-            //                knk_qty = c.knk_qty.Value,
-            //                qty_doc = c.qty_doc.Value,
-            //                qty_sell_record_qty = c.qty_sell_record_qty.Value,
-            //                rrz_qty = c.rrz_qty.Value
-            //            });
-            //    }
-            //}
             return l_ctrl;
         }
 
@@ -170,6 +157,25 @@ namespace LoyaltyDB
             using (var db = new DataModels.CrmWizardDB())
             {
                 db.StopList.Delete(w => w.StopListId == id);
+            }
+        }
+        /// <summary>
+        /// перелік об'єктів БД де можуть бути УПЛ
+        /// </summary>
+        public IEnumerable<PGetTmpTableListResult> GetTmpSchemaTableList()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.PGetTmpTableList().ToList();
+            }
+        }
+
+        public int GetFillingCampaignId()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                var data = db.PGetFillingCampaignId().ToList().FirstOrDefault();
+                return data.campaign_id;
             }
         }
     }

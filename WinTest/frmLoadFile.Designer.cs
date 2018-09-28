@@ -193,7 +193,7 @@
             this.Controls.Add(this.txtCampaignId);
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "frmLoadFile";
-            this.Text = "frmLoadFime";
+            this.Text = "Завантаження...";
             ((System.ComponentModel.ISupportInitialize)(this.grdExcelStatus)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

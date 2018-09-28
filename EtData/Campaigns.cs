@@ -60,7 +60,7 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                return db.CalculationLog.OrderByDescending(o => o.Id).First();
+                return db.CalculationLog.OrderByDescending(o => o.Id).FirstOrDefault();
             }
         }
 
@@ -94,14 +94,45 @@ namespace LoyaltyDB
                             break;
                         case 2:
                             {
-                                //db.CalculationLog.Insert(() => new CalculationLog {
-                                //    CampaignId = campaignId, Created = DateTime.Now, NameCalc = "calc.p_daily_pers_expected_effect_fill", Status = 1
-                                //});
-
                                 StartCalculationPersonalOffer(campaignId, currentDate, db.ConnectionString);
                             }
                             break;
                     }                    
+                }
+            }
+        }
+
+        public void StartFillCustomers(int campaignId, string table, bool toDelete)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                //    db.P PFillCustomersToCampaign(campaignId, table);
+
+                //    //db.PGetFillingCustomersCount
+
+                using (SqlConnection c = new SqlConnection(db.ConnectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = c.CreateCommand();
+                        cmd.CommandTimeout = 100000000;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Connection = c;
+                        cmd.CommandText = "calc.p_start_fill_customers_to_campaign";
+                        cmd.Parameters.AddWithValue("@campaign_id", campaignId);
+                        cmd.Parameters.AddWithValue("@table_name", table);
+                        cmd.Parameters.AddWithValue("@to_delete", toDelete);
+
+                        if (c.State != ConnectionState.Open)
+                            c.Open();
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        int i = 0;
+                        // TODO Логировать ошибку
+                    }
                 }
             }
         }
@@ -415,7 +446,8 @@ namespace LoyaltyDB
                     CampaignId = Convert.ToInt64(x.CampaignId),
                     Created = x.Created,
                     Description = x.Description,
-                    ShortComment = x.ShortComment
+                    ShortComment = x.ShortComment,
+                    Link = (x.Link == null ? "" : x.Link)
                 }).ToList();
                 return lt;
             }
@@ -564,7 +596,8 @@ namespace LoyaltyDB
                     CampaignId = t.campaign_id,
                     Created = DateTime.Now,
                     Description = t.campaign_terms_details,
-                    ShortComment = t.campaign_terms_short
+                    ShortComment = t.campaign_terms_short,
+                    Link = t.campaign_link
                 });
             }
         }

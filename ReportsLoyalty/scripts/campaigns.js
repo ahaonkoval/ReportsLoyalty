@@ -80,37 +80,37 @@ Ext.define('campaigns_mk', {
         }
     }, {
         name: 'max_term_date',
-        type: 'date',
-        convert: function (v, record) {
-            if (v != null) {
-                if (v.toString().indexOf('/') > -1) {
+        type: 'string',
+        //convert: function (v, record) {
+        //    if (v != null) {
+        //        if (v.toString().indexOf('/') > -1) {
 
-                    var dot = new Date(parseInt(v.substr(6)));
-                    var month = dot.getUTCMonth() + 1;
-                    var day = dot.getUTCDate();
-                    var year = dot.getUTCFullYear();
+        //            var dot = new Date(parseInt(v.substr(6)));
+        //            var month = dot.getUTCMonth() + 1;
+        //            var day = dot.getUTCDate();
+        //            var year = dot.getUTCFullYear();
 
-                    if (day.toString().length == 1) day = '0' + day.toString();
-                    if (month.toString().length == 1) month = '0' + month.toString();
+        //            if (day.toString().length == 1) day = '0' + day.toString();
+        //            if (month.toString().length == 1) month = '0' + month.toString();
 
-                    var rtn = day + '.' + month + '.' + year;
-                    return rtn;
-                } else {
-                    var d = new Date(v),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + d.getDate(),
-                    year = d.getFullYear();
+        //            var rtn = day + '.' + month + '.' + year;
+        //            return rtn;
+        //        } else {
+        //            var d = new Date(v),
+        //            month = '' + (d.getMonth() + 1),
+        //            day = '' + d.getDate(),
+        //            year = d.getFullYear();
 
-                    if (month.length < 2) month = '0' + month;
-                    if (day.length < 2) day = '0' + day;
+        //            if (month.length < 2) month = '0' + month;
+        //            if (day.length < 2) day = '0' + day;
 
-                    return [day, month, year].join('.');
-                }
+        //            return [day, month, year].join('.');
+        //        }
 
-            } else {
-                return '';
-            }
-        }
+        //    } else {
+        //        return '';
+        //    }
+        //}
     }, {
         name: 'articuls_qty',
         type: 'int',
@@ -140,6 +140,7 @@ Ext.define('campaigns_mk', {
 var getWinCampaigns = function () {
     var encode = false;
     var local = true;
+    var requestState = true;
 
     var checkboxIsRun = Ext.create('Ext.form.Checkbox', {
         value: false,
@@ -274,7 +275,8 @@ var getWinCampaigns = function () {
                     type: 'date'  // specify type here or in store fields config
                 }
                 //width: 80
-            }, {
+            },
+            {
                 dataIndex: 'date_end',
                 xtype: 'datecolumn',
                 text: 'Дата кінця',
@@ -325,8 +327,27 @@ var getWinCampaigns = function () {
                         tooltip: 'Перегляд',
                         icon: 'img/application.ico',
                         handler: function (view, rowIndex, colIndex, item, e, record, row) {
-                            var campaign_id = record.get('id');
-                            getCustomers(campaign_id);
+
+                            var data = grid.getStore().getData();
+                            var row = data.find('is_start_get_status', 3);
+                            if (row != null) {
+                                Ext.Msg.alert('Увага!', 'Зараз завантажуються учасники кампанії:' + row.get('id'), null); //Ext.emptyFn
+                            } else {
+                                var campaign_id = record.get('id');
+                                getWinCustomers(campaign_id).show();
+                            }
+
+
+                            //var wk_status = record.get('is_start_get_status');
+                            //if (wk_status == 0) {
+                            //    var campaign_id = record.get('id');
+                            //    getWinCustomers(campaign_id).show();
+                            //} else {
+                            //    if (wk_status == 3) {
+                            //        Ext.Msg.alert('Увага!', 'Зараз завантажуються учасники кампанії...', Ext.emptyFn);
+                            //    }
+                            //}
+
                         }
                     }]
                 }]
@@ -336,7 +357,7 @@ var getWinCampaigns = function () {
                     {
                         text: 'Коментарі',
                         dataIndex: 'max_term_date',
-                        width: 90
+                        width: 100
                     }, {
                         xtype: 'actioncolumn',
                         width: 23,
@@ -345,7 +366,7 @@ var getWinCampaigns = function () {
                             icon: 'img/application.ico',
                             handler: function (view, rowIndex, colIndex, item, e, record, row) {
                                 var campaign_id = record.get('id');
-                                get_campaigns_terms(campaign_id)
+                                getCampaignsTerms(campaign_id, record.get('name')).show();
                             }
                         }]
                     }
@@ -417,14 +438,32 @@ var getWinCampaigns = function () {
         viewConfig: {
             stripeRows: false,
             getRowClass: function (record) {
-                //return record.get('is_run') == true ? 'child-row' : 'adult-row';
-                var css = record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
-                if (record.get('is_start_get_status') == 1) {
-                    return 'x-grid-row-getting-status';
+
+                var status = record.get('is_start_get_status');
+
+                //console.info('status: ' + status);
+
+                if (status == 0) {
+
+                    if (record.get('is_run') == true) {
+                        return 'x-grid-row-run';
+                    }
+                        
+                    if (record.get('is_run') == false)
+                        return 'x-grid-row';
+                    //return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
+
+                    //if (record.get('is_start_get_status') == 1) {
+                    //    return 'x-grid-row-getting-status';
+                    //} else {
+                    //    return css;
+                    //}
+
                 } else {
-                    return css;
+                    if (record.get('is_start_get_status') == 3) {
+                        return 'x-grid-row-block';
+                    }
                 }
-                //record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
             }
         }
     });
@@ -623,9 +662,11 @@ var getWinCampaigns = function () {
         }],
         listeners: {
             'close': function (win) {
+                console.info('close');
+                requestState = false;
             },
             'hide': function (win) {
-                //console.info('just hidden');
+                console.info('just hidden');
             }
         }
     });
@@ -636,7 +677,35 @@ var getWinCampaigns = function () {
         }
     });
 
-    //win_campaigns.show();
+    var getFillState = setInterval(function () { getFillStateRequest() }, 1000);
+    var getFillStateRequest = function () {
+        if (requestState) {
+            $.ajax({
+                url: 'api/start/GetFilledCampaignId/0',
+                type: 'get',
+                data: {
+                    TypeRequest: 0,
+                },
+                success: function (campaignId) {
+                    console.info('campaignId: ' + campaignId);
+                    var data = grid.getStore().getData();
+                    if (campaignId != 0) {
+                        var row = data.find('id', campaignId);
+                        row.set('is_start_get_status', 3);
+                        row.commit();
+                    } else {
+                        var row = data.find('is_start_get_status', 3);
+                        if (row != null) {
+                            row.set('is_start_get_status', 0);
+                            row.commit();
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+
     return win_campaigns;
 
     //store.load({

@@ -3381,6 +3381,7 @@
     <Content Include="scripts\jslib\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jslib\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\jslib\modernizr-2.6.2.js" />
+    <Content Include="tpt.aspx" />
     <Content Include="UsersData.xml" />
     <Content Include="Web.config" />
     <Content Include="UsersDS.xsc">
@@ -3550,6 +3551,13 @@
     </Compile>
     <Compile Include="reportmap.aspx.designer.cs">
       <DependentUpon>reportmap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tpt.aspx.cs">
+      <DependentUpon>tpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tpt.aspx.designer.cs">
+      <DependentUpon>tpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="UsersDS.Designer.cs">
       <AutoGen>True</AutoGen>
