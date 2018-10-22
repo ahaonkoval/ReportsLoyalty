@@ -60,7 +60,7 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                return db.CalculationLog.OrderByDescending(o => o.Id).FirstOrDefault();
+                return db.CalculationLog.Where(w => w.TypeOp == 20).OrderByDescending(o => o.Id).FirstOrDefault();
             }
         }
 
@@ -68,8 +68,15 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                var lg = db.CalculationLog.OrderByDescending(o => o.Id).First();
-                return db.CampaignsMk.Where(w => w.Id == lg.CampaignId).First().Name;
+                var lg = db.CalculationLog.Where(w => w.TypeOp == 20).OrderByDescending(o => o.Id).First();
+                var cp = db.CampaignsMk.Where(w => w.Id == lg.CampaignId);
+                if (cp.Count() > 0)
+                {
+                    return db.CampaignsMk.Where(w => w.Id == lg.CampaignId).First().Name;
+                } else
+                {
+                    return string.Empty;
+                }
             }
         }
 
@@ -79,26 +86,41 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                var l = db.CalculationLog.OrderByDescending(o => o.Id).First();
-                if (l.Status != 1)
+                var ml = db.CalculationLog.Where(w => w.TypeOp == 30);
+
+                CalculationLog l = null;
+                if (ml.Count() > 0)
+                    { l = ml.OrderByDescending(o => o.Id).First(); }
+
+                var campaign = db.CampaignsMk.Where(w => w.Id == campaignId).First();
+
+                if (l != null)
                 {
-
-                    var campaign = db.CampaignsMk.Where(w => w.Id == campaignId).First();
-
-                    switch (campaign.TypeId)
+                    if (l.Status != 1)
                     {
-                        case 1:
-                            {
-                                StartCalculationExtraPoints(campaignId, currentDate, db.ConnectionString);
-                            }
-                            break;
-                        case 2:
-                            {
-                                StartCalculationPersonalOffer(campaignId, currentDate, db.ConnectionString);
-                            }
-                            break;
-                    }                    
+                        StartCalculation(campaignId, currentDate, db.ConnectionString, campaign.TypeId);
+                    }
+                } else
+                {
+                    StartCalculation(campaignId, currentDate, db.ConnectionString, campaign.TypeId);
                 }
+            }
+        }
+
+        void StartCalculation(int campaignId, DateTime currentDate, string ConnectionString, long TypeId)
+        {
+            switch (TypeId)
+            {
+                case 1:
+                    {
+                        StartCalculationExtraPoints(campaignId, currentDate, ConnectionString);
+                    }
+                    break;
+                case 2:
+                    {
+                        StartCalculationPersonalOffer(campaignId, currentDate, ConnectionString);
+                    }
+                    break;
             }
         }
 

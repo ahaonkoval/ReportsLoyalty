@@ -11,6 +11,7 @@ using System.Web.Script.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 using DataModels;
+using System.Data;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -47,7 +48,18 @@ namespace ReportsLoyalty.Controllers
             var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
             var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
 
-            return new object();
+            using (GetData gt = new GetData())
+            {
+                DataTable tb = gt.Dict.GetDownloadTablesStatus();
+
+                object o_data = new
+                {
+                    total = tb.Rows.Count,
+                    data = tb
+                };
+
+                return o_data;
+            }
         }
 
         [HttpGet]

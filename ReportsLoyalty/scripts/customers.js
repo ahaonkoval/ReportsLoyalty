@@ -186,8 +186,8 @@ var getWinCustomers = function (campaign_id) {
             items: [
                 // these will render as dropdown menu items when the arrow is clicked:
                 {
-                    text: 'Створити список', handler: function () {
-                        //alert("Item 1 clicked");
+                    text: 'Вибрати по вказаним параметрам', handler: function () {
+                        getWinSelectCustomers(cmp_id, win).show();
                     }
                 },
                 {
@@ -429,7 +429,7 @@ var StartFillCampaign = function (record, campaignId, todelete) {
     });
 }
 
-var getWinSelectCustomers = function (campaign_id) {
+var getWinSelectCustomers = function (campaign_id, parentWin) {
     // ---------------------------------------------------------------------------------------
     var checkboxTradeCentre = new Ext.form.field.Checkbox({
         labelWidth: 220,
@@ -438,17 +438,18 @@ var getWinSelectCustomers = function (campaign_id) {
         padding: 3,
         listeners: {
             change: function (ctrl, newValue, oldValue, eOpts) {
-                comboBoxMarkets.setDisabled(!newValue);
+                comboBoxMarketsOm.setDisabled(!newValue);
             }
         }
     });
-    var comboBoxMarkets = Ext.create('Ext.form.ComboBox', {
+
+    comboBoxMarketsOm = Ext.create('Ext.form.ComboBox', {
         disabled:true,
         fieldLabel: 'ТЦ',
         labelWidth: 40,
         store: dict.getStoreMarkets(),
         multiSelect: true,
-        queryMode: 'local',
+        //queryMode: 'local',
         valueField: 'ShortName',
         displayField: 'MarketName',
         width: 300,
@@ -456,7 +457,7 @@ var getWinSelectCustomers = function (campaign_id) {
         emptyText: 'Всі',
         itemCls: 'make-bold',
         padding: 3,
-        renderTo: Ext.getBody(),
+        //renderTo: Ext.getBody(),
         tpl: Ext.create('Ext.XTemplate',
             '<tpl for=".">',
                 '<div class="x-boundlist-item">{MarketName}</div>',
@@ -633,7 +634,6 @@ var getWinSelectCustomers = function (campaign_id) {
         padding: 3,
         width: 200
     }).setValue(0).setDisabled(true);;
-
     // ---------------------------------------------------------------------------------------
     var checkboxAvgDoc = new Ext.form.Checkbox({
         labelWidth: 220,
@@ -738,7 +738,7 @@ var getWinSelectCustomers = function (campaign_id) {
 
     var win = Ext.create('Ext.Window', {
         //id: 'win_customers',
-        title: 'Створити вибірку та завантажити УПЛ...',
+        title: 'Створити вибірку та завантажити УПЛ для кампанії ' + campaign_id,
         width: 800,
         height: 500,
         modal: true,
@@ -747,7 +747,7 @@ var getWinSelectCustomers = function (campaign_id) {
         items: [
         {
             xtype: 'panel',
-            border: false,
+            border: true,
             layout: {
                 type: 'vbox',
                 align: 'stretch',
@@ -756,12 +756,14 @@ var getWinSelectCustomers = function (campaign_id) {
             items: [
                 // вибір маркетів, коли нічого, то всі -------------------------------------------------------------------------------------------------
                 {
-                    id:'pTradeCentre',
+                    border: false,
+                    //id: 'pTradeCentre',
+                    //xtype: 'panel',
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
                         { border: false, width: 250, items: [checkboxTradeCentre] },
-                        { border: false, flex: 1, layout: 'fit', items: [comboBoxMarkets] }
+                        { border: false, flex: 1, layout: 'fit', items: [comboBoxMarketsOm] }
                     ]
                 },
                 // вибір по даті початку участі -------------------------------------------------------------------------------------------------
@@ -783,6 +785,7 @@ var getWinSelectCustomers = function (campaign_id) {
                 },
                 // вибір по даіт останньої участі (остання покупка) --------------------------------------------------------------------------------------
                 {
+                    border: false,
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
@@ -799,6 +802,7 @@ var getWinSelectCustomers = function (campaign_id) {
                 },
                 // вибір по кількості візитів в мережу ТЦ -------------------------------------------------------------------------------------------------
                 {
+                    border: false,
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
@@ -815,6 +819,7 @@ var getWinSelectCustomers = function (campaign_id) {
                     ]
                 },
                 {
+                    border: false,
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
@@ -832,6 +837,7 @@ var getWinSelectCustomers = function (campaign_id) {
                     ]
                 },
                 {
+                    border: false,
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
@@ -849,6 +855,7 @@ var getWinSelectCustomers = function (campaign_id) {
                     ]
                 },
                 {
+                    border: false,
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
@@ -866,6 +873,7 @@ var getWinSelectCustomers = function (campaign_id) {
                     ]
                 },
                 {
+                    border: false,
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
@@ -883,6 +891,7 @@ var getWinSelectCustomers = function (campaign_id) {
                     ]
                 },
                 {
+                    border: false,
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
@@ -900,6 +909,7 @@ var getWinSelectCustomers = function (campaign_id) {
                     ]
                 },
                 {
+                    border: false,
                     height: 35,
                     layout: { type: 'hbox', pack: 'start', align: 'stretch' },
                     items: [
@@ -924,12 +934,27 @@ var getWinSelectCustomers = function (campaign_id) {
                 text: 'Перевірити кількість УПЛ',
                 listeners: {
                     'click': function (ctrl) {
-                        var data = new {
-                            marketLst: '',
-                            startDate: '',
-                            lastDate: '',
-                            qtyVisit: '',
-                        }
+                        var o = createData();
+
+                        //JSON.stringify(o);
+                        //console.log(JSON.stringify(o));
+                        //console.log(o);                       
+
+                        $.ajax({
+                            url: 'api/customer/GetSelectedCustomescount/0',
+                            type: 'get',
+                            data: o,
+                            beforeSend: function () {
+                                win.setDisabled(true);
+                            },
+                            success: function (returned) {
+
+                                Ext.Msg.alert('Рузультат...', returned + ' УПЛ.');
+
+                                win.setDisabled(false);
+                            }
+                        });
+
                     }
                 }
             },
@@ -938,6 +963,25 @@ var getWinSelectCustomers = function (campaign_id) {
                 text: 'Почати завантаження',
                 listeners: {
                     'click': function (ctrl) {
+                        var o = createData();
+                        
+                        $.ajax({
+                            url: 'api/customer/StartFillCampaignFromSelectedCustomes/' + campaign_id,
+                            type: 'get',
+                            data: o,
+                            beforeSend: function () {
+                                //win.setDisabled(true);
+                            },
+                            success: function (returned) {
+                                //Ext.Msg.alert('Рузультат...', returned + ' УПЛ.');                                                               
+                            }
+                        });
+                        
+                        //comboBoxMarkets = null;
+
+                        parentWin.hide();
+                        //win.hide();
+                        win.close();
                     }
                 }
             },
@@ -953,5 +997,85 @@ var getWinSelectCustomers = function (campaign_id) {
             }, ]
     })
 
+    var createData = function () {
+        //console.log("{0}|{1}".format(new Date(datefieldStartPart_1.getValue()).yyyymmdd(), new Date(datefieldStartPart_2.getValue()).yyyymmdd()));
+        var o = {
+            marketLst: '',
+            startDate: '', //"{0}|{1}".format(new Date(datefieldStartPart_1.getValue()).yyyymmdd(), new Date(datefieldStartPart_2.getValue()).yyyymmdd()),
+            lastDate: '',
+            qtyAtd: '',
+            qtyDocs: '',
+            obert: '',
+            avgDoc: '',
+            maxDoc: '',
+            avgBetweenAtd: '',
+            qtyPoints: ''
+        };
+        if (checkboxTradeCentre.getValue()) {
+            o.marketLst = comboBoxMarketsOm.getValue();
+        } else { o.marketLst = ''; }
+
+        if (checkboxStartPart.getValue()) {
+            o.startDate = "{0}|{1}".format(new Date(datefieldStartPart_1.getValue()).yyyymmdd(), new Date(datefieldStartPart_2.getValue()).yyyymmdd());
+        } else { o.startDate = ''; }
+
+        if (checkboxLastPart.getValue()) {
+            o.lastDate = "{0}|{1}".format(new Date(datefieldLastPart_1.getValue()).yyyymmdd(), new Date(datefieldLastPart_2.getValue()).yyyymmdd());
+        } else { o.lastDate = ''; }
+
+        if (checkboxQtyVisits.getValue()) {
+            o.qtyAtd = "{0}|{1}".format(numberQtyVisits_1.getValue(), numberQtyVisits_2.getValue());
+        } else { o.qtyAtd = ''; }
+
+        if (checkboxQtyDoc.getValue()) {
+            o.qtyDocs = "{0}|{1}".format(numberQtyDoc_1.getValue(), numberQtyDoc_2.getValue());
+        } else { o.qtyDocs = ''; }
+
+        if (checkboxObert.getValue()) {
+            o.obert = "{0}|{1}".format(textfieldObert_1.getValue(), textfieldObert_2.getValue());
+        } else { o.obert = ''; }
+
+        if (checkboxAvgDoc.getValue()) {
+            o.avgDoc = "{0}|{1}".format(textfieldAvgDoc_1.getValue(), textfieldAvgDoc_2.getValue());
+        } else { o.avgDoc = ''; }
+
+        if (checkboxmaxDoc.getValue()) {
+            o.maxDoc = "{0}|{1}".format(textfieldmaxDoc_1.getValue(), textfieldmaxDoc_2.getValue());
+        } else { o.maxDoc = ''; }
+
+        if (checkboxAvgDistance.getValue()) {
+            o.avgBetweenAtd = "{0}|{1}".format(textfieldAvgDistance_1.getValue(), textfieldAvgDistance_2.getValue());
+        } else { o.avgBetweenAtd = ''; }
+
+        if (checkboxPointCount.getValue()) {
+            o.qtyPoints = "{0}|{1}".format(textfieldPointCount_1.getValue(), textfieldPointCount_2.getValue());
+        } else { o.qtyPoint = ''; }
+
+        return o;
+    };
+
     return win;
 }
+/* ================================================================================================================== */
+String.prototype.format = function () {
+    a = this;
+    for (k in arguments) {
+        a = a.replace("{" + k + "}", arguments[k])
+    }
+    return a
+};
+
+Date.prototype.yyyymmdd = function () {
+    if (this != null) {
+        var mm = this.getMonth() + 1;
+        var dd = this.getDate();
+
+        return [this.getFullYear(),
+                (mm > 9 ? '' : '0') + mm,
+                (dd > 9 ? '' : '0') + dd
+        ].join('-');
+    } else {
+        return 'null';
+    }
+};
+/* ================================================================================================================== */

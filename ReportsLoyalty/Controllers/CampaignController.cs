@@ -82,18 +82,18 @@ namespace ReportsLoyalty.Controllers
             }
         }
 
-        [HttpGet]
-        public string StartCalculation(int id)
-        {
-            var queryparams = Request.GetQueryNameValuePairs();
-            var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
-            using (GetData data = new GetData())
-            {
-                data.Campaigns.SetStartCalculation(id, Convert.ToDateTime(dt));
-            }
+        //[HttpGet]
+        //public string StartCalculation(int id)
+        //{
+        //    var queryparams = Request.GetQueryNameValuePairs();
+        //    var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
+        //    using (GetData data = new GetData())
+        //    {
+        //        data.Campaigns.SetStartCalculation(id, Convert.ToDateTime(dt));
+        //    }
 
-            return string.Empty;
-        }
+        //    return string.Empty;
+        //}
         #endregion
         /// <summary>
         /// Збереження параметрів кампанії

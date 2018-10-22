@@ -31,7 +31,7 @@ namespace LoyaltyDB
 
             Campaigns = new LoyaltyDB.Campaigns(Le);
             Dict = new LoyaltyDB.Dict();
-            Customers = new LoyaltyDB.Customers(Le);
+            Customers = new LoyaltyDB.Customers();
             Art = new LoyaltyDB.Articuls();
             PC = new PersonalCampaign();
         }

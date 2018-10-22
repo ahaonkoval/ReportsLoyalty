@@ -31,6 +31,10 @@
     background-color:rgb(204, 188, 66);
 }
 
+.x-grid-row-alert .x-grid-cell {
+    font: normal 11px tahoma,arial,verdana,sans-serif;
+    background-color:rgba(241, 155, 85, 0.38);
+}
 
 .menu_is_run
 { 

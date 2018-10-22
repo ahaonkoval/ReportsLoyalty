@@ -1,6 +1,6 @@
 ﻿
 function Dict() {
-    /// 
+    // -----------------------------------------------------------------------
     this.getStoreCampaigns = function (type_id) {
         var model = Ext.define('v_campaigns_mk_run', {
             extend: 'Ext.data.Model',
@@ -26,7 +26,7 @@ function Dict() {
         });
 
     },
-    ///
+    // -----------------------------------------------------------------------
     this.getStoreMarkets = function () {
         var model = Ext.define('DictMarkets', {
             extend: 'Ext.data.Model',
@@ -46,7 +46,7 @@ function Dict() {
             autoLoad: true
         });
     },
-    ///
+    // -----------------------------------------------------------------------
     this.getCmpGrpByLevel = function (level) {
         var model = Ext.define('FGroup', {
             extend: 'Ext.data.Model',
@@ -65,7 +65,7 @@ function Dict() {
             autoLoad: true
         });
     },
-
+    // -----------------------------------------------------------------------
     // Завантаження переліку груп віддвілу (другий рівень довідника, name 2)
     // завантаження проходить ИД відділа
     this.getGrpNameTwoByOtdId = function (otdId) {
@@ -86,7 +86,7 @@ function Dict() {
             autoLoad: true
         });
     },
-    ///
+    // -----------------------------------------------------------------------
     this.getDepartmentsListByOtdId = function (otdId) {
         var model = Ext.define('FGroup', {
             extend: 'Ext.data.Model',
@@ -105,7 +105,7 @@ function Dict() {
             autoLoad: true
         });
     },
-    ///
+    // -----------------------------------------------------------------------
     this.getCmpGrpByParentId = function (parentId) {
         var model = Ext.define('FGroup', {
             extend: 'Ext.data.Model',
@@ -163,7 +163,7 @@ function Dict() {
             ]
         });
     },
-    ///
+    // -----------------------------------------------------------------------
     this.getStoreCampaignTypes = function () {
         var m = Ext.define('CampaignType', {
             extend: 'Ext.data.Model',
@@ -182,7 +182,7 @@ function Dict() {
             autoLoad: true
         });
     },
-    ///
+    // -----------------------------------------------------------------------
     this.getStoreCampaignTypesFiltered = function () {
         var m = Ext.define('CampaignType', {
             extend: 'Ext.data.Model',
@@ -203,7 +203,7 @@ function Dict() {
 
         return store;
     },
-    ///
+    // -----------------------------------------------------------------------
     this.getStoreUPLControlData = function () {
          var m = Ext.define('UPLControl', {
              extend: 'Ext.data.Model',
@@ -223,7 +223,47 @@ function Dict() {
              model: m,
              autoLoad: true
          });
-     }
+    },
+    // -----------------------------------------------------------------------
+    this.getStoreDownloadStatusTables = function () {
+        var m = Ext.define('CampaignType', {
+            extend: 'Ext.data.Model',
+            fields: [
+                { name: 'Number', type: 'int' },
+                { name: 'title', type: 'string' },
+                { name: 'DownloadStatus', type: 'string' },
+                {
+                    name: 'Created', type: 'date',
+                    convert: function (v, record) {
+                        if (v != null) {
+                            if (v.toString().indexOf('/') > -1) {
+                                return new Date(parseInt(v.substr(6)));
+                            } else {
+                                return v;
+                            }
+
+                        } else {
+                            return '';
+                        }
+                    }
+                }
+            ],
+            proxy: {
+                type: 'rest',
+                url: 'api/dict/GetDownloadStatus/1',
+                reader: {
+                    type: 'json',
+                    root: 'data'
+                }
+            }
+        });
+        var store = Ext.create('Ext.data.Store', {
+            model: m,
+            autoLoad: true
+        });
+
+        return store;
+    }
 }
 
 var dict = new Dict();

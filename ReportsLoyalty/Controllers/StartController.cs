@@ -23,6 +23,7 @@ namespace ReportsLoyalty.Controllers
             switch (Convert.ToInt32(TypeRequest))
             {
                 case 1:
+                    /* Запуск на перерахунок */
                     var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
                     Global.SP.Start(id, Convert.ToDateTime(dt));
                     break;
@@ -30,6 +31,7 @@ namespace ReportsLoyalty.Controllers
                     /* */
                     using (GetData od = new GetData())
                     {
+                        /* ToDo Вигружать последние операции... */
                         var m = od.Campaigns.GetCalculationLogLast();
 
                         if (m != null)

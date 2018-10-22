@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using LinqToDB;
 using DataModels;
 using static DataModels.CrmWizardDBStoredProcedures;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace LoyaltyDB
 {
@@ -93,16 +95,25 @@ namespace LoyaltyDB
         public IEnumerable<v_fgroups> GetDepartmentsByOtdId(long id)
         {
             List<v_fgroups> fg = new List<v_fgroups>();
-            var groups = Le.t_get_departs_by_otdid(id);
-            foreach (t_get_departs_by_otdid_Result o in groups)
+            //var groups = Le.t_get_departs_by_otdid(id);
+
+
+            using (var db = new DataModels.CrmWizardDB())
             {
-                fg.Add(new v_fgroups
+                var groups = db.TGetDepartsByOtdid(id);
+
+                foreach (CrmWizardDB.TGetDepartsByOtdidResult o in groups)
                 {
-                    fgroup_id = o.fgroup_id.Value,
-                    name = o.name
-                });
+                    fg.Add(new v_fgroups
+                    {
+                        fgroup_id = o.fgroup_id.Value,
+                        name = o.name
+                    });
+                }
+
+
+                return fg;
             }
-            return fg;
         }
         /// <summary>
         /// 
@@ -177,6 +188,51 @@ namespace LoyaltyDB
                 var data = db.PGetFillingCampaignId().ToList().FirstOrDefault();
                 return data.campaign_id;
             }
+        }
+
+        public DataTable GetDownloadTablesStatus()
+        {
+            DataTable tb = new DataTable(); ;
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                using (SqlConnection c = new SqlConnection(db.ConnectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = c.CreateCommand();
+                        cmd.CommandTimeout = 100000000;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Connection = c;
+                        cmd.CommandText = @"
+                            SELECT 
+	                            ROW_NUMBER() over(order by a.created desc) [Number],
+	                            a.title, 
+	                            case a.Status 
+                                    when 1 then 'так' 
+                                    when 0 then 'ні' end [DownloadStatus],
+	                            a.Created
+                            FROM dbo.crm_wizard_updates a with (nolock) 
+                            WHERE
+	                            a.title not like '%movement%'
+                            ORDER BY a.created desc
+                        ";
+
+                        if (c.State != ConnectionState.Open)
+                            c.Open();
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        tb.Load(reader);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        int i = 0;
+                        // TODO Логировать ошибку
+                    }
+                }
+            }
+
+            return tb;
         }
     }
 }

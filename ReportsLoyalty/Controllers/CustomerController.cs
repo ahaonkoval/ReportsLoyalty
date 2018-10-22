@@ -79,6 +79,93 @@ namespace ReportsLoyalty.Controllers
         }
 
         [HttpGet]
+        public string GetSelectedCustomesCount(int id) {
+
+            var queryparams = Request.GetQueryNameValuePairs();
+            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+            string tradeCentreLst = string.Empty;
+            var mlst = queryparams.Where(w => w.Key == "marketLst").ToList();
+            foreach (var a in mlst)
+            {
+                if (tradeCentreLst == string.Empty)
+                {
+                    tradeCentreLst = a.Value;
+                } else
+                {
+                    tradeCentreLst = tradeCentreLst + string.Format("|{0}", a.Value);
+                }                
+            }
+
+            CustomerSelect cs = new LoyaltyDB.CustomerSelect
+            {
+                campaignId = id,
+                marketLst = tradeCentreLst,
+                avgBetweenAtd = queryparams.Where(w => w.Key == "avgBetweenAtd").FirstOrDefault().Value,
+                avgDoc = queryparams.Where(w => w.Key == "avgDoc").FirstOrDefault().Value,
+                lastDate = queryparams.Where(w => w.Key == "lastDate").FirstOrDefault().Value,
+                maxDoc = queryparams.Where(w => w.Key == "maxDoc").FirstOrDefault().Value,
+                obert = queryparams.Where(w => w.Key == "obert").FirstOrDefault().Value,
+                qtyAtd = queryparams.Where(w => w.Key == "qtyAtd").FirstOrDefault().Value,
+                qtyDocs = queryparams.Where(w => w.Key == "qtyDocs").FirstOrDefault().Value,
+                qtyPoints = queryparams.Where(w => w.Key == "qtyPoints").FirstOrDefault().Value,
+                startDate = queryparams.Where(w => w.Key == "startDate").FirstOrDefault().Value
+            };
+
+            string returned = string.Empty;
+            using (GetData dt = new GetData())
+            {
+                returned = dt.Customers.GetSelectedCustomersCount(cs);
+            }
+
+            return returned;
+        }
+
+        [HttpGet]
+        public string StartFillCampaignFromSelectedCustomes(int id)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+            string tradeCentreLst = string.Empty;
+            var mlst = queryparams.Where(w => w.Key == "marketLst").ToList();
+            foreach (var a in mlst)
+            {
+                if (tradeCentreLst == string.Empty)
+                {
+                    tradeCentreLst = a.Value;
+                }
+                else
+                {
+                    tradeCentreLst = tradeCentreLst + string.Format("|{0}", a.Value);
+                }
+            }
+
+            CustomerSelect cs = new LoyaltyDB.CustomerSelect
+            {
+                campaignId = id,
+                marketLst = tradeCentreLst,
+                avgBetweenAtd = queryparams.Where(w => w.Key == "avgBetweenAtd").FirstOrDefault().Value,
+                avgDoc = queryparams.Where(w => w.Key == "avgDoc").FirstOrDefault().Value,
+                lastDate = queryparams.Where(w => w.Key == "lastDate").FirstOrDefault().Value,
+                maxDoc = queryparams.Where(w => w.Key == "maxDoc").FirstOrDefault().Value,
+                obert = queryparams.Where(w => w.Key == "obert").FirstOrDefault().Value,
+                qtyAtd = queryparams.Where(w => w.Key == "qtyAtd").FirstOrDefault().Value,
+                qtyDocs = queryparams.Where(w => w.Key == "qtyDocs").FirstOrDefault().Value,
+                qtyPoints = queryparams.Where(w => w.Key == "qtyPoints").FirstOrDefault().Value,
+                startDate = queryparams.Where(w => w.Key == "startDate").FirstOrDefault().Value
+            };
+
+            Global.SP.StartCreateCampaignFromSelect(cs);
+
+            return string.Empty;
+        }
+
+        [HttpGet]
         public HttpResponseMessage GetCustomersFileLong(int id)
         {
             var result = Request.CreateResponse(HttpStatusCode.OK);

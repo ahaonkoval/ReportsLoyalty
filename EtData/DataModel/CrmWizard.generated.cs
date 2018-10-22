@@ -68,6 +68,7 @@ namespace DataModels
 		public ITable<CrmCustomerKm>                          CrmCustomerKm                          { get { return this.GetTable<CrmCustomerKm>(); } }
 		public ITable<CrmCustomers>                           CrmCustomers                           { get { return this.GetTable<CrmCustomers>(); } }
 		public ITable<CrmCustomerStatus>                      CrmCustomerStatus                      { get { return this.GetTable<CrmCustomerStatus>(); } }
+		public ITable<CrmDiscountTypes>                       CrmDiscountTypes                       { get { return this.GetTable<CrmDiscountTypes>(); } }
 		public ITable<CrmGiftCustomers>                       CrmGiftCustomers                       { get { return this.GetTable<CrmGiftCustomers>(); } }
 		public ITable<CrmGiftItems>                           CrmGiftItems                           { get { return this.GetTable<CrmGiftItems>(); } }
 		public ITable<CrmGifts>                               CrmGifts                               { get { return this.GetTable<CrmGifts>(); } }
@@ -83,15 +84,16 @@ namespace DataModels
 		public ITable<CustomersKidsAgeMap>                    CustomersKidsAgeMap                    { get { return this.GetTable<CustomersKidsAgeMap>(); } }
 		public ITable<CustomersProfile>                       CustomersProfile                       { get { return this.GetTable<CustomersProfile>(); } }
 		public ITable<CustomersState>                         CustomersState                         { get { return this.GetTable<CustomersState>(); } }
+		public ITable<CustomersType>                          CustomersType                          { get { return this.GetTable<CustomersType>(); } }
 		public ITable<DailyAllocationTypes>                   DailyAllocationTypes                   { get { return this.GetTable<DailyAllocationTypes>(); } }
 		public ITable<DailyMap>                               DailyMap                               { get { return this.GetTable<DailyMap>(); } }
 		public ITable<DailyMarketRests>                       DailyMarketRests                       { get { return this.GetTable<DailyMarketRests>(); } }
 		public ITable<DailyReportArticulIndicators>           DailyReportArticulIndicators           { get { return this.GetTable<DailyReportArticulIndicators>(); } }
 		public ITable<DailyReportBasicIndicators>             DailyReportBasicIndicators             { get { return this.GetTable<DailyReportBasicIndicators>(); } }
 		public ITable<DailyReportMapAllocation>               DailyReportMapAllocation               { get { return this.GetTable<DailyReportMapAllocation>(); } }
+		public ITable<DATATOFIN>                              DATATOFIN                              { get { return this.GetTable<DATATOFIN>(); } }
 		public ITable<DictArticulsVtm>                        DictArticulsVtm                        { get { return this.GetTable<DictArticulsVtm>(); } }
 		public ITable<DictCardStatus>                         DictCardStatus                         { get { return this.GetTable<DictCardStatus>(); } }
-		public ITable<DictCustomerStatus>                     DictCustomerStatus                     { get { return this.GetTable<DictCustomerStatus>(); } }
 		public ITable<DictGoods>                              DictGoods                              { get { return this.GetTable<DictGoods>(); } }
 		public ITable<DictKassas>                             DictKassas                             { get { return this.GetTable<DictKassas>(); } }
 		public ITable<DictMarkets>                            DictMarkets                            { get { return this.GetTable<DictMarkets>(); } }
@@ -106,6 +108,7 @@ namespace DataModels
 		public ITable<FinLoyaltyRepArticuls>                  FinLoyaltyRepArticuls                  { get { return this.GetTable<FinLoyaltyRepArticuls>(); } }
 		public ITable<FinLoyaltyRepGroups>                    FinLoyaltyRepGroups                    { get { return this.GetTable<FinLoyaltyRepGroups>(); } }
 		public ITable<GoodsShort>                             GoodsShort                             { get { return this.GetTable<GoodsShort>(); } }
+		public ITable<HistoryCrmCustomers>                    HistoryCrmCustomers                    { get { return this.GetTable<HistoryCrmCustomers>(); } }
 		public ITable<HoleBucketV1>                           HoleBucketV1                           { get { return this.GetTable<HoleBucketV1>(); } }
 		public ITable<LoyaltySellMovementImport1>             LoyaltySellMovementImport1             { get { return this.GetTable<LoyaltySellMovementImport1>(); } }
 		public ITable<LoyaltySellMovementImport10>            LoyaltySellMovementImport10            { get { return this.GetTable<LoyaltySellMovementImport10>(); } }
@@ -198,6 +201,7 @@ namespace DataModels
 		public ITable<Payment>                                Payments                               { get { return this.GetTable<Payment>(); } }
 		public ITable<ProcExecuteLog>                         ProcExecuteLog                         { get { return this.GetTable<ProcExecuteLog>(); } }
 		public ITable<Producer>                               Producers                              { get { return this.GetTable<Producer>(); } }
+		public ITable<PromoCodeUsing>                         PromoCodeUsing                         { get { return this.GetTable<PromoCodeUsing>(); } }
 		public ITable<PromoRegister>                          PromoRegister                          { get { return this.GetTable<PromoRegister>(); } }
 		public ITable<Promos1>                                Promos1                                { get { return this.GetTable<Promos1>(); } }
 		public ITable<PromoTypes>                             PromoTypes                             { get { return this.GetTable<PromoTypes>(); } }
@@ -224,8 +228,6 @@ namespace DataModels
 		public ITable<VCardCountByGroup>                      VCardCountByGroup                      { get { return this.GetTable<VCardCountByGroup>(); } }
 		public ITable<VCardCustomersTrue>                     VCardCustomersTrue                     { get { return this.GetTable<VCardCustomersTrue>(); } }
 		public ITable<VCardusing>                             VCardusing                             { get { return this.GetTable<VCardusing>(); } }
-		public ITable<VCrmBonusMovement>                      VCrmBonusMovement                      { get { return this.GetTable<VCrmBonusMovement>(); } }
-		public ITable<VCustomersAverageAmountPerday>          VCustomersAverageAmountPerday          { get { return this.GetTable<VCustomersAverageAmountPerday>(); } }
 		public ITable<VCustomersCard>                         VCustomersCard                         { get { return this.GetTable<VCustomersCard>(); } }
 		public ITable<VCustomersCardAll>                      VCustomersCardAll                      { get { return this.GetTable<VCustomersCardAll>(); } }
 		public ITable<VCustomersSell>                         VCustomersSell                         { get { return this.GetTable<VCustomersSell>(); } }
@@ -233,6 +235,7 @@ namespace DataModels
 		public ITable<VCustomersSellAllShort>                 VCustomersSellAllShort                 { get { return this.GetTable<VCustomersSellAllShort>(); } }
 		public ITable<VCustomersSellAllV2>                    VCustomersSellAllV2                    { get { return this.GetTable<VCustomersSellAllV2>(); } }
 		public ITable<VCustomersSellShort>                    VCustomersSellShort                    { get { return this.GetTable<VCustomersSellShort>(); } }
+		public ITable<VDATATOFIN>                             VDATATOFIN                             { get { return this.GetTable<VDATATOFIN>(); } }
 		public ITable<VDictGoods>                             VDictGoods                             { get { return this.GetTable<VDictGoods>(); } }
 		public ITable<VFgroups>                               VFgroups                               { get { return this.GetTable<VFgroups>(); } }
 		public ITable<WinnerParticipant>                      WinnerParticipant                      { get { return this.GetTable<WinnerParticipant>(); } }
@@ -275,12 +278,19 @@ namespace DataModels
 		#region TCustomersAvgSmByday
 
 		[Sql.TableFunction(Schema="calc", Name="t_customers_avg_sm_byday")]
-		public ITable<VCustomersAverageAmountPerday> TCustomersAvgSmByday(DateTime? @date_start, DateTime? @date_end, long? @market_id)
+		public ITable<TCustomersAvgSmBydayResult> TCustomersAvgSmByday(DateTime? @date_start, DateTime? @date_end, long? @market_id)
 		{
-			return this.GetTable<VCustomersAverageAmountPerday>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<TCustomersAvgSmBydayResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				@date_start,
 				@date_end,
 				@market_id);
+		}
+
+		public partial class TCustomersAvgSmBydayResult
+		{
+			public long?    market_id       { get; set; }
+			public long?    crm_customer_id { get; set; }
+			public decimal? avg_sm          { get; set; }
 		}
 
 		#endregion
@@ -1356,6 +1366,8 @@ namespace DataModels
 		/// 1 - начата обработка 2 - закончена
 		/// </summary>
 		[Column("status"),      Nullable            ] public int?      Status     { get; set; } // int
+		[Column("exception"),   Nullable            ] public string    Exception  { get; set; } // ntext
+		[Column("type_op"),     Nullable            ] public int?      TypeOp     { get; set; } // int
 	}
 
 	[Table(Schema="calc", Name="campaign_articul")]
@@ -1416,6 +1428,7 @@ namespace DataModels
 		[Column("market_id"),           Nullable          ] public long?    MarketId        { get; set; } // bigint
 		[Column("free"),                Nullable          ] public string   Free            { get; set; } // nvarchar(50)
 		[Column("status_list"),         Nullable          ] public string   StatusList      { get; set; } // nvarchar(50)
+		[Column("campaign_number"),     Nullable          ] public int?     CampaignNumber  { get; set; } // int
 	}
 
 	[Table(Schema="calc", Name="campaign_phone_status")]
@@ -1868,6 +1881,13 @@ namespace DataModels
 		[Column("is_departments"),                      NotNull] public bool   IsDepartments       { get; set; } // bit
 	}
 
+	[Table(Schema="dbo", Name="crm_discount_types")]
+	public partial class CrmDiscountTypes
+	{
+		[Column("crm_discount_type_id"), PrimaryKey,  NotNull] public int    CrmDiscountTypeId { get; set; } // int
+		[Column("title"),                   Nullable         ] public string Title             { get; set; } // varchar(200)
+	}
+
 	[Table(Schema="dbo", Name="crm_gift_customers")]
 	public partial class CrmGiftCustomers
 	{
@@ -1991,12 +2011,14 @@ namespace DataModels
 	[Table(Schema="calc", Name="customers_bonus_state")]
 	public partial class CustomersBonusState
 	{
-		[Column("card_id"),         Nullable] public long?    CardId        { get; set; } // bigint
-		[Column("crm_customer_id"), Nullable] public long?    CrmCustomerId { get; set; } // bigint
-		[Column("barcode"),         Nullable] public string   Barcode       { get; set; } // nvarchar(50)
-		[Column("bonus_obtained"),  Nullable] public decimal? BonusObtained { get; set; } // decimal(18, 2)
-		[Column("bonus_used"),      Nullable] public decimal? BonusUsed     { get; set; } // decimal(18, 2)
-		[Column("bonus_after"),     Nullable] public decimal? BonusAfter    { get; set; } // decimal(18, 2)
+		[Column("card_id"),                Nullable] public long?    CardId              { get; set; } // bigint
+		[Column("crm_customer_id"),        Nullable] public long?    CrmCustomerId       { get; set; } // bigint
+		[Column("barcode"),                Nullable] public string   Barcode             { get; set; } // nvarchar(50)
+		[Column("bonus_obtained"),         Nullable] public decimal? BonusObtained       { get; set; } // decimal(18, 2)
+		[Column("bonus_used"),             Nullable] public decimal? BonusUsed           { get; set; } // decimal(18, 2)
+		[Column("bonus_after"),            Nullable] public decimal? BonusAfter          { get; set; } // decimal(18, 2)
+		[Column("bonus_obtained_to_date"), Nullable] public decimal? BonusObtainedToDate { get; set; } // decimal(18, 2)
+		[Column("cashflow"),               Nullable] public decimal? Cashflow            { get; set; } // decimal(18, 2)
 	}
 
 	[Table(Schema="calc", Name="customers_indicators")]
@@ -2075,17 +2097,32 @@ namespace DataModels
 	[Table(Schema="calc", Name="customers_state")]
 	public partial class CustomersState
 	{
-		[Column("state_id"),            PrimaryKey, Identity] public long      StateId            { get; set; } // bigint
-		[Column("crm_customer_id"),     Nullable            ] public long?     CrmCustomerId      { get; set; } // bigint
-		[Column("issued_market_id"),    Nullable            ] public long?     IssuedMarketId     { get; set; } // bigint
-		[Column("start_participation"), Nullable            ] public DateTime? StartParticipation { get; set; } // date
-		[Column("last_participation"),  Nullable            ] public DateTime? LastParticipation  { get; set; } // date
-		[Column("qty_visits"),          Nullable            ] public long?     QtyVisits          { get; set; } // bigint
-		[Column("qty_docs"),            Nullable            ] public long?     QtyDocs            { get; set; } // bigint
-		[Column("obert"),               Nullable            ] public decimal?  Obert              { get; set; } // decimal(18, 2)
-		[Column("doc_avg"),             Nullable            ] public decimal?  DocAvg             { get; set; } // decimal(18, 2)
-		[Column("doc_max"),             Nullable            ] public decimal?  DocMax             { get; set; } // decimal(18, 2)
-		[Column("dist_between_visits"), Nullable            ] public decimal?  DistBetweenVisits  { get; set; } // decimal(18, 2)
+		[Column("state_id"),               PrimaryKey, Identity] public long      StateId             { get; set; } // bigint
+		[Column("crm_customer_id"),        Nullable            ] public long?     CrmCustomerId       { get; set; } // bigint
+		[Column("issued_market_id"),       Nullable            ] public long?     IssuedMarketId      { get; set; } // bigint
+		[Column("last_market_id"),         Nullable            ] public long?     LastMarketId        { get; set; } // bigint
+		[Column("start_participation"),    Nullable            ] public DateTime? StartParticipation  { get; set; } // date
+		[Column("last_participation"),     Nullable            ] public DateTime? LastParticipation   { get; set; } // date
+		[Column("qty_visits"),             Nullable            ] public long?     QtyVisits           { get; set; } // bigint
+		[Column("qty_docs"),               Nullable            ] public long?     QtyDocs             { get; set; } // bigint
+		[Column("obert"),                  Nullable            ] public decimal?  Obert               { get; set; } // decimal(18, 2)
+		[Column("doc_avg"),                Nullable            ] public decimal?  DocAvg              { get; set; } // decimal(18, 2)
+		[Column("doc_max"),                Nullable            ] public decimal?  DocMax              { get; set; } // decimal(18, 2)
+		[Column("len_between_visits"),     Nullable            ] public decimal?  LenBetweenVisits    { get; set; } // decimal(18, 2)
+		[Column("bonus_after"),            Nullable            ] public decimal?  BonusAfter          { get; set; } // decimal(18, 2)
+		[Column("bonus_obtained_to_date"), Nullable            ] public decimal?  BonusObtainedToDate { get; set; } // decimal(18, 2)
+		[Column("bonus_used"),             Nullable            ] public decimal?  BonusUsed           { get; set; } // decimal(18, 2)
+		[Column("bonus_obtained"),         Nullable            ] public decimal?  BonusObtained       { get; set; } // decimal(18, 2)
+		[Column("barcode"),                Nullable            ] public string    Barcode             { get; set; } // nvarchar(20)
+	}
+
+	[Table(Schema="calc", Name="customers_type")]
+	public partial class CustomersType
+	{
+		[Column("id"),              PrimaryKey, Identity] public long   Id            { get; set; } // bigint
+		[Column("crm_customer_id"), Nullable            ] public long?  CrmCustomerId { get; set; } // bigint
+		[Column("full_barcode"),    Nullable            ] public string FullBarcode   { get; set; } // nvarchar(15)
+		[Column("type_name"),       Nullable            ] public string TypeName      { get; set; } // nvarchar(50)
 	}
 
 	[Table(Schema="calc", Name="daily_allocation_types")]
@@ -2294,6 +2331,40 @@ namespace DataModels
 		#endregion
 	}
 
+	[Table(Schema="calc", Name="DATA_TO_FIN")]
+	public partial class DATATOFIN
+	{
+		[Column("market_id"),               Nullable] public int?      MarketId           { get; set; } // int
+		[Column("doc_id"),               NotNull    ] public long      DocId              { get; set; } // bigint
+		[Column("barcode"),                 Nullable] public string    Barcode            { get; set; } // varchar(13)
+		[Column("customer_status_name"),    Nullable] public string    CustomerStatusName { get; set; } // varchar(50)
+		[Column("short_market_name"),       Nullable] public string    ShortMarketName    { get; set; } // nvarchar(50)
+		[Column("created"),                 Nullable] public DateTime? Created            { get; set; } // datetime
+		[Column("doc_name"),                Nullable] public string    DocName            { get; set; } // varchar(30)
+		[Column("short_name"),              Nullable] public string    ShortName          { get; set; } // nvarchar(50)
+		[Column("bonus_obtained"),          Nullable] public decimal?  BonusObtained      { get; set; } // decimal(18, 2)
+		[Column("discount_amount"),         Nullable] public decimal?  DiscountAmount     { get; set; } // decimal(18, 2)
+		[Column("price"),                   Nullable] public decimal?  Price              { get; set; } // decimal(18, 2)
+		[Column("quantity"),                Nullable] public decimal?  Quantity           { get; set; } // decimal(18, 2)
+		[Column("articul"),                 Nullable] public string    Articul            { get; set; } // varchar(8)
+		[Column("name_0"),                  Nullable] public string    Name0              { get; set; } // varchar(150)
+		[Column("name_1"),                  Nullable] public string    Name1              { get; set; } // varchar(150)
+		[Column("name_2"),                  Nullable] public string    Name2              { get; set; } // varchar(150)
+		[Column("name_3"),                  Nullable] public string    Name3              { get; set; } // varchar(150)
+		[Column("name_4"),                  Nullable] public string    Name4              { get; set; } // varchar(150)
+		[Column("good_name"),               Nullable] public string    GoodName           { get; set; } // varchar(200)
+		[Column("pack_name"),               Nullable] public string    PackName           { get; set; } // varchar(30)
+		[Column("markmo_name"),             Nullable] public string    MarkmoName         { get; set; } // varchar(30)
+		[Column("buy_price"),               Nullable] public decimal?  BuyPrice           { get; set; } // decimal(18, 2)
+		[Column("sell_price_for_date"),     Nullable] public decimal?  SellPriceForDate   { get; set; } // decimal(18, 2)
+		[Column("lifo_buy_price"),          Nullable] public decimal?  LifoBuyPrice       { get; set; } // decimal(18, 2)
+		[Column("sellprice_type_id"),       Nullable] public int?      SellpriceTypeId    { get; set; } // int
+		[Column("agent_name"),              Nullable] public string    AgentName          { get; set; } // varchar(300)
+		[Column("producer_name"),           Nullable] public string    ProducerName       { get; set; } // varchar(200)
+		[Column("discount_base"),           Nullable] public string    DiscountBase       { get; set; } // varchar(150)
+		[Column("crm_discount_info"),       Nullable] public string    CrmDiscountInfo    { get; set; } // varchar(150)
+	}
+
 	[Table(Schema="calc", Name="dict_articuls_vtm")]
 	public partial class DictArticulsVtm
 	{
@@ -2305,15 +2376,6 @@ namespace DataModels
 	{
 		[Column("card_status"), Nullable] public long?  CardStatus { get; set; } // bigint
 		[Column("name"),        Nullable] public string Name       { get; set; } // nvarchar(50)
-	}
-
-	[Table(Schema="dbo", Name="dict_customer_status")]
-	public partial class DictCustomerStatus
-	{
-		[Column("crm_customer_status_id"), Nullable] public long?  CrmCustomerStatusId { get; set; } // bigint
-		[Column("name_ru"),                Nullable] public string NameRu              { get; set; } // varchar(50)
-		[Column("name_ua"),                Nullable] public string NameUa              { get; set; } // varchar(50)
-		[Column("is_departments"),         Nullable] public bool?  IsDepartments       { get; set; } // bit
 	}
 
 	[Table(Schema="calc", Name="dict_goods")]
@@ -2501,6 +2563,43 @@ namespace DataModels
 		[Column("producer_id"),     Nullable         ] public long?  ProducerId { get; set; } // bigint
 	}
 
+	[Table(Schema="dbo", Name="history_crm_customers")]
+	public partial class HistoryCrmCustomers
+	{
+		[Column("history_customer_id"), PrimaryKey,  NotNull] public long      HistoryCustomerId { get; set; } // bigint
+		[Column("crm_customer_id"),                  NotNull] public long      CrmCustomerId     { get; set; } // bigint
+		[Column("name1"),                  Nullable         ] public string    Name1             { get; set; } // varchar(50)
+		[Column("name2"),                  Nullable         ] public string    Name2             { get; set; } // varchar(50)
+		[Column("birthday"),               Nullable         ] public DateTime? Birthday          { get; set; } // date
+		[Column("region_id"),              Nullable         ] public long?     RegionId          { get; set; } // bigint
+		[Column("subregion_id"),           Nullable         ] public long?     SubregionId       { get; set; } // bigint
+		[Column("city_id"),                Nullable         ] public long?     CityId            { get; set; } // bigint
+		[Column("street_type_id"),         Nullable         ] public long?     StreetTypeId      { get; set; } // bigint
+		[Column("street"),                 Nullable         ] public string    Street            { get; set; } // varchar(150)
+		[Column("building"),               Nullable         ] public string    Building          { get; set; } // varchar(50)
+		[Column("apartment"),              Nullable         ] public string    Apartment         { get; set; } // varchar(50)
+		[Column("mobile_phone"),           Nullable         ] public string    MobilePhone       { get; set; } // varchar(30)
+		[Column("validated"),              Nullable         ] public bool?     Validated         { get; set; } // bit
+		[Column("email"),                  Nullable         ] public string    Email             { get; set; } // varchar(255)
+		[Column("is_kids"),                Nullable         ] public byte?     IsKids            { get; set; } // tinyint
+		[Column("customer_status_id"),     Nullable         ] public long?     CustomerStatusId  { get; set; } // bigint
+		[Column("is_personal_cabinet"),    Nullable         ] public bool?     IsPersonalCabinet { get; set; } // bit
+		[Column("is_mobile_app"),          Nullable         ] public bool?     IsMobileApp       { get; set; } // bit
+		[Column("is_sms_sent"),            Nullable         ] public bool?     IsSmsSent         { get; set; } // bit
+		[Column("deleted"),                Nullable         ] public bool?     Deleted           { get; set; } // bit
+		[Column("is_policy_agree"),        Nullable         ] public bool?     IsPolicyAgree     { get; set; } // bit
+		[Column("author_id"),                        NotNull] public long      AuthorId          { get; set; } // bigint
+		[Column("market_id"),                        NotNull] public long      MarketId          { get; set; } // bigint
+		[Column("updated"),                          NotNull] public DateTime  Updated           { get; set; } // datetime
+		[Column("hostname"),                         NotNull] public string    Hostname          { get; set; } // varchar(150)
+		[Column("state"),                            NotNull] public bool      State             { get; set; } // bit
+		[Column("is_automobile"),          Nullable         ] public byte?     IsAutomobile      { get; set; } // tinyint
+		[Column("loyalty_type_id"),        Nullable         ] public int?      LoyaltyTypeId     { get; set; } // int
+		[Column("pperson_id"),             Nullable         ] public long?     PpersonId         { get; set; } // bigint
+		[Column("customer_group_id"),      Nullable         ] public int?      CustomerGroupId   { get; set; } // int
+		[Column("stud_nomer"),             Nullable         ] public string    StudNomer         { get; set; } // varchar(30)
+	}
+
 	[Table(Schema="calc", Name="hole_bucket_v1")]
 	public partial class HoleBucketV1
 	{
@@ -2514,1587 +2613,1709 @@ namespace DataModels
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import1")]
 	public partial class LoyaltySellMovementImport1
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import10")]
 	public partial class LoyaltySellMovementImport10
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import11")]
 	public partial class LoyaltySellMovementImport11
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import12")]
 	public partial class LoyaltySellMovementImport12
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import13")]
 	public partial class LoyaltySellMovementImport13
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import14")]
 	public partial class LoyaltySellMovementImport14
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import15")]
 	public partial class LoyaltySellMovementImport15
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import16")]
 	public partial class LoyaltySellMovementImport16
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import17")]
 	public partial class LoyaltySellMovementImport17
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import18")]
 	public partial class LoyaltySellMovementImport18
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import19")]
 	public partial class LoyaltySellMovementImport19
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import2")]
 	public partial class LoyaltySellMovementImport2
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import20")]
 	public partial class LoyaltySellMovementImport20
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import21")]
 	public partial class LoyaltySellMovementImport21
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import22")]
 	public partial class LoyaltySellMovementImport22
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import23")]
 	public partial class LoyaltySellMovementImport23
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import24")]
 	public partial class LoyaltySellMovementImport24
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import25")]
 	public partial class LoyaltySellMovementImport25
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import26")]
 	public partial class LoyaltySellMovementImport26
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import27")]
 	public partial class LoyaltySellMovementImport27
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import28")]
 	public partial class LoyaltySellMovementImport28
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import29")]
 	public partial class LoyaltySellMovementImport29
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import3")]
 	public partial class LoyaltySellMovementImport3
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import30")]
 	public partial class LoyaltySellMovementImport30
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import301")]
 	public partial class LoyaltySellMovementImport301
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import31")]
 	public partial class LoyaltySellMovementImport31
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import32")]
 	public partial class LoyaltySellMovementImport32
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import33")]
 	public partial class LoyaltySellMovementImport33
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import34")]
 	public partial class LoyaltySellMovementImport34
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import35")]
 	public partial class LoyaltySellMovementImport35
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import36")]
 	public partial class LoyaltySellMovementImport36
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import37")]
 	public partial class LoyaltySellMovementImport37
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import38")]
 	public partial class LoyaltySellMovementImport38
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import39")]
 	public partial class LoyaltySellMovementImport39
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import4")]
 	public partial class LoyaltySellMovementImport4
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import40")]
 	public partial class LoyaltySellMovementImport40
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import41")]
 	public partial class LoyaltySellMovementImport41
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import42")]
 	public partial class LoyaltySellMovementImport42
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import43")]
 	public partial class LoyaltySellMovementImport43
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import44")]
 	public partial class LoyaltySellMovementImport44
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import45")]
 	public partial class LoyaltySellMovementImport45
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import46")]
 	public partial class LoyaltySellMovementImport46
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import47")]
 	public partial class LoyaltySellMovementImport47
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import48")]
 	public partial class LoyaltySellMovementImport48
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import49")]
 	public partial class LoyaltySellMovementImport49
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import5")]
 	public partial class LoyaltySellMovementImport5
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import50")]
 	public partial class LoyaltySellMovementImport50
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import51")]
 	public partial class LoyaltySellMovementImport51
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import52")]
 	public partial class LoyaltySellMovementImport52
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import53")]
 	public partial class LoyaltySellMovementImport53
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import54")]
 	public partial class LoyaltySellMovementImport54
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import55")]
 	public partial class LoyaltySellMovementImport55
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import56")]
 	public partial class LoyaltySellMovementImport56
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import57")]
 	public partial class LoyaltySellMovementImport57
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import58")]
 	public partial class LoyaltySellMovementImport58
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import59")]
 	public partial class LoyaltySellMovementImport59
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import6")]
 	public partial class LoyaltySellMovementImport6
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import60")]
 	public partial class LoyaltySellMovementImport60
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import7")]
 	public partial class LoyaltySellMovementImport7
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import8")]
 	public partial class LoyaltySellMovementImport8
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="loyalty_sell_movement_import9")]
 	public partial class LoyaltySellMovementImport9
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 4)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 4)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="calc", Name="map_diff_day")]
@@ -4522,6 +4743,21 @@ namespace DataModels
 		[Column("deleted"),        Nullable         ] public int?   Deleted    { get; set; } // int
 	}
 
+	[Table(Schema="dbo", Name="promo_code_using")]
+	public partial class PromoCodeUsing
+	{
+		[Column("promo_code_using_id"), PrimaryKey,  NotNull] public long     PromoCodeUsingId { get; set; } // bigint
+		[Column("promo_code_id"),                    NotNull] public long     PromoCodeId      { get; set; } // bigint
+		[Column("doc_id"),                           NotNull] public long     DocId            { get; set; } // bigint
+		[Column("created"),                          NotNull] public DateTime Created          { get; set; } // smalldatetime
+		[Column("hostname"),                         NotNull] public string   Hostname         { get; set; } // varchar(100)
+		[Column("username"),                         NotNull] public string   Username         { get; set; } // varchar(100)
+		[Column("doc_name"),               Nullable         ] public string   DocName          { get; set; } // varchar(25)
+		[Column("market_id"),              Nullable         ] public long?    MarketId         { get; set; } // bigint
+		[Column("cnt"),                    Nullable         ] public byte?    Cnt              { get; set; } // tinyint
+		[Column("promo_id"),               Nullable         ] public long?    PromoId          { get; set; } // bigint
+	}
+
 	[Table(Schema="dbo", Name="promo_register")]
 	public partial class PromoRegister
 	{
@@ -4658,6 +4894,8 @@ namespace DataModels
 		[Column("excelio"),                  Nullable         ] public string   Excelio             { get; set; } // varchar(10)
 		[Column("retail_status_id"),         Nullable         ] public long?    RetailStatusId      { get; set; } // bigint
 		[Column("discount_requested"),       Nullable         ] public bool?    DiscountRequested   { get; set; } // bit
+		[Column("crm_discount_info"),        Nullable         ] public string   CrmDiscountInfo     { get; set; } // varchar(255)
+		[Column("crm_discount_type_id"),     Nullable         ] public int?     CrmDiscountTypeId   { get; set; } // int
 	}
 
 	[Table(Schema="calc", Name="sell_buy_price")]
@@ -4671,27 +4909,29 @@ namespace DataModels
 	[Table(Schema="dbo", Name="sell_movement")]
 	public partial class SellMovement
 	{
-		[Column("created"),          Nullable] public DateTime? Created      { get; set; } // datetime
-		[Column("good_id"),       NotNull    ] public long      GoodId       { get; set; } // bigint
-		[Column("doc_id"),        NotNull    ] public long      DocId        { get; set; } // bigint
-		[Column("doc_type_id"),   NotNull    ] public long      DocTypeId    { get; set; } // bigint
-		[Column("market_id"),     NotNull    ] public long      MarketId     { get; set; } // bigint
-		[Column("store_id"),      NotNull    ] public long      StoreId      { get; set; } // bigint
-		[Column("parent_id"),     NotNull    ] public long      ParentId     { get; set; } // bigint
-		[Column("store_bqty"),       Nullable] public decimal?  StoreBqty    { get; set; } // decimal(14, 5)
-		[Column("store_aqty"),       Nullable] public decimal?  StoreAqty    { get; set; } // decimal(14, 4)
-		[Column("market_bqty"),      Nullable] public decimal?  MarketBqty   { get; set; } // decimal(14, 4)
-		[Column("market_aqty"),      Nullable] public decimal?  MarketAqty   { get; set; } // decimal(14, 4)
-		[Column("price"),         NotNull    ] public decimal   Price        { get; set; } // decimal(10, 2)
-		[Column("qty"),              Nullable] public decimal?  Qty          { get; set; } // decimal(12, 4)
-		[Column("real_price"),       Nullable] public decimal?  RealPrice    { get; set; } // decimal(14, 5)
-		[Column("currency_rate"), NotNull    ] public decimal   CurrencyRate { get; set; } // decimal(10, 6)
-		[Column("delivery"),         Nullable] public decimal?  Delivery     { get; set; } // decimal(14, 6)
-		[Column("currency_id"),   NotNull    ] public long      CurrencyId   { get; set; } // bigint
-		[Column("code"),          NotNull    ] public long      Code         { get; set; } // bigint
-		[Column("fin_price"),        Nullable] public decimal?  FinPrice     { get; set; } // decimal(14, 5)
-		[Column("buy_price"),        Nullable] public decimal?  BuyPrice     { get; set; } // decimal(16, 6)
-		[Column("agent_id"),         Nullable] public long?     AgentId      { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created          { get; set; } // datetime
+		[Column("good_id"),             NotNull    ] public long      GoodId           { get; set; } // bigint
+		[Column("doc_id"),              NotNull    ] public long      DocId            { get; set; } // bigint
+		[Column("doc_type_id"),         NotNull    ] public long      DocTypeId        { get; set; } // bigint
+		[Column("market_id"),           NotNull    ] public long      MarketId         { get; set; } // bigint
+		[Column("store_id"),            NotNull    ] public long      StoreId          { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId         { get; set; } // bigint
+		[Column("store_bqty"),             Nullable] public decimal?  StoreBqty        { get; set; } // decimal(14, 5)
+		[Column("store_aqty"),             Nullable] public decimal?  StoreAqty        { get; set; } // decimal(14, 4)
+		[Column("market_bqty"),            Nullable] public decimal?  MarketBqty       { get; set; } // decimal(14, 4)
+		[Column("market_aqty"),            Nullable] public decimal?  MarketAqty       { get; set; } // decimal(14, 4)
+		[Column("price"),               NotNull    ] public decimal   Price            { get; set; } // decimal(10, 2)
+		[Column("qty"),                    Nullable] public decimal?  Qty              { get; set; } // decimal(12, 4)
+		[Column("real_price"),             Nullable] public decimal?  RealPrice        { get; set; } // decimal(14, 5)
+		[Column("currency_rate"),       NotNull    ] public decimal   CurrencyRate     { get; set; } // decimal(10, 6)
+		[Column("delivery"),               Nullable] public decimal?  Delivery         { get; set; } // decimal(14, 6)
+		[Column("currency_id"),         NotNull    ] public long      CurrencyId       { get; set; } // bigint
+		[Column("code"),                NotNull    ] public long      Code             { get; set; } // bigint
+		[Column("fin_price"),              Nullable] public decimal?  FinPrice         { get; set; } // decimal(14, 5)
+		[Column("buy_price"),              Nullable] public decimal?  BuyPrice         { get; set; } // decimal(16, 6)
+		[Column("agent_id"),               Nullable] public long?     AgentId          { get; set; } // bigint
+		[Column("sell_price_for_date"),    Nullable] public decimal?  SellPriceForDate { get; set; } // decimal(13, 2)
+		[Column("fifo_buy_price"),         Nullable] public decimal?  FifoBuyPrice     { get; set; } // decimal(15, 5)
 	}
 
 	[Table(Schema="dbo", Name="short_docs1")]
@@ -4964,31 +5204,6 @@ namespace DataModels
 		[Column("card_type_id"),        Nullable] public long?     CardTypeId        { get; set; } // bigint
 		[Column("doc_type_id"),         Nullable] public long?     DocTypeId         { get; set; } // bigint
 		[Column("used_market_id"),      Nullable] public long?     UsedMarketId      { get; set; } // bigint
-	}
-
-	[Table(Schema="calc", Name="v_crm_bonus_movement", IsView=true)]
-	public partial class VCrmBonusMovement
-	{
-		[Column("crm_bonus_movement_id"), NotNull    ] public long      CrmBonusMovementId { get; set; } // bigint
-		[Column("card_id"),                  Nullable] public long?     CardId             { get; set; } // bigint
-		[Column("crm_customer_id"),          Nullable] public long?     CrmCustomerId      { get; set; } // bigint
-		[Column("doc_created"),              Nullable] public DateTime? DocCreated         { get; set; } // datetime
-		[Column("doc_id"),                   Nullable] public long?     DocId              { get; set; } // bigint
-		[Column("bonus_obtained_added"),     Nullable] public decimal?  BonusObtainedAdded { get; set; } // decimal(14, 4)
-		[Column("doc_amount"),            NotNull    ] public decimal   DocAmount          { get; set; } // decimal(16, 4)
-		[Column("bonus_used"),               Nullable] public decimal?  BonusUsed          { get; set; } // decimal(14, 4)
-		[Column("doc_bonus_created"),        Nullable] public DateTime? DocBonusCreated    { get; set; } // datetime
-		[Column("bonus_adeded_value"),       Nullable] public decimal?  BonusAdededValue   { get; set; } // decimal(14, 4)
-		[Column("prc_bonus"),                Nullable] public decimal?  PrcBonus           { get; set; } // money
-		[Column("barcode"),               NotNull    ] public string    Barcode            { get; set; } // varchar(13)
-	}
-
-	[Table(Schema="calc", Name="v_customers_average_amount_perday", IsView=true)]
-	public partial class VCustomersAverageAmountPerday
-	{
-		[Column("market_id"),       NotNull    ] public long     MarketId      { get; set; } // bigint
-		[Column("crm_customer_id"), NotNull    ] public long     CrmCustomerId { get; set; } // bigint
-		[Column("avg_sm"),             Nullable] public decimal? AvgSm         { get; set; } // decimal(38, 6)
 	}
 
 	[Table(Schema="calc", Name="v_customers_card", IsView=true)]
@@ -5289,6 +5504,36 @@ namespace DataModels
 		[Column("bonus_005prc"),        Nullable] public decimal?  Bonus005prc    { get; set; } // numeric(14, 5)
 	}
 
+	[Table(Schema="calc", Name="V_DATATOFIN", IsView=true)]
+	public partial class VDATATOFIN
+	{
+		[Column("short_market_name"),       Nullable] public string    ShortMarketName    { get; set; } // nvarchar(50)
+		[Column("barcode"),              NotNull    ] public string    Barcode            { get; set; } // varchar(13)
+		[Column("name_0"),                  Nullable] public string    Name0              { get; set; } // varchar(150)
+		[Column("name_1"),                  Nullable] public string    Name1              { get; set; } // varchar(150)
+		[Column("name_2"),                  Nullable] public string    Name2              { get; set; } // varchar(150)
+		[Column("name_3"),                  Nullable] public string    Name3              { get; set; } // varchar(150)
+		[Column("name_4"),                  Nullable] public string    Name4              { get; set; } // varchar(150)
+		[Column("articul"),                 Nullable] public string    Articul            { get; set; } // varchar(8)
+		[Column("good_name"),               Nullable] public string    GoodName           { get; set; } // varchar(200)
+		[Column("quantity"),                Nullable] public decimal?  Quantity           { get; set; } // decimal(18, 2)
+		[Column("LIFO_buy_price"),          Nullable] public decimal?  LIFOBuyPrice       { get; set; } // decimal(18, 2)
+		[Column("FIFO_buy_price"),          Nullable] public decimal?  FIFOBuyPrice       { get; set; } // decimal(18, 2)
+		[Column(),                          Nullable] public decimal?  PRICE              { get; set; } // decimal(18, 2)
+		[Column("sell_price_for_date"),     Nullable] public decimal?  SellPriceForDate   { get; set; } // decimal(18, 2)
+		[Column("pack_name"),               Nullable] public string    PackName           { get; set; } // varchar(30)
+		[Column("markmo_name"),             Nullable] public string    MarkmoName         { get; set; } // varchar(30)
+		[Column("doc_name"),                Nullable] public string    DocName            { get; set; } // varchar(30)
+		[Column("created"),                 Nullable] public DateTime? Created            { get; set; } // datetime
+		[Column("agent_name"),              Nullable] public string    AgentName          { get; set; } // varchar(300)
+		[Column("producer_name"),           Nullable] public string    ProducerName       { get; set; } // varchar(200)
+		[Column("discount_amount"),         Nullable] public decimal?  DiscountAmount     { get; set; } // decimal(18, 2)
+		[Column("bonus_obtained"),          Nullable] public decimal?  BonusObtained      { get; set; } // decimal(18, 2)
+		[Column("customer_status_name"),    Nullable] public string    CustomerStatusName { get; set; } // varchar(50)
+		[Column("discount_base"),           Nullable] public string    DiscountBase       { get; set; } // varchar(150)
+		[Column("crm_discount_info"),       Nullable] public string    CrmDiscountInfo    { get; set; } // varchar(150)
+	}
+
 	[Table(Schema="calc", Name="v_dict_goods", IsView=true)]
 	public partial class VDictGoods
 	{
@@ -5451,6 +5696,15 @@ namespace DataModels
 			public decimal? sm_buy        { get; set; }
 			public decimal? sum_discount  { get; set; }
 			public decimal? doc_avg       { get; set; }
+		}
+
+		#endregion
+
+		#region PCreateBonusState
+
+		public static int PCreateBonusState(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_create_bonus_state]");
 		}
 
 		#endregion
@@ -5660,6 +5914,31 @@ namespace DataModels
 			public string market_name      { get; set; }
 			public long?  card_count       { get; set; }
 			public long?  is_fill          { get; set; }
+		}
+
+		#endregion
+
+		#region PGetCountCustomers4campaign
+
+		public static IEnumerable<PGetCountCustomers4campaignResult> PGetCountCustomers4campaign(this DataConnection dataConnection, long? @campaign_id, string @market_lst, string @start_part, string @last_part, string @qty_visits, string @qty_docs, string @obert, string @doc_avg, string @doc_max, string @len_between_visits, string @sum_points)
+		{
+			return dataConnection.QueryProc<PGetCountCustomers4campaignResult>("[calc].[p_get_count_customers4campaign]",
+				new DataParameter("@campaign_id",        @campaign_id,        DataType.Int64),
+				new DataParameter("@market_lst",         @market_lst,         DataType.NVarChar),
+				new DataParameter("@start_part",         @start_part,         DataType.NVarChar),
+				new DataParameter("@last_part",          @last_part,          DataType.NVarChar),
+				new DataParameter("@qty_visits",         @qty_visits,         DataType.NVarChar),
+				new DataParameter("@qty_docs",           @qty_docs,           DataType.NVarChar),
+				new DataParameter("@obert",              @obert,              DataType.NVarChar),
+				new DataParameter("@doc_avg",            @doc_avg,            DataType.NVarChar),
+				new DataParameter("@doc_max",            @doc_max,            DataType.NVarChar),
+				new DataParameter("@len_between_visits", @len_between_visits, DataType.NVarChar),
+				new DataParameter("@sum_points",         @sum_points,         DataType.NVarChar));
+		}
+
+		public partial class PGetCountCustomers4campaignResult
+		{
+			public int? CustomersCount { get; set; }
 		}
 
 		#endregion
@@ -6334,6 +6613,12 @@ namespace DataModels
 				t.CrmCustomerStatusId == CrmCustomerStatusId);
 		}
 
+		public static CrmDiscountTypes Find(this ITable<CrmDiscountTypes> table, int CrmDiscountTypeId)
+		{
+			return table.FirstOrDefault(t =>
+				t.CrmDiscountTypeId == CrmDiscountTypeId);
+		}
+
 		public static CrmGiftCustomers Find(this ITable<CrmGiftCustomers> table, long GiftCustomerId)
 		{
 			return table.FirstOrDefault(t =>
@@ -6398,6 +6683,12 @@ namespace DataModels
 		{
 			return table.FirstOrDefault(t =>
 				t.StateId == StateId);
+		}
+
+		public static CustomersType Find(this ITable<CustomersType> table, long Id)
+		{
+			return table.FirstOrDefault(t =>
+				t.Id == Id);
 		}
 
 		public static DailyAllocationTypes Find(this ITable<DailyAllocationTypes> table, long Id)
@@ -6484,6 +6775,12 @@ namespace DataModels
 		{
 			return table.FirstOrDefault(t =>
 				t.GoodId == GoodId);
+		}
+
+		public static HistoryCrmCustomers Find(this ITable<HistoryCrmCustomers> table, long HistoryCustomerId)
+		{
+			return table.FirstOrDefault(t =>
+				t.HistoryCustomerId == HistoryCustomerId);
 		}
 
 		public static MapDiffDayLong Find(this ITable<MapDiffDayLong> table, int Id)
@@ -6629,6 +6926,12 @@ namespace DataModels
 		{
 			return table.FirstOrDefault(t =>
 				t.ProducerId == ProducerId);
+		}
+
+		public static PromoCodeUsing Find(this ITable<PromoCodeUsing> table, long PromoCodeUsingId)
+		{
+			return table.FirstOrDefault(t =>
+				t.PromoCodeUsingId == PromoCodeUsingId);
 		}
 
 		public static Promos1 Find(this ITable<Promos1> table, long PromoId)

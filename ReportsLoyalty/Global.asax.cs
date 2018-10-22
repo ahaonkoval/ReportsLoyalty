@@ -40,8 +40,9 @@ namespace ReportsLoyalty
     {
         public StartProcess()
         {
-        }
 
+        }
+        /* -------------------------------------------------------------------------------------------------- */
         public void Start(int campaignId, DateTime dt)
         {
             var t = Task.Run(() => StartCampaignCalculation(campaignId, dt));
@@ -55,7 +56,7 @@ namespace ReportsLoyalty
                 data.Campaigns.SetStartCalculation(campaignId, dt);
             }
         }
-
+        /* =================================================================================================== */
         public void StartFillCampaignFromTableList(int campaignId, string table, bool toDelete) {
             var t = Task.Run(() => StartFillCampaignFromTableListData(campaignId, table, toDelete));
             t.Wait();
@@ -66,6 +67,20 @@ namespace ReportsLoyalty
             using (GetData data = new GetData())
             {
                 data.Campaigns.StartFillCustomers(campaignId, table, toDelete);
+            }
+        }
+        /* =================================================================================================== */
+        public void StartCreateCampaignFromSelect(CustomerSelect oc)
+        {
+            var t = Task.Run(() => StartFillFromSelect(oc));
+            t.Wait();
+        }
+
+        void StartFillFromSelect(CustomerSelect oc)
+        {
+            using (GetData data = new GetData())
+            {
+                data.Customers.StartFillFromSelect(oc);
             }
         }
     }

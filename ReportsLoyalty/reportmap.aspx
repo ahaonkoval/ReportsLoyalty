@@ -171,6 +171,87 @@
                 })
             });            
 
+            var gridDownloadStatus = Ext.create('Ext.grid.Panel', {
+                stateful: true,
+                stateId: 'stateful-filter-grid',
+                border: false,
+                store: dict.getStoreDownloadStatusTables(),
+                columns: [
+                    {
+                        dataIndex: 'Number',
+                        text: '№',
+                        width:40
+                    }, {
+                        dataIndex: 'title',
+                        text: 'Назва таблиці',
+                        width: 150
+                    },
+                    {
+                        dataIndex: 'DownloadStatus',
+                        text: 'Завантажено',
+                        width: 80
+                    },
+                    {
+                        dataIndex: 'Created',
+                        text: 'Дата завантаження',
+                        xtype: 'datecolumn',
+                        //format: 'd.m.Y'
+                        format: 'Y-m-d H:i:s.u',
+                        width: 150
+                    }
+                ],
+                loadMask: true,
+                //dockedItems: [Ext.create('Ext.toolbar.Paging', {
+                //    dock: 'bottom',
+                //    store: dict.getStoreDownloadStatusTables()
+                //})],
+                emptyText: 'Записів більше нема',
+                listeners: {
+                    'rowdblclick': function (grid, record, e) {
+                        /* открываєм окно редактирования */
+                        //Ext.Msg.confirm("Увага!", "Завантажити УПЛ з таблиці '" + record.get('name') + "'", function (btnText) {
+                        //    if (btnText === "no") {
+
+                        //    }
+                        //    else if (btnText === "yes") {
+                        //        StartFillCampaign(record, cmpId);
+                        //        win.hide();
+                        //    }
+                        //}, this);
+                    }
+                },
+                viewConfig: {
+                    stripeRows: false,
+                    getRowClass: function (record) {
+
+                        var status = record.get('DownloadStatus');
+
+                        if (status == 'ні') {
+
+                            //if (record.get('is_run') == true) {
+                            return 'x-grid-row-alert';
+                            //}
+
+                            //if (record.get('is_run') == false)
+                            //    return 'x-grid-row';
+                            //return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
+
+                            //if (record.get('is_start_get_status') == 1) {
+                            //    return 'x-grid-row-getting-status';
+                            //} else {
+                            //    return css;
+                            //}
+
+                        }
+                        //else {
+                        //    if (record.get('is_start_get_status') == 3) {
+                        //        return 'x-grid-row-block';
+                        //    }
+                        //}
+                    }
+                }
+            });
+
             var viewport = Ext.create('Ext.container.Viewport', {
                 layout: 'border',
                 items: [{
@@ -341,23 +422,35 @@
                     id: 'pnlCenter',
                     name: 'pnlCenter',
                     xtype: 'tabpanel', // TabPanel itself has no title
-                    activeTab: 0      // First tab active by default
-                    //items:
-                    //    {
-                            //extend: 'Ext.panel.Panel',
-                            //layout: 'fit',
-                            //items: [{
-                            //    xtype: 'box',
-                            //    autoEl: {
-                            //        tag: 'iframe',
-                            //        src: 'pages/page_count_customers_by_gender_is_profile.aspx',
-                            //    },
-                            //}]
-                    //    }
-                    //{
-                    //    title: 'Default Tab',
-                    //    html: 'The first tab\'s content. Others may be added dynamically'
-                    //}
+                    activeTab: 0,      // First tab active by default
+                    items: [
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                                pack: 'start',
+                                align: 'stretch'
+                            },
+                            title: 'Статус завантаження',
+                            items: [
+                                {
+                                    xtype: 'panel',
+                                    //border:false,
+                                    layout: 'fit',
+                                    width:450,
+                                    items: [
+                                        gridDownloadStatus
+                                    ]
+                                }, {
+                                    flex: 1,
+                                    border: false
+                                }, {
+                                    flex: 2,
+                                    border: false
+                                }
+                            ]
+                        }
+                    ]                                            
                 }]
 
             });
