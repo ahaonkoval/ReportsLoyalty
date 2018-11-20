@@ -234,5 +234,13 @@ namespace LoyaltyDB
 
             return tb;
         }
+
+        public IEnumerable<CrmCustomerStatus> GetCrmCustomerStatus()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.CrmCustomerStatus.ToList();
+            }
+        }
     }
 }

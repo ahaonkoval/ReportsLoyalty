@@ -78,6 +78,20 @@ namespace WinTest
             frm.Show();
         }
 
+        private void mcChangeStructure_Click(object sender, EventArgs e)
+        {
+            WinLoader.FrmChangingStructure frmChangingStructure = new WinLoader.FrmChangingStructure(ConnectionString);
+            frmChangingStructure.MdiParent = this;
+            frmChangingStructure.Show();
+        }
+
+        private void mcTestDownload_Click(object sender, EventArgs e)
+        {
+            WinLoader.FrmTestDownload frm = new WinLoader.FrmTestDownload(ConnectionString);
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
         //private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
         //{
         //    foreach (Form childForm in MdiChildren)

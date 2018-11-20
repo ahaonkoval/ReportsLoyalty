@@ -1,5 +1,33 @@
 ﻿
 function Dict() {
+    this.getCrmCustomerStatus = function (type_id) {
+        var model = Ext.define('v_campaigns_mk_run', {
+            extend: 'Ext.data.Model',
+            fields: [
+                'CrmCustomerStatusId',
+                'NameUa'
+            ],
+            proxy: {
+                type: 'rest',
+                url: 'api/dict/GetCrmCustomerStatus/1',
+                reader: {
+                    type: 'json',
+                    root: 'data'
+                }
+            },
+            remoteSort: false,
+            sorters: [{
+                property: 'CrmCustomerStatusId',
+                direction: 'ASC'
+            }],
+        });
+
+        return Ext.create('Ext.data.Store', {
+            model: model,
+            autoLoad: true
+        });
+
+    },
     // -----------------------------------------------------------------------
     this.getStoreCampaigns = function (type_id) {
         var model = Ext.define('v_campaigns_mk_run', {

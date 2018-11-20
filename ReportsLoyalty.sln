@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyDB", "EtData\Loyalty
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftLineApi", "SoftLineApi\SoftLineApi.csproj", "{8DB11E23-B720-43DF-802A-8265D783793D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinLoader", "WinTest\WinLoader.csproj", "{37272374-7B37-41EA-AC91-9FE5B3848CCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportDataLoader", "WinTest\ReportDataLoader.csproj", "{37272374-7B37-41EA-AC91-9FE5B3848CCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransformer", "DataTransformer\DataTransformer\DataTransformer.csproj", "{A67068FF-BF9F-42F5-85BD-BAAB601F9AE3}"
 EndProject

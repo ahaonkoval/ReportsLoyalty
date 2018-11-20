@@ -145,7 +145,10 @@ namespace LoyaltyDB
                     ocs.avgDoc,
                     ocs.maxDoc,
                     ocs.avgBetweenAtd,
-                    ocs.qtyPoints
+                    ocs.qtyPoints,
+                    ocs.cardTypeLst,
+                    ocs.obertIntersport,
+                    ocs.obertMoncheri
                     );
                 return CustomersCount.ToList().FirstOrDefault().CustomersCount.ToString();
             }
@@ -177,9 +180,14 @@ namespace LoyaltyDB
                         cmd.Parameters.AddWithValue("@qty_docs", om.qtyDocs);
                         cmd.Parameters.AddWithValue("@obert", om.obert);
                         cmd.Parameters.AddWithValue("@doc_avg", om.avgDoc);
+
                         cmd.Parameters.AddWithValue("@doc_max", om.maxDoc);
                         cmd.Parameters.AddWithValue("@len_between_visits", om.avgBetweenAtd);
                         cmd.Parameters.AddWithValue("@sum_points", om.qtyPoints);
+
+                        cmd.Parameters.AddWithValue("@card_status_lst", om.cardTypeLst);
+                        cmd.Parameters.AddWithValue("@obert_intersport", om.obertIntersport);
+                        cmd.Parameters.AddWithValue("@obert_moncheri", om.obertMoncheri);
 
                         if (c.State != ConnectionState.Open)
                             c.Open();
@@ -216,5 +224,8 @@ namespace LoyaltyDB
         public string maxDoc { get; set; }
         public string avgBetweenAtd { get; set; }
         public string qtyPoints { get; set; }
+        public string cardTypeLst { get; set; }
+        public string obertIntersport { get; set; }
+        public string obertMoncheri { get; set; }
     }
 }

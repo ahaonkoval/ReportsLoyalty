@@ -21,8 +21,7 @@ Ext.define('tf_campaign_customers', {
         }]
 });
 
-Ext.define(
-    'p_TmpSchemaTableList', {
+Ext.define('p_TmpSchemaTableList', {
         extend: 'Ext.data.Model',
         fields: [
             { name: 'object_id',    type: 'int' },
@@ -350,7 +349,7 @@ var getWinFillCustomersList = function (campaign_id) {
         boxLabel: 'Видалити після завантаження: ',
         boxLabelAlign: 'before',
         padding: 3
-    });
+    }).setValue(true);
 
     var win = Ext.create('Ext.Window', {
         //id: 'win_customers',
@@ -633,7 +632,7 @@ var getWinSelectCustomers = function (campaign_id, parentWin) {
         fieldLabel: 'Кінець',
         padding: 3,
         width: 200
-    }).setValue(0).setDisabled(true);;
+    }).setValue(0).setDisabled(true);
     // ---------------------------------------------------------------------------------------
     var checkboxAvgDoc = new Ext.form.Checkbox({
         labelWidth: 220,
@@ -658,7 +657,7 @@ var getWinSelectCustomers = function (campaign_id, parentWin) {
         fieldLabel: 'Кінець',
         padding: 3,
         width: 200
-    }).setValue(0).setDisabled(true);;
+    }).setValue(0).setDisabled(true);
     // ---------------------------------------------------------------------------------------
     var checkboxmaxDoc = new Ext.form.Checkbox({
         labelWidth: 220,
@@ -683,7 +682,7 @@ var getWinSelectCustomers = function (campaign_id, parentWin) {
         fieldLabel: 'Кінець',
         padding: 3,
         width: 200
-    }).setValue(0).setDisabled(true);;
+    }).setValue(0).setDisabled(true);
     // ---------------------------------------------------------------------------------------
     var checkboxAvgDistance = new Ext.form.Checkbox({
         labelWidth: 220,
@@ -708,7 +707,7 @@ var getWinSelectCustomers = function (campaign_id, parentWin) {
         fieldLabel: 'Кінець',
         padding: 3,
         width: 200
-    }).setValue(0).setDisabled(true);;
+    }).setValue(0).setDisabled(true);
     // ---------------------------------------------------------------------------------------
     var checkboxPointCount = new Ext.form.Checkbox({
         labelWidth: 220,
@@ -733,14 +732,115 @@ var getWinSelectCustomers = function (campaign_id, parentWin) {
         fieldLabel: 'Кінець',
         padding: 3,
         width: 200
-    }).setValue(0).setDisabled(true);;
-    // ---------------------------------
+    }).setValue(0).setDisabled(true);
+    // ---------------------------------------------------------------------------------------
+    var checkboxCardType = new Ext.form.Checkbox({
+        labelWidth: 220,
+        fieldLabel: 'Тип карти',
+        boxLabelAlign: 'before',
+        padding: 3,
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {                
+                cmbCrmCustomerStatus.setDisabled(!newValue);
+                //textfieldPointCount_2.setDisabled(!newValue);
+            }
+        }
+    });
+    cmbCrmCustomerStatus = Ext.create('Ext.form.ComboBox', {
+        disabled: true,
+        fieldLabel: 'ТЦ',
+        labelWidth: 40,
+        store: dict.getCrmCustomerStatus(),
+        multiSelect: true,
+        //queryMode: 'local',
+        valueField: 'CrmCustomerStatusId',
+        displayField: 'NameUa',
+        width: 530,
+        labelWidth: 50,
+        emptyText: 'Всі',
+        itemCls: 'make-bold',
+        padding: 3,
+        //renderTo: Ext.getBody(),
+        tpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '<div class="x-boundlist-item">{NameUa}</div>',
+            '</tpl>'
+        ),
+        displayTpl: Ext.create('Ext.XTemplate',
+            '<tpl for=".">',
+                '{NameUa};',
+            '</tpl>'
+        ),
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') == -1) {
+                    ctrl.setValue(['all'])
+                } else {
+                    if (oldValue != null) {
+                        if (newValue.indexOf('all') > -1 && oldValue.indexOf('all') > -1)
+                            ctrl.setValue([]);
+                    }
+                }
+            }
+        }
+    });
+    // ---------------------------------------------------------------------------------------
+    var checkboxObertIntersport = new Ext.form.Checkbox({
+        labelWidth: 220,
+        fieldLabel: 'Оберт по Інтерспорту',
+        boxLabelAlign: 'before',
+        padding: 3,
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                textfieldObertIntersport_1.setDisabled(!newValue);
+                textfieldObertIntersport_2.setDisabled(!newValue);
+            }
+        }
+    });
+    var textfieldObertIntersport_1 = Ext.create('Ext.form.field.Text', {
+        labelWidth: 50,
+        fieldLabel: 'Початок',
+        padding: 3,
+        width: 200
+    }).setValue(0).setDisabled(true);
+    var textfieldObertIntersport_2 = Ext.create('Ext.form.field.Text', {
+        labelWidth: 50,
+        fieldLabel: 'Кінець',
+        padding: 3,
+        width: 200
+    }).setValue(0).setDisabled(true);
+    // ---------------------------------------------------------------------------------------
+    var checkboxObertMoncheri = new Ext.form.Checkbox({
+        labelWidth: 220,
+        fieldLabel: 'Оберт по Моншері',
+        boxLabelAlign: 'before',
+        padding: 3,
+        listeners: {
+            change: function (ctrl, newValue, oldValue, eOpts) {
+                textfieldObertMoncheri_1.setDisabled(!newValue);
+                textfieldObertMoncheri_2.setDisabled(!newValue);
+            }
+        }
+    });
+    var textfieldObertMoncheri_1 = Ext.create('Ext.form.field.Text', {
+        labelWidth: 50,
+        fieldLabel: 'Початок',
+        padding: 3,
+        width: 200
+    }).setValue(0).setDisabled(true);
+    var textfieldObertMoncheri_2 = Ext.create('Ext.form.field.Text', {
+        labelWidth: 50,
+        fieldLabel: 'Кінець',
+        padding: 3,
+        width: 200
+    }).setValue(0).setDisabled(true);
+    // ---------------------------------------------------------------------------------------
 
     var win = Ext.create('Ext.Window', {
         //id: 'win_customers',
         title: 'Створити вибірку та завантажити УПЛ для кампанії ' + campaign_id,
         width: 800,
-        height: 500,
+        height: 550,
         modal: true,
         closable: true,
         layout: 'fit',
@@ -926,6 +1026,60 @@ var getWinSelectCustomers = function (campaign_id, parentWin) {
                         }
                     ]
                 },
+                {
+                    border: false,
+                    height: 35,
+                    layout: { type: 'hbox', pack: 'start', align: 'stretch' },
+                    items: [
+                        {
+                            border: false, width: 250, items: [checkboxCardType]
+                        },
+                        {
+                            border: false,
+                            layout: { type: 'hbox', pack: 'start', align: 'stretch' },
+                            items: [
+                                { border: false, flex: 1, items: [cmbCrmCustomerStatus] },
+                                { border: false, flex: 2, items: [] }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    border: false,
+                    height: 35,
+                    layout: { type: 'hbox', pack: 'start', align: 'stretch' },
+                    items: [
+                        {
+                            border: false, width: 250, items: [checkboxObertIntersport]
+                        },
+                        {
+                            border: false,
+                            layout: { type: 'hbox', pack: 'start', align: 'stretch' },
+                            items: [
+                                { border: false, flex: 1, items: [textfieldObertIntersport_1] },
+                                { border: false, flex: 2, items: [textfieldObertIntersport_2] }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    border: false,
+                    height: 35,
+                    layout: { type: 'hbox', pack: 'start', align: 'stretch' },
+                    items: [
+                        {
+                            border: false, width: 250, items: [checkboxObertMoncheri]
+                        },
+                        {
+                            border: false,
+                            layout: { type: 'hbox', pack: 'start', align: 'stretch' },
+                            items: [
+                                { border: false, flex: 1, items: [textfieldObertMoncheri_1] },
+                                { border: false, flex: 2, items: [textfieldObertMoncheri_2] }
+                            ]
+                        }
+                    ]
+                }
             ]
         }],
         buttons: [
@@ -1009,7 +1163,10 @@ var getWinSelectCustomers = function (campaign_id, parentWin) {
             avgDoc: '',
             maxDoc: '',
             avgBetweenAtd: '',
-            qtyPoints: ''
+            qtyPoints: '',
+            cardTypeLst: '',
+            obertIntersport: '',
+            obertMoncheri: ''
         };
         if (checkboxTradeCentre.getValue()) {
             o.marketLst = comboBoxMarketsOm.getValue();
@@ -1050,6 +1207,18 @@ var getWinSelectCustomers = function (campaign_id, parentWin) {
         if (checkboxPointCount.getValue()) {
             o.qtyPoints = "{0}|{1}".format(textfieldPointCount_1.getValue(), textfieldPointCount_2.getValue());
         } else { o.qtyPoint = ''; }
+        // --------------------------------------------------------
+        if (checkboxCardType.getValue()) {
+            o.cardTypeLst = cmbCrmCustomerStatus.getValue();
+        } else { o.cardTypeLst = ''; }
+
+        if (checkboxObertIntersport.getValue()) {
+            o.obertIntersport = "{0}|{1}".format(textfieldObertIntersport_1.getValue(), textfieldObertIntersport_2.getValue());
+        } else { o.obertIntersport = ''; }
+
+        if (checkboxObertMoncheri.getValue()) {
+            o.obertMoncheri = "{0}|{1}".format(textfieldObertMoncheri_1.getValue(), textfieldObertMoncheri_2.getValue());
+        } else { o.obertMoncheri = ''; }
 
         return o;
     };

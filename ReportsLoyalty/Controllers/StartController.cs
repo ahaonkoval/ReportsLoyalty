@@ -23,7 +23,7 @@ namespace ReportsLoyalty.Controllers
             switch (Convert.ToInt32(TypeRequest))
             {
                 case 1:
-                    /* Запуск на перерахунок */
+                    /* Запуск на перерахунок, тип кампанії визначається вже всередені */
                     var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
                     Global.SP.Start(id, Convert.ToDateTime(dt));
                     break;

@@ -60,8 +60,24 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                return db.CalculationLog.Where(w => w.TypeOp == 20).OrderByDescending(o => o.Id).FirstOrDefault();
+                return db.CalculationLog.ToList().Where(w => GetTrueCalculatedType(w.TypeOp)).OrderByDescending(o => o.Id).FirstOrDefault();
             }
+        }
+        /// <summary>
+        /// Перевірка типів перерахунку - залишаємо тільки ті що потрібно відображати
+        /// </summary>
+        /// <param name="_type"></param>
+        /// <returns></returns>
+        bool GetTrueCalculatedType(int? _type)
+        {
+            if (_type == null)
+                return false;
+            if (_type.Value == 20)
+                return true;
+            if (_type.Value == 40)
+                return true;
+
+            return false;
         }
 
         public string GetCalculationCampaignName()
@@ -106,32 +122,37 @@ namespace LoyaltyDB
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="currentDate"></param>
+        /// <param name="ConnectionString"></param>
+        /// <param name="TypeId"></param>
         void StartCalculation(int campaignId, DateTime currentDate, string ConnectionString, long TypeId)
         {
             switch (TypeId)
             {
-                case 1:
-                    {
+                case 1: {
+                        /* Запуск перерахунку по екстра балам */
                         StartCalculationExtraPoints(campaignId, currentDate, ConnectionString);
-                    }
-                    break;
-                case 2:
-                    {
+                    } break;
+                case 2: {
+                        /* Запуск перерахунку по персональним пропозиціям */
                         StartCalculationPersonalOffer(campaignId, currentDate, ConnectionString);
-                    }
-                    break;
+                    } break;
             }
         }
-
+        /// <summary>
+        /// Завантаження УПЛ з попередньо створеної вибірки
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="table"></param>
+        /// <param name="toDelete"></param>
         public void StartFillCustomers(int campaignId, string table, bool toDelete)
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                //    db.P PFillCustomersToCampaign(campaignId, table);
-
-                //    //db.PGetFillingCustomersCount
-
                 using (SqlConnection c = new SqlConnection(db.ConnectionString))
                 {
                     try
@@ -158,7 +179,12 @@ namespace LoyaltyDB
                 }
             }
         }
-
+        /// <summary>
+        /// Запуск перерахунку активності по екстра балам
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="currentDate"></param>
+        /// <param name="connectString"></param>
         void StartCalculationExtraPoints(int campaignId, DateTime currentDate, string connectString) {
             using (SqlConnection c = new SqlConnection(connectString))
             {
@@ -184,7 +210,12 @@ namespace LoyaltyDB
                 }
             }
         }
-
+        /// <summary>
+        /// Запуск перерахунку активності по персональних пропозиціях
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="currentDate"></param>
+        /// <param name="connectString"></param>
         void StartCalculationPersonalOffer(int campaignId, DateTime currentDate, string connectString)
         {
             using (SqlConnection c = new SqlConnection(connectString))

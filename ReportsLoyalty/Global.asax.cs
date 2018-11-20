@@ -43,12 +43,22 @@ namespace ReportsLoyalty
 
         }
         /* -------------------------------------------------------------------------------------------------- */
+        /// <summary>
+        /// Запуск на перерахунок звіту по акціїї
+        /// Запуск в окремому потоці
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="dt"></param>
         public void Start(int campaignId, DateTime dt)
         {
             var t = Task.Run(() => StartCampaignCalculation(campaignId, dt));
             t.Wait();
         }
-        
+        /// <summary>
+        /// Запуск на перерахунок в...
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="dt"></param>
         void StartCampaignCalculation(int campaignId, DateTime dt)
         {
             using (GetData data = new GetData())
@@ -56,7 +66,7 @@ namespace ReportsLoyalty
                 data.Campaigns.SetStartCalculation(campaignId, dt);
             }
         }
-        /* =================================================================================================== */
+        /* -------------------------------------------------------------------------------------------------- */
         public void StartFillCampaignFromTableList(int campaignId, string table, bool toDelete) {
             var t = Task.Run(() => StartFillCampaignFromTableListData(campaignId, table, toDelete));
             t.Wait();

@@ -12,6 +12,7 @@ using System.Text;
 using Newtonsoft.Json;
 using DataModels;
 using System.Data;
+using ReportsLoyalty.Helpers;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -109,6 +110,25 @@ namespace ReportsLoyalty.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public object GetCrmCustomerStatus()
+        {
+            using (GetData gt = new GetData())
+            {
+                var lst = gt.Dict.GetCrmCustomerStatus();
+                object o_data = new
+                {
+                    total = lst.Count(),
+                    data = lst
+                };
+
+                return o_data;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public IEnumerable<CampaignsMk> GetCampaignsRunsListByTypeId(int id)
@@ -139,7 +159,11 @@ namespace ReportsLoyalty.Controllers
 
             return markets.OrderBy(o => o.Id);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IEnumerable<string> GetDisabledDates(int id)
         {
             using (GetData gt = new GetData()) {
@@ -158,7 +182,11 @@ namespace ReportsLoyalty.Controllers
                 return lst;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public object GetCampaignDates(int id)
         {
             using (GetData gt = new GetData())
@@ -187,8 +215,6 @@ namespace ReportsLoyalty.Controllers
                 return o_data;
             }
         }
-
-
         /// <summary>
         /// 
         /// </summary>

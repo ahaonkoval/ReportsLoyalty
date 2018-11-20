@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.IO;
 using System.Data;
+using ReportsLoyalty.Helpers;
 //using Microsoft.Office.Interop.Excel;
 //using System.Runtime.InteropServices;
 
@@ -70,7 +71,7 @@ namespace ReportsLoyalty.Controllers
                 result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                 {
                     FileName = string.Format(
-                    "({0}) {1}.csv", id.ToString(), gd.Campaigns.GetCampaignNameById(id)
+                    "({0}){1}.csv", id.ToString(), string.Empty//gd.Campaigns.GetCampaignNameById(id)
                     )
                 };
 
@@ -87,17 +88,12 @@ namespace ReportsLoyalty.Controllers
             var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
 
             string tradeCentreLst = string.Empty;
-            var mlst = queryparams.Where(w => w.Key == "marketLst").ToList();
-            foreach (var a in mlst)
-            {
-                if (tradeCentreLst == string.Empty)
-                {
-                    tradeCentreLst = a.Value;
-                } else
-                {
-                    tradeCentreLst = tradeCentreLst + string.Format("|{0}", a.Value);
-                }                
-            }
+            KeyValuePair<string, string>[] mlst = queryparams.Where(w => w.Key == "marketLst").ToArray();
+            tradeCentreLst = ConverterHelper.GetStrigFormated(mlst);
+
+            string cardTypeLst = string.Empty;
+            KeyValuePair<string, string>[] ctl = queryparams.Where(w => w.Key == "cardTypeLst").ToArray();
+            cardTypeLst = ConverterHelper.GetStrigFormated(ctl);
 
             CustomerSelect cs = new LoyaltyDB.CustomerSelect
             {
@@ -111,7 +107,11 @@ namespace ReportsLoyalty.Controllers
                 qtyAtd = queryparams.Where(w => w.Key == "qtyAtd").FirstOrDefault().Value,
                 qtyDocs = queryparams.Where(w => w.Key == "qtyDocs").FirstOrDefault().Value,
                 qtyPoints = queryparams.Where(w => w.Key == "qtyPoints").FirstOrDefault().Value,
-                startDate = queryparams.Where(w => w.Key == "startDate").FirstOrDefault().Value
+                startDate = queryparams.Where(w => w.Key == "startDate").FirstOrDefault().Value,
+
+                cardTypeLst = cardTypeLst,
+                obertIntersport = queryparams.Where(w => w.Key == "obertIntersport").FirstOrDefault().Value,
+                obertMoncheri = queryparams.Where(w => w.Key == "obertMoncheri").FirstOrDefault().Value
             };
 
             string returned = string.Empty;
@@ -132,18 +132,12 @@ namespace ReportsLoyalty.Controllers
             var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
 
             string tradeCentreLst = string.Empty;
-            var mlst = queryparams.Where(w => w.Key == "marketLst").ToList();
-            foreach (var a in mlst)
-            {
-                if (tradeCentreLst == string.Empty)
-                {
-                    tradeCentreLst = a.Value;
-                }
-                else
-                {
-                    tradeCentreLst = tradeCentreLst + string.Format("|{0}", a.Value);
-                }
-            }
+            KeyValuePair<string, string>[] mlst = queryparams.Where(w => w.Key == "marketLst").ToArray();
+            tradeCentreLst = ConverterHelper.GetStrigFormated(mlst);
+
+            string cardTypeLst = string.Empty;
+            KeyValuePair<string, string>[] ctl = queryparams.Where(w => w.Key == "cardTypeLst").ToArray();
+            cardTypeLst = ConverterHelper.GetStrigFormated(ctl);
 
             CustomerSelect cs = new LoyaltyDB.CustomerSelect
             {
@@ -157,13 +151,17 @@ namespace ReportsLoyalty.Controllers
                 qtyAtd = queryparams.Where(w => w.Key == "qtyAtd").FirstOrDefault().Value,
                 qtyDocs = queryparams.Where(w => w.Key == "qtyDocs").FirstOrDefault().Value,
                 qtyPoints = queryparams.Where(w => w.Key == "qtyPoints").FirstOrDefault().Value,
-                startDate = queryparams.Where(w => w.Key == "startDate").FirstOrDefault().Value
+                startDate = queryparams.Where(w => w.Key == "startDate").FirstOrDefault().Value,
+
+                cardTypeLst = cardTypeLst,
+                obertIntersport = queryparams.Where(w => w.Key == "obertIntersport").FirstOrDefault().Value,
+                obertMoncheri = queryparams.Where(w => w.Key == "obertMoncheri").FirstOrDefault().Value
             };
 
             Global.SP.StartCreateCampaignFromSelect(cs);
 
             return string.Empty;
-        }
+        }        
 
         [HttpGet]
         public HttpResponseMessage GetCustomersFileLong(int id)

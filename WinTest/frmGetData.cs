@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 using LoyaltyDB;
 using System.IO;
 using System.Collections;
-using WinLoader.Helpers;
+using DataLoader.Helpers;
 
 namespace WinTest
 {

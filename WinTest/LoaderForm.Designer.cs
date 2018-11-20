@@ -38,9 +38,11 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вигрузкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuGetData = new System.Windows.Forms.ToolStripMenuItem();
+            this.mcChangeStructure = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.mcTestDownload = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -103,7 +105,9 @@
             // вигрузкиToolStripMenuItem
             // 
             this.вигрузкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuGetData});
+            this.menuGetData,
+            this.mcChangeStructure,
+            this.mcTestDownload});
             this.вигрузкиToolStripMenuItem.Name = "вигрузкиToolStripMenuItem";
             this.вигрузкиToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.вигрузкиToolStripMenuItem.Text = "Вигрузки";
@@ -111,9 +115,16 @@
             // menuGetData
             // 
             this.menuGetData.Name = "menuGetData";
-            this.menuGetData.Size = new System.Drawing.Size(163, 22);
+            this.menuGetData.Size = new System.Drawing.Size(221, 22);
             this.menuGetData.Text = "Чеки з Умовами";
             this.menuGetData.Click += new System.EventHandler(this.menuGetData_Click);
+            // 
+            // mcChangeStructure
+            // 
+            this.mcChangeStructure.Name = "mcChangeStructure";
+            this.mcChangeStructure.Size = new System.Drawing.Size(221, 22);
+            this.mcChangeStructure.Text = "Зміна структури по візитах";
+            this.mcChangeStructure.Click += new System.EventHandler(this.mcChangeStructure_Click);
             // 
             // statusStrip
             // 
@@ -130,6 +141,13 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(66, 17);
             this.toolStripStatusLabel.Text = "Состояние";
+            // 
+            // mcTestDownload
+            // 
+            this.mcTestDownload.Name = "mcTestDownload";
+            this.mcTestDownload.Size = new System.Drawing.Size(221, 22);
+            this.mcTestDownload.Text = "Тест";
+            this.mcTestDownload.Click += new System.EventHandler(this.mcTestDownload_Click);
             // 
             // LoaderForm
             // 
@@ -166,6 +184,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem вигрузкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuGetData;
+        private System.Windows.Forms.ToolStripMenuItem mcChangeStructure;
+        private System.Windows.Forms.ToolStripMenuItem mcTestDownload;
     }
 }
 
