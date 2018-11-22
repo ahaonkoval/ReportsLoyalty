@@ -190,6 +190,7 @@
     <Content Include="pages\p50points_reports.aspx" />
     <Content Include="scripts\articuls.js" />
     <Content Include="scripts\campaigns_terms.js" />
+    <Content Include="scripts\campaign_wizard.js" />
     <Content Include="scripts\customers.js" />
     <Content Include="scripts\campaigns.js" />
     <None Include="scripts\jslib\jquery-3.3.1.intellisense.js" />
@@ -202,7 +203,6 @@
     <Content Include="scripts\PersonalInteractiv.js" />
     <Content Include="scripts\pl_indicators.js" />
     <Content Include="scripts\stop_list.js" />
-    <Content Include="scripts\upload_status.js" />
     <Content Include="scripts\campaign_settings.js" />
     <Content Include="Content\report.css" />
     <Content Include="Content\Site.css" />
@@ -3381,6 +3381,7 @@
     <Content Include="scripts\jslib\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jslib\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\jslib\modernizr-2.6.2.js" />
+    <Content Include="scripts\upload_status.js" />
     <Content Include="tpt.aspx" />
     <Content Include="UsersData.xml" />
     <Content Include="Web.config" />

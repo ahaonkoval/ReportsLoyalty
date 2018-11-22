@@ -260,8 +260,6 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                //return db.VCampaignsMkRun.ToList();
-
                 return db.CampaignsMk.Where(w => w.IsRun == true).Select(m => new CampaignsMk
                 {
                     Created = m.Created,
@@ -273,7 +271,7 @@ namespace LoyaltyDB
                     IsRun = m.IsRun,
                     MarkmoId = m.MarkmoId,
                     TypeId = m.TypeId,
-                    Name = string.Format("({0}), {1}", m.Id.ToString(), m.Name)
+                    Name = string.Format("({0}), {1}", m.Id.ToString(), m.Name) // --<-- додаємо ИД в назву
                 }).ToList();
             }
         }

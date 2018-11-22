@@ -1,5 +1,14 @@
 ﻿
 function Dict() {
+
+    this.CurrentGroupsForDepartsIds = null,
+
+    //this.Sections = this.getCmpGrpByLevel(0),
+
+    /* 
+        Довідник статусів (типів) УПЛ 
+        використовується в формі вибору УПЛ під акцію (створення списку УПЛ кампанії)
+    */
     this.getCrmCustomerStatus = function (type_id) {
         var model = Ext.define('v_campaigns_mk_run', {
             extend: 'Ext.data.Model',
@@ -28,7 +37,9 @@ function Dict() {
         });
 
     },
-    // -----------------------------------------------------------------------
+    /*
+        Використовуюється в формах виводу звітів при виборі активностей  
+    */
     this.getStoreCampaigns = function (type_id) {
         var model = Ext.define('v_campaigns_mk_run', {
             extend: 'Ext.data.Model',
@@ -54,7 +65,9 @@ function Dict() {
         });
 
     },
-    // -----------------------------------------------------------------------
+    /*
+        Довідник торгових центрів ...         
+    */
     this.getStoreMarkets = function () {
         var model = Ext.define('DictMarkets', {
             extend: 'Ext.data.Model',
@@ -74,7 +87,9 @@ function Dict() {
             autoLoad: true
         });
     },
-    // -----------------------------------------------------------------------
+    /*
+        Перелік груп підгруп
+    */
     this.getCmpGrpByLevel = function (level) {
         var model = Ext.define('FGroup', {
             extend: 'Ext.data.Model',
@@ -96,25 +111,27 @@ function Dict() {
     // -----------------------------------------------------------------------
     // Завантаження переліку груп віддвілу (другий рівень довідника, name 2)
     // завантаження проходить ИД відділа
-    this.getGrpNameTwoByOtdId = function (otdId) {
-        var model = Ext.define('FGroup', {
-            extend: 'Ext.data.Model',
-            fields: ['fgroup_id', 'name'],
-            proxy: {
-                type: 'rest',
-                url: 'api/dict/GetGroupsByOtdId/' + otdId,
-                reader: {
-                    type: 'json',
-                    root: 'FGroup'
-                }
-            }
-        });
-        return Ext.create('Ext.data.Store', {
-            model: model,
-            autoLoad: true
-        });
-    },
-    // -----------------------------------------------------------------------
+    //this.getGrpNameTwoByOtdId = function (otdId) {
+    //    var model = Ext.define('FGroup', {
+    //        extend: 'Ext.data.Model',
+    //        fields: ['fgroup_id', 'name'],
+    //        proxy: {
+    //            type: 'rest',
+    //            url: 'api/dict/GetGroupsByOtdId/' + otdId,
+    //            reader: {
+    //                type: 'json',
+    //                root: 'FGroup'
+    //            }
+    //        }
+    //    });
+    //    return Ext.create('Ext.data.Store', {
+    //        model: model,
+    //        autoLoad: true
+    //    });
+    //},
+    /*
+        Перелік департаментів у відділі
+    */
     this.getDepartmentsListByOtdId = function (otdId) {
         var model = Ext.define('FGroup', {
             extend: 'Ext.data.Model',
@@ -133,46 +150,40 @@ function Dict() {
             autoLoad: true
         });
     },
-    // -----------------------------------------------------------------------
-    this.getCmpGrpByParentId = function (parentId) {
-        var model = Ext.define('FGroup', {
+    /*
+        Завантажує перелік груп третього рівня по ИД департаментів
+    */
+    this.getGroupsForDepartsIds = function (departIds) {
+        var model = Ext.define('GroupsForDeparts', {
             extend: 'Ext.data.Model',
-            fields: ['fgroup_id', 'name'],
+            fields: [
+                'name_3',
+                'lf3_id',
+                'lf2_id',
+                'lf1_id',
+                'name_1',
+                'name_full'
+            ],
             proxy: {
                 type: 'rest',
-                url: 'api/dict/GetGroupsByParentId/' + parentId,
+                url: 'api/dict/GetGroupsForDeparts/0',
                 reader: {
                     type: 'json',
-                    root: 'FGroup'
+                    root: 'data'
+                },
+                extraParams: {
+                    Ids: departIds                   
                 }
             }
         });
         return Ext.create('Ext.data.Store', {
             model: model,
-            autoLoad: false
+            autoLoad: true
         });
     },
-    ///
-    //this.getCmpGrpByParentId = function (parentId, store_id) {
-    //    var model = Ext.define('FGroup', {
-    //        extend: 'Ext.data.Model',
-    //        fields: ['fgroup_id', 'name'],
-    //        proxy: {
-    //            type: 'rest',
-    //            url: 'api/dict/GetGroupsByParentId/' + parentId,
-    //            reader: {
-    //                type: 'json',
-    //                root: 'FGroup'
-    //            }
-    //        }
-    //    });
-    //    return Ext.create('Ext.data.Store', {
-    //        model: model,
-    //        id: store_id,
-    //        autoLoad: false
-    //    });
-    //},
-    ///
+    /*
+        Для статусу кампанії
+    */
     this.getStoreTrueFalse = function () {
         var m = Ext.define('ModelTrueFalse', {
             extend: 'Ext.data.Model',
@@ -191,7 +202,9 @@ function Dict() {
             ]
         });
     },
-    // -----------------------------------------------------------------------
+    /* 
+        Довіднитк типів кампаній
+    */
     this.getStoreCampaignTypes = function () {
         var m = Ext.define('CampaignType', {
             extend: 'Ext.data.Model',
@@ -210,7 +223,9 @@ function Dict() {
             autoLoad: true
         });
     },
-    // -----------------------------------------------------------------------
+    /*
+        Фільтрований довідник кампаній
+    */
     this.getStoreCampaignTypesFiltered = function () {
         var m = Ext.define('CampaignType', {
             extend: 'Ext.data.Model',
@@ -252,7 +267,7 @@ function Dict() {
              autoLoad: true
          });
     },
-    // -----------------------------------------------------------------------
+     
     this.getStoreDownloadStatusTables = function () {
         var m = Ext.define('CampaignType', {
             extend: 'Ext.data.Model',

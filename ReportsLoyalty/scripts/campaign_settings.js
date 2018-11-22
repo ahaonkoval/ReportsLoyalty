@@ -6,6 +6,7 @@ function WinCampaignDetails() {
 
     this.storeListCampaigns = null;
 
+    /* перенести в dict.js --<----------------------------------------------- */
     // довідеик (так/ні)
     this.StTrueFalse = dict.getStoreTrueFalse(),
     this.getStTrueFalse = function () {
@@ -31,23 +32,34 @@ function WinCampaignDetails() {
     },
     this.setStGroups = function (store) {
         this.StGroups = store;
-    }
+    },
 
     // Типи капмпаній, довідник, выд цього залежить де ы як буде выдображений звіт
     this.StCampaignTypes = dict.getStoreCampaignTypes(),
     this.getStCampaignTypes = function () {
         return this.StCampaignTypes;
     },
+    /* --<-------------------------------------------------------------------------*/
 
-    this.TagGroups = Ext.create(
+    this.TagDeparts = Ext.create(
         {
             xtype: 'tagfield',
             store: this.getStDepartments(),
             displayField: 'name',
-            valueField: 'fgroup_id',
-            id: 'cmbCmpEditGrp_2'
+            valueField: 'fgroup_id'
         }
     ),
+
+    this.TagGroups_3 = Ext.create(
+        {
+            xtype: 'tagfield',
+            store: dict.getGroupsForDepartsIds('65000001609, 65000001610'),
+            displayField: 'name_3',
+            valueField: 'lf3_id',
+            //id: 'cmbCmpEditGrp_2'
+        }
+    ),
+
 
     /* ------------------------------------------------------------------------------------------------- */
     this.Grid = Ext.create('Ext.grid.property.Grid', {
@@ -117,7 +129,7 @@ function WinCampaignDetails() {
                      listeners: {
                          change: function (ctrl, newValue, oldValue, eOpts) {
                              var store = dict.getDepartmentsListByOtdId(newValue);
-                             winCd.TagGroups.setStore(store);
+                             winCd.TagDeparts.setStore(store);
                              winCd.setStGroups(store);
                          }
                      }
@@ -137,11 +149,11 @@ function WinCampaignDetails() {
              },
              group_id_2: {
                  displayName: 'ДЕПАРТАМЕНТ', ///'ГРУПА(групи)',/
-                 editor: this.TagGroups,
+                 editor: this.TagDeparts,
                  renderer: function (value) {
                      var returned = '';
                      if (value != '') {
-                         var store = winCd.TagGroups.getStore();//winCd.getStGroups();
+                         var store = winCd.TagDeparts.getStore();//winCd.getStGroups();
                          var data = store.getData();
                          var gps = value.toString().split(',');
 
@@ -153,6 +165,34 @@ function WinCampaignDetails() {
                                      returned = returned + rec.items[0].get('name');
                                  } else {
                                      returned = returned + ', ' + rec.items[0].get('name');
+                                 }
+                             }
+                         }
+                         value = returned;
+                     } else {
+                         return '';
+                     }
+                     return value;
+                 }
+             },
+             group_id_3: {
+                 displayName: 'ГРУПА(групи 3 рівня)',
+                 editor: this.TagGroups_3,
+                 renderer: function (value) {
+                     var returned = '';
+                     if (value != '') {
+                         var store = dict.getGroupsForDepartsIds('65000001609, 65000001610');//winCd.getStGroups();
+                         var data = store.getData();
+                         var gps = value.toString().split(',');
+
+                         for (var i = 0; i <= gps.length - 1; i++) {
+
+                             var rec = data.filterBy('lf3_id', gps[i]);
+                             if (rec.length > 0) {
+                                 if (returned.length == 0) {
+                                     returned = returned + rec.items[0].get('name_3');
+                                 } else {
+                                     returned = returned + ', ' + rec.items[0].get('name_3');
                                  }
                              }
                          }
@@ -197,16 +237,7 @@ function WinCampaignDetails() {
                      xtype: 'datefield',
                      format: 'd.m.Y'
                  }
-             },
-             //mailing_idsc: {
-             //    displayName: 'ИД розсилок',
-             //    editor: {
-             //        xtype: 'customeditorfield'
-             //    },
-             //    renderer: function (value) {
-             //        return '';
-             //    }
-             //},
+             }
          }
     }),
 
@@ -244,7 +275,8 @@ function WinCampaignDetails() {
                 source['date_end']      = new Date(date_end);//date_end;
                 source['is_run']        = is_run_value;//record.get('is_run');
                 source['group_id_0']    = rec.get('group_id_0');
-                source['group_id_2']    = fgroup_ids;
+                source['group_id_2'] = fgroup_ids;
+                source['group_id_3'] = '';
                 source['type_id']       = rec.get('type_id');
                 source['mailing_id']    = rec.get('mailing_id');
                 source['date_send']     = date_send;//new Date(date_send);
@@ -265,7 +297,8 @@ function WinCampaignDetails() {
         source['date_end']      = new Date();
         source['is_run']        = 0;
         source['group_id_0']    = '';
-        source['group_id_2']    = '';
+        source['group_id_2'] = '';
+        source['group_id_3'] = '';
         source['type_id']       = null;
         source['mailing_id']    = '';
         source['date_send']     = null;
@@ -325,6 +358,7 @@ function WinCampaignDetails() {
                                         is_run: record.get('is_run') == true ? 1 : 0,
                                         group_id_0: record.get('group_id_0'),
                                         group_id_2: record.get('group_id_2'),
+                                        group_id_3: '',
                                         type_id: record.get('type_id') == null ? 0 : record.get('type_id'),
                                         mailing_id: record.get('mailing_id'),
                                         date_send: record.get('date_send')
@@ -411,7 +445,8 @@ function WinCampaignDetails() {
                                     date_end        : data.get('date_end').data.value,
                                     is_run          : data.get('is_run').data.value,
                                     group_id_0      : data.get('group_id_0').data.value,
-                                    group_id_2      : data.get('group_id_2').data.value.toString(),
+                                    group_id_2: data.get('group_id_2').data.value.toString(),
+                                    group_id_3: '',
                                     type_id         : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
                                     mailing_id      : data.get('mailing_id').data.value.toString(),
                                     date_send       : data.get('date_send').data.value
@@ -437,7 +472,8 @@ function WinCampaignDetails() {
                                                 date_start  : data.get('date_start').data.value,
                                                 date_end    : data.get('date_end').data.value,
                                                 group_id_0  : data.get('group_id_0').data.value,
-                                                group_id_2  : data.get('group_id_2').data.value.toString(),
+                                                group_id_2: data.get('group_id_2').data.value.toString(),
+                                                group_id_3: '',
                                                 mailing_id  : data.get('mailing_id').data.value.toString(),
                                                 date_send   : data.get('date_send').data.value
                                             });
@@ -460,7 +496,8 @@ function WinCampaignDetails() {
                             date_end    : data.get('date_end').data.value,
                             is_run      : data.get('is_run').data.value,
                             group_id_0  : data.get('group_id_0').data.value,
-                            group_id_2  : data.get('group_id_2').data.value.toString(),
+                            group_id_2: data.get('group_id_2').data.value.toString(),
+                            group_id_3: stri.emptyText,
                             type_id     : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
                             mailing_id  : data.get('mailing_id').data.value.toString(),
                             date_send   : data.get('date_send').data.value

@@ -26,6 +26,8 @@
 
     <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
 
+    <script type="text/javascript" src="scripts/CmpSettWzd.js"></script>
+
     <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>--%>
     <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>--%>
     <script src="scripts/jslib/raphael-min.js"></script>

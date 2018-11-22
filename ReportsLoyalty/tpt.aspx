@@ -24,8 +24,9 @@
     <script type="text/javascript" src="scripts/customers.js"></script>    
     <script type="text/javascript" src="scripts/pl_indicators.js"></script>
     <script type="text/javascript" src="scripts/p50points_reports.js"></script>
-
     <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
+    <script type="text/javascript" src="scripts/campaign_wizard.js"></script>
+
     <script src="scripts/jslib/raphael-min.js"></script>
     <script src="scripts/charts/morris.js-0.5.1/morris.js"></script>
     <link rel="stylesheet" href="scripts/charts/morris.js-0.5.1/morris.css"/>
@@ -38,7 +39,7 @@
     <div>
     <script> 
         Ext.onReady(function () {
-            getWinSelectCustomers(577).show();
+            getWinCmpSettWizard(685).show();
         });
         
     </script>

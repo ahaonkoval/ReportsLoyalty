@@ -1,4 +1,25 @@
-﻿.x-column-header-inner .x-column-header-text {
+﻿
+/* 
+    для dataview
+*/
+.x-item-selected {
+     background: #bbe3f7;
+}
+/* 
+    для dataview
+*/
+.dataview-cell {
+    padding: 2px;
+    margin: 0px;
+    text-align: start;
+    font-size: 13px;
+    font-family: 'Segoe UI';
+    font-weight:400;
+    border: 1px solid #808080;
+    user-select: none; 
+}
+
+.x-column-header-inner .x-column-header-text {
     white-space: normal;
 }
  
@@ -70,21 +91,6 @@
     text-align: center;
 
     display:inline-table;
-    /*display: inline-block;*/
-
-    /*padding-right: 1px !important;*/
-    
-    /*-moz-transform: rotate(90deg);*/
-    /*-o-transform: rotate(90deg);*/
-    /*-ms-transform: rotate(90deg);*/
-    /*transform: rotate(90deg);*/
-    
-    /* transform doesn't work on inline elements */
-    
-
-    /* need to hard code a height for this to work */
-    /* you could use Ext.util.TextMetrics if you needed to dynamically determine the text size */
-    /*height: 40px;*/
 }
 
 .x-ie8 .grid-header-phone .x-column-header-text {
@@ -92,76 +98,16 @@
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 
-/*
-.combo_box
-{ 
-    font-size: 8px; 
-    font-weight: bold; 
-    color: cadetblue; 
-}
 
-body {
-}
-
-textarea
-{
-  width:100%;
-  height:100%;
-}
-*/
 .boxsizingBorder {
-  /*border:1px solid #999999;
-  width: 1000px;*/
-  margin:0px 0;
-  padding:0px;
-  width: 100%;
-  height: 100%;
-  -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    margin: 0px 0;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
-
-
-/*.x-grid-row .custom-column { 
-    //background-color: #ecf; 
-    //color: #090; 
-    //font-weight: bold; 
-    font-size: 11px;
-}*/
-
-/*.markmo-list .x-list-item:nth-child(1),
-.markmo-list .x-list-item:nth-child(2) {
-  color: #CCC;
-  font-size:10px;
-}*/
-
-/*.markets-list .x-list-item:nth-child(1),*/
-/*.markets-list .x-list-item:nth-child(2) {
-  color: #f00;
-  font-size:10px;
-}*/
-
-/*.make-bold input {
-    font-weight: bold;
-}*/
-
-/*.x-boundlist-item {
-  color: #CCC;
-  font-size:10px;
-}*/
-
-/*.x-combobox_ak-item {
-    padding: 0 10px;
-    font: normal 13px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
-    line-height: 30px;
-    cursor: pointer;
-    cursor: hand;
-    position: relative;
-    border-width: 1px;
-    border-style: dotted;
-    border-color: #fff;
-    color: #404040;
-}*/
 
 .x-panel-header.x-header.x-header-noborder.x-docked.x-unselectable.x-panel-header-default.x-horizontal.x-panel-header-horizontal.x-panel-header-default-horizontal.x-top.x-panel-header-top.x-panel-header-default-top.x-box-layout-ct.x-accordion-hd.x-accordion-hd-sibling-expanded {
     background-color: #D2E7F7 !important;

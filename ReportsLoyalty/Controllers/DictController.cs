@@ -129,6 +129,27 @@ namespace ReportsLoyalty.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        ///[HttpGet]
+        public object GetGroupsForDeparts()
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            string ids = queryparams.Where(w => w.Key == "Ids").FirstOrDefault().Value.ToString();
+            using (GetData gt = new GetData()) {
+
+                var dict = gt.Dict.GetGroupsForDeparts(ids);
+
+                object o = new {
+                    total = dict.Count(),
+                    data = dict
+                };
+
+                return o;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public IEnumerable<CampaignsMk> GetCampaignsRunsListByTypeId(int id)
@@ -243,25 +264,25 @@ namespace ReportsLoyalty.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<FGroup> GetGroupsByOtdId(long id)
-        {
-            List<FGroup> g = new List<FGroup>();
+        //public IEnumerable<FGroup> GetGroupsByOtdId(long id)
+        //{
+        //    List<FGroup> g = new List<FGroup>();
 
-            using (GetData gt = new GetData())
-            {
-                var fgroups = gt.Dict.GetGroupsByOtdId(id);
-                foreach (v_fgroups f in fgroups)
-                {
-                    g.Add(new FGroup
-                    {
-                        fgroup_id = f.fgroup_id,
-                        name = f.name
-                    });
-                }
-            }
+        //    using (GetData gt = new GetData())
+        //    {
+        //        var fgroups = gt.Dict.GetGroupsByOtdId(id);
+        //        foreach (v_fgroups f in fgroups)
+        //        {
+        //            g.Add(new FGroup
+        //            {
+        //                fgroup_id = f.fgroup_id,
+        //                name = f.name
+        //            });
+        //        }
+        //    }
 
-            return g;
-        }
+        //    return g;
+        //}
         /// <summary>
         /// Отримання переліку департаментів в відділі (name 1)
         /// </summary>
@@ -287,25 +308,25 @@ namespace ReportsLoyalty.Controllers
             return g;
         }
 
-        public IEnumerable<FGroup> GetGroupsByParentId(int id)
-        {
-            List<FGroup> g = new List<FGroup>();
+        //public IEnumerable<FGroup> GetGroupsByParentId(int id)
+        //{
+        //    List<FGroup> g = new List<FGroup>();
 
-            using (GetData gt = new GetData())
-            {
-                var fgroups = gt.Dict.GetGroupsByParentId(id);
-                foreach (VFgroups f in fgroups)
-                {
-                    g.Add(new FGroup
-                    {
-                        fgroup_id = f.FgroupId,
-                        name = f.Name
-                    });
-                }
-            }
+        //    using (GetData gt = new GetData())
+        //    {
+        //        var fgroups = gt.Dict.GetGroupsByParentId(id);
+        //        foreach (VFgroups f in fgroups)
+        //        {
+        //            g.Add(new FGroup
+        //            {
+        //                fgroup_id = f.FgroupId,
+        //                name = f.Name
+        //            });
+        //        }
+        //    }
 
-            return g;
-        }
+        //    return g;
+        //}
 
         public string GetGroupsIdsById(int id)
         {

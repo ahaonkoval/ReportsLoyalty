@@ -9,6 +9,7 @@ using DataModels;
 using static DataModels.CrmWizardDBStoredProcedures;
 using System.Data.SqlClient;
 using System.Data;
+using static DataModels.CrmWizardDB;
 
 namespace LoyaltyDB
 {
@@ -50,7 +51,7 @@ namespace LoyaltyDB
         public IEnumerable<VFgroups> GetGroups(int level_id)
         {
             using (var db = new DataModels.CrmWizardDB())
-            {
+            {   
                 return db.VFgroups.Where(w => w.LevelId == level_id).OrderBy(o => o.FgroupId).ToList();
             }
 
@@ -61,32 +62,31 @@ namespace LoyaltyDB
         /// </summary>
         /// <param name="parent_id"></param>
         /// <returns></returns>
-        public IEnumerable<VFgroups> GetGroupsByParentId(int parent_id)
-        {
-            using (var db = new DataModels.CrmWizardDB())
-            {
-                return db.VFgroups.Where(w => w.ParentId == parent_id).OrderBy(o => o.FgroupId);
-            }
-            //return Le.v_fgroups.Where(w => w.parent_id == parent_id).OrderBy(o => o.fgroup_id);
-        }
+        //public IEnumerable<VFgroups> GetGroupsByParentId(int parent_id)
+        //{
+        //    using (var db = new DataModels.CrmWizardDB())
+        //    {
+        //        return db.VFgroups.Where(w => w.ParentId == parent_id).OrderBy(o => o.FgroupId);
+        //    }
+        //}
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<v_fgroups> GetGroupsByOtdId(long id)
-        {
-            List<v_fgroups> fg = new List<v_fgroups>();
-            var groups = Le.t_get_groups_by_otdid(id);
-            foreach (t_get_groups_by_otdid_Result o in groups)
-            {
-                fg.Add(new v_fgroups {
-                    fgroup_id = o.fgroup_id.Value,
-                     name = o.name
-                });
-            }
-            return fg;
-        }
+        //public IEnumerable<v_fgroups> GetGroupsByOtdId(long id)
+        //{
+        //    List<v_fgroups> fg = new List<v_fgroups>();
+        //    var groups = Le.t_get_groups_by_otdid(id);
+        //    foreach (t_get_groups_by_otdid_Result o in groups)
+        //    {
+        //        fg.Add(new v_fgroups {
+        //            fgroup_id = o.fgroup_id.Value,
+        //             name = o.name
+        //        });
+        //    }
+        //    return fg;
+        //}
         /// <summary>
         /// 
         /// </summary>
@@ -240,6 +240,14 @@ namespace LoyaltyDB
             using (var db = new DataModels.CrmWizardDB())
             {
                 return db.CrmCustomerStatus.ToList();
+            }
+        }
+
+        public IEnumerable<TGetGroupsForDepartsResult> GetGroupsForDeparts(string ids)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.TGetGroupsForDeparts(ids).OrderBy(o => o.lf1_id).ToList();
             }
         }
     }
