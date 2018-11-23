@@ -140,37 +140,26 @@ namespace ReportsLoyalty.Controllers
 
             return returned; 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        [HttpPost]
+        public string SetCampainStructureData(int id, [FromBody] dynamic value)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            string DepartmentIds = queryparams.Where(w => w.Key == "DepartmentIds").FirstOrDefault().Value;
+            string GroupLavel3Ids = queryparams.Where(w => w.Key == "GroupLavel3Ids").FirstOrDefault().Value;
 
+            try
+            {
+                using (GetData gt = new GetData())
+                {
+                    gt.Campaigns.SetCampainStructureData(id, DepartmentIds, GroupLavel3Ids);
+                    return string.Empty;
+                }
+            } catch (Exception except)
+            {
+                return except.Message;
+            }
+                        
+        }
         #endregion
-
-
-        //// GET: api/Campaign/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST: api/Campaign
-        //[HttpPost]
-        //public void Post(string value) //[FromBody]
-        //{
-        //    int i = 0;
-        //}
-
-        //// PUT: api/Campaign/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/Campaign/5
-        //public void Delete(int id)
-        //{
-        //}
-
     }
 }

@@ -22,7 +22,7 @@ namespace LoyaltyDB
 
         public Campaigns(LoyaltyDB.LoyaltyEntities le)
         {
-            //Le = le;
+            
         }
 
         public void CreateCampaignParticipantCache(long _campaignId)
@@ -520,6 +520,37 @@ namespace LoyaltyDB
         #endregion
 
         #region SET
+
+        public void SetCampainStructureData(int campaignId, string DepartmentIds, string GroupLavel3Ids)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                db.CampaignGroups.Delete(w => w.CampaignId == campaignId);
+
+                string[] departmentIds = DepartmentIds.Split(',');
+                foreach (string dpi in departmentIds)
+                {
+                    db.CampaignGroups.Insert(() => new CampaignGroups
+                    {
+                        CampaignId = campaignId,
+                        GroupId = Convert.ToInt64(dpi),
+                        LavelId = 1
+                    });
+                }
+
+                string[] groupLavel3Ids = GroupLavel3Ids.Split(',');
+                foreach (string gpi in groupLavel3Ids)
+                {
+                    db.CampaignGroups.Insert(() => new CampaignGroups
+                    {
+                        CampaignId = campaignId,
+                        GroupId = Convert.ToInt64(gpi),
+                        LavelId = 3
+                    });
+                }
+            }
+        }
+
         /// <summary>
         /// Ховає кампанію зі списку
         /// </summary>
@@ -532,33 +563,6 @@ namespace LoyaltyDB
                     .Set(p => p.Hide, true)
                     .Update();
             }
-        }
-
-        public int SetStartGetStatusMailing(int CampaignId)
-        {
-            int returned = 0;
-
-            using (CrmWizardDB db = new DataModels.CrmWizardDB())
-            {
-                db.BeginTransaction(System.Data.IsolationLevel.RepeatableRead);
-
-                if (db.CampaignsMk.Where(w => w.IsStartGetStatus == 1).Count() > 0)
-                {
-                    returned = 0;
-                }
-                else
-                {
-                    db.CampaignsMk.Where(w => w.Id == CampaignId)
-                        .Set(p => p.IsStartGetStatus, 1)
-                        .Update();
-
-                    returned = 1;
-                }
-
-                db.CommitTransaction();
-            }
-
-            return returned;
         }
 
         /// <summary>
@@ -654,6 +658,37 @@ namespace LoyaltyDB
         }
 
         #region MAILING
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CampaignId"></param>
+        /// <returns></returns>
+        public int SetStartGetStatusMailing(int CampaignId)
+        {
+            int returned = 0;
+
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                db.BeginTransaction(System.Data.IsolationLevel.RepeatableRead);
+
+                if (db.CampaignsMk.Where(w => w.IsStartGetStatus == 1).Count() > 0)
+                {
+                    returned = 0;
+                }
+                else
+                {
+                    db.CampaignsMk.Where(w => w.Id == CampaignId)
+                        .Set(p => p.IsStartGetStatus, 1)
+                        .Update();
+
+                    returned = 1;
+                }
+
+                db.CommitTransaction();
+            }
+
+            return returned;
+        }
         /// <summary>
         /// Встановлення статусу кампанії на обробку
         /// </summary>

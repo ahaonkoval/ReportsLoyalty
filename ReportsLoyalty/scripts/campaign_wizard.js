@@ -1,4 +1,5 @@
-﻿var getWinCmpSettWizard = function (campaign_id) {
+﻿
+var getWinCmpSettWizard = function (campaign_id) {
     /* 
         перелік ИД обраних груп третього рівня                                             
     */
@@ -391,22 +392,22 @@
                 ]
             },
         ],
-        listeners: {
-            beforeactivate: function () {
-                if (selectedIds.length == 0) {
-                    Ext.Msg.alert('Увага', 'Не вказано жодного департамента!',
-                        function () {
+        // listeners: {
+        //     beforeactivate: function () {
+        //         if (selectedIdsGroup3.length == 0) {
+        //             Ext.Msg.alert('Увага', 'Не вказано жодного департамента!',
+        //                 function () {
 
-                        });
-                    return false;
-                } else {
-                    /*
-                        Завантажуємо список груп третього рівня 
-                    */
-                    dataviewGroupsLavel3.setStore(dict.getGroupsForDepartsIds(selectedIds));
-                }
-            }
-        }
+        //                 });
+        //             return false;
+        //         } else {
+        //             /*
+        //                 Завантажуємо список груп третього рівня 
+        //             */
+        //             //dataviewGroupsLavel3.setStore(dict.getGroupsForDepartsIds(selectedIds));
+        //         }
+        //     }
+        // }
     });
     /*
         Контейнер сторінок майстра
@@ -469,8 +470,38 @@
                 id: 'card-next',
                 text: 'Далі &raquo;',
                 handler: function () {
-                    if (active == 2){
-                        console.log(23423);
+                    if (active == 2) {
+                        if (selectedIdsGroup3 == '') {
+                            Ext.Msg.alert('Увага', 'Не вказано жодної групи третього рівня!',
+                                function () {
+                                    win.hide();
+                                });                            
+                            return;
+                        } else {                            
+                            Ext.Ajax.request({
+                                url: 'api/Campaign/SetCampainStructureData/' + campaign_id,
+                                method: 'POST',
+                                params: { 
+                                    DepartmentIds: selectedIds,
+                                    GroupLavel3Ids: selectedIdsGroup3
+                                },
+                                jsonData: { field1: "hello", field2 : "hello2"},
+                                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                                success: function (respons) {
+                                    Ext.Msg.alert('Увага', 'Налаштування збережено!',
+                                    function () {
+                                        win.hide();
+                                    });
+                                },
+                                failure: function (error) {
+                                    Ext.Msg.alert('Увага', 'Налаштування не збережено! Виникла помилка: '+ error,
+                                    function () {
+                                        win.hide();
+                                    });  
+                                }
+                            });                      
+                            return;
+                        }                            
                     }
                     var layout = main.getLayout();
                     ++active;
@@ -483,13 +514,9 @@
                         var store = dict.getDepartmentsListByOtdId(section_id);
                         dataviewDepartments.setStore(store);
                     }
-                    // if (active == 2) {
-                    //     if (selectedIdsGroup3 != ''){
-
-                    //     } else {
-                            
-                    //     }
-                    // }
+                    if (active == 2) {
+                        dataviewGroupsLavel3.setStore(dict.getGroupsForDepartsIds(selectedIds));
+                    }
                 }
             }],
         }]

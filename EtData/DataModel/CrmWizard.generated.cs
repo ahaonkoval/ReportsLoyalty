@@ -1485,7 +1485,7 @@ namespace DataModels
 		[Column("campaign_id"), Nullable            ] public long?  CampaignId { get; set; } // bigint
 		[Column("group_id"),    Nullable            ] public long?  GroupId    { get; set; } // bigint
 		[Column("group_name"),  Nullable            ] public string GroupName  { get; set; } // nvarchar(255)
-		[Column("type_id"),     Nullable            ] public int?   TypeId     { get; set; } // int
+		[Column("lavel_id"),    Nullable            ] public int?   LavelId    { get; set; } // int
 
 		#region Associations
 
@@ -7544,58 +7544,42 @@ namespace DataModels
 
 		#endregion
 
-		#region PDailyPersCalculatedPersonalOffers
+		#region PDailyPersDayFill
 
-		public static int PDailyPersCalculatedPersonalOffers(this DataConnection dataConnection)
+		public static IEnumerable<PDailyPersDayFillResult> PDailyPersDayFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group)
 		{
-			return dataConnection.ExecuteProc("[calc].[p_daily_pers_calculated_personal_offers]");
+			return dataConnection.QueryProc<PDailyPersDayFillResult>("[calc].[p_daily_pers_day_fill]",
+				new DataParameter("@campaign_id",   @campaign_id,   DataType.Int32),
+				new DataParameter("@date",          @date,          DataType.Date),
+				new DataParameter("@control_group", @control_group, DataType.Boolean));
+		}
+
+		public partial class PDailyPersDayFillResult
+		{
+			public long?  market_id     { get; set; }
+			public int?   id            { get; set; }
+			public string name          { get; set; }
+			public int?   customers_qty { get; set; }
 		}
 
 		#endregion
 
-		#region PDailyPersExpectedEffectCreate
+		#region PDailyPersDistanceFill
 
-		public static int PDailyPersExpectedEffectCreate(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group, long? @sell_market_id)
+		public static IEnumerable<PDailyPersDistanceFillResult> PDailyPersDistanceFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group)
 		{
-			return dataConnection.ExecuteProc("[calc].[p_daily_pers_expected_effect_create]",
-				new DataParameter("@campaign_id",    @campaign_id,    DataType.Int32),
-				new DataParameter("@date",           @date,           DataType.Date),
-				new DataParameter("@control_group",  @control_group,  DataType.Boolean),
-				new DataParameter("@sell_market_id", @sell_market_id, DataType.Int64));
+			return dataConnection.QueryProc<PDailyPersDistanceFillResult>("[calc].[p_daily_pers_distance_fill]",
+				new DataParameter("@campaign_id",   @campaign_id,   DataType.Int32),
+				new DataParameter("@date",          @date,          DataType.Date),
+				new DataParameter("@control_group", @control_group, DataType.Boolean));
 		}
 
-		#endregion
-
-		#region PDailyPersExpectedEffectFill
-
-		public static int PDailyPersExpectedEffectFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date_fill)
+		public partial class PDailyPersDistanceFillResult
 		{
-			return dataConnection.ExecuteProc("[calc].[p_daily_pers_expected_effect_fill]",
-				new DataParameter("@campaign_id", @campaign_id, DataType.Int32),
-				new DataParameter("@date_fill",   @date_fill,   DataType.Date));
-		}
-
-		#endregion
-
-		#region PFillCustomers4campaignFromSelect
-
-		public static int PFillCustomers4campaignFromSelect(this DataConnection dataConnection, long? @campaign_id, string @market_lst, string @start_part, string @last_part, string @qty_visits, string @qty_docs, string @obert, string @doc_avg, string @doc_max, string @len_between_visits, string @sum_points, string @card_status_lst, string @obert_intersport, string @obert_moncheri)
-		{
-			return dataConnection.ExecuteProc("[calc].[p_fill_customers4campaign_from_select]",
-				new DataParameter("@campaign_id",        @campaign_id,        DataType.Int64),
-				new DataParameter("@market_lst",         @market_lst,         DataType.NVarChar),
-				new DataParameter("@start_part",         @start_part,         DataType.NVarChar),
-				new DataParameter("@last_part",          @last_part,          DataType.NVarChar),
-				new DataParameter("@qty_visits",         @qty_visits,         DataType.NVarChar),
-				new DataParameter("@qty_docs",           @qty_docs,           DataType.NVarChar),
-				new DataParameter("@obert",              @obert,              DataType.NVarChar),
-				new DataParameter("@doc_avg",            @doc_avg,            DataType.NVarChar),
-				new DataParameter("@doc_max",            @doc_max,            DataType.NVarChar),
-				new DataParameter("@len_between_visits", @len_between_visits, DataType.NVarChar),
-				new DataParameter("@sum_points",         @sum_points,         DataType.NVarChar),
-				new DataParameter("@card_status_lst",    @card_status_lst,    DataType.NVarChar),
-				new DataParameter("@obert_intersport",   @obert_intersport,   DataType.NVarChar),
-				new DataParameter("@obert_moncheri",     @obert_moncheri,     DataType.NVarChar));
+			public int    id            { get; set; }
+			public long?  market_id     { get; set; }
+			public string name          { get; set; }
+			public int?   customers_qty { get; set; }
 		}
 
 		#endregion
@@ -8048,29 +8032,6 @@ namespace DataModels
 			public int    object_id { get; set; }
 			public string name      { get; set; }
 			public string row_count { get; set; }
-		}
-
-		#endregion
-
-		#region PStartFillCustomers4campaignFromSelect
-
-		public static int PStartFillCustomers4campaignFromSelect(this DataConnection dataConnection, long? @campaign_id, string @market_lst, string @start_part, string @last_part, string @qty_visits, string @qty_docs, string @obert, string @doc_avg, string @doc_max, string @len_between_visits, string @sum_points, string @card_status_lst, string @obert_intersport, string @obert_moncheri)
-		{
-			return dataConnection.ExecuteProc("[calc].[p_start_fill_customers4campaign_from_select]",
-				new DataParameter("@campaign_id",        @campaign_id,        DataType.Int64),
-				new DataParameter("@market_lst",         @market_lst,         DataType.NVarChar),
-				new DataParameter("@start_part",         @start_part,         DataType.NVarChar),
-				new DataParameter("@last_part",          @last_part,          DataType.NVarChar),
-				new DataParameter("@qty_visits",         @qty_visits,         DataType.NVarChar),
-				new DataParameter("@qty_docs",           @qty_docs,           DataType.NVarChar),
-				new DataParameter("@obert",              @obert,              DataType.NVarChar),
-				new DataParameter("@doc_avg",            @doc_avg,            DataType.NVarChar),
-				new DataParameter("@doc_max",            @doc_max,            DataType.NVarChar),
-				new DataParameter("@len_between_visits", @len_between_visits, DataType.NVarChar),
-				new DataParameter("@sum_points",         @sum_points,         DataType.NVarChar),
-				new DataParameter("@card_status_lst",    @card_status_lst,    DataType.NVarChar),
-				new DataParameter("@obert_intersport",   @obert_intersport,   DataType.NVarChar),
-				new DataParameter("@obert_moncheri",     @obert_moncheri,     DataType.NVarChar));
 		}
 
 		#endregion
