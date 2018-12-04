@@ -6,7 +6,7 @@ Ext.define('campaigns_mk', {
     fields: [{
         name: 'id', type: 'int'
     }, {
-        name: 'name'
+        name: 'name', type: 'string'
     }, {
         name: 'date_start', type: "date",
         convert: function (v, record) {
@@ -336,18 +336,6 @@ var getWinCampaigns = function () {
                                 var campaign_id = record.get('id');
                                 getWinCustomers(campaign_id).show();
                             }
-
-
-                            //var wk_status = record.get('is_start_get_status');
-                            //if (wk_status == 0) {
-                            //    var campaign_id = record.get('id');
-                            //    getWinCustomers(campaign_id).show();
-                            //} else {
-                            //    if (wk_status == 3) {
-                            //        Ext.Msg.alert('Увага!', 'Зараз завантажуються учасники кампанії...', Ext.emptyFn);
-                            //    }
-                            //}
-
                         }
                     }]
                 }]
@@ -371,26 +359,7 @@ var getWinCampaigns = function () {
                         }]
                     }
                 ]
-            },
-            //{
-            //    xtype: 'actioncolumn',
-            //    width: 23,
-            //    items: [{
-            //        tooltip: 'Перерахувати',
-            //        icon: 'img/application.ico',
-            //        handler: function (view, rowIndex, colIndex, item, e, record, row) {
-            //            var campaign_id = record.get('id');
-            //            $.ajax({
-            //                url: 'api/campaign/StartCalculation/' + campaign_id,
-            //                type: 'get',
-            //                data: { cData: '2018-06-07'},
-            //                success: function (a) {
-
-            //                }
-            //            });
-            //        }
-            //    }]
-            //}
+            }
         ];
 
         return columns.slice(start || 0, finish);
@@ -421,7 +390,7 @@ var getWinCampaigns = function () {
         listeners: {
             'rowdblclick': function (grid, record, e) {
                 /* открываєм окно редактирования */
-                winCd.Show(record);
+                winCd.Show(record, this.getStore());
             },
             selectionchange (ctrl, selected, eOpts) {
                 if (selected[0] == undefined)
@@ -441,8 +410,6 @@ var getWinCampaigns = function () {
 
                 var status = record.get('is_start_get_status');
 
-                //console.info('status: ' + status);
-
                 if (status == 0) {
 
                     if (record.get('is_run') == true) {
@@ -451,13 +418,6 @@ var getWinCampaigns = function () {
                         
                     if (record.get('is_run') == false)
                         return 'x-grid-row';
-                    //return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
-
-                    //if (record.get('is_start_get_status') == 1) {
-                    //    return 'x-grid-row-getting-status';
-                    //} else {
-                    //    return css;
-                    //}
 
                 } else {
                     if (record.get('is_start_get_status') == 3) {
@@ -473,7 +433,24 @@ var getWinCampaigns = function () {
         width: "100%",
         renderTo: Ext.getBody(),
         handler: function (ctrl, event) {
-            winCd.Show(null);
+            Ext.MessageBox.prompt('Однозначна назва кампанії', 'Будьласка введіть назву:', 
+            function(operationId, campaignName) {
+                if (operationId == 'ok') {
+                    $.ajax({
+                        url: 'api/campaign/CreateCampaign/0',
+                        type: 'get',
+                        data: {
+                            Name: campaignName
+                        },
+                        success: function (id) {
+                            var record = new campaigns_mk();
+                            record.set('id', id);
+                            record.set('Name', campaignName);
+                            winCd.Show(record);
+                        }
+                    });
+                }
+            });            
         }
     });
 
@@ -532,8 +509,8 @@ var getWinCampaigns = function () {
                                 }
                             });
 
-                        }
-                    });
+                    }
+                });
         }
     });
 

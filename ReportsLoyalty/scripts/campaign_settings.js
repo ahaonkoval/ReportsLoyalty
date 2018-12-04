@@ -1,509 +1,667 @@
-﻿
+﻿/**
+ * 
+ * @param {*} sectionCaption назва відділу
+ * @param {*} panelDepartments парель назви департаментів
+ * @param {*} panelGroupLavel3 панель груп третього рівня
+ */
+function StructureConteiner(sectionCaption, panelDepartments, panelGroupLavel3) {
 
-function WinCampaignDetails() {
+    this.sectionCaption = sectionCaption;
+    this.panelDepartments = panelDepartments;
+    this.panelGroupLavel3 = panelGroupLavel3;
 
-    this.record = null,
-
-    this.storeListCampaigns = null;
-
-    /* перенести в dict.js --<----------------------------------------------- */
-    // довідеик (так/ні)
-    this.StTrueFalse = dict.getStoreTrueFalse(),
-    this.getStTrueFalse = function () {
-        return this.StTrueFalse;
-    },
-
-    // перелік відділів
-    this.StOTD = dict.getCmpGrpByLevel(0),
-    this.getStOTD = function () {
-        return this.StOTD;
-    },
-
-    // перелік ВСІХ департаментів, потрібно для завантаження до вибіру відділу
-    this.StDepartments = dict.getCmpGrpByLevel(1),
-    this.getStDepartments = function () {
-        return this.StDepartments;
-    },
-
-    // перелік груп рівня 2 --<-- зараз поки не буде використовуватись
-    this.StGroups = dict.getCmpGrpByLevel(2),
-    this.getStGroups = function () {
-        return this.StGroups;
-    },
-    this.setStGroups = function (store) {
-        this.StGroups = store;
-    },
-
-    // Типи капмпаній, довідник, выд цього залежить де ы як буде выдображений звіт
-    this.StCampaignTypes = dict.getStoreCampaignTypes(),
-    this.getStCampaignTypes = function () {
-        return this.StCampaignTypes;
-    },
-    /* --<-------------------------------------------------------------------------*/
-
-    this.TagDeparts = Ext.create(
-        {
-            xtype: 'tagfield',
-            store: this.getStDepartments(),
-            displayField: 'name',
-            valueField: 'fgroup_id'
-        }
-    ),
-
-    this.TagGroups_3 = Ext.create(
-        {
-            xtype: 'tagfield',
-            store: dict.getGroupsForDepartsIds('65000001609, 65000001610'),
-            displayField: 'name_3',
-            valueField: 'lf3_id',
-            //id: 'cmbCmpEditGrp_2'
-        }
-    ),
-
-
-    /* ------------------------------------------------------------------------------------------------- */
-    this.Grid = Ext.create('Ext.grid.property.Grid', {
-         //title: 'Кампания: ' + record.get('name'),
-         id: 'property_grd',
-         width: 565,
-         readOnly: true,
-         sortableColumns: false,
-         //renderTo: Ext.getBody(),
-         groupingConfig: {
-             groupHeaderTpl: 'Settings: {name}',
-             disabled: false
-         },
-
-         sourceConfig: {
-             name: {
-                 displayName: '(Назва кампанії)',
-                 editor: {
-                     xtype: 'textfield'
-                 }
-             },
-             date_start: {
-                 displayName: 'Дата початку',
-                 renderer: Ext.util.Format.dateRenderer('d.m.Y'),
-                 editor: {
-                     xtype: 'datefield',
-                     format: 'd.m.Y'
-                 }
-             },
-             date_end: {
-                 displayName: 'Дата кінця',
-                 renderer: Ext.util.Format.dateRenderer('d.m.Y'),
-                 editor: {
-                     xtype: 'datefield',
-                     format: 'd.m.Y'
-                 }
-             },
-             is_run: {
-                 displayName: 'В роботі',
-                 editor: {
-                     xtype: 'combobox',
-                     store: this.StTrueFalse,
-                     forceSelection: true,
-                     allowBlank: false,
-                     displayField: 'name',
-                     valueField: 'id',
-                     editable: false
-                 },
-                 renderer: function (v) {
-                     if (v)
-                         return Ext.String.format('<span style="color: Green;">{0}</span>', 'Так');
-                     else
-                         return Ext.String.format('<span style="color: Red;">{0}</span>', 'Ні');
-                 }
-             },
-             group_id_0: {
-                 displayName: 'ВІДДІЛ',
-                 editor: {
-                     xtype: 'combobox',
-                     store: this.StOTD,
-                     forceSelection: true,
-                     allowBlank: false,
-                     displayField: 'name',
-                     valueField: 'fgroup_id',
-                     //id: 'cmbCmpEditGrp',
-                     editable: false,
-                     listeners: {
-                         change: function (ctrl, newValue, oldValue, eOpts) {
-                             var store = dict.getDepartmentsListByOtdId(newValue);
-                             winCd.TagDeparts.setStore(store);
-                             winCd.setStGroups(store);
-                         }
-                     }
-                 },
-                 renderer: function (value) {
-                     if (value == null || value == 0) {
-                         return '';
-                     }
-                     else {
-                         var store = winCd.getStOTD();
-                         var data = store.getData();
-                         var rec = data.filterBy('fgroup_id', value);
-                         value = rec.items[0].get('name');
-                         return value
-                     }
-                 }
-             },
-             group_id_2: {
-                 displayName: 'ДЕПАРТАМЕНТ', ///'ГРУПА(групи)',/
-                 editor: this.TagDeparts,
-                 renderer: function (value) {
-                     var returned = '';
-                     if (value != '') {
-                         var store = winCd.TagDeparts.getStore();//winCd.getStGroups();
-                         var data = store.getData();
-                         var gps = value.toString().split(',');
-
-                         for (var i = 0; i <= gps.length - 1; i++) {
-
-                             var rec = data.filterBy('fgroup_id', gps[i]);
-                             if (rec.length > 0) {
-                                 if (returned.length == 0) {
-                                     returned = returned + rec.items[0].get('name');
-                                 } else {
-                                     returned = returned + ', ' + rec.items[0].get('name');
-                                 }
-                             }
-                         }
-                         value = returned;
-                     } else {
-                         return '';
-                     }
-                     return value;
-                 }
-             },
-             group_id_3: {
-                 displayName: 'ГРУПА(групи 3 рівня)',
-                 editor: this.TagGroups_3,
-                 renderer: function (value) {
-                     var returned = '';
-                     if (value != '') {
-                         var store = dict.getGroupsForDepartsIds('65000001609, 65000001610');//winCd.getStGroups();
-                         var data = store.getData();
-                         var gps = value.toString().split(',');
-
-                         for (var i = 0; i <= gps.length - 1; i++) {
-
-                             var rec = data.filterBy('lf3_id', gps[i]);
-                             if (rec.length > 0) {
-                                 if (returned.length == 0) {
-                                     returned = returned + rec.items[0].get('name_3');
-                                 } else {
-                                     returned = returned + ', ' + rec.items[0].get('name_3');
-                                 }
-                             }
-                         }
-                         value = returned;
-                     } else {
-                         return '';
-                     }
-                     return value;
-                 }
-             },
-             type_id: {
-                 displayName: 'Тип МК',
-                 editor: {
-                     xtype: 'combobox',
-                     store: this.StCampaignTypes,//dict.getStoreCampaignTypes(),
-                     displayField: 'name',
-                     valueField: 'id',
-                     editable: false
-                 },
-                 renderer: function (value) {
-                     if (value > 0) {
-                         var store = winCd.getStCampaignTypes();
-                         var data = store.getData();
-                         var rec = data.filterBy('id', value);
-                         value = rec.items[0].get('name');
-                         return value;
-                     } else {
-                         return '';
-                     }
-                 }
-             },
-             mailing_id: {
-                 displayName: 'ИД розсилки Софтлайн',
-                 editor: {
-                     xtype: 'textfield'
-                 }
-             },
-             date_send: {
-                 displayName: 'Дата відправки повідомлень',
-                 renderer: Ext.util.Format.dateRenderer('d.m.Y'),
-                 editor: {
-                     xtype: 'datefield',
-                     format: 'd.m.Y'
-                 }
-             }
-         }
-    }),
-
-    this.setPropertyGridData = function (record) {
-
-        this.record = record;
-        var grid = this.Grid;
-        var win = this.win;
-        var rec = record;
-
-        grid.columns[0].width = 200;
-        grid.columns[0].setText('Назва');
-        grid.columns[1].setText('Значення');
-
+    this.Fill = function (id) {
+        var caption = this.sectionCaption;
+        var depart = this.panelDepartments;
+        var groupLavel3 = this.panelGroupLavel3;
         $.ajax({
-            url: 'api/dict/GetGroupsIdsById/' + rec.get('id'),
+            url: 'api/campaign/GetCampaignSectionName/' + id,
             type: 'get',
-            success: function (fgroup_ids) {
-
-                var is_run = rec.get('is_run') == null ? false : rec.get('is_run');
-                var is_run_value = 0
-                switch (is_run) {
-                    case true: is_run_value = 1; break;
-                    case false: is_run_value = 0; break;
-                }
-                var date_start = rec.get('date_start') == '' ? new Date() : rec.get('date_start');
-                var date_end = rec.get('date_end') == '' ? new Date() : rec.get('date_end');
-                //var date_send = rec.get('date_send') == '' ? new Date() : rec.get('date_send');
-                var date_send = rec.get('date_send');
-                var source = {};
-
-                //source['mailing_idsc'] = rec.get('mailing_id');
-                source['name']          = rec.get('name');
-                source['date_start']    = new Date(date_start);//Ext.Date.parse(date_start, 'm/d/Y')//date_start;
-                source['date_end']      = new Date(date_end);//date_end;
-                source['is_run']        = is_run_value;//record.get('is_run');
-                source['group_id_0']    = rec.get('group_id_0');
-                source['group_id_2'] = fgroup_ids;
-                source['group_id_3'] = '';
-                source['type_id']       = rec.get('type_id');
-                source['mailing_id']    = rec.get('mailing_id');
-                source['date_send']     = date_send;//new Date(date_send);
-
-                grid.setSource(source);
-                win.show();                                                                  // <-- показываем окно
+            success: function (Name) {
+                caption.setValue(Name);
             }
         });
-    },
+        /*
+        
+        */
+        $.ajax({
+            url: 'api/campaign/GetCampaignDepartments/' + id,
+            type: 'get',
+            success: function (data) {
 
-    this.setPropertyGridDataNewCampaign = function () {
-        var grid = this.Grid;
-        var win = this.win;
-        var source = {};
-        //source['mailing_idsc'] = '';
-        source['name']          = '';
-        source['date_start']    = new Date();
-        source['date_end']      = new Date();
-        source['is_run']        = 0;
-        source['group_id_0']    = '';
-        source['group_id_2'] = '';
-        source['group_id_3'] = '';
-        source['type_id']       = null;
-        source['mailing_id']    = '';
-        source['date_send']     = null;
+                var itemsProcessed = 0;
+                var htmlcnt = '<div><ul>';
+                data.forEach(function (item, index, array) {
+                    if (htmlcnt == '<ul>') {
+                        htmlcnt = '<li>' + item.Name + '</li>';
+                    } else {
+                        htmlcnt = htmlcnt + ' <li>' + item.Name + '</li>';
+                    }
 
-        grid.setSource(source);
-        win.show();
-    },
-    /* --------------------------------------------------------------------------------------------------------------------------------------------------- */   
-    this.win = Ext.create('Ext.Window', {
-        id: 'win_campaign_details',
-        title: 'Налаштування кампанії',
-        width: 600,
-        height: 410,
-        modal: true,
-        closable: true,
-        layout: {
-            type: 'vbox',
-            align: 'stretch',
-            pack: 'start'
+                    itemsProcessed++;
+                    if (itemsProcessed === array.length) {
+                        htmlcnt = htmlcnt + '</ul></div>';
+                        depart.setHtml(htmlcnt);
+                    }
+
+                });
+            }
+        });
+        /*
+
+        */
+        $.ajax({
+            url: 'api/campaign/GetCampaignGroupLaval3/' + id,
+            type: 'get',
+            success: function (data) {
+
+                var itemsProcessed = 0;
+                var htmlcnt = '<div><ul>';
+                data.forEach(function (item, index, array) {
+                    if (htmlcnt == '<ul>') {
+                        htmlcnt = '<li>' + item.Name + '</li>';
+                    } else {
+                        htmlcnt = htmlcnt + ' <li>' + item.Name + '</li>';
+                    }
+
+                    itemsProcessed++;
+                    if (itemsProcessed === array.length) {
+                        htmlcnt = htmlcnt + '</ul></div>';
+
+                        groupLavel3.setHtml(htmlcnt);
+                    }
+
+                });
+
+            }
+        });
+    }
+}
+/**
+ * 
+ */
+function WinCampaignDetails() {
+    /**
+     * 
+     */
+    this.record = null,
+        /**
+         * завантажена стрінка кампаній з батьквського вікна
+         */
+        this.storeListCampaigns = null,
+        /**
+         * панель з кнопками завантаження УПЛ
+         */
+        this.panelBtnCustomersAdd = Ext.create('Ext.panel.Panel', {
+            layout: 'fit'
+        }),
+        /**
+         * Парель з таблицею УПЛ
+         */
+        this.panelCustomers = Ext.create('Ext.panel.Panel', {
+            layout: 'fit'
+        }),
+        /**
+         * Панель з кнопками управління завантаження УПЛ
+         */
+        this.panelBtnDownloadCustomers = Ext.create('Ext.panel.Panel', {
+            layout: 'fit'
+        }),
+        /**
+         * Панель з таблицею артикулів
+         */
+        this.panelArticuls = Ext.create('Ext.panel.Panel', {
+            layout: 'fit'
+        }),
+
+        this.panelBtnUploadArticuls = Ext.create('Ext.panel.Panel', {
+            layout: 'fit'
+        }),
+        // Типи капмпаній, довідник, выд цього залежить де ы як буде выдображений звіт
+        this.StoreCampaignTypes = dict.getStoreCampaignTypes(),
+        this.getStoreCampaignTypes = function () {
+            return this.StoreCampaignTypes;
         },
-        items: [{
+
+        this.SectionCaption = Ext.create('Ext.form.field.Text', {
+            readOnly: false
+        }),
+
+        this.campaignName = Ext.create('Ext.form.field.Text', {
+            padding: 2,
+            fieldLabel: 'Назва кампанії:',
+            labelWidth: 109,
+            readOnly: false
+        }),
+
+        this.btnRefresh = Ext.create('Ext.Button', {
+            text: 'Налаштувати',
+            tooltip: 'Оновити дані про відділ, департаменти, групи...',
+            scope: this,
+            handler: function (event, toolEl, panel) {
+                var struct = new StructureConteiner(
+                    this.SectionCaption,
+                    this.PanelDepartments,
+                    this.PanelGroupLavel3
+                );
+
+                getWinCmpSettWizard(this.record.get('id'),
+                    struct
+                ).show();
+            }
+        }),
+
+        this.PanelSection = Ext.create('Ext.panel.Panel', {
             xtype: 'panel',
-            height: 1
-        }, {
-            xtype: 'panel',
-            border: false,
-            flex: 1,
+            padding: 3,
+            title: 'ВІДДІЛ:',
+            tooltip: 'Get Help',
             layout: 'fit',
+            height: 75,
             items: [
-                this.Grid
+                this.SectionCaption
+            ],
+            tools: [
+                this.btnRefresh
             ]
-        }],
-        buttons: [
+        }),
+        /* --<-------------------------------------------------------------------------*/
+        this.PanelDepartments = Ext.create('Ext.panel.Panel', {
+            xtype: 'panel',
+            padding: 3,
+            title: 'Департаменти:',
+            flex: 2,
+            autoScroll: true
+        }),
+
+        this.PanelGroupLavel3 = Ext.create('Ext.panel.Panel', {
+            xtype: 'panel',
+            padding: 3,
+            title: 'Групи третього рівня:',
+            flex: 3,
+            autoScroll: true
+        }),
+        /*
+         *  Завантаження збережених налаштувань выдділв кампанії 
+         */
+        this.FillSetting = function (record) {
+            var rec = this.record;
+
+            var sectionCaption = this.SectionCaption;
+            var Departments = this.PanelDepartments;
+            var GroupLavel3 = this.PanelGroupLavel3;
+
+            $.ajax({
+                url: 'api/campaign/GetCampaignSectionName/' + rec.get('id'),
+                type: 'get',
+                success: function (Name) {
+                    sectionCaption.setValue(Name);
+                }
+            });
+            /*
+            
+            */
+            $.ajax({
+                url: 'api/campaign/GetCampaignDepartments/' + rec.get('id'),
+                type: 'get',
+                success: function (data) {
+
+                    if (data.length == 0) {
+                        Departments.setHtml('');
+                        return;
+                    }
+
+                    var itemsProcessed = 0;
+                    var htmlcnt = '<div><ul>';
+                    data.forEach(function (item, index, array) {
+                        if (htmlcnt == '<ul>') {
+                            htmlcnt = '<li>' + item.Name + '</li>';
+                        } else {
+                            htmlcnt = htmlcnt + ' <li>' + item.Name + '</li>';
+                        }
+
+                        itemsProcessed++;
+                        if (itemsProcessed === array.length) {
+                            htmlcnt = htmlcnt + '</ul></div>';
+                            Departments.setHtml(htmlcnt);
+                        }
+
+                    });
+                }
+            });
+            /*
+    
+            */
+            $.ajax({
+                url: 'api/campaign/GetCampaignGroupLaval3/' + rec.get('id'),
+                type: 'get',
+                success: function (data) {
+
+                    if (data.length == 0) {
+                        GroupLavel3.setHtml('');
+                        return;
+                    }
+
+                    var itemsProcessed = 0;
+                    var htmlcnt = '<div><ul>';
+                    data.forEach(function (item, index, array) {
+                        if (htmlcnt == '<ul>') {
+                            htmlcnt = '<li>' + item.Name + '</li>';
+                        } else {
+                            htmlcnt = htmlcnt + ' <li>' + item.Name + '</li>';
+                        }
+
+                        itemsProcessed++;
+                        if (itemsProcessed === array.length) {
+                            htmlcnt = htmlcnt + '</ul></div>';
+
+                            GroupLavel3.setHtml(htmlcnt);
+                        }
+
+                    });
+
+                }
+            });
+        },
+        /* ------------------------------------------------------------------------------------------------- */
+        this.Grid = Ext.create('Ext.grid.property.Grid', {
+            //title: 'Кампания: ' + record.get('name'),
+            id: 'property_grd',
+            width: 350,
+            readOnly: true,
+            padding: 3,
+            border: false,
+            sortableColumns: false,
+            //renderTo: Ext.getBody(),
+            groupingConfig: {
+                groupHeaderTpl: 'Settings: {name}',
+                disabled: false
+            },
+
+            sourceConfig: {
+                date_start: {
+                    displayName: 'Дата початку',
+                    renderer: Ext.util.Format.dateRenderer('d.m.Y'),
+                    editor: {
+                        xtype: 'datefield',
+                        format: 'd.m.Y'
+                    }
+                },
+                date_end: {
+                    displayName: 'Дата кінця',
+                    renderer: Ext.util.Format.dateRenderer('d.m.Y'),
+                    editor: {
+                        xtype: 'datefield',
+                        format: 'd.m.Y'
+                    }
+                },
+                is_run: {
+                    displayName: 'В роботі',
+                    editor: {
+                        xtype: 'combobox',
+                        store: dict.getStoreTrueFalse(),//this.StTrueFalse,
+                        forceSelection: true,
+                        allowBlank: false,
+                        displayField: 'name',
+                        valueField: 'id',
+                        editable: false
+                    },
+                    renderer: function (v) {
+                        if (v)
+                            return Ext.String.format('<span style="color: Green;">{0}</span>', 'Так');
+                        else
+                            return Ext.String.format('<span style="color: Red;">{0}</span>', 'Ні');
+                    }
+                },
+                type_id: {
+                    displayName: 'Тип МК',
+                    editor: {
+                        xtype: 'combobox',
+                        store: dict.getStoreCampaignTypes(), //this.StCampaignTypes,
+                        displayField: 'name',
+                        valueField: 'id',
+                        editable: false
+                    },
+                    renderer: function (value) {
+                        if (value > 0) {
+                            /*
+                                закольцовуємо для того щоб добути довідник
+                                колись треба переробити на завантаження всіх довідників, а потім вже відкриття вікон
+                            */
+                            var store = winCd.getStoreCampaignTypes(); //
+
+                            var data = store.getData();
+                            var rec = data.filterBy('id', value);
+                            value = rec.items[0].get('name');
+                            return value;
+                        } else {
+                            return '';
+                        }
+                    }
+                },
+                mailing_id: {
+                    displayName: 'ИД розсилки Софтлайн',
+                    editor: {
+                        xtype: 'textfield'
+                    }
+                },
+                date_send: {
+                    displayName: 'Дата відправки повідомлень',
+                    renderer: Ext.util.Format.dateRenderer('d.m.Y'),
+                    editor: {
+                        xtype: 'datefield',
+                        format: 'd.m.Y'
+                    }
+                },
+                potamusDocName: {
+                    displayName: 'Номер документу (Потамус)',
+                    editor: {
+                        xtype: 'textfield'
+                    }
+                }
+
+            }
+        }),
+
+        this.setPropertyGridData = function (record) {
+
+            this.record = record;
+            var grid = this.Grid;
+            var win = this.win;
+            var rec = record;
+            var campaignName = this.campaignName
+
+            grid.columns[0].width = 180;
+            grid.columns[0].setText('Назва властивості');
+            grid.columns[1].setText('Значення');
+
+            campaignName.setValue(rec.get('name'));
+
+            $.ajax({
+                url: 'api/campaign/GetGroupsIdsById/' + rec.get('id'),
+                type: 'get',
+                success: function (fgroup_ids) {
+
+                    var is_run = rec.get('is_run') == null ? false : rec.get('is_run');
+                    var is_run_value = 0
+                    switch (is_run) {
+                        case true: is_run_value = 1; break;
+                        case false: is_run_value = 0; break;
+                    }
+                    var date_start = rec.get('date_start') == '' ? new Date() : rec.get('date_start');
+                    var date_end = rec.get('date_end') == '' ? new Date() : rec.get('date_end');
+                    var date_send = rec.get('date_send');
+                    var source = {};
+
+                    source['date_start'] = new Date(date_start);//Ext.Date.parse(date_start, 'm/d/Y')//date_start;
+                    source['date_end'] = new Date(date_end);//date_end;
+                    source['is_run'] = is_run_value;//record.get('is_run');
+                    source['type_id'] = rec.get('type_id');
+                    source['mailing_id'] = rec.get('mailing_id');
+                    source['date_send'] = date_send;//new Date(date_send);
+
+                    grid.setSource(source);
+                    win.show();                                                                  // <-- показываем окно
+                }
+            });
+            /*
+            
+            */
+            this.FillSetting(record);
+        },
+        /**
+         * 
+         */
+        this.setPropertyGridDataNewCampaign = function () {
+            var grid = this.Grid;
+            var win = this.win;
+            var campaignName = this.campaignName
+            var source = {};
+            grid.columns[0].width = 180;
+            grid.columns[0].setText('Назва властивості');
+            grid.columns[1].setText('Значення');
+
+            source['date_start'] = new Date();
+            source['date_end'] = new Date();
+            source['is_run'] = 0;
+
+            source['type_id'] = null;
+            source['mailing_id'] = '';
+            source['date_send'] = null;
+
+            this.SectionCaption.setValue('');
+            campaignName.setValue('');
+
+            grid.setSource(source);
+            win.show();
+        },
+        /*
+        *
+        */
+        this.BtnsProperties = Ext.create('Ext.button.Split', {
+            //renderTo: Ext.getBody(),
+            text: '...УПРАВЛІННЯ...',
+            handler: function () {
+            },
+            menu: new Ext.menu.Menu({
+                items: [
+                    {
+                        text: 'Сховати кампанію',
+                        listeners: {
+                            'click': function (ctrl) {
+                                var property_grd = Ext.getCmp('property_grd');
+                                var store = property_grd.getStore();
+
+                                var record = winCd.record;//ctrl.scope.record;
+                                var storeList = winCd.storeListCampaigns;
+                                var campaignName = winCd.campaignName
+
+                                Ext.Msg.confirm(
+                                    "Увага!",
+                                    Ext.String.format("Сховати кампанію '{0}'?",
+                                        record.get('name')),
+                                    function (txtGet) {
+                                        if (txtGet === "yes") {
+                                            var o = {
+                                                campaign_id: record.get('id'),
+                                                name: campaignName.getValue(),
+                                                date_start: record.get('date_start'),
+                                                date_end: record.get('date_end'),
+                                                is_run: record.get('is_run') == true ? 1 : 0,
+                                                type_id: record.get('type_id') == null ? 0 : record.get('type_id'),
+                                                mailing_id: record.get('mailing_id'),
+                                                date_send: record.get('date_send')
+                                            };
+                                            Ext.Ajax.request({
+                                                url: 'api/campaign/SetCampaignData/' + record.get('id'),
+                                                method: 'POST',
+                                                params: { callType: 'SetHide' },
+                                                jsonData: o,
+                                                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                                                success: function (respons) {
+                                                    storeList.load();
+                                                    storeList.load();
+                                                    storeList.load();
+                                                    winCd.win.hide();
+                                                },
+                                                failure: function (error) {
+
+                                                }
+                                            });
+
+                                        }
+                                    });
+                            }
+                        }
+                    },
+                    {
+                        text: 'ПЕРЕРАХУНОК',
+                        listeners: {
+                            'click': function (ctrl) {
+                                var rec = winCd.record;
+
+                                $.ajax({
+                                    url: 'api/start/0',
+                                    type: 'get',
+                                    data: {
+                                        TypeRequest: 10,
+                                        cData: ''
+                                    },
+                                    success: function (state) {
+                                        var st = Ext.decode(state);
+
+                                        if (st.Status == '2') {
+                                            winStartCalcualted(rec.get('id'));
+                                        } else {
+                                            Ext.MessageBox.alert('Увага!', 'Перераховується: ' + st.CampaignName + ' (' + st.CampaignId + ')', null);
+                                        }
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                ]
+            })
+        }),
+
+        this.showActualityButton = function (pageId) {
+            // winCd -<-- зацикливание
+            winCd.panelBtnDownloadCustomers.setVisible(false);
+            winCd.panelBtnCustomersAdd.setVisible(false);
+            winCd.panelBtnUploadArticuls.setVisible(false);
+
+            switch (pageId) {
+                case 1:
+                    winCd.panelBtnDownloadCustomers.setVisible(true);
+                    winCd.panelBtnCustomersAdd.setVisible(true);
+                    break;
+                case 2:
+                    winCd.panelBtnUploadArticuls.setVisible(true);
+                    break;
+            }
+        },
+
+        this.win = Ext.create('Ext.Window', {
+
+            title: 'Налаштування кампанії',
+            width: '95%',
+            height: '90%',
+            modal: true,
+            closable: true,
+            scope: this.record,
+            layout: {
+                type: 'vbox',
+                align: 'stretch',
+                pack: 'start',
+            },
+            items: [
+                {
+                    xtype: 'panel',
+                    height: 33,
+                    layout: 'card',
+                    items: [
+                        this.campaignName
+                    ]
+                },
+                {
+                    xtype: 'panel',
+                    flex: 1,
+                    border: false,
+                    layout: {
+                        type: 'hbox',
+                        pack: 'start',
+                        align: 'stretch'
+                    },
+                    items: [
+                        {
+                            xtype: 'panel',
+                            border: false,
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch',
+                                pack: 'start',
+                            },
+                            items: [
+                                this.Grid,
+                                this.PanelSection,
+                                this.PanelDepartments,
+                                this.PanelGroupLavel3
+                            ]
+                        },
+                        {
+                            flex: 1,
+                            xtype: 'tabpanel', // TabPanel itself has no title
+                            activeTab: 0,
+                            items: [
+                                {
+                                    xtype: 'panel',
+                                    title: 'Учасники',
+                                    layout: 'fit',
+                                    items: [
+                                        this.panelCustomers
+                                    ],
+                                    listeners: {
+                                        activate: function (self) {
+                                            winCd.showActualityButton(1);
+                                        }
+                                    }
+                                }, {
+                                    xtype: 'panel',
+                                    title: 'Артикули',
+                                    layout: 'fit',
+                                    items: [
+                                        this.panelArticuls
+                                    ],
+                                    listeners: {
+                                        activate: function (self) {
+                                            winCd.showActualityButton(2);
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }, {
+                    height: 1
+                }
+            ],
+            buttons: [{
+                xtype: 'panel',
+                items: [
+                    this.BtnsProperties
+                ]
+            },
+                '->',
+            this.panelBtnUploadArticuls,
+            this.panelBtnDownloadCustomers,
+            this.panelBtnCustomersAdd,
             {
                 xtype: 'button',
-                text: 'Сховати кампанію',
+                text: 'Зберегти',
                 scope: this,
                 listeners: {
                     'click': function (ctrl) {
 
                         var property_grd = Ext.getCmp('property_grd');
                         var store = property_grd.getStore();
+                        var data = store.getData();
                         var record = ctrl.scope.record;
-                        var storeList = ctrl.scope.storeListCampaigns;
+                        var campaignName = winCd.campaignName;
+                        //var win = this.win;
 
-                        Ext.Msg.confirm(
-                            "Увага!",
-                            Ext.String.format("Сховати кампанію '{0}'?",
-                            record.get('name')),
-                            function (txtGet) {
-                                if (txtGet === "yes") {
-                                    var o = {
-                                        campaign_id: record.get('id'),
-                                        name: record.get('name'),
-                                        date_start: record.get('date_start'),
-                                        date_end: record.get('date_end'),
-                                        is_run: record.get('is_run') == true ? 1 : 0,
-                                        group_id_0: record.get('group_id_0'),
-                                        group_id_2: record.get('group_id_2'),
-                                        group_id_3: '',
-                                        type_id: record.get('type_id') == null ? 0 : record.get('type_id'),
-                                        mailing_id: record.get('mailing_id'),
-                                        date_send: record.get('date_send')
-                                    };
-                                    Ext.Ajax.request({
-                                        url: 'api/campaign/SetCampaignData',
-                                        method: 'POST',
-                                        params: { callType: 'SetHide' },
-                                        jsonData: o,
-                                        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-                                        success: function (respons) {
-                                            var wnd = Ext.getCmp('win_campaign_details');
-                                            wnd.hide();
-                                            storeList.load();
-                                            //store.load();
-
-                                        },
-                                        failure: function (error) {
-
-                                        }
-                                    });
-
-                                }
-                            });
-                        }
-                }
-            },
-            {
-                xtype: 'button',
-                text: 'Перерахувати',
-                scope: this,
-                listeners: {
-                    'click': function (ctrl) {
-                        var rec = ctrl.scope.record;
-
-                        $.ajax({
-                            url: 'api/start/0',
-                            type: 'get',
-                            data: {
-                                TypeRequest: 10,
-                                cData: ''
-                            },
-                            success: function (state) {
-                                var st = Ext.decode(state);
-
-                                if (st.Status == '2') {
-                                    winStartCalcualted(rec.get('id'));
-                                } else {
-                                    Ext.MessageBox.alert('Увага!', 'Перераховується: ' + st.CampaignName + ' (' + st.CampaignId + ')', null);
-                                }
-
-                            }
-                        });
-
-                        
-                    }
-                }
-            },
-            '->',
-            {
-            xtype: 'button',
-            text: 'Зберегти',
-            scope: this,
-            listeners: {
-                'click': function (ctrl) {
-                    var property_grd = Ext.getCmp('property_grd');
-                    var store = property_grd.getStore();
-                    var data = store.getData();
-                    var record = ctrl.scope.record;
-
-                    if (record == null) {
-                        if (data.get('name').data.value.length == 0) {
-                            Ext.Msg.alert("Увага!", "Назву кампанії не вказано!"); return;
-                        }
-                        Ext.Msg.confirm("Увага!",
-                            Ext.String.format("Створити нову кампанію '{0}'?", data.get('name').data.value), function (btnText) {
-                            if (btnText === "no") {                                
-                            }
-                            else if (btnText === "yes") {
-                                var o = {
-                                    campaign_id     : -1,
-                                    name            : data.get('name').data.value,
-                                    date_start      : data.get('date_start').data.value,
-                                    date_end        : data.get('date_end').data.value,
-                                    is_run          : data.get('is_run').data.value,
-                                    group_id_0      : data.get('group_id_0').data.value,
-                                    group_id_2: data.get('group_id_2').data.value.toString(),
-                                    group_id_3: '',
-                                    type_id         : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                                    mailing_id      : data.get('mailing_id').data.value.toString(),
-                                    date_send       : data.get('date_send').data.value
-                                };
-
-                                Ext.Ajax.request({
-                                    url: 'api/campaign/SetCampaignData',
-                                    method: 'POST',
-                                    params: { callType: 'SetCampaignData' },
-                                    jsonData: o,
-                                    headers: { 'Content-Type': 'application/json; charset=utf-8' },
-                                    success: function (a) {
-                                        if (a.responseText > 0) {
-                                            //----<<<<------------------------------------------------
-                                            var store_campaign_mk = Ext.getStore('store_campaign_mk');
-                                            store_campaign_mk.add({
-
-                                                /* --Б--*/
-                                                id          : a.responseText,
-                                                is_run      : data.get('is_run').data.value,
-                                                type_id     : data.get('type_id').data.value,
-                                                name        : data.get('name').data.value,
-                                                date_start  : data.get('date_start').data.value,
-                                                date_end    : data.get('date_end').data.value,
-                                                group_id_0  : data.get('group_id_0').data.value,
-                                                group_id_2: data.get('group_id_2').data.value.toString(),
-                                                group_id_3: '',
-                                                mailing_id  : data.get('mailing_id').data.value.toString(),
-                                                date_send   : data.get('date_send').data.value
-                                            });
-                                            //----<<<<------------------------------------------------                                            
-                                            var wnd = Ext.getCmp('win_campaign_details');
-                                            wnd.hide();
-                                        }
-                                    },
-                                    failure: function (error) {
-
-                                    }
-                                });
-                            }
-                        }, this);
-                    } else {
                         var o = {
-                            campaign_id : record.get('id'),
-                            name        : data.get('name').data.value,
-                            date_start  : data.get('date_start').data.value,
-                            date_end    : data.get('date_end').data.value,
-                            is_run      : data.get('is_run').data.value,
-                            group_id_0  : data.get('group_id_0').data.value,
-                            group_id_2: data.get('group_id_2').data.value.toString(),
-                            group_id_3: stri.emptyText,
-                            type_id     : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                            mailing_id  : data.get('mailing_id').data.value.toString(),
-                            date_send   : data.get('date_send').data.value
+                            campaign_id: record.get('id'),
+                            name: campaignName.getValue(),
+                            date_start: data.get('date_start').data.value,
+                            date_end: data.get('date_end').data.value,
+                            is_run: data.get('is_run').data.value,
+                            type_id: data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
+                            mailing_id: data.get('mailing_id').data.value.toString(),
+                            date_send: data.get('date_send').data.value
                         };
                         Ext.Ajax.request({
-                            url: 'api/campaign/SetCampaignData',
+                            url: 'api/campaign/SetCampaignData/0',
                             method: 'POST',
                             params: { callType: 'SetCampaignData' },
                             jsonData: o,
@@ -511,18 +669,15 @@ function WinCampaignDetails() {
                             success: function (a) {
                                 if (a.responseText > 0) {
                                     //----<<<<------------------------------------------------
-                                    record.set('name', data.get('name').data.value);
                                     record.set('date_start', data.get('date_start').data.value);
                                     record.set('date_end', data.get('date_end').data.value);
                                     record.set('is_run', data.get('is_run').data.value);
-                                    record.set('group_id_0', data.get('group_id_0').data.value);
                                     record.set('type_id', data.get('type_id').data.value);
                                     record.set('mailing_id', data.get('mailing_id').data.value);
                                     record.set('date_send', data.get('date_send').data.value);
                                     record.commit();
                                     //----<<<<------------------------------------------------
-                                    var wnd = Ext.getCmp('win_campaign_details');
-                                    wnd.hide();
+                                    winCd.win.hide();
                                 }
                             },
                             failure: function (error) {
@@ -531,30 +686,74 @@ function WinCampaignDetails() {
                         });
                     }
                 }
-            }
-        },
-        {
-            xtype: 'button',
-            text: 'Закрити',
-            scope: this,
+            },
+            {
+                xtype: 'button',
+                text: 'Закрити',
+                //scope: this,
+                listeners: {
+                    'click': function () {
+                        winCd.win.hide()
+                    }
+                }
+            }],
             listeners: {
-                'click': function () {
-                    var wnd = Ext.getCmp('win_campaign_details');
-                    wnd.hide();
+                activate: function (ctrl, prms) {
+                    //console.log(prms);
                 }
             }
-        }]
-    }),
+        }),
 
-    this.Show = function (record) {
-        if (record != null) {
-            this.setPropertyGridData(record);
-        } else {
-            this.record = null;
-            this.setPropertyGridDataNewCampaign();
+        /**
+         * 
+         * @param {*} record 
+         */
+        this.Show = function (record) {
+
+            if (record != null) {
+                this.setPropertyGridData(record);
+            } else {
+                this.record = null;
+                this.setPropertyGridDataNewCampaign();
+            }
         }
-    }
+    /**
+     * Переробити
+     */
     this.Show = function (record, store) {
+        /**
+         * Завантаження УПЛ кампаныъ
+         */
+        var grid = getGridCustomers(record.get('id'));
+        this.panelCustomers.items.clear()
+        this.panelCustomers.items.add(grid);
+        /**
+         * Завантаждення кнопок управління вивантаження УПЛ
+         */
+        this.panelBtnDownloadCustomers.items.clear();
+        this.panelBtnDownloadCustomers.items.add(getBtnDownloadCustomers(record.get('id')));
+        /**
+         * Кнопки завантаження УПЛ
+         */
+        this.panelBtnCustomersAdd.items.clear();
+        this.panelBtnCustomersAdd.items.add(getBtnCustomersAdd(record.get('id'), this.win))
+        /**
+         * Завантаження артикулів капнанії
+         */
+        this.panelArticuls.items.clear();
+        var gridArticuls = getGridArticuls(record.get('id'));
+        gridArticuls.getStore().load();
+        this.panelArticuls.items.add(gridArticuls);
+        /**
+         * 
+         */
+        var storeArticuls = gridArticuls.getStore();
+        this.panelBtnUploadArticuls.items.clear();
+        this.panelBtnUploadArticuls.items.add(
+            getBtnUploadArticulse(record.get('id')), storeArticuls
+            
+            );
+
         if (store != null)
             this.storeListCampaigns = store;
 
@@ -641,7 +840,7 @@ function winStartCalcualted(campaignId) {
         items: {
             xtype: 'panel',
             autoScroll: true,
-            items: [ grid ]
+            items: [grid]
         }, buttons: [
             {
                 xtype: 'button',
@@ -650,14 +849,13 @@ function winStartCalcualted(campaignId) {
                 listeners: {
                     'click': function (ctrl) {
                         var sell = ctrl.scope.getSelection();
-                        if (sell.length > 0)
-                        {
+                        if (sell.length > 0) {
                             current_data = ctrl.scope.getSelection()[0].get('Name');
                             $.ajax({
                                 url: 'api/Start/' + campaignId,
                                 type: 'get',
                                 data: {
-                                    TypeRequest:1, 
+                                    TypeRequest: 1,
                                     cData: current_data
                                 },
                                 success: function (a) {
@@ -675,160 +873,150 @@ function winStartCalcualted(campaignId) {
     });
 
     win.show();
-}
+};
+
+                    // if (record == null) {
+                    //     if (data.get('name').data.value.length == 0) {
+                    //         Ext.Msg.alert("Увага!", "Назву кампанії не вказано!"); return;
+                    //     }
+                    //     Ext.Msg.confirm("Увага!",
+                    //         Ext.String.format("Створити нову кампанію '{0}'?", data.get('name').data.value), 
+                    //             function (btnText) {
+                    //             if (btnText === "no") {                                
+                    //             }
+                    //             else if (btnText === "yes") {
+                    //             var o = {
+                    //                 campaign_id     : -1,
+                    //                 name            : campaignName.getValue(),//data.get('name').data.value,
+                    //                 date_start      : data.get('date_start').data.value,
+                    //                 date_end        : data.get('date_end').data.value,
+                    //                 is_run          : data.get('is_run').data.value,
+                    //                 // group_id_0      : data.get('group_id_0').data.value,
+                    //                 // group_id_2: data.get('group_id_2').data.value.toString(),
+                    //                 // group_id_3: '',
+                    //                 type_id         : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
+                    //                 mailing_id      : data.get('mailing_id').data.value.toString(),
+                    //                 date_send       : data.get('date_send').data.value
+                    //             };
+
+                    //             Ext.Ajax.request({
+                    //                 url: 'api/campaign/SetCampaignData/',
+                    //                 method: 'POST',
+                    //                 params: { callType: 'SetCampaignData' },
+                    //                 jsonData: o,
+                    //                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                    //                 success: function (a) {
+                    //                     if (a.responseText > 0) {
+                    //                         //----<<<<------------------------------------------------
+                    //                         var store_campaign_mk = Ext.getStore('store_campaign_mk');
+                    //                         store_campaign_mk.add({
+
+                    //                             /* --Б--*/
+                    //                             id          : a.responseText,
+                    //                             is_run      : data.get('is_run').data.value,
+                    //                             type_id     : data.get('type_id').data.value,
+                    //                             name        : caption.getValue(),//data.get('name').data.value,
+                    //                             date_start  : data.get('date_start').data.value,
+                    //                             date_end    : data.get('date_end').data.value,
+                    //                             // group_id_0  : data.get('group_id_0').data.value,
+                    //                             // group_id_2: data.get('group_id_2').data.value.toString(),
+                    //                             // group_id_3: '',
+                    //                             mailing_id  : data.get('mailing_id').data.value.toString(),
+                    //                             date_send   : data.get('date_send').data.value
+                    //                         });
+                    //                         //----<<<<------------------------------------------------                                            
+                    //                         var wnd = Ext.getCmp('win_campaign_details');
+                    //                         wnd.hide();
+                    //                     }
+                    //                 },
+                    //                 failure: function (error) {
+
+                    //                 }
+                    //             });
+                    //         }
+                    //     }, this);
+                    // } else {
+
+                    // }
+
+            // {
+            //     xtype: 'button',
+            //     text: 'Сховати кампанію',
+            //     scope: this,
+            //     listeners: {
+            //         'click': function (ctrl) {
+
+            //             var property_grd = Ext.getCmp('property_grd');
+            //             var store = property_grd.getStore();
+            //             var record = ctrl.scope.record;
+
+            //             var storeList = ctrl.scope.storeListCampaigns;
+            //             var campaignName = winCd.campaignName
+
+            //             Ext.Msg.confirm(
+            //                 "Увага!",
+            //                 Ext.String.format("Сховати кампанію '{0}'?",
+            //                 record.get('name')),
+            //                 function (txtGet) {
+            //                     if (txtGet === "yes") {
+            //                         var o = {
+            //                             campaign_id: record.get('id'),
+            //                             name: campaignName.getValue(),
+            //                             date_start: record.get('date_start'),
+            //                             date_end: record.get('date_end'),
+            //                             is_run: record.get('is_run') == true ? 1 : 0,
+            //                             type_id: record.get('type_id') == null ? 0 : record.get('type_id'),
+            //                             mailing_id: record.get('mailing_id'),
+            //                             date_send: record.get('date_send')
+            //                         };
+            //                         Ext.Ajax.request({
+            //                             url: 'api/campaign/SetCampaignData/'+ record.get('id'),
+            //                             method: 'POST',
+            //                             params: { callType: 'SetHide' },
+            //                             jsonData: o,
+            //                             headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            //                             success: function (respons) {
+            //                                 storeList.load(); 
+            //                                 winCd.win.hide();                                           
+            //                             },
+            //                             failure: function (error) {
+
+            //                             }
+            //                         });
+
+            //                     }
+            //                 });
+            //             }
+            //     }
+            // },
+            // {
+            //     xtype: 'button',
+            //     text: 'Перерахувати',
+            //     scope: this,
+            //     listeners: {
+            //         'click': function (ctrl) {
+            //             var rec = ctrl.scope.record;
+
+            //             $.ajax({
+            //                 url: 'api/start/0',
+            //                 type: 'get',
+            //                 data: {
+            //                     TypeRequest: 10,
+            //                     cData: ''
+            //                 },
+            //                 success: function (state) {
+            //                     var st = Ext.decode(state);
+
+            //                     if (st.Status == '2') {
+            //                         winStartCalcualted(rec.get('id'));
+            //                     } else {
+            //                         Ext.MessageBox.alert('Увага!', 'Перераховується: ' + st.CampaignName + ' (' + st.CampaignId + ')', null);
+            //                     }
+
+            //                 }
+            //             });
 
 
-
-//var setPropertyGridData = function (record) {
-//this.storeListCampaigns
-//};
-
-//Ext.define('CustomEditorField', {
-//    extend: 'Ext.form.field.Picker',
-//    alias: 'widget.customeditorfield',
-//    editable: false,
-//    hideTrigger: true,
-//    pickerOffset: [0, 0],
-//    listeners: {
-//        focus: function (fld, e, opts) {
-//            fld.expand();
-//        }
-//    },
-//    cancelEdit: function () {
-//        var me = this;
-//        me.fireEvent('blur');
-//        me.collapse();
-//    },
-//    applyValues: function () {
-//        var me = this,
-//            form = me.picker,
-//            vals = form.getForm().getValues();
-//        // set the value of the editable field        
-//        me.setValue(Ext.encode(vals));
-//        me.fireEvent('blur');
-//        me.collapse();
-//    },
-//    createPicker: function () {
-//        var me = this,
-//            format = Ext.String.format;
-//        return Ext.create('Ext.form.Panel', {
-//            title: 'ИД розсилок Софртайн',
-//            bodypadding: 5,
-//            pickerField: me,
-//            ownerCt: me.ownerCt,
-//            renderTo: document.body,
-//            floating: true,
-//            bodyPadding: 8,
-//            items: [
-//                {
-//                    xtype: 'textfield',
-//                    fieldLabel: '№ 1',
-//                    labelAlign: 'top',
-//                    anchor: '100%',
-//                    name: 'id_1'
-//                },
-//                {
-//                    xtype: 'textfield',
-//                    fieldLabel: '№ 2',
-//                    labelAlign: 'top',
-//                    anchor: '100%',
-//                    name: 'id_2'
-//                },
-//                {
-//                    xtype: 'textfield',
-//                    fieldLabel: '№ 3',
-//                    labelAlign: 'top',
-//                    anchor: '100%',
-//                    name: 'id_3'
-//                }
-//            ],
-//            dockedItems: [
-//                {
-//                    xtype: 'toolbar',
-//                    dock: 'bottom',
-//                    items: [
-//                        {
-//                            xtype: 'button',
-//                            name: 'cancel',
-//                            text: 'Cancel',
-//                            //iconCls: 'cancelicon',
-//                            handler: function (btn, e, opts) {
-//                                me.cancelEdit();
-//                            }
-//                        },
-//                        '->',
-//                        {
-//                            xtype: 'button',
-//                            name: 'save',
-//                            text: 'Save',
-//                            //iconCls: 'accepticon',
-//                            handler: function (btn, e, opts) {
-//                                me.applyValues();
-//                            }
-//                        }
-//                    ]
-//                }
-//            ],
-//            listeners: {
-//                afterrender: function (panel, opts) {
-//                    var vl = me.getValue();
-//                    if (vl.length != 0) {
-//                        panel.getForm().setValues(
-//                            Ext.decode(me.getValue())
-//                        );
-//                    } else {
-//                        panel.getForm().setValues(Ext.decode('{"id_1":"","id_2":"","id_3":""}'));
-//                    }
-//                },
-//                activate: function (ctrl, eOpts) {
-//                    //alert();
-//                }
-//            }
-//        })
-//    }
-//});
-
-//{
-//    xtype: 'button',
-//    text: 'Отримати статуси',
-//    scope: this,
-//    listeners: {
-//        'click': function (ctrl) {
-//            var property_grd = Ext.getCmp('property_grd');
-//            var store = property_grd.getStore();
-//            var record = ctrl.scope.record;
-//            var storeList = ctrl.scope.storeListCampaigns;
-
-//            Ext.Msg.confirm(
-//                "Увага!",
-//                Ext.String.format("Сховати кампанію '{0}'?",
-//                record.get('name')),
-//                function (txtGet) {
-//                    if (txtGet === "yes") {
-//                        var o = {
-//                            CampaignId: record.get('id'),
-//                            Name: record.get('name')
-//                        };
-//                        Ext.Ajax.request({
-//                            url: 'api/campaign/SetCampaignData',
-//                            method: 'POST',
-//                            params: { callType: 'SetStartRequesStatus' },
-//                            jsonData: o,
-//                            headers: { 'Content-Type': 'application/json; charset=utf-8' },
-//                            success: function (respons) {
-//                                var wnd = Ext.getCmp('win_campaign_details');
-//                                wnd.hide();
-//                                storeList.load();
-//                                //store.load();
-
-//                            },
-//                            failure: function (error) {
-
-//                            }
-//                        });
-
-//                    }
-//                });
-//        }
-//    }
-//},
+            //         }
+            //     }
+            // },                    

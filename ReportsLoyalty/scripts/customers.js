@@ -40,7 +40,10 @@ Ext.define('p_TmpSchemaTableList', {
             }
         ]
     });
-
+/**
+ * По старому (в окремому вікні), змінити або видалити...
+ * @param {*} campaign_id 
+ */
 var getWinCustomers = function (campaign_id) {
     
     var cmp_id = campaign_id;
@@ -242,15 +245,15 @@ var getWinCustomers = function (campaign_id) {
                 }
             },
             {
-            xtype: 'button',
-            text: 'В CSV (коротко)',
-            scope: cmp_id,
-            listeners: {
-                'click': function (ctrl) {
-                    var url = 'api/Customer/GetCustomersFile/' + ctrl.scope;
-                    window.open(url);
+                xtype: 'button',
+                text: 'В CSV (коротко)',
+                scope: cmp_id,
+                listeners: {
+                    'click': function (ctrl) {
+                        var url = 'api/Customer/GetCustomersFile/' + ctrl.scope;
+                        window.open(url);
+                    }
                 }
-            }
         },
         //{
         //    xtype: 'button',
@@ -273,6 +276,210 @@ var getWinCustomers = function (campaign_id) {
     })
 
     return win;
+};
+
+/**
+ * 
+ * @param {*} campaign_id   ИД кампанії для заливки
+ * @param {*} win           Батьківське вікно виклику, з якого викликають форму завантаження.
+ */
+var getBtnCustomersAdd = function (campaign_id, win) {
+    // var btnCustomersAdd
+    return Ext.create('Ext.button.Split', {
+        renderTo: Ext.getBody(),
+        text: 'Завантаження УПЛ',
+        handler: function () {
+        },
+        menu: new Ext.menu.Menu({
+            items: [
+                // these will render as dropdown menu items when the arrow is clicked:
+                {
+                    text: 'Вибрати по вказаним параметрам', handler: function () {
+                        getWinSelectCustomers(campaign_id, win).show();
+                    }
+                },
+                {
+                    text: 'Завантажити з створеної вибірки', handler: function () {
+                        getWinFillCustomersList(campaign_id).show();
+                    }
+                }
+            ]
+        })
+    });
+};
+
+var getBtnDownloadCustomers = function(campaign_id) {
+    return Ext.create('Ext.button.Split', {
+        renderTo: Ext.getBody(),
+        text: 'ВИГРУЗКА УПЛ',
+        handler: function () {
+        },
+        menu: new Ext.menu.Menu({
+            items:[
+                {
+                    //xtype: 'button',
+                    text: 'В CSV (Всі поля)',
+                    //scope: cmp_id,
+                    listeners: {
+                        'click': function (ctrl) {
+                            var url = 'api/Customer/GetCustomersFileLong/' + campaign_id;
+                            window.open(url);
+                        }
+                    }
+                },
+                {
+                    //xtype: 'button',
+                    text: 'В CSV (коротко)',
+                    //scope: cmp_id,
+                    listeners: {
+                        'click': function (ctrl) {
+                            var url = 'api/Customer/GetCustomersFile/' + campaign_id;
+                            window.open(url);
+                        }
+                    }
+                }
+            ]
+        })
+    });
+}
+
+/**
+ * Завантаження УПЛ кампанії (тим УПЛ, кому буде спрямована пропозиція)
+ * @param {*} campaign_id 
+ */
+var getGridCustomers = function (campaign_id) {
+    
+    var cmp_id = campaign_id;
+
+    var createColumns = function (finish, start) {
+
+        var columns = [
+            {
+                dataIndex: 'number',
+                text: 'Id',
+                //filterable: false,
+                width: 50
+            }, {
+                dataIndex: 'name1',
+                text: 'Прізвище',
+                //id: 'name',
+                flex: 3,
+                filter: {
+                    type: 'string'
+                }
+            }, {
+                dataIndex: 'name2',
+                flex: 2,
+                //xtype: 'datecolumn',
+                //format: 'd.m.Y',//'Y-m-d', // H:i:s
+                text: "ім'я",
+                filter: {
+                    type: 'string'  // specify type here or in store fields config
+                }
+                //width: 80
+            }, {
+                dataIndex: 'name3',
+                flex: 1,
+                //xtype: 'datecolumn',
+                text: 'по батькові',
+                //format: 'd.m.Y',
+                filter: {
+                    type: 'string'  // specify type here or in store fields config
+                }
+            }, {
+                dataIndex: 'gender',
+                disabled: true,
+                //xtype: 'checkcolumn',
+                text: 'Стать',
+                width: 60
+            }, {
+                dataIndex: 'barcode',
+                disabled: true,
+                text: '№ картки',
+                width: 90
+            }, {
+                dataIndex: 'mobile_phone',
+                disabled: true,
+                text: 'Моб. телефон',
+                width: 120
+            }, {
+                dataIndex: 'control_group',
+                disabled: true,
+                text: 'Контр. грп.',
+                width: 100
+            }, {
+                dataIndex: 'delivery_channel',
+                disabled: true,
+                text: 'Канал',
+                width: 80
+            }, {
+                dataIndex: 'market_name',
+                disabled: true,
+                text: 'Видано',
+                width: 150
+            }
+        ];
+
+        return columns.slice(start || 0, finish);
+    };
+
+    var store = Ext.create('Ext.data.JsonStore', {
+        //id: 'store_campaign_customers',
+        autoLoad: true,
+        // store configs
+        //autoDestroy: true,
+        model: tf_campaign_customers,
+        proxy: {
+            type: 'ajax',
+            url: ('api/Customer?campaign_id=' + campaign_id),
+
+            //url: (local ? url.local : url.remote),
+            reader: {
+                type: 'json',
+                root: 'data',
+                idProperty: 'id',
+                totalProperty: 'total'
+            }
+        },
+        remoteSort: false,
+        sorters: [{
+            property: 'number',
+            direction: 'ASC'
+        }],
+        pageSize: 50
+    });
+
+    var grid = Ext.create('Ext.grid.Panel', {
+        stateful: true,
+        stateId: 'stateful-filter-grid',
+        border: false,
+        store: store,
+        columns: createColumns(10),
+        plugins: 'gridfilters',
+        loadMask: true,
+        //features: this.filters,
+        //dockedItems: [dctItm],
+        dockedItems: [Ext.create('Ext.toolbar.Paging', {
+            dock: 'bottom',
+            store: store
+        })],
+        emptyText: 'Записів більше нема',
+        listeners: {
+            'rowdblclick': function (grid, record, e) {
+                /* открываєм окно редактирования */
+
+            }
+        },
+        viewConfig: {
+            stripeRows: false,
+            getRowClass: function (record) {
+                //return record.get('is_run') == true ? 'child-row' : 'adult-row';
+                //return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
+            }
+        }
+    })
+
+    return grid;
 };
 
 var getWinFillCustomersList = function (campaign_id) {

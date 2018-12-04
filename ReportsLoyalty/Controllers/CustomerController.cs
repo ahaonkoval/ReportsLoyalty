@@ -19,7 +19,7 @@ namespace ReportsLoyalty.Controllers
 {
     public class CustomerController : ApiController
     {
-        public HttpResponseMessage Get()
+        public object Get() //HttpResponseMessage
         {
             var queryparams = Request.GetQueryNameValuePairs();
             var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
@@ -37,13 +37,21 @@ namespace ReportsLoyalty.Controllers
                     int cmp = Convert.ToInt32(campaign_id.Value);
 
                     int count = data.Customers.GetCustomersCountById(cmp);
-                    
-                    var str = new JavaScriptSerializer().Serialize(customers.ToList());
-                    str = string.Format("\"total\": \"{0}\", \"data\":{1}", count.ToString(), str);
-                    str = "{" + str + "}";
-                    response.Content = new StringContent(str, Encoding.UTF8, "application/json");
 
-                    return response;
+                    //var str = new JavaScriptSerializer().Serialize(customers.ToList());
+                    //str = string.Format("\"total\": \"{0}\", \"data\":{1}", count.ToString(), str);
+                    //str = "{" + str + "}";
+                    //response.Content = new StringContent(str, Encoding.UTF8, "application/json");
+
+                    //return response;
+
+                    object om = new
+                    {
+                        total = count,
+                        data = customers
+                    };
+
+                    return om;
                 }
             } else { return response; }
 

@@ -55,7 +55,7 @@ namespace ReportsLoyalty.Controllers
         }
         #region CampaignsTerms
         [HttpGet]
-        public HttpResponseMessage GetCampaignsTerms(long id)
+        public HttpResponseMessage GetCampaignsTerms(int id)
         {
             using (GetData data = new GetData())
             {
@@ -81,19 +81,63 @@ namespace ReportsLoyalty.Controllers
                 return response;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public string GetCampaignSectionName(int id)
+        {
+            using (GetData data = new GetData())
+            {
+                return data.Campaigns.GetCampaignSectionName(id);
+            }
+        }
 
-        //[HttpGet]
-        //public string StartCalculation(int id)
-        //{
-        //    var queryparams = Request.GetQueryNameValuePairs();
-        //    var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
-        //    using (GetData data = new GetData())
-        //    {
-        //        data.Campaigns.SetStartCalculation(id, Convert.ToDateTime(dt));
-        //    }
+        [HttpGet]
+        public IEnumerable<object> GetCampaignDepartments(int id)
+        {
+            using (GetData gt = new GetData()) {
+                return gt.Campaigns.GetCampaignDepartments(id);
+            }
+        }
+        [HttpGet]
+        public IEnumerable<object> GetCampaignGroupLaval3(int id)
+        {
+            using (GetData gt = new GetData()) {
+                return gt.Campaigns.GetCampaignGroupLaval3(id);
+            }
+        }
 
-        //    return string.Empty;
-        //}
+        [HttpGet]
+        public string GetGroupsIdsById(int id)
+        {
+            string s = string.Empty;
+            using (GetData gt = new GetData())
+            {
+                s = gt.Campaigns.GetGroupsIdsByCampaignId(id);
+            }
+
+            return s;
+        }
+        /// <summary>
+        /// створення кампанії
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public string CreateCampaign(int id)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            string Name = queryparams.Where(w => w.Key == "Name").FirstOrDefault().Value;
+
+            using (GetData data = new GetData())
+            {
+                return data.Campaigns.CreateCampaign(Name).ToString();
+            }
+            //return string.Empty;
+        }
         #endregion
         /// <summary>
         /// Збереження параметрів кампанії
@@ -101,7 +145,7 @@ namespace ReportsLoyalty.Controllers
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPost]
-        public long SetCampaignData([FromBody] dynamic value)
+        public long SetCampaignData(int id,[FromBody] dynamic value)
         {
             long returned = 0;
 
@@ -119,10 +163,10 @@ namespace ReportsLoyalty.Controllers
                 }
             } else if (typeRequest == "SetHide")
             {
-               LoyaltyDB.Models.CampaignConvert cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.CampaignConvert>(json);
+               //LoyaltyDB.Models.CampaignConvert cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.CampaignConvert>(json);
                using (GetData gt = new GetData())
                {
-                    gt.Campaigns.SetHideCampaign(cmp.campaign_id);
+                    gt.Campaigns.SetHideCampaign(id);
                }
                 return returned;
             } else if (typeRequest == "SetStartRequesStatus")
@@ -144,6 +188,7 @@ namespace ReportsLoyalty.Controllers
         public string SetCampainStructureData(int id, [FromBody] dynamic value)
         {
             var queryparams = Request.GetQueryNameValuePairs();
+            string SectionId = queryparams.Where(w => w.Key == "SectionId").FirstOrDefault().Value;
             string DepartmentIds = queryparams.Where(w => w.Key == "DepartmentIds").FirstOrDefault().Value;
             string GroupLavel3Ids = queryparams.Where(w => w.Key == "GroupLavel3Ids").FirstOrDefault().Value;
 
@@ -151,7 +196,7 @@ namespace ReportsLoyalty.Controllers
             {
                 using (GetData gt = new GetData())
                 {
-                    gt.Campaigns.SetCampainStructureData(id, DepartmentIds, GroupLavel3Ids);
+                    gt.Campaigns.SetCampainStructureData(id, DepartmentIds, GroupLavel3Ids, SectionId);
                     return string.Empty;
                 }
             } catch (Exception except)

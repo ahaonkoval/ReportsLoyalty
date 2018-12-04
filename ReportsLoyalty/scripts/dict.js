@@ -1,10 +1,12 @@
 ﻿
+var dict = new Dict();
+
 function Dict() {
 
     this.CurrentGroupsForDepartsIds = null,
 
-    //this.Sections = this.getCmpGrpByLevel(0),
-
+    // Типи капмпаній, довідник, выд цього залежить де ы як буде выдображений звіт
+    this.storeCampaignTypes = null,
     /* 
         Довідник статусів (типів) УПЛ 
         використовується в формі вибору УПЛ під акцію (створення списку УПЛ кампанії)
@@ -308,5 +310,3 @@ function Dict() {
         return store;
     }
 }
-
-var dict = new Dict();

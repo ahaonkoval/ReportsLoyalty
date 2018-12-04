@@ -502,30 +502,88 @@ namespace LoyaltyDB
                 }).ToList();
                 return lt;
             }
-
-            //List<campaigns_terms> t = Le.campaigns_terms.Where(w => w.campaign_id == id).ToList();
-            //var lt = t.Select(x => new campaigns_terms
-            //{
-            //    Rn = index++,                            
-            //    campaigns_terms_id = Convert.ToInt64(x.campaigns_terms_id),
-            //    campaign_id = Convert.ToInt64(x.campaign_id),
-            //    created = x.created,
-            //    description = x.description,
-            //    short_comment = x.short_comment
-
-            //}).ToList();
-            //return lt;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <returns></returns>
+        public string GetCampaignSectionName(int campaignId)
+        {
+            using (CrmWizardDB db = new CrmWizardDB())
+            {
+                var cmp = from c in db.CampaignsMk.Where(w => w.Id == campaignId)
+                          from p in db.Fgroups.InnerJoin(pr => pr.FgroupId == c.GroupId0)
+                          select new
+                          {
+                              c.GroupId0,
+                              p.Name
+                          };
+                if (cmp.Count() > 0) {
+                    return cmp.FirstOrDefault().Name;
+                } else {
+                    return string.Empty;
+                }                
+            }            
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <returns></returns>
+        public IEnumerable<object> GetCampaignDepartments(int campaignId)
+        {
+            using (CrmWizardDB db = new CrmWizardDB())
+            {
+                var cmp = from c in db.CampaignGroups.Where(w => w.CampaignId == campaignId)
+                          from p in db.Fgroups.InnerJoin(pr => pr.FgroupId == c.GroupId)
+                          where p.LevelId == 1
+                          select new
+                          {
+                              p.Name
+                          };
+                return cmp.ToList();
+            }       
         }
 
+        public IEnumerable<object> GetCampaignGroupLaval3(int campaignId)
+        {
+            using (CrmWizardDB db = new CrmWizardDB())
+            {
+                var cmp = from c in db.CampaignGroups.Where(w => w.CampaignId == campaignId)
+                          from p in db.Fgroups.InnerJoin(pr => pr.FgroupId == c.GroupId)
+                          where p.LevelId == 3
+                          select new
+                          {
+                              p.Name
+                          };
+                return cmp.ToList();
+            }
+        }
         #endregion
 
         #region SET
 
-        public void SetCampainStructureData(int campaignId, string DepartmentIds, string GroupLavel3Ids)
+        public int CreateCampaign(string name)
+        {
+            using (CrmWizardDB db = new CrmWizardDB())
+            {
+                object rt = db.CampaignsMk.InsertWithIdentity(() => new CampaignsMk
+                {
+                    Name = name
+                });
+
+                return Convert.ToInt32(rt);
+            }
+        }
+
+        public void SetCampainStructureData(int campaignId, string DepartmentIds, string GroupLavel3Ids, string SectionId)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
                 db.CampaignGroups.Delete(w => w.CampaignId == campaignId);
+
+                db.CampaignsMk.Where(w => w.Id == campaignId).Set(p => p.GroupId0, Convert.ToInt64(SectionId)).Update();
 
                 string[] departmentIds = DepartmentIds.Split(',');
                 foreach (string dpi in departmentIds)
@@ -576,22 +634,22 @@ namespace LoyaltyDB
             {
                 if (cmp.campaign_id > -1)
                 {
-                    string[] f_groups = cmp.group_id_2.Split(',');
-                    var cmp_grp = db.CampaignGroups.Where(w => w.CampaignId == cmp.campaign_id);
+                    //string[] f_groups = cmp.group_id_2.Split(',');
+                    //var cmp_grp = db.CampaignGroups.Where(w => w.CampaignId == cmp.campaign_id);
 
-                    db.CampaignGroups.Delete(wd => wd.CampaignId == cmp.campaign_id);
+                    //db.CampaignGroups.Delete(wd => wd.CampaignId == cmp.campaign_id);
 
-                    if (f_groups[0].Length > 0)
-                    {
-                        foreach (string f in f_groups)
-                        {
-                            db.CampaignGroups.Insert(() => new DataModels.CampaignGroups
-                            {
-                                CampaignId = cmp.campaign_id,
-                                GroupId = Convert.ToInt64(f)
-                            });
-                        }
-                    }
+                    //if (f_groups[0].Length > 0)
+                    //{
+                    //    foreach (string f in f_groups)
+                    //    {
+                    //        db.CampaignGroups.Insert(() => new DataModels.CampaignGroups
+                    //        {
+                    //            CampaignId = cmp.campaign_id,
+                    //            GroupId = Convert.ToInt64(f)
+                    //        });
+                    //    }
+                    //}
 
                     db.CampaignsMk.Where(wc => wc.Id == cmp.campaign_id)
                         .Set(p => p.Name, cmp.name)

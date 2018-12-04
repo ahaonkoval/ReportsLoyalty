@@ -1,5 +1,6 @@
-﻿/* MODEL */
-
+﻿/* 
+    MODEL 
+*/
 Ext.define('campaigns_articuls', {
     extend: 'Ext.data.Model',
     fields: [{
@@ -27,8 +28,34 @@ Ext.define('campaigns_articuls', {
         name: 'points_prc',     type: 'float'
     }]
 });
+/**
+ * Кнопки управління завантаженням артикулів з буферу обміну
+ */
+var getBtnUploadArticulse = function(campaign_id, store) {
 
-var getWinArticuls = function (campaign_id) {
+    var currentStore = store;
+
+    var menu = Ext.create('Ext.button.Split', {
+        renderTo: Ext.getBody(),
+        text: 'ОПЕРАЦІЇ З АРТИКУЛАМИ',
+        menu: new Ext.menu.Menu({
+            items: [
+                {
+                    text: 'Завантажити артикули', handler: function () {
+                        Filler.show(campaign_id);
+                    }
+                },
+            ]
+        })
+    });
+
+    return menu;
+}
+/**
+ * Створення таблички для відображення артикулів
+ * @param {*} campaign_id 
+ */
+var getGridArticuls = function(campaign_id) {
 
     var store = Ext.create('Ext.data.JsonStore', {
         autoLoad: false,
@@ -73,6 +100,7 @@ var getWinArticuls = function (campaign_id) {
         stateful: true,
         stateId: 'stateful-filter-grid',
         border: false,
+        autoScroll: true,
         store: store,
         columns: createColumns(),
         loadMask: true,
@@ -83,9 +111,6 @@ var getWinArticuls = function (campaign_id) {
         emptyText: 'Записів більше нема',
         listeners: {
             'rowdblclick': function (grid, record, e) {
-                /* открываєм окно редактирования */
-                //winCd.Show(record);
-                //win_campaign_details_show(record);
             }
         },
         viewConfig: {
@@ -96,13 +121,19 @@ var getWinArticuls = function (campaign_id) {
         }
     });
     
+    return grid;
+}
+/**
+ * Створення віконця для управління артикулами кампанії
+ * @param {*} campaign_id 
+ */
+var getWinArticuls = function (campaign_id) {
+
+    var grid = getGridArticuls(campaign_id);
+   
     var menu = Ext.create('Ext.button.Split', {
         renderTo: Ext.getBody(),
         text: 'Операції',
-        // handle a click on the button itself
-        //handler: function () {
-        //    alert("The button was clicked");
-        //},
         menu: new Ext.menu.Menu({
             items: [
                 // these will render as dropdown menu items when the arrow is clicked:
@@ -136,13 +167,6 @@ var getWinArticuls = function (campaign_id) {
                 [
                     menu
                 ]
-                //[{
-                //    xtype: 'button',
-                //    text: 'Додати артикули',
-                //    handler: function (a, b, c) {
-                //        Filler.show(campaign_id);
-                //    }
-                //}]
         }, {
             xtype: 'panel',
             flex: 1,
@@ -151,7 +175,8 @@ var getWinArticuls = function (campaign_id) {
         }]
     });
 
-    store.load();
+    grid.getStore().load();
+    //store.load();
 
     return win;
 }
@@ -357,18 +382,18 @@ var getFiller = function () {
         Win: window,
         Grid: grid,
         CampaignId: -1,
+        //ArticulStore: null,
         show: function (campaign_id) {
             this.isShow = true;
 
             this.CampaignId = campaign_id;
 
             this.Store.removeAll();
-
             this.Win.show();
         },
         hide: function () {
             //this.Win = null;
-            //this.Grid = null;
+            //this.ArticulStore.load();
             this.isShow = false;
         }
     };
@@ -377,7 +402,9 @@ var getFiller = function () {
     return filler;
 }
 
-
+/**
+ * 
+ */
 window.addEventListener('paste', function (event) {
 
     if (Filler != null) {

@@ -1,5 +1,6 @@
 ﻿
-var getWinCmpSettWizard = function (campaign_id) {
+var getWinCmpSettWizard = function (campaign_id, Controls) {
+    var controls = Controls;
     /* 
         перелік ИД обраних груп третього рівня                                             
     */
@@ -101,8 +102,8 @@ var getWinCmpSettWizard = function (campaign_id) {
                             {
                                 name: data.name,
                                 fgroup_id: data.fgroup_id
-                            }
-                            );
+                            });
+
                         store.remove(record);
                         dataviewDepartmentsSelected.setStore(storeSelected);
                         selectedIds = '';
@@ -156,8 +157,7 @@ var getWinCmpSettWizard = function (campaign_id) {
                             {
                                 name: data.name,
                                 fgroup_id: data.fgroup_id
-                            }
-                            );
+                            });
                         store.remove(record);
                         selectedIds = '';
                         dataviewDepartments.setStore(storeSource);
@@ -469,7 +469,9 @@ var getWinCmpSettWizard = function (campaign_id) {
             }, {
                 id: 'card-next',
                 text: 'Далі &raquo;',
+                scope: this,
                 handler: function () {
+
                     if (active == 2) {
                         if (selectedIdsGroup3 == '') {
                             Ext.Msg.alert('Увага', 'Не вказано жодної групи третього рівня!',
@@ -482,20 +484,25 @@ var getWinCmpSettWizard = function (campaign_id) {
                                 url: 'api/Campaign/SetCampainStructureData/' + campaign_id,
                                 method: 'POST',
                                 params: { 
+                                    SectionId: section_id,
                                     DepartmentIds: selectedIds,
                                     GroupLavel3Ids: selectedIdsGroup3
                                 },
                                 jsonData: { field1: "hello", field2 : "hello2"},
                                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                                 success: function (respons) {
+
                                     Ext.Msg.alert('Увага', 'Налаштування збережено!',
                                     function () {
+                                        controls.Fill(campaign_id);
                                         win.hide();
                                     });
+
                                 },
                                 failure: function (error) {
                                     Ext.Msg.alert('Увага', 'Налаштування не збережено! Виникла помилка: '+ error,
                                     function () {
+
                                         win.hide();
                                     });  
                                 }

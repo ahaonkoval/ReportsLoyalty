@@ -23,10 +23,11 @@
     <script type="text/javascript" src="scripts/customers.js"></script>    
     <script type="text/javascript" src="scripts/pl_indicators.js"></script>
     <script type="text/javascript" src="scripts/p50points_reports.js"></script>
+    <script type="text/javascript" src="scripts/campaign_wizard.js"></script>
 
     <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
 
-    <script type="text/javascript" src="scripts/CmpSettWzd.js"></script>
+    <%--<script type="text/javascript" src="scripts/CmpSettWzd.js"></script>--%>
 
     <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>--%>
     <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>--%>
@@ -128,6 +129,7 @@
                             formBind: true,
                             listeners: {
                                 click: function () {
+                                    //var wCampaigns = getWinCampaigns();
                                     getWinCampaigns().show();
                                 }
                             }

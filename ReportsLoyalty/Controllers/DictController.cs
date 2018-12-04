@@ -328,17 +328,6 @@ namespace ReportsLoyalty.Controllers
         //    return g;
         //}
 
-        public string GetGroupsIdsById(int id)
-        {
-            string s = string.Empty;
-            using (GetData gt = new GetData())
-            {
-                s = gt.Campaigns.GetGroupsIdsByCampaignId(id);
-            }
-
-            return s;
-        }
-
         public IEnumerable<CampaignType> GetCampaignTypes(int id)
         {
             List<CampaignType> g = new List<CampaignType>();
