@@ -14,7 +14,7 @@
         <div style="margin:0; padding:0; height:10000px;">
             <div style="margin:0; padding:0; height:10000px;">
                 <rsweb:ReportViewer ID="ReportViewerPersonalOffers" runat="server" AsyncRendering="False" Width="100%" Height="100%" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
-                    <LocalReport ReportPath="reports\personal_offers\rep_daily_personal_offers_all.rdlc" EnableHyperlinks="True">
+                    <LocalReport ReportPath="reports\personal_offers\rep_daily_personal_offers_all_v2.rdlc" EnableHyperlinks="True">
                         <DataSources>
                             <rsweb:ReportDataSource DataSourceId="sds_expected_effect" Name="ds_pers_expected_effect" />
                             <rsweb:ReportDataSource DataSourceId="sds_market_details" Name="ds_market_details" />

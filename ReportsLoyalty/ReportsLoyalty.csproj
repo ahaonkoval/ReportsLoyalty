@@ -3659,9 +3659,10 @@
     <EmbeddedResource Include="reports\CountersDocsAndSell.rdlc" />
     <EmbeddedResource Include="reports\customers\participant_list.rdlc" />
     <EmbeddedResource Include="reports\extra_points\rep_customers_allocated.rdlc" />
-    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers - Копировать %282%29.rdlc" />
+    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers_all_v2.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers_all.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers_all_old.rdlc" />
+    <EmbeddedResource Include="reports\personal_offers\rep_daily_personal_offers_details_v2.rdlc" />
     <EmbeddedResource Include="reports\personal_offers\rep_market_details.rdlc" />
     <EmbeddedResource Include="reports\profile_participant\is_not_sms_sent.rdlc" />
     <EmbeddedResource Include="reports\basic_indicators\basic_indicators.rdlc" />

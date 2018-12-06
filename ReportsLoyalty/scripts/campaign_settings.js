@@ -648,17 +648,15 @@ function WinCampaignDetails() {
                         var data = store.getData();
                         var record = ctrl.scope.record;
                         var campaignName = winCd.campaignName;
-                        //var win = this.win;
-
                         var o = {
-                            campaign_id: record.get('id'),
-                            name: campaignName.getValue(),
-                            date_start: data.get('date_start').data.value,
-                            date_end: data.get('date_end').data.value,
-                            is_run: data.get('is_run').data.value,
-                            type_id: data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                            mailing_id: data.get('mailing_id').data.value.toString(),
-                            date_send: data.get('date_send').data.value
+                            campaign_id:    record.get('id'),
+                            name:           campaignName.getValue(),
+                            date_start:     data.get('date_start').data.value,
+                            date_end:       data.get('date_end').data.value,
+                            is_run:         data.get('is_run').data.value,
+                            type_id:        data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
+                            mailing_id:     data.get('mailing_id').data.value.toString(),
+                            date_send:      data.get('date_send').data.value
                         };
                         Ext.Ajax.request({
                             url: 'api/campaign/SetCampaignData/0',
@@ -675,7 +673,10 @@ function WinCampaignDetails() {
                                     record.set('type_id', data.get('type_id').data.value);
                                     record.set('mailing_id', data.get('mailing_id').data.value);
                                     record.set('date_send', data.get('date_send').data.value);
+
                                     record.commit();
+                                    //----<<<<------------------------------------------------
+                                    winCd.storeListCampaigns.reload();
                                     //----<<<<------------------------------------------------
                                     winCd.win.hide();
                                 }
@@ -750,7 +751,7 @@ function WinCampaignDetails() {
         var storeArticuls = gridArticuls.getStore();
         this.panelBtnUploadArticuls.items.clear();
         this.panelBtnUploadArticuls.items.add(
-            getBtnUploadArticulse(record.get('id')), storeArticuls
+            getBtnUploadArticulse(record.get('id'))//, storeArticuls
             
             );
 
@@ -767,7 +768,10 @@ function WinCampaignDetails() {
 };
 
 var winCd = new WinCampaignDetails();
-
+/**
+ * Вікно запуску перерахунку кампанії
+ * @param {*} campaignId 
+ */
 function winStartCalcualted(campaignId) {
     // 'api/dict/GetDisabledDates/' + id,
     var store = Ext.create('Ext.data.JsonStore', {

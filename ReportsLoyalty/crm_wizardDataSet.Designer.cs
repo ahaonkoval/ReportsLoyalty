@@ -6351,6 +6351,30 @@ namespace ReportsLoyalty {
             
             private global::System.Data.DataColumn columnqty_customers;
             
+            private global::System.Data.DataColumn columnshort_name;
+            
+            private global::System.Data.DataColumn columnsm_bonus_obtained_art;
+            
+            private global::System.Data.DataColumn columnsm_bonus_obtained_group;
+            
+            private global::System.Data.DataColumn columnsm_bonus_obtained_depart;
+            
+            private global::System.Data.DataColumn columnsm_bonus_obtained_market;
+            
+            private global::System.Data.DataColumn columndoc_qty_group3lavel;
+            
+            private global::System.Data.DataColumn columncustomers_qty_group3lavel;
+            
+            private global::System.Data.DataColumn columnavg_group3lavel;
+            
+            private global::System.Data.DataColumn columnsm_group3lavel;
+            
+            private global::System.Data.DataColumn columnmargin_group3lavel;
+            
+            private global::System.Data.DataColumn columnsm_bonus_obt_group3lavel;
+            
+            private global::System.Data.DataColumn columnsm_buy_group3lavel;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public t_get_personal_markmo_reportDataTable() {
@@ -6618,6 +6642,102 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn short_nameColumn {
+                get {
+                    return this.columnshort_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_bonus_obtained_artColumn {
+                get {
+                    return this.columnsm_bonus_obtained_art;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_bonus_obtained_groupColumn {
+                get {
+                    return this.columnsm_bonus_obtained_group;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_bonus_obtained_departColumn {
+                get {
+                    return this.columnsm_bonus_obtained_depart;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_bonus_obtained_marketColumn {
+                get {
+                    return this.columnsm_bonus_obtained_market;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn doc_qty_group3lavelColumn {
+                get {
+                    return this.columndoc_qty_group3lavel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn customers_qty_group3lavelColumn {
+                get {
+                    return this.columncustomers_qty_group3lavel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn avg_group3lavelColumn {
+                get {
+                    return this.columnavg_group3lavel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_group3lavelColumn {
+                get {
+                    return this.columnsm_group3lavel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn margin_group3lavelColumn {
+                get {
+                    return this.columnmargin_group3lavel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_bonus_obt_group3lavelColumn {
+                get {
+                    return this.columnsm_bonus_obt_group3lavel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sm_buy_group3lavelColumn {
+                get {
+                    return this.columnsm_buy_group3lavel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6682,7 +6802,19 @@ namespace ReportsLoyalty {
                         decimal margin_group, 
                         decimal margin_depart, 
                         decimal margin_market, 
-                        long qty_customers) {
+                        long qty_customers, 
+                        string short_name, 
+                        decimal sm_bonus_obtained_art, 
+                        decimal sm_bonus_obtained_group, 
+                        decimal sm_bonus_obtained_depart, 
+                        decimal sm_bonus_obtained_market, 
+                        decimal doc_qty_group3lavel, 
+                        decimal customers_qty_group3lavel, 
+                        decimal avg_group3lavel, 
+                        double sm_group3lavel, 
+                        decimal margin_group3lavel, 
+                        decimal sm_bonus_obt_group3lavel, 
+                        double sm_buy_group3lavel) {
                 t_get_personal_markmo_reportRow rowt_get_personal_markmo_reportRow = ((t_get_personal_markmo_reportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         market_id,
@@ -6713,7 +6845,19 @@ namespace ReportsLoyalty {
                         margin_group,
                         margin_depart,
                         margin_market,
-                        qty_customers};
+                        qty_customers,
+                        short_name,
+                        sm_bonus_obtained_art,
+                        sm_bonus_obtained_group,
+                        sm_bonus_obtained_depart,
+                        sm_bonus_obtained_market,
+                        doc_qty_group3lavel,
+                        customers_qty_group3lavel,
+                        avg_group3lavel,
+                        sm_group3lavel,
+                        margin_group3lavel,
+                        sm_bonus_obt_group3lavel,
+                        sm_buy_group3lavel};
                 rowt_get_personal_markmo_reportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowt_get_personal_markmo_reportRow);
                 return rowt_get_personal_markmo_reportRow;
@@ -6765,6 +6909,18 @@ namespace ReportsLoyalty {
                 this.columnmargin_depart = base.Columns["margin_depart"];
                 this.columnmargin_market = base.Columns["margin_market"];
                 this.columnqty_customers = base.Columns["qty_customers"];
+                this.columnshort_name = base.Columns["short_name"];
+                this.columnsm_bonus_obtained_art = base.Columns["sm_bonus_obtained_art"];
+                this.columnsm_bonus_obtained_group = base.Columns["sm_bonus_obtained_group"];
+                this.columnsm_bonus_obtained_depart = base.Columns["sm_bonus_obtained_depart"];
+                this.columnsm_bonus_obtained_market = base.Columns["sm_bonus_obtained_market"];
+                this.columndoc_qty_group3lavel = base.Columns["doc_qty_group3lavel"];
+                this.columncustomers_qty_group3lavel = base.Columns["customers_qty_group3lavel"];
+                this.columnavg_group3lavel = base.Columns["avg_group3lavel"];
+                this.columnsm_group3lavel = base.Columns["sm_group3lavel"];
+                this.columnmargin_group3lavel = base.Columns["margin_group3lavel"];
+                this.columnsm_bonus_obt_group3lavel = base.Columns["sm_bonus_obt_group3lavel"];
+                this.columnsm_buy_group3lavel = base.Columns["sm_buy_group3lavel"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6828,7 +6984,32 @@ namespace ReportsLoyalty {
                 base.Columns.Add(this.columnmargin_market);
                 this.columnqty_customers = new global::System.Data.DataColumn("qty_customers", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnqty_customers);
+                this.columnshort_name = new global::System.Data.DataColumn("short_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnshort_name);
+                this.columnsm_bonus_obtained_art = new global::System.Data.DataColumn("sm_bonus_obtained_art", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_bonus_obtained_art);
+                this.columnsm_bonus_obtained_group = new global::System.Data.DataColumn("sm_bonus_obtained_group", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_bonus_obtained_group);
+                this.columnsm_bonus_obtained_depart = new global::System.Data.DataColumn("sm_bonus_obtained_depart", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_bonus_obtained_depart);
+                this.columnsm_bonus_obtained_market = new global::System.Data.DataColumn("sm_bonus_obtained_market", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_bonus_obtained_market);
+                this.columndoc_qty_group3lavel = new global::System.Data.DataColumn("doc_qty_group3lavel", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndoc_qty_group3lavel);
+                this.columncustomers_qty_group3lavel = new global::System.Data.DataColumn("customers_qty_group3lavel", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncustomers_qty_group3lavel);
+                this.columnavg_group3lavel = new global::System.Data.DataColumn("avg_group3lavel", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnavg_group3lavel);
+                this.columnsm_group3lavel = new global::System.Data.DataColumn("sm_group3lavel", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_group3lavel);
+                this.columnmargin_group3lavel = new global::System.Data.DataColumn("margin_group3lavel", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmargin_group3lavel);
+                this.columnsm_bonus_obt_group3lavel = new global::System.Data.DataColumn("sm_bonus_obt_group3lavel", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_bonus_obt_group3lavel);
+                this.columnsm_buy_group3lavel = new global::System.Data.DataColumn("sm_buy_group3lavel", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsm_buy_group3lavel);
                 this.columnshopping_center.MaxLength = 50;
+                this.columnshort_name.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11680,6 +11861,210 @@ namespace ReportsLoyalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string short_name {
+                get {
+                    try {
+                        return ((string)(this[this.tablet_get_personal_markmo_report.short_nameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'short_name\' в таблице \'t_get_personal_markmo_report\' равно " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.short_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal sm_bonus_obtained_art {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_artColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_bonus_obtained_art\' в таблице \'t_get_personal_markmo_rep" +
+                                "ort\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_artColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal sm_bonus_obtained_group {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_groupColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_bonus_obtained_group\' в таблице \'t_get_personal_markmo_r" +
+                                "eport\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_groupColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal sm_bonus_obtained_depart {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_departColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_bonus_obtained_depart\' в таблице \'t_get_personal_markmo_" +
+                                "report\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_departColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal sm_bonus_obtained_market {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_marketColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_bonus_obtained_market\' в таблице \'t_get_personal_markmo_" +
+                                "report\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_marketColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal doc_qty_group3lavel {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.doc_qty_group3lavelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'doc_qty_group3lavel\' в таблице \'t_get_personal_markmo_repor" +
+                                "t\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.doc_qty_group3lavelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal customers_qty_group3lavel {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.customers_qty_group3lavelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'customers_qty_group3lavel\' в таблице \'t_get_personal_markmo" +
+                                "_report\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.customers_qty_group3lavelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal avg_group3lavel {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.avg_group3lavelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'avg_group3lavel\' в таблице \'t_get_personal_markmo_report\' р" +
+                                "авно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.avg_group3lavelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double sm_group3lavel {
+                get {
+                    try {
+                        return ((double)(this[this.tablet_get_personal_markmo_report.sm_group3lavelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_group3lavel\' в таблице \'t_get_personal_markmo_report\' ра" +
+                                "вно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.sm_group3lavelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal margin_group3lavel {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.margin_group3lavelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'margin_group3lavel\' в таблице \'t_get_personal_markmo_report" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.margin_group3lavelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal sm_bonus_obt_group3lavel {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablet_get_personal_markmo_report.sm_bonus_obt_group3lavelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_bonus_obt_group3lavel\' в таблице \'t_get_personal_markmo_" +
+                                "report\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.sm_bonus_obt_group3lavelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double sm_buy_group3lavel {
+                get {
+                    try {
+                        return ((double)(this[this.tablet_get_personal_markmo_report.sm_buy_group3lavelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'sm_buy_group3lavel\' в таблице \'t_get_personal_markmo_report" +
+                                "\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_get_personal_markmo_report.sm_buy_group3lavelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Ismarket_idNull() {
                 return this.IsNull(this.tablet_get_personal_markmo_report.market_idColumn);
             }
@@ -12024,6 +12409,150 @@ namespace ReportsLoyalty {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setqty_customersNull() {
                 this[this.tablet_get_personal_markmo_report.qty_customersColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isshort_nameNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.short_nameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setshort_nameNull() {
+                this[this.tablet_get_personal_markmo_report.short_nameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_bonus_obtained_artNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.sm_bonus_obtained_artColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_bonus_obtained_artNull() {
+                this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_artColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_bonus_obtained_groupNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.sm_bonus_obtained_groupColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_bonus_obtained_groupNull() {
+                this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_groupColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_bonus_obtained_departNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.sm_bonus_obtained_departColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_bonus_obtained_departNull() {
+                this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_departColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_bonus_obtained_marketNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.sm_bonus_obtained_marketColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_bonus_obtained_marketNull() {
+                this[this.tablet_get_personal_markmo_report.sm_bonus_obtained_marketColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isdoc_qty_group3lavelNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.doc_qty_group3lavelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setdoc_qty_group3lavelNull() {
+                this[this.tablet_get_personal_markmo_report.doc_qty_group3lavelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Iscustomers_qty_group3lavelNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.customers_qty_group3lavelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setcustomers_qty_group3lavelNull() {
+                this[this.tablet_get_personal_markmo_report.customers_qty_group3lavelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isavg_group3lavelNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.avg_group3lavelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setavg_group3lavelNull() {
+                this[this.tablet_get_personal_markmo_report.avg_group3lavelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_group3lavelNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.sm_group3lavelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_group3lavelNull() {
+                this[this.tablet_get_personal_markmo_report.sm_group3lavelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ismargin_group3lavelNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.margin_group3lavelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setmargin_group3lavelNull() {
+                this[this.tablet_get_personal_markmo_report.margin_group3lavelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_bonus_obt_group3lavelNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.sm_bonus_obt_group3lavelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_bonus_obt_group3lavelNull() {
+                this[this.tablet_get_personal_markmo_report.sm_bonus_obt_group3lavelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issm_buy_group3lavelNull() {
+                return this.IsNull(this.tablet_get_personal_markmo_report.sm_buy_group3lavelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsm_buy_group3lavelNull() {
+                this[this.tablet_get_personal_markmo_report.sm_buy_group3lavelColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16840,6 +17369,18 @@ ORDER BY number";
             tableMapping.ColumnMappings.Add("margin_depart", "margin_depart");
             tableMapping.ColumnMappings.Add("margin_market", "margin_market");
             tableMapping.ColumnMappings.Add("qty_customers", "qty_customers");
+            tableMapping.ColumnMappings.Add("short_name", "short_name");
+            tableMapping.ColumnMappings.Add("sm_bonus_obtained_art", "sm_bonus_obtained_art");
+            tableMapping.ColumnMappings.Add("sm_bonus_obtained_group", "sm_bonus_obtained_group");
+            tableMapping.ColumnMappings.Add("sm_bonus_obtained_depart", "sm_bonus_obtained_depart");
+            tableMapping.ColumnMappings.Add("sm_bonus_obtained_market", "sm_bonus_obtained_market");
+            tableMapping.ColumnMappings.Add("doc_qty_group3lavel", "doc_qty_group3lavel");
+            tableMapping.ColumnMappings.Add("customers_qty_group3lavel", "customers_qty_group3lavel");
+            tableMapping.ColumnMappings.Add("avg_group3lavel", "avg_group3lavel");
+            tableMapping.ColumnMappings.Add("sm_group3lavel", "sm_group3lavel");
+            tableMapping.ColumnMappings.Add("margin_group3lavel", "margin_group3lavel");
+            tableMapping.ColumnMappings.Add("sm_bonus_obt_group3lavel", "sm_bonus_obt_group3lavel");
+            tableMapping.ColumnMappings.Add("sm_buy_group3lavel", "sm_buy_group3lavel");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -16856,10 +17397,8 @@ ORDER BY number";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        market_id, shopping_center, doc_qty_art, customers_qty_art, sm_discount, avg_art, sm_art, doc_qty_group, customers_qty_group, avg_group, sm_group, doc_qty_depart, customers_qty_depart, avg_depart, sm_depart, 
-                         doc_qty_market, customers_qty_market, avg_market, sm_market, sm_discount_all, sm_buy_art, sm_buy_group, sm_buy_depart, sm_buy_market, margin_art, margin_group, margin_depart, margin_market, 
-                         qty_customers
-FROM            rep.t_get_personal_markmo_report(@campaign_id, @controlGroup, @date, NULL, @marketLst) AS go";
+            this._commandCollection[0].CommandText = "SELECT       *\r\nFROM            rep.t_get_personal_markmo_report(@campaign_id, @c" +
+                "ontrolGroup, @date, NULL, @marketLst) AS go";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@campaign_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@controlGroup", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

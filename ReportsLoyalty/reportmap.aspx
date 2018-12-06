@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
@@ -20,12 +21,13 @@
     <script type="text/javascript" src="scripts/campaign_settings.js"></script>
     <script type="text/javascript" src="scripts/campaigns_terms.js"></script>
     <script type="text/javascript" src="scripts/upload_status.js"></script>
-    <script type="text/javascript" src="scripts/customers.js"></script>    
+    <script type="text/javascript" src="scripts/customers.js"></script>
     <script type="text/javascript" src="scripts/pl_indicators.js"></script>
     <script type="text/javascript" src="scripts/p50points_reports.js"></script>
     <script type="text/javascript" src="scripts/campaign_wizard.js"></script>
 
     <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
+    <script type="text/javascript" src="scripts/downloadDataSetting.js"></script>
 
     <%--<script type="text/javascript" src="scripts/CmpSettWzd.js"></script>--%>
 
@@ -36,16 +38,17 @@
     <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>--%>
     <%--<script src="lib/example.js"></script>--%>
 
-<%--    <link rel="stylesheet" href="lib/example.css"/>--%>
+    <%--<link rel="stylesheet" href="lib/example.css"/>--%>
     <%--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css"/>--%>
-    <link rel="stylesheet" href="scripts/charts/morris.js-0.5.1/morris.css"/>
 
-    <link rel="stylesheet" type="text/css" href="Content/report.css"/>    
+    <link rel="stylesheet" href="scripts/charts/morris.js-0.5.1/morris.css" />
+    <link rel="stylesheet" type="text/css" href="Content/report.css" />
     <link rel="stylesheet" type="text/css" href="scripts/jslib/ext/classic/theme-crisp/resources/theme-crisp-all.css" />
 </head>
+
 <body>
-    
-    <script>        
+
+    <script>
 
         var dsField = Ext.create({
             xtype: 'displayfield',
@@ -55,7 +58,7 @@
             value: ''
         });
 
-        var checker = setInterval(function () { checkauth() }, 5000);       
+        var checker = setInterval(function () { checkauth() }, 5000);
         function checkauth() {
             $.ajax({
                 url: 'api/login/check/1',
@@ -88,35 +91,36 @@
                     if (st.Status == '1') {
                         dsField.setValue('ПЕРЕРАХОВУЄТЬСЯ: ' + st.CampaignName);
                     }
-                    
+
                 }
             });
         }
 
         Ext.onReady(function () {
 
-            Ext.create('Ext.window.Window', {
-                title: 'Hello',
-                id: 'win_show_pause',
-                modal: true,
-                height: 200,
-                width: 400,
-                layout: 'fit',
-                items: {  // Let's put an empty grid in just to illustrate fit layout
-                    xtype: 'grid',
-                    border: false,
-                    columns: [{ header: 'World' }],                 // One header just for show. There's no data,
-                    store: Ext.create('Ext.data.ArrayStore', {}) // A dummy empty data store
-                }
-            });
+            // Ext.create('Ext.window.Window', {
+            //     title: 'Hello',
+            //     id: 'win_show_pause',
+            //     modal: true,
+            //     height: 200,
+            //     width: 400,
+            //     layout: 'fit',
+            //     items: {  // Let's put an empty grid in just to illustrate fit layout
+            //         xtype: 'grid',
+            //         border: false,
+            //         columns: [{ header: 'World' }],                 // One header just for show. There's no data,
+            //         store: Ext.create('Ext.data.ArrayStore', {}) // A dummy empty data store
+            //     }
+            // });
+
             /* Кнопка управлкеня кампаниями */
             var buttonSplit = Ext.create('Ext.button.Split', {
                 renderTo: Ext.getBody(),
-                text: 'Управління активностями',
+                text: 'ДОДАТКОВА ІНФОРМАЦІЯ',
                 menu: new Ext.menu.Menu({
                     items: [
                         {
-                            text: 'Управління Stop List',
+                            text: 'Управління виключеннями (Stop List)',
                             formBind: true,
                             listeners: {
                                 click: function (ctrl) {
@@ -125,12 +129,13 @@
                             }
                         },
                         {
-                            text: 'Управление активностями',
+                            text: 'Перевірка завантаження таблиць',
                             formBind: true,
                             listeners: {
                                 click: function () {
+                                    getWinDownloadStatus().show();
                                     //var wCampaigns = getWinCampaigns();
-                                    getWinCampaigns().show();
+                                    //getWinCampaigns().show();
                                 }
                             }
                         }
@@ -139,7 +144,7 @@
             });
             /* Кнопка запуска отчетов персональных предложений */
             var buttonPersonal = Ext.create('Ext.button.Split', {
-                renderTo: Ext.getBody(),
+                //renderTo: Ext.getBody(),
                 text: 'Персональні пропозиції',
                 width: 290,
                 menu: new Ext.menu.Menu({
@@ -173,87 +178,6 @@
                         }
                     ]
                 })
-            });            
-
-            var gridDownloadStatus = Ext.create('Ext.grid.Panel', {
-                stateful: true,
-                stateId: 'stateful-filter-grid',
-                border: false,
-                store: dict.getStoreDownloadStatusTables(),
-                columns: [
-                    {
-                        dataIndex: 'Number',
-                        text: '№',
-                        width:40
-                    }, {
-                        dataIndex: 'title',
-                        text: 'Назва таблиці',
-                        width: 150
-                    },
-                    {
-                        dataIndex: 'DownloadStatus',
-                        text: 'Завантажено',
-                        width: 80
-                    },
-                    {
-                        dataIndex: 'Created',
-                        text: 'Дата завантаження',
-                        xtype: 'datecolumn',
-                        //format: 'd.m.Y'
-                        format: 'Y-m-d H:i:s.u',
-                        width: 150
-                    }
-                ],
-                loadMask: true,
-                //dockedItems: [Ext.create('Ext.toolbar.Paging', {
-                //    dock: 'bottom',
-                //    store: dict.getStoreDownloadStatusTables()
-                //})],
-                emptyText: 'Записів більше нема',
-                listeners: {
-                    'rowdblclick': function (grid, record, e) {
-                        /* открываєм окно редактирования */
-                        //Ext.Msg.confirm("Увага!", "Завантажити УПЛ з таблиці '" + record.get('name') + "'", function (btnText) {
-                        //    if (btnText === "no") {
-
-                        //    }
-                        //    else if (btnText === "yes") {
-                        //        StartFillCampaign(record, cmpId);
-                        //        win.hide();
-                        //    }
-                        //}, this);
-                    }
-                },
-                viewConfig: {
-                    stripeRows: false,
-                    getRowClass: function (record) {
-
-                        var status = record.get('DownloadStatus');
-
-                        if (status == 'ні') {
-
-                            //if (record.get('is_run') == true) {
-                            return 'x-grid-row-alert';
-                            //}
-
-                            //if (record.get('is_run') == false)
-                            //    return 'x-grid-row';
-                            //return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
-
-                            //if (record.get('is_start_get_status') == 1) {
-                            //    return 'x-grid-row-getting-status';
-                            //} else {
-                            //    return css;
-                            //}
-
-                        }
-                        //else {
-                        //    if (record.get('is_start_get_status') == 3) {
-                        //        return 'x-grid-row-block';
-                        //    }
-                        //}
-                    }
-                }
             });
 
             var viewport = Ext.create('Ext.container.Viewport', {
@@ -291,7 +215,8 @@
                 }, {
                     region: 'west',
                     collapsible: true,
-                    title: 'Навігація',
+                    collapsed: true,
+                    title: 'НАВІГАЦІЯ ПО ЗВІТАМ',
                     width: 300,
                     items: {
                         extend: 'Ext.panel.Panel',
@@ -306,7 +231,7 @@
                                 html: '<a href="#" onclick="showExtraPoints();" class="menu_is_run">Екстра-Бали</a>',
                                 margin: '2 2 2 10'
                             },
-                            buttonPersonal,
+                                buttonPersonal,
                             {
                                 xtype: 'panel',
                                 border: false,
@@ -413,14 +338,23 @@
                         }
                     ]
                 },
-                //{
+                // {
                 //    region: 'east',
-                //    title: 'East Panel',
+                //    title: 'КАМПАНІЇ',
+                //    collapsed: true,
                 //    collapsible: true,
                 //    split: true,
-                //    width: 150,
-                //    visible:false
-                //}
+                //    width: '60%',
+                //    visible: false,
+                //    layout: 'fit',
+                //    items: [
+                //         {
+                //             items: [
+                //                 getPanelCampaigns()
+                //             ]
+                //         }
+                //    ]
+                // },
                 {
                     region: 'center',
                     id: 'pnlCenter',
@@ -435,15 +369,16 @@
                                 pack: 'start',
                                 align: 'stretch'
                             },
-                            title: 'Статус завантаження',
+                            title: 'РЕЄСТР КАМПАНІЙ',
                             items: [
                                 {
                                     xtype: 'panel',
                                     //border:false,
                                     layout: 'fit',
-                                    width:450,
+                                    width: '100%',
                                     items: [
-                                        gridDownloadStatus
+                                        getPanelCampaigns()
+                                        //gridDownloadStatus
                                     ]
                                 }, {
                                     flex: 1,
@@ -454,7 +389,7 @@
                                 }
                             ]
                         }
-                    ]                                            
+                    ]
                 }]
 
             });
@@ -466,4 +401,5 @@
     </div>
     </form>--%>
 </body>
+
 </html>

@@ -31,9 +31,9 @@ Ext.define('campaigns_articuls', {
 /**
  * Кнопки управління завантаженням артикулів з буферу обміну
  */
-var getBtnUploadArticulse = function(campaign_id, store) {
+var getBtnUploadArticulse = function(campaign_id) {
 
-    var currentStore = store;
+    //var currentStore = store;
 
     var menu = Ext.create('Ext.button.Split', {
         renderTo: Ext.getBody(),
@@ -131,21 +131,22 @@ var getWinArticuls = function (campaign_id) {
 
     var grid = getGridArticuls(campaign_id);
    
-    var menu = Ext.create('Ext.button.Split', {
-        renderTo: Ext.getBody(),
-        text: 'Операції',
-        menu: new Ext.menu.Menu({
-            items: [
-                // these will render as dropdown menu items when the arrow is clicked:
-                {
-                    text: 'Завантажити артикули', handler: function () {
-                        Filler.show(campaign_id);
-                    }
-                },
-                //{ text: 'Item 2', handler: function () { alert("Item 2 clicked"); } }
-            ]
-        })
-    });
+    var menu = getBtnUploadArticulse(campaign_id);
+    // Ext.create('Ext.button.Split', {
+    //     renderTo: Ext.getBody(),
+    //     text: 'Операції',
+    //     menu: new Ext.menu.Menu({
+    //         items: [
+    //             // these will render as dropdown menu items when the arrow is clicked:
+    //             {
+    //                 text: 'Завантажити артикули', handler: function () {
+    //                     Filler.show(campaign_id);
+    //                 }
+    //             },
+    //             //{ text: 'Item 2', handler: function () { alert("Item 2 clicked"); } }
+    //         ]
+    //     })
+    // });
 
     var win = Ext.create('Ext.Window', {
         title: 'Управління кампаниями',
