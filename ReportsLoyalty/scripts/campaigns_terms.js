@@ -130,11 +130,23 @@ var getCampaignsTerms = function winCustomers(campaign_id, campaignName) {
             text: 'Створено',
             xtype: 'datecolumn',            
             width: 80
+            //editor: {
+            //    xtype: 'datefield',
+            //    format: 'm/d/y',
+            //    minValue: '01/01/06',
+            //    disabledDays: [0, 6],
+            //    disabledDaysText: 'Plants are not available on the weekends'
+            //}
         }, {
+            xtype: 'gridcolumn',
             dataIndex: 'ShortComment',
             text: 'Короткий комментар',
             flex: 1,
-            visible: false
+            visible: false,
+            editor: {
+                //xtype: 'textfield'
+                allowBlank: false
+            }
         }
     ];
 
@@ -174,15 +186,15 @@ var getCampaignsTerms = function winCustomers(campaign_id, campaignName) {
         //id: 'grid_campaign_terms',
         stateful: true,
         stateId: 'stateful-filter-grid',
-        border: false,
+        //border: false,
         store: store,
         columns: columns, 
-        plugins: 'gridfilters',
+        //plugins: 'gridfilters',
         loadMask: true,        
         selModel: {
             mode: 'SINGLE'
         },
-        multiSelect: true,
+        //multiSelect: true,
         dockedItems: [Ext.create('Ext.toolbar.Paging', {
             dock: 'bottom',
             store: store
@@ -194,6 +206,10 @@ var getCampaignsTerms = function winCustomers(campaign_id, campaignName) {
                 //return record.get('is_run') == true ? 'child-row' : 'adult-row';
                 //return record.get('is_run') == true ? 'x-grid-row-run' : 'x-grid-row';
             }
+        },
+        plugins: {
+            ptype: 'cellediting',
+            clicksToEdit: 1
         },
         listeners: {
             //scope: this,

@@ -74,9 +74,13 @@ namespace ReportsLoyalty.pages.personal_offers
                     ));
 
                     string DepartmentName = gdt.Campaigns.GetCurrentDepartamentNameById(Convert.ToInt32(campaign_id));
-
                     ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("DepartmentName",
                         string.Format("Департамент: {0}", DepartmentName)
+                    ));
+
+                    string Groups3List = gdt.Campaigns.GetCurrentGroups3LavelNameById(Convert.ToInt32(campaign_id));
+                    ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("Groups3List",
+                        string.Format(" {0}", Groups3List)
                     ));
 
                     string OtdName = gdt.Campaigns.GetOtdNameByCampaignId(Convert.ToInt32(campaign_id));
@@ -85,7 +89,7 @@ namespace ReportsLoyalty.pages.personal_offers
                         string.Format("Відділ: {0}", OtdName)
                     ));
                 }
-
+                //
             }
             catch (Exception ex)
             {

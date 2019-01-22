@@ -613,7 +613,7 @@ var showPersonalInteractiv = function ()
         queryMode: 'local',
         valueField: 'ShortName',
         displayField: 'MarketName',
-        width: 300,
+        width: 250,
         labelWidth: 50,
         emptyText: 'Всі',
         itemCls: 'make-bold',
@@ -644,12 +644,12 @@ var showPersonalInteractiv = function ()
 
     var comboBoxCampaigns = Ext.create('Ext.form.ComboBox', {
         //xtype: 'combobox',
-        width: 420,
+        width: 220,
         store: dict.getStoreCampaigns(2),
         queryMode: 'local',
         displayField: 'Name',
-        valueField: 'Id',
-        renderTo: Ext.getBody()
+        valueField: 'Id'
+        //renderTo: Ext.getBody()
     });
 
     var datefieldCampaigns = Ext.create('Ext.form.DateField', {

@@ -124,7 +124,7 @@
                             formBind: true,
                             listeners: {
                                 click: function (ctrl) {
-                                    getWinStopList().show();
+                                      getWinStopList().show();
                                 }
                             }
                         },

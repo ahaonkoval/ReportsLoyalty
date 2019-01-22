@@ -39,6 +39,27 @@ namespace LoyaltyDB
             using (var db = new DataModels.CrmWizardDB())
             {
                 string cmdText = @"
+
+                    IF object_id('[tempdb]..#tmp_staff_ids') != 0
+	                    DROP TABLE #tmp_staff_ids
+                    SELECT distinct m.id into #tmp_staff_ids FROM [calc].[staff_phones] a
+                    inner join (
+                        select cp.crm_customer_id, cp.id FROM 
+                            calc.campaign_participant cp (nolock) 
+                        where cp.campaign_id = {0}
+                        ) m on a.crm_customer_id = m.crm_customer_id
+
+	                DELETE from
+		                calc.campaign_participant
+	                where
+		                id in (
+			                select
+				                id
+			                from
+				                #tmp_staff_ids
+		                ); 
+	                DROP TABLE #tmp_staff_ids;
+
 	                SELECT
                         distinct
 		                --crd.barcode,
@@ -63,6 +84,7 @@ namespace LoyaltyDB
                 var cmd = db.CreateCommand();
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = cmdText;
+                cmd.CommandTimeout = 100000000;
 
                 if (cmd.Connection.State == ConnectionState.Closed)
                     cmd.Connection.Open();
@@ -80,6 +102,27 @@ namespace LoyaltyDB
             using (var db = new DataModels.CrmWizardDB())
             {
                 string cmdText = @"
+
+                    IF object_id('[tempdb]..#tmp_staff_ids') != 0
+	                    DROP TABLE #tmp_staff_ids
+                    SELECT distinct m.id into #tmp_staff_ids FROM [calc].[staff_phones] a
+                    inner join (
+                        select cp.crm_customer_id, cp.id FROM 
+                            calc.campaign_participant cp (nolock) 
+                        where cp.campaign_id = {0}
+                        ) m on a.crm_customer_id = m.crm_customer_id
+
+	                DELETE from
+		                calc.campaign_participant
+	                where
+		                id in (
+			                select
+				                id
+			                from
+				                #tmp_staff_ids
+		                ); 
+	                DROP TABLE #tmp_staff_ids;
+
 	                SELECT
                         distinct
 		                c.name1,
@@ -111,6 +154,7 @@ namespace LoyaltyDB
                 var cmd = db.CreateCommand();
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = cmdText;
+                cmd.CommandTimeout = 100000000;
 
                 if (cmd.Connection.State == ConnectionState.Closed)
                     cmd.Connection.Open();

@@ -194,6 +194,7 @@
     <Content Include="scripts\customers.js" />
     <Content Include="scripts\campaigns.js" />
     <None Include="scripts\jslib\jquery-3.3.1.intellisense.js" />
+    <Content Include="scripts\downloadDataSetting.js" />
     <Content Include="scripts\jslib\raphael-min.js" />
     <Content Include="scripts\jslib\jquery-3.3.1.js" />
     <Content Include="scripts\jslib\jquery-3.3.1.min.js" />

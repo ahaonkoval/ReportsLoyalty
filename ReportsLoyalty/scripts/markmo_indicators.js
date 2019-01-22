@@ -17,7 +17,7 @@ var showExtraPoints = function () {
         queryMode: 'local',
         valueField: 'ShortName',
         displayField: 'MarketName',
-        width: 300,
+        width: 250,
         labelWidth: 50,
         emptyText: 'Всі',
         itemCls: 'make-bold',
@@ -137,7 +137,7 @@ var showExtraPoints = function () {
                                 }, {
                                     id: 'cmbCampaigns',
                                     xtype: 'combobox',
-                                    width: 550,
+                                    width: 220,
                                     store: dict.getStoreCampaigns(1),//st_campaign_extra_points,
                                     queryMode: 'local',
                                     valueField: 'Id',
@@ -327,7 +327,7 @@ var showPersonalOffers = function (report_name, type) {
         queryMode: 'local',
         valueField: 'ShortName',
         displayField: 'MarketName',
-        width: 300,
+        width: 250,
         labelWidth: 50,
         emptyText: 'Всі',
         itemCls: 'make-bold',
@@ -377,10 +377,12 @@ var showPersonalOffers = function (report_name, type) {
                     align: 'stretch',
                     pack: 'start'
                 },
-                items: [{
+                items: [
+                    {
                     xtype: 'panel',
                     height: 36,
-                    items: {
+                    items: 
+                        {
                         xtype: 'toolbar',
                         height: 35,
                         items: [{
@@ -389,7 +391,7 @@ var showPersonalOffers = function (report_name, type) {
                             }, {
                                 id: 'cmbCampaigns_personal_offers' + type,
                                 xtype: 'combobox',
-                                width: 420,
+                                width: 220,
                                 store: dict.getStoreCampaigns(2),//st_campaign_extra_points,
                                 queryMode: 'local',
                                 displayField: 'Name',
@@ -482,6 +484,8 @@ var showPersonalOffers = function (report_name, type) {
                                         id: 'rep_box_personal_offers' + type,
                                         xtype: 'box',
                                         layout: 'fit',
+                                        //border: true
+                                        //autoScroll:true,
                                         showMask: true,
                                         autoEl: {
                                             tag: 'iframe',
@@ -494,7 +498,10 @@ var showPersonalOffers = function (report_name, type) {
                     }
                 }, {
                     xtype: 'panel',
+                    width: 600,
+                    height: 900,
                     layout: 'fit',
+                    //autoScroll:true,
                     id: 'p_rep_conteiner_personal_offers'+ type,
                     flex: 1
                 }]

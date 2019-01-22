@@ -161,6 +161,13 @@ namespace WinTest
             }
         }
 
+        //void SetProgressToControl(int x)
+        //{
+
+        //}
+
+        //delegate void SetProgress(int X);
+
         private void bWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             this.tsProgress.Value = e.ProgressPercentage;

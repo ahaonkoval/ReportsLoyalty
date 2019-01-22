@@ -11,6 +11,7 @@ using LoyaltyDB.Models.ShortObjects;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net.Http;
+using System.ComponentModel;
 
 namespace LoyaltyDB
 {
@@ -19,6 +20,11 @@ namespace LoyaltyDB
         //LoyaltyDB.LoyaltyEntities Le;
 
         private List<Participant> сampaignParticipantCache;
+
+        private uint m_counter = 0;
+
+        private uint m_commitMax = 10000;
+        public uint CommitMax { get { return m_commitMax; } set { m_commitMax = value; } }
 
         public Campaigns(LoyaltyDB.LoyaltyEntities le)
         {
@@ -415,7 +421,27 @@ namespace LoyaltyDB
                 // Зараз тут департаменти
                 List<string> lst = new List<string>();
 
-                var dps = db.CampaignGroups.Where(w => w.CampaignId == id).ToList();
+                var dps = db.CampaignGroups.Where(w => w.CampaignId == id && w.LavelId == 1).ToList();
+                foreach (CampaignGroups cg in dps)
+                {
+                    var fg = db.Fgroups.Where(wf => wf.FgroupId == cg.GroupId).FirstOrDefault();
+                    lst.Add(fg.Name);
+                }
+
+                string ls = string.Join(",", lst.ToArray());
+
+                return ls;
+            }
+        }
+
+        public string GetCurrentGroups3LavelNameById(int id)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                // Зараз тут департаменти
+                List<string> lst = new List<string>();
+
+                var dps = db.CampaignGroups.Where(w => w.CampaignId == id && w.LavelId == 3).ToList();
                 foreach (CampaignGroups cg in dps)
                 {
                     var fg = db.Fgroups.Where(wf => wf.FgroupId == cg.GroupId).FirstOrDefault();
@@ -657,7 +683,7 @@ namespace LoyaltyDB
                         .Set(p => p.IsRun, Convert.ToBoolean(cmp.is_run))
                         .Set(p => p.DateStart, cmp.date_start)
                         .Set(p => p.DateEnd, cmp.date_end)
-                        .Set(p => p.GroupId0, Convert.ToInt64(cmp.group_id_0))
+                        //.Set(p => p.GroupId0, Convert.ToInt64(cmp.group_id_0))
                         .Set(p => p.MailingId, cmp.mailing_id)
                         .Set(p => p.DateSend, cmp.date_send)
                         .Update();
@@ -858,6 +884,54 @@ namespace LoyaltyDB
                     MobilePhone = mobilePhone,
                     Status = status
                 });
+            }
+        }
+
+        public void SetCampaignSoftlineStatusFromTable(long campaignId, DataTable tb, BackgroundWorker bw)
+        {
+            Int32 CurrentPosition = 0;
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                
+
+                using (var t = new TransactionScope(TransactionScopeOption.Required, 
+                    new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted }))
+                {
+                    db.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+                    foreach (DataRow row in tb.Rows)
+                    {
+                        string phone = row["Телефон"].ToString();
+                        string status = row["Статус"].ToString();
+                        string chanel = row["Канал"].ToString();
+
+                        int status_id = 0;
+                        switch (status)
+                        {
+                            case "Доставлен":
+                                status_id = 1;
+                                break;
+                            case "Прочитан":
+                                status_id = 3;
+                                break;
+                            default:
+                                status_id = 0;
+                                break;
+                        }
+
+                        db.CampaignSoftlineStatus.Insert(() => new CampaignSoftlineStatus
+                        {
+                            CampaignId = campaignId,
+                            MessageId = 0,
+                            MobilePhone = phone,
+                            Status = status_id
+                        });
+
+                        CurrentPosition = CurrentPosition + 1;
+                        bw.ReportProgress(CurrentPosition);
+                    }
+
+                    
+                }
             }
         }
 

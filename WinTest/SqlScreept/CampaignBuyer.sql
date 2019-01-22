@@ -1,9 +1,9 @@
-﻿--declare
---	@market_id		bigint = 24,
---	@campaign_id	bigint = 497,
---	@border_amount	decimal(28,2) = 1000,
---	@date_start		date	= '2018-07-20',
---	@date_end		date	= '2018-07-31'
+﻿declare
+	@market_id		bigint = 24,
+	@campaign_id	bigint = 497,
+	@border_amount	decimal(28,2) = 1000,
+	@date_start		date	= '2018-07-20',
+	@date_end		date	= '2018-07-31'
 
 set @date_start = cast(@date_start as date)
 set @date_end = cast(@date_end as date)
@@ -25,10 +25,17 @@ if object_id('[tempdb]..#tmp_sell') != 0
 	drop table #tmp_sell
 select 
 	dc.crm_customer_id, 
-	sm.*, 
-	dc.short_created
+	sm.agent_id, 
+	sm.buy_price, 
+	sm.doc_id, 
+	sm.good_id, 
+	sm.market_id, 
+	sm.price, 
+	sm.qty, 
+	dc.short_created,
+	dc.doc_type_id
 into #tmp_sell
-from dbo.sell_movement sm (nolock)
+from cbac.sell_movement sm (nolock)
 	inner join #tmp_docs dc on sm.doc_id = dc.doc_id
 
 if object_id('[tempdb]..#tmp_sell_dict') != 0
