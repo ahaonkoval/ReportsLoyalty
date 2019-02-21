@@ -25,8 +25,9 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
         Збираємо список обраних ИД відділів
     */
     function setSelectedIds(data) {
+
         var itemsProcessed = 0;
-        function pcItemEnd(selectedIds) {            
+        function pcItemEnd(selectedIds) {
         }
         function pcItem(item, index, array) {
             if (selectedIds.length == 0) {
@@ -41,13 +42,13 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
             //console.log(selectedIds);
         }
         data.items.forEach(pcItem);
-    }
+    };
     /*
 
     */
     function setSelectedIdsGroupLavel3(data) {
         var itemsProcessed = 0;
-        function pcItemEnd(selectedIdsGroup3) {  
+        function pcItemEnd(selectedIdsGroup3) {
             //alert(selectedIdsGroup3);          
         }
         function pcItem(item, index, array) {
@@ -63,7 +64,7 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
             //console.log(selectedIds);
         }
         data.items.forEach(pcItem);
-    }    
+    };
     /*
         Департаменти обраного відділу
     */
@@ -161,7 +162,7 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
                         store.remove(record);
                         selectedIds = '';
                         dataviewDepartments.setStore(storeSource);
-
+                        /* Заповнюються список вибраних ИД */
                         selectedIds = '';
                         var dataSelected = store.getData();
                         setSelectedIds(dataSelected);
@@ -239,7 +240,7 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
     /*     
 
     */
-    var  dataviewGroupsLavel3Selected = Ext.create({
+    var dataviewGroupsLavel3Selected = Ext.create({
         xtype: 'dataview',
         fullscreen: true,
         singleSelect: true,
@@ -336,6 +337,88 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
             },
         ]
     });
+
+    /* ------------------------------------------------------------------------------------ */
+    this.btnSelectAll = Ext.create('Ext.Button', {
+        text: 'ВСІ',
+        tooltip: '',
+        scope: this,
+        handler: function (event, toolEl, panel) {
+
+            var data = dataviewDepartments.dataSource.getData();
+            var itemsProcessed = 0;
+            data.items.forEach(pcItem);
+            /* Закінчуємо цикл  */
+            function pcItemEnd(selectedIds, storeSource) {
+
+                dataviewDepartmentsSelected.setStore(storeSource);
+
+                var store = dataviewDepartments.getStore();
+                store.removeAll();
+
+                /* Заповнюються список вибраних ИД */
+                selectedIds = '';
+                var data = storeSource.getData();
+                setSelectedIds(data);
+            }
+            /* ---------------- */
+            function pcItem(item, index, array) {
+
+                var storeSource = dataviewDepartmentsSelected.getStore();                
+
+                storeSource.add(
+                {
+                    name: item.data.name,
+                    fgroup_id: item.data.fgroup_id
+                });
+                
+
+                itemsProcessed++;
+                if (itemsProcessed === array.length) {
+                    pcItemEnd(selectedIds, storeSource);
+                }                
+            }         
+        }
+    });
+    /* ------------------------------------------------------------------------------------ */
+    this.btnDeSelect = Ext.create('Ext.Button', {
+        text: 'ПРИБРАТИ',
+        tooltip: '',
+        scope: this,
+        handler: function (event, toolEl, panel) {
+            var data = dataviewDepartmentsSelected.dataSource.getData();
+            var itemsProcessed = 0;
+            data.items.forEach(pcItem);
+
+            function pcItemEnd(selectedIds, storeSource) {
+                dataviewDepartments.setStore(storeSource);
+                var store = dataviewDepartmentsSelected.getStore();
+                store.removeAll();
+                selectedIds = '';
+            }
+            /* Проходим цикл --------------------------- */
+            function pcItem(item, index, array) {
+                var storeSource = dataviewDepartments.getStore();
+                storeSource.add(
+                {
+                    name: item.data.name,
+                    fgroup_id: item.data.fgroup_id
+                });
+
+
+                itemsProcessed++;
+                if (itemsProcessed === array.length) {
+                    pcItemEnd(selectedIds, storeSource);
+                }
+            }
+
+            // var data = dataviewDepartments.getStore();
+            //var store = dataviewDepartmentsSelected.getStore();
+            //store.removeAll();
+            //selectedIds = '';
+
+        }
+    });
     /*
         Сторінка вибору департаменту
     */
@@ -352,7 +435,10 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
                 width: '50%',
                 layout: 'fit',
                 title: 'Перелік департаментыв на вибір',
-                items: [dataviewDepartments]
+                items: [dataviewDepartments],
+                tools: [
+                    this.btnSelectAll
+                ]
             },
             {
 
@@ -361,10 +447,109 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
                 title: 'Обрані департаменти на перерахунок',
                 items: [
                     dataviewDepartmentsSelected
+                ],
+                tools: [
+                    this.btnDeSelect
                 ]
             },
         ]
     });
+
+    /* 
+        Вибрати всі групи третього рівня 
+    */
+    this.btnSelectAllGrouз3Label = Ext.create('Ext.Button', {
+        text: 'ВСІ Групи',
+        tooltip: '',
+        scope: this,
+        handler: function (event, toolEl, panel) {
+
+            var data = dataviewGroupsLavel3.dataSource.getData();
+            var itemsProcessed = 0;
+            data.items.forEach(pcItem);
+            /* Закінчуємо цикл  */
+            function pcItemEnd(selectedIds, storeSource) {
+
+                dataviewGroupsLavel3Selected.setStore(storeSource);
+
+                var store = dataviewGroupsLavel3.getStore();
+                store.removeAll();
+
+                /* Заповнюються список вибраних ИД */
+                selectedIdsGroup3 = '';
+                var data = storeSource.getData();
+                setSelectedIdsGroupLavel3(data);;
+            }
+            /* ---------------- */
+            function pcItem(item, index, array) {
+
+                var storeSource = dataviewGroupsLavel3Selected.getStore();
+
+                storeSource.add(
+                {
+                    name_3: item.data.name_3,
+                    lf3_id: item.data.lf3_id,
+                    lf2_id: item.data.lf2_id,
+                    lf1_id: item.data.lf1_id,
+                    name_1: item.data.name_1,
+                    name_full: item.data.name_full
+
+                    //name: item.data.name,
+                    //fgroup_id: item.data.fgroup_id
+                });
+
+
+                itemsProcessed++;
+                if (itemsProcessed === array.length) {
+                    pcItemEnd(selectedIds, storeSource);
+                }
+            }
+        }
+    });
+    /* ------------------------------------------------------------------------------------ */
+    this.btnDeSelectGrouз3Label = Ext.create('Ext.Button', {
+        text: 'ПРИБРАТИ',
+        tooltip: '',
+        scope: this,
+        handler: function (event, toolEl, panel) {
+            var data = dataviewGroupsLavel3Selected.dataSource.getData();
+            var itemsProcessed = 0;
+            data.items.forEach(pcItem);
+
+            function pcItemEnd(selectedIds, storeSource) {
+                dataviewGroupsLavel3.setStore(storeSource);
+                var store = dataviewGroupsLavel3Selected.getStore();
+                store.removeAll();
+                selectedIdsGroup3 = '';
+            }
+            /* Проходим цикл --------------------------- */
+            function pcItem(item, index, array) {
+                var storeSource = dataviewGroupsLavel3.getStore();
+                storeSource.add(
+                {
+                    name_3: item.data.name_3,
+                    lf3_id: item.data.lf3_id,
+                    lf2_id: item.data.lf2_id,
+                    lf1_id: item.data.lf1_id,
+                    name_1: item.data.name_1,
+                    name_full: item.data.name_full
+                });
+
+
+                itemsProcessed++;
+                if (itemsProcessed === array.length) {
+                    pcItemEnd(selectedIds, storeSource);
+                }
+            }
+
+            // var data = dataviewDepartments.getStore();
+            //var store = dataviewDepartmentsSelected.getStore();
+            //store.removeAll();
+            //selectedIds = '';
+
+        }
+    });
+
 
     var GroupLavel3 = Ext.create('Ext.panel.Panel', {
         title: 'Оберіть департаменти',
@@ -381,6 +566,9 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
                 title: 'Групи третього рівня, на вибір',
                 items: [
                     dataviewGroupsLavel3
+                ],
+                tools: [
+                    this.btnSelectAllGrouз3Label
                 ]
             },
             {
@@ -389,25 +577,11 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
                 title: 'Обрані групи третього рівня',
                 items: [
                     dataviewGroupsLavel3Selected
+                ], tools: [
+                    this.btnDeSelectGrouз3Label
                 ]
             },
-        ],
-        // listeners: {
-        //     beforeactivate: function () {
-        //         if (selectedIdsGroup3.length == 0) {
-        //             Ext.Msg.alert('Увага', 'Не вказано жодного департамента!',
-        //                 function () {
-
-        //                 });
-        //             return false;
-        //         } else {
-        //             /*
-        //                 Завантажуємо список груп третього рівня 
-        //             */
-        //             //dataviewGroupsLavel3.setStore(dict.getGroupsForDepartsIds(selectedIds));
-        //         }
-        //     }
-        // }
+        ]
     });
     /*
         Контейнер сторінок майстра
@@ -445,7 +619,7 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
                 main
             ],
             bbar: ['->', {
-                id: 'card-prev',
+                //id: 'card-prev',
                 text: '&laquo; Повернутись',
                 handler: function () {
                     var layout = main.getLayout();
@@ -467,7 +641,7 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
                     }
                 }
             }, {
-                id: 'card-next',
+                //id: 'card-next',
                 text: 'Далі &raquo;',
                 scope: this,
                 handler: function () {

@@ -25,6 +25,8 @@ namespace LoyaltyDB
 
         public PersonalCampaign PC;
 
+        public MessageDB MessageDb;
+
         public GetData()
         {
             Le = new LoyaltyDB.LoyaltyEntities();
@@ -34,6 +36,7 @@ namespace LoyaltyDB
             Customers = new LoyaltyDB.Customers();
             Art = new LoyaltyDB.Articuls();
             PC = new PersonalCampaign();
+            MessageDb = new LoyaltyDB.MessageDB();
         }
 
         public void Dispose()

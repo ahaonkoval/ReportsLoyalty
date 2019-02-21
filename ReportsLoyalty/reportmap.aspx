@@ -29,6 +29,8 @@
     <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
     <script type="text/javascript" src="scripts/downloadDataSetting.js"></script>
 
+    <script type="text/javascript" src="scripts/trigger_messages.js"></script>
+
     <%--<script type="text/javascript" src="scripts/CmpSettWzd.js"></script>--%>
 
     <%--<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>--%>
@@ -215,7 +217,7 @@
                 }, {
                     region: 'west',
                     collapsible: true,
-                    collapsed: true,
+                    collapsed: false,
                     title: 'НАВІГАЦІЯ ПО ЗВІТАМ',
                     width: 300,
                     items: {
@@ -302,6 +304,18 @@
                                     html: '<a href="#" onclick="showCountersDocsAndSell();" class="menu_is_run">Прохідність</a>',
                                     margin: '2 2 2 10'
                                 }
+                            ]
+                        }, {
+                            xtype: 'panel',
+                            title: 'ТРИГЕРНІ ПОВІДОМЛЕННЯ',
+                            items: [
+                                    {
+                                        xtype: 'panel',
+                                        border: false,
+                                        name: 'name',
+                                        html: '<a href="#" onclick="showTriggerMessageEditorTemplates();" class="menu_is_run">Шаблони повідомлень</a>', //showBasicIndicators();
+                                        margin: '2 2 2 10'
+                                    }
                             ]
                         }]
                     }

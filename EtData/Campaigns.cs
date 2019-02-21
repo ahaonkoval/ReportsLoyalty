@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using static DataModels.CrmWizardDB;
 using DataModels;
 using LinqToDB;
@@ -10,8 +10,9 @@ using System.Transactions;
 using LoyaltyDB.Models.ShortObjects;
 using System.Data;
 using System.Data.SqlClient;
-using System.Net.Http;
+//using System.Net.Http;
 using System.ComponentModel;
+using System.Configuration;
 
 namespace LoyaltyDB
 {
@@ -19,12 +20,9 @@ namespace LoyaltyDB
     {
         //LoyaltyDB.LoyaltyEntities Le;
 
-        private List<Participant> сampaignParticipantCache;
+        private List<Participant> сampaignParticipantCache;        
 
-        private uint m_counter = 0;
-
-        private uint m_commitMax = 10000;
-        public uint CommitMax { get { return m_commitMax; } set { m_commitMax = value; } }
+        //public uint CommitMax { get { return m_commitMax; } set { m_commitMax = value; } }
 
         public Campaigns(LoyaltyDB.LoyaltyEntities le)
         {
@@ -42,16 +40,16 @@ namespace LoyaltyDB
                 {
                     var сamp = db.CampaignParticipant.Where(w => w.CampaignId == _campaignId);
 
-                    сampaignParticipantCache = db.CrmCustomers.Join(сamp,
-                        a => a.CrmCustomerId,
-                        b => b.CrmCustomerId,
-                        (a, b) => new Participant
-                        {
-                            MobilePhone = a.MobilePhone,
-                            CrmCustomerId = b.CrmCustomerId,
-                            PartId = b.Id,
-                            CampaignId = b.CampaignId
-                        }).ToList();
+                    //сampaignParticipantCache = db.CrmCustomers.Join(сamp,
+                    //    a => a.CrmCustomerId,
+                    //    b => b.CrmCustomerId,
+                    //    (a, b) => new Participant
+                    //    {
+                    //        MobilePhone = a.MobilePhone,
+                    //        CrmCustomerId = b.CrmCustomerId,
+                    //        PartId = b.Id,
+                    //        CampaignId = b.CampaignId
+                    //    }).ToList();
                 }
             }
         }
@@ -255,7 +253,7 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                return db.CampaignsMk.Where(w => w.Id == campaignId).FirstOrDefault();
+                return db.CampaignsMk.Where(w => w.Id == campaignId).FirstOrDefault();                
             }
         }
         /// <summary>
@@ -321,7 +319,12 @@ namespace LoyaltyDB
             }
             //return Le.v_campaigns_mk.Where(m => m.id == id).First().date_end;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         public bool GetIsCalculated(int campaignId, DateTime dt)
         {
             using (var db = new DataModels.CrmWizardDB())
@@ -885,6 +888,104 @@ namespace LoyaltyDB
                     Status = status
                 });
             }
+        }
+
+        public void SetDeliveryGMSStatusByCampaignId(long campaignId, DataTable t, BackgroundWorker bw)
+        {
+            Guid partId = Guid.NewGuid();
+            int m_counter = 1;
+            uint m_commitMax = 1000;
+            string SqlStart = @"insert into [calc].[campaign_gms_status] (
+	                [campaign_id],
+                    [mobile_phone],
+                    [tag],
+                    [chanel],
+                    [block],
+                    [error_code_viber],
+                    [error_text_viber],
+                    [error_code_push],
+                    [error_text_push],
+                    [error_code_sms],
+                    [error_text_sms],
+                    [date_start],
+                    [date_delivery],
+                    [part_id]) values";
+
+            StringBuilder sqlCommandText = new StringBuilder(SqlStart);        
+
+            string sqlBody1 = "({0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',convert(datetime, '{11}', 104),{12},'{13}'),";
+            string sqlBodyEnd = "({0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',convert(datetime, '{11}', 104),{12},'{13}')";
+
+            var smap = System.Configuration.ConfigurationManager.ConnectionStrings["crm_wizard_connect_string"].ToString();
+
+            //app
+            //var connection = System.Configuration.ConfigurationSettings.AppSettings["crm_wizard_connect_string"].ConnectionString;
+            using (SqlConnection connect = new SqlConnection(smap))
+            {
+                
+                SqlCommand cmd = connect.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                connect.Open();
+                //connect.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+                for (Int32 i = 0; i < t.Rows.Count; i++)
+                {
+                    /* формую строку на tsql */
+                    if (m_counter < m_commitMax)
+                    {
+                        string pa = string.Format(sqlBody1,
+                            campaignId.ToString(),
+                            t.Rows[i]["Номер телефону"].ToString(),
+                            t.Rows[i]["Тег"].ToString(),
+                            t.Rows[i]["Канал доставки"].ToString(),
+                            t.Rows[i]["Заблоковано Viber-користувачем"].ToString(),
+                            t.Rows[i]["Код помилки Viber"].ToString(),
+                            t.Rows[i]["Текст помилки Viber"].ToString(),
+                            t.Rows[i]["Код помилки Push"].ToString(),
+                            t.Rows[i]["Текст помилки Push"].ToString(),
+                            t.Rows[i]["Код помилки SMS"].ToString(),
+                            t.Rows[i]["Текст помилки SMS"].ToString(),
+                            t.Rows[i]["Час початку"].ToString(),
+                            t.Rows[i]["Час доставки"].ToString().Trim() == string.Empty
+                                ? "null" : string.Format("convert(datetime, '{0}', 104)", t.Rows[i]["Час доставки"].ToString().Trim()),
+                            partId.ToString()
+                        );
+                        sqlCommandText.AppendLine(pa);
+
+                    }
+                    else
+                    {
+                        string pa = string.Format(sqlBodyEnd,
+                            campaignId.ToString(),
+                            t.Rows[i]["Номер телефону"].ToString(),
+                            t.Rows[i]["Тег"].ToString(),
+                            t.Rows[i]["Канал доставки"].ToString(),
+                            t.Rows[i]["Заблоковано Viber-користувачем"].ToString(),
+                            t.Rows[i]["Код помилки Viber"].ToString(),
+                            t.Rows[i]["Текст помилки Viber"].ToString(),
+                            t.Rows[i]["Код помилки Push"].ToString(),
+                            t.Rows[i]["Текст помилки Push"].ToString(),
+                            t.Rows[i]["Код помилки SMS"].ToString(),
+                            t.Rows[i]["Текст помилки SMS"].ToString(),
+                            t.Rows[i]["Час початку"].ToString(),
+                            t.Rows[i]["Час доставки"].ToString().Trim() == string.Empty
+                                ? "null" : string.Format("convert(datetime, '{0}', 104)", t.Rows[i]["Час доставки"].ToString().Trim()),
+                            partId.ToString()
+                        );
+                        sqlCommandText.AppendLine(pa);
+                        cmd.CommandText = sqlCommandText.ToString();
+                        
+                        cmd.ExecuteNonQuery();                        
+
+                        m_counter = 1;
+                        sqlCommandText = new StringBuilder(SqlStart);
+
+                        bw.ReportProgress(i);
+                    }
+
+                    m_counter++;
+                }
+                connect.Close();
+            }            
         }
 
         public void SetCampaignSoftlineStatusFromTable(long campaignId, DataTable tb, BackgroundWorker bw)

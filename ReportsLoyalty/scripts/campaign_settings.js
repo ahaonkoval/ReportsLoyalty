@@ -374,8 +374,14 @@ function WinCampaignDetails() {
             grid.columns[0].width = 180;
             grid.columns[0].setText('Назва властивості');
             grid.columns[1].setText('Значення');
-
-            campaignName.setValue(rec.get('name'));
+            /*
+                костиль
+            */
+            var name = rec.get('Name');
+            if (name == undefined)
+                name = rec.get('name');
+            /* - - - */
+            campaignName.setValue(name);
 
             $.ajax({
                 url: 'api/campaign/GetGroupsIdsById/' + rec.get('id'),
@@ -717,6 +723,7 @@ function WinCampaignDetails() {
                 this.record = null;
                 this.setPropertyGridDataNewCampaign();
             }
+
         }
     /**
      * Переробити

@@ -33,16 +33,18 @@
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.завантажитиСтатусиЗAPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mLoadStatusGms = new System.Windows.Forms.ToolStripMenuItem();
             this.завантажитиСтатусиЗФайлаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вигрузкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuGetData = new System.Windows.Forms.ToolStripMenuItem();
             this.mcChangeStructure = new System.Windows.Forms.ToolStripMenuItem();
+            this.mcTestDownload = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.mcTestDownload = new System.Windows.Forms.ToolStripMenuItem();
+            this.еКСТРАБАЛИПоВідділамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +65,7 @@
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator5,
             this.завантажитиСтатусиЗAPIToolStripMenuItem,
+            this.mLoadStatusGms,
             this.завантажитиСтатусиЗФайлаToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
@@ -74,31 +77,38 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(232, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(329, 6);
             // 
             // завантажитиСтатусиЗAPIToolStripMenuItem
             // 
             this.завантажитиСтатусиЗAPIToolStripMenuItem.Name = "завантажитиСтатусиЗAPIToolStripMenuItem";
-            this.завантажитиСтатусиЗAPIToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.завантажитиСтатусиЗAPIToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.завантажитиСтатусиЗAPIToolStripMenuItem.Text = "Завантажити статуси з API";
             this.завантажитиСтатусиЗAPIToolStripMenuItem.Click += new System.EventHandler(this.завантажитиСтатусиЗAPIToolStripMenuItem_Click);
+            // 
+            // mLoadStatusGms
+            // 
+            this.mLoadStatusGms.Name = "mLoadStatusGms";
+            this.mLoadStatusGms.Size = new System.Drawing.Size(332, 22);
+            this.mLoadStatusGms.Text = "Завантажити статуси з файла (формат GMS)";
+            this.mLoadStatusGms.Click += new System.EventHandler(this.mLoadStatusGms_Click);
             // 
             // завантажитиСтатусиЗФайлаToolStripMenuItem
             // 
             this.завантажитиСтатусиЗФайлаToolStripMenuItem.Name = "завантажитиСтатусиЗФайлаToolStripMenuItem";
-            this.завантажитиСтатусиЗФайлаToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.завантажитиСтатусиЗФайлаToolStripMenuItem.Text = "Завантажити статуси з файла";
+            this.завантажитиСтатусиЗФайлаToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
+            this.завантажитиСтатусиЗФайлаToolStripMenuItem.Text = "Завантажити статуси з файла (формат Softline)";
             this.завантажитиСтатусиЗФайлаToolStripMenuItem.Click += new System.EventHandler(this.завантажитиСтатусиЗФайлаToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(232, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(329, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.exitToolStripMenuItem.Text = "В&ыход";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -107,7 +117,8 @@
             this.вигрузкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuGetData,
             this.mcChangeStructure,
-            this.mcTestDownload});
+            this.mcTestDownload,
+            this.еКСТРАБАЛИПоВідділамToolStripMenuItem});
             this.вигрузкиToolStripMenuItem.Name = "вигрузкиToolStripMenuItem";
             this.вигрузкиToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.вигрузкиToolStripMenuItem.Text = "Вигрузки";
@@ -126,6 +137,13 @@
             this.mcChangeStructure.Text = "Зміна структури по візитах";
             this.mcChangeStructure.Click += new System.EventHandler(this.mcChangeStructure_Click);
             // 
+            // mcTestDownload
+            // 
+            this.mcTestDownload.Name = "mcTestDownload";
+            this.mcTestDownload.Size = new System.Drawing.Size(221, 22);
+            this.mcTestDownload.Text = "Тест";
+            this.mcTestDownload.Click += new System.EventHandler(this.mcTestDownload_Click);
+            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -142,12 +160,11 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(66, 17);
             this.toolStripStatusLabel.Text = "Состояние";
             // 
-            // mcTestDownload
+            // еКСТРАБАЛИПоВідділамToolStripMenuItem
             // 
-            this.mcTestDownload.Name = "mcTestDownload";
-            this.mcTestDownload.Size = new System.Drawing.Size(221, 22);
-            this.mcTestDownload.Text = "Тест";
-            this.mcTestDownload.Click += new System.EventHandler(this.mcTestDownload_Click);
+            this.еКСТРАБАЛИПоВідділамToolStripMenuItem.Name = "еКСТРАБАЛИПоВідділамToolStripMenuItem";
+            this.еКСТРАБАЛИПоВідділамToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.еКСТРАБАЛИПоВідділамToolStripMenuItem.Text = "ЕКСТРА БАЛИ по відділам";
             // 
             // LoaderForm
             // 
@@ -186,6 +203,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuGetData;
         private System.Windows.Forms.ToolStripMenuItem mcChangeStructure;
         private System.Windows.Forms.ToolStripMenuItem mcTestDownload;
+        private System.Windows.Forms.ToolStripMenuItem mLoadStatusGms;
+        private System.Windows.Forms.ToolStripMenuItem еКСТРАБАЛИПоВідділамToolStripMenuItem;
     }
 }
 

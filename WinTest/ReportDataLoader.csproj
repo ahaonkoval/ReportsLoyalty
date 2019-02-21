@@ -71,7 +71,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web" />
@@ -114,11 +114,17 @@
     <Compile Include="frmGetData.Designer.cs">
       <DependentUpon>frmGetData.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLoadFile.cs">
+    <Compile Include="frmLoadFileGMS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLoadFile.Designer.cs">
-      <DependentUpon>frmLoadFile.cs</DependentUpon>
+    <Compile Include="frmLoadFileGMS.Designer.cs">
+      <DependentUpon>frmLoadFileGMS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoadFileSoftLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoadFileSoftLine.Designer.cs">
+      <DependentUpon>frmLoadFileSoftLine.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmTestDownload.cs">
       <SubType>Form</SubType>
@@ -159,8 +165,11 @@
     <EmbeddedResource Include="frmGetData.resx">
       <DependentUpon>frmGetData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLoadFile.resx">
-      <DependentUpon>frmLoadFile.cs</DependentUpon>
+    <EmbeddedResource Include="frmLoadFileGMS.resx">
+      <DependentUpon>frmLoadFileGMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoadFileSoftLine.resx">
+      <DependentUpon>frmLoadFileSoftLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTestDownload.resx">
       <DependentUpon>FrmTestDownload.cs</DependentUpon>

@@ -70,14 +70,18 @@ namespace LoyaltyDB
 	                FROM 
 		                calc.campaign_participant a with (nolock)
 			                inner join dbo.crm_customers c (nolock) on a.crm_customer_id = c.crm_customer_id
-
 			                left join calc.crm_isviber vb with (nolock) on a.crm_customer_id = vb.crm_customer_id
 			                inner join dbo.cards crd (nolock) on c.crm_customer_id = crd.crm_customer_id and crd.deleted = 0
 			                inner join [dbo].[dict_markets] dm with (nolock) on crd.issued_market_id = dm.id
 	                WHERE
 		                a.campaign_id = {0} and a.control_group = 0
                         and c.is_sms_sent = 1
-                        
+                    UNION ALL
+                        SELECT 
+                        '+380674602727' mobile_phone, 
+                        'VIBER' delivery_channel, 
+                        'KC' market_name, 
+                        90000009183 crm_customer_id                                            
                 ";
 
                 cmdText = string.Format(cmdText, campaignId.ToString());
@@ -148,6 +152,17 @@ namespace LoyaltyDB
 	                WHERE
 		                a.campaign_id = {0} and a.control_group = 0
                         and c.is_sms_sent = 1
+                    UNION
+                    SELECT
+    		            ''                      name1,
+		                'Олександр'             name2,
+		                'Володимирович'         name3,
+                        'Ч'                     gender,
+                        '+380674602727'         mobile_phone, 
+                        'VIBER'                 delivery_channel, 
+                        'KC'                    market_name, 
+                        90000009183             crm_customer_id,
+                        ''                      free
                 ";
 
                 cmdText = string.Format(cmdText, campaignId.ToString());

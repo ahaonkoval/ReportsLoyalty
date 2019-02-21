@@ -66,7 +66,7 @@ namespace WinTest
 
         private void завантажитиСтатусиЗФайлаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLoadFile frm = new WinTest.frmLoadFile();
+            frmLoadFileSoftLine frm = new WinTest.frmLoadFileSoftLine();
             frm.MdiParent = this;
             frm.Show();
         }
@@ -92,12 +92,11 @@ namespace WinTest
             frm.Show();
         }
 
-        //private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    foreach (Form childForm in MdiChildren)
-        //    {
-        //        childForm.Close();
-        //    }
-        //}
+        private void mLoadStatusGms_Click(object sender, EventArgs e)
+        {
+            frmLoadFileGMS fLoadFileGMS = new frmLoadFileGMS();
+            fLoadFileGMS.MdiParent = this;
+            fLoadFileGMS.Show();
+        }
     }
 }
