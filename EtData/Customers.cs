@@ -1,5 +1,4 @@
-﻿using LinqToDB.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static DataModels.CrmWizardDB;
+using LinqToDB.Data;
 
 namespace LoyaltyDB
 {
@@ -34,60 +34,123 @@ namespace LoyaltyDB
             }
         }
 
-        public DataTable GetCustomers(int campaignId)
-        {
+        //public DataTable GetCustomers(int campaignId)
+        //{
+        //    using (var db = new DataModels.CrmWizardDB())
+        //    {
+        //        string cmdText = @"
+
+        //            IF object_id('[tempdb]..#tmp_staff_ids') != 0
+	       //             DROP TABLE #tmp_staff_ids
+        //            SELECT distinct m.id into #tmp_staff_ids FROM [calc].[staff_phones] a
+        //            inner join (
+        //                select cp.crm_customer_id, cp.id FROM 
+        //                    calc.campaign_participant cp (nolock) 
+        //                where cp.campaign_id = {0}
+        //                ) m on a.crm_customer_id = m.crm_customer_id
+
+	       //         DELETE from
+		      //          calc.campaign_participant
+	       //         where
+		      //          id in (
+			     //           select
+				    //            id
+			     //           from
+				    //            #tmp_staff_ids
+		      //          ); 
+	       //         DROP TABLE #tmp_staff_ids;
+
+	       //         SELECT
+        //                distinct
+		      //          --crd.barcode,
+		      //          c.mobile_phone,
+		      //          iif(isnull(vb.is_viber, 0)=1,'VIBER', a.delivery_channel) delivery_channel,
+		      //          dm.[market_name],
+		      //          a.crm_customer_id
+	       //         FROM 
+		      //          calc.campaign_participant a with (nolock)
+			     //           inner join dbo.crm_customers c (nolock) on a.crm_customer_id = c.crm_customer_id
+			     //           left join calc.crm_isviber vb with (nolock) on a.crm_customer_id = vb.crm_customer_id
+			     //           inner join dbo.cards crd (nolock) on c.crm_customer_id = crd.crm_customer_id and crd.deleted = 0
+			     //           inner join [dbo].[dict_markets] dm with (nolock) on crd.issued_market_id = dm.id
+	       //         WHERE
+		      //          a.campaign_id = {0} and a.control_group = 0
+        //                and c.is_sms_sent = 1
+        //            UNION ALL
+        //                SELECT 
+        //                '+380674602727' mobile_phone, 
+        //                'VIBER' delivery_channel, 
+        //                'KC' market_name, 
+        //                90000009183 crm_customer_id                                            
+        //        ";
+
+        //        cmdText = string.Format(cmdText, campaignId.ToString());
+        //        var cmd = db.CreateCommand();
+        //        cmd.CommandType = System.Data.CommandType.Text;
+        //        cmd.CommandText = cmdText;
+        //        cmd.CommandTimeout = 100000000;
+
+        //        if (cmd.Connection.State == ConnectionState.Closed)
+        //            cmd.Connection.Open();
+
+        //        SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
+        //        DataTable tb = new DataTable();
+        //        tb.Load(reader);
+        //        cmd.Connection.Close();
+        //        return tb;
+        //    }
+        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="start_value"></param>
+        /// <param name="end_value"></param>
+        /// <returns></returns>
+        public DataTable GetCustomersBetween(int campaignId, int start_value, int end_value) {
+
             using (var db = new DataModels.CrmWizardDB())
             {
-                string cmdText = @"
+                SqlCommand cmd = (SqlCommand)db.CreateCommand();
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "calc.p_get_customers_campaign_list";
 
-                    IF object_id('[tempdb]..#tmp_staff_ids') != 0
-	                    DROP TABLE #tmp_staff_ids
-                    SELECT distinct m.id into #tmp_staff_ids FROM [calc].[staff_phones] a
-                    inner join (
-                        select cp.crm_customer_id, cp.id FROM 
-                            calc.campaign_participant cp (nolock) 
-                        where cp.campaign_id = {0}
-                        ) m on a.crm_customer_id = m.crm_customer_id
+                cmd.Parameters.AddWithValue("@campaign_id", campaignId);
+                cmd.Parameters.AddWithValue("@start_value", start_value);
+                cmd.Parameters.AddWithValue("@end_value", end_value);
 
-	                DELETE from
-		                calc.campaign_participant
-	                where
-		                id in (
-			                select
-				                id
-			                from
-				                #tmp_staff_ids
-		                ); 
-	                DROP TABLE #tmp_staff_ids;
+                cmd.CommandTimeout = 100000000;
 
-	                SELECT
-                        distinct
-		                --crd.barcode,
-		                c.mobile_phone,
-		                iif(isnull(vb.is_viber, 0)=1,'VIBER', a.delivery_channel) delivery_channel,
-		                dm.[market_name],
-		                a.crm_customer_id
-	                FROM 
-		                calc.campaign_participant a with (nolock)
-			                inner join dbo.crm_customers c (nolock) on a.crm_customer_id = c.crm_customer_id
-			                left join calc.crm_isviber vb with (nolock) on a.crm_customer_id = vb.crm_customer_id
-			                inner join dbo.cards crd (nolock) on c.crm_customer_id = crd.crm_customer_id and crd.deleted = 0
-			                inner join [dbo].[dict_markets] dm with (nolock) on crd.issued_market_id = dm.id
-	                WHERE
-		                a.campaign_id = {0} and a.control_group = 0
-                        and c.is_sms_sent = 1
-                    UNION ALL
-                        SELECT 
-                        '+380674602727' mobile_phone, 
-                        'VIBER' delivery_channel, 
-                        'KC' market_name, 
-                        90000009183 crm_customer_id                                            
-                ";
+                if (cmd.Connection.State == ConnectionState.Closed)
+                    cmd.Connection.Open();
 
-                cmdText = string.Format(cmdText, campaignId.ToString());
-                var cmd = db.CreateCommand();
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.CommandText = cmdText;
+                SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
+                DataTable tb = new DataTable();
+                tb.Load(reader);
+                cmd.Connection.Close();
+                return tb;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="start_value"></param>
+        /// <param name="end_value"></param>
+        /// <returns></returns>
+        public DataTable GetCustomersBetweenLong(int campaignId, int start_value, int end_value)
+        {
+
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                SqlCommand cmd = (SqlCommand)db.CreateCommand();
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "calc.p_get_customers_campaign_list_long";
+
+                cmd.Parameters.AddWithValue("@campaign_id", campaignId);
+                cmd.Parameters.AddWithValue("@start_value", start_value);
+                cmd.Parameters.AddWithValue("@end_value", end_value);
+
                 cmd.CommandTimeout = 100000000;
 
                 if (cmd.Connection.State == ConnectionState.Closed)
@@ -101,86 +164,86 @@ namespace LoyaltyDB
             }
         }
 
-        public DataTable GetCustomersLong(int campaignId)
-        {
-            using (var db = new DataModels.CrmWizardDB())
-            {
-                string cmdText = @"
+        //public DataTable GetCustomersLong(int campaignId)
+        //{
+        //    using (var db = new DataModels.CrmWizardDB())
+        //    {
+        //        string cmdText = @"
 
-                    IF object_id('[tempdb]..#tmp_staff_ids') != 0
-	                    DROP TABLE #tmp_staff_ids
-                    SELECT distinct m.id into #tmp_staff_ids FROM [calc].[staff_phones] a
-                    inner join (
-                        select cp.crm_customer_id, cp.id FROM 
-                            calc.campaign_participant cp (nolock) 
-                        where cp.campaign_id = {0}
-                        ) m on a.crm_customer_id = m.crm_customer_id
+        //            IF object_id('[tempdb]..#tmp_staff_ids') != 0
+	       //             DROP TABLE #tmp_staff_ids
+        //            SELECT distinct m.id into #tmp_staff_ids FROM [calc].[staff_phones] a
+        //            inner join (
+        //                select cp.crm_customer_id, cp.id FROM 
+        //                    calc.campaign_participant cp (nolock) 
+        //                where cp.campaign_id = {0}
+        //                ) m on a.crm_customer_id = m.crm_customer_id
 
-	                DELETE from
-		                calc.campaign_participant
-	                where
-		                id in (
-			                select
-				                id
-			                from
-				                #tmp_staff_ids
-		                ); 
-	                DROP TABLE #tmp_staff_ids;
+	       //         DELETE from
+		      //          calc.campaign_participant
+	       //         where
+		      //          id in (
+			     //           select
+				    //            id
+			     //           from
+				    //            #tmp_staff_ids
+		      //          ); 
+	       //         DROP TABLE #tmp_staff_ids;
 
-	                SELECT
-                        distinct
-		                c.name1,
-		                c.name2,
-		                c.name3,
-		                case 
-			                when c.gender = 1 then 'Ч'
-			                when c.gender = 2 then 'Ж'
-			                else 'н/в' end as gender,
-		                c.mobile_phone,
-		                iif(isnull(vb.is_viber, 0)=1,'VIBER', a.delivery_channel) delivery_channel,
-		                dm.[market_name],
-                        a.crm_customer_id,
-		                isnull(a.free,'') free
-	                FROM 
-		                calc.campaign_participant a with (nolock)
-			                inner join 
-				                dbo.crm_customers c (nolock) on a.crm_customer_id = c.crm_customer_id
+	       //         SELECT
+        //                distinct
+		      //          c.name1,
+		      //          c.name2,
+		      //          c.name3,
+		      //          case 
+			     //           when c.gender = 1 then 'Ч'
+			     //           when c.gender = 2 then 'Ж'
+			     //           else 'н/в' end as gender,
+		      //          c.mobile_phone,
+		      //          iif(isnull(vb.is_viber, 0)=1,'VIBER', a.delivery_channel) delivery_channel,
+		      //          dm.[market_name],
+        //                a.crm_customer_id,
+		      //          isnull(a.free,'') free
+	       //         FROM 
+		      //          calc.campaign_participant a with (nolock)
+			     //           inner join 
+				    //            dbo.crm_customers c (nolock) on a.crm_customer_id = c.crm_customer_id
 
-			                left join calc.crm_isviber vb with (nolock) on a.crm_customer_id = vb.crm_customer_id
-			                inner join dbo.cards crd (nolock) on c.crm_customer_id = crd.crm_customer_id and crd.deleted = 0
-			                inner join [dbo].[dict_markets] dm with (nolock) on crd.issued_market_id = dm.id
-	                WHERE
-		                a.campaign_id = {0} and a.control_group = 0
-                        and c.is_sms_sent = 1
-                    UNION
-                    SELECT
-    		            ''                      name1,
-		                'Олександр'             name2,
-		                'Володимирович'         name3,
-                        'Ч'                     gender,
-                        '+380674602727'         mobile_phone, 
-                        'VIBER'                 delivery_channel, 
-                        'KC'                    market_name, 
-                        90000009183             crm_customer_id,
-                        ''                      free
-                ";
+			     //           left join calc.crm_isviber vb with (nolock) on a.crm_customer_id = vb.crm_customer_id
+			     //           inner join dbo.cards crd (nolock) on c.crm_customer_id = crd.crm_customer_id and crd.deleted = 0
+			     //           inner join [dbo].[dict_markets] dm with (nolock) on crd.issued_market_id = dm.id
+	       //         WHERE
+		      //          a.campaign_id = {0} and a.control_group = 0
+        //                and c.is_sms_sent = 1
+        //            UNION
+        //            SELECT
+    		  //          ''                      name1,
+		      //          'Олександр'             name2,
+		      //          'Володимирович'         name3,
+        //                'Ч'                     gender,
+        //                '+380674602727'         mobile_phone, 
+        //                'VIBER'                 delivery_channel, 
+        //                'KC'                    market_name, 
+        //                90000009183             crm_customer_id,
+        //                ''                      free
+        //        ";
 
-                cmdText = string.Format(cmdText, campaignId.ToString());
-                var cmd = db.CreateCommand();
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.CommandText = cmdText;
-                cmd.CommandTimeout = 100000000;
+        //        cmdText = string.Format(cmdText, campaignId.ToString());
+        //        var cmd = db.CreateCommand();
+        //        cmd.CommandType = System.Data.CommandType.Text;
+        //        cmd.CommandText = cmdText;
+        //        cmd.CommandTimeout = 100000000;
 
-                if (cmd.Connection.State == ConnectionState.Closed)
-                    cmd.Connection.Open();
+        //        if (cmd.Connection.State == ConnectionState.Closed)
+        //            cmd.Connection.Open();
 
-                SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
-                DataTable tb = new DataTable();
-                tb.Load(reader);
-                cmd.Connection.Close();
-                return tb;
-            }
-        }
+        //        SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
+        //        DataTable tb = new DataTable();
+        //        tb.Load(reader);
+        //        cmd.Connection.Close();
+        //        return tb;
+        //    }
+        //}
         /// <summary>
         /// 
         /// </summary>

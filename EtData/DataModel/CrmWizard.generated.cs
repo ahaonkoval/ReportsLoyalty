@@ -83,6 +83,7 @@ namespace DataModels
 		public ITable<ProcExecuteLog>                         ProcExecuteLog                         { get { return this.GetTable<ProcExecuteLog>(); } }
 		public ITable<SendCustomers>                          SendCustomers                          { get { return this.GetTable<SendCustomers>(); } }
 		public ITable<SendMessagesTemplates>                  SendMessagesTemplates                  { get { return this.GetTable<SendMessagesTemplates>(); } }
+		public ITable<SendTestPhones>                         SendTestPhones                         { get { return this.GetTable<SendTestPhones>(); } }
 		public ITable<Staff>                                  Staffs                                 { get { return this.GetTable<Staff>(); } }
 		public ITable<StaffPhones>                            StaffPhones                            { get { return this.GetTable<StaffPhones>(); } }
 		public ITable<StaffTop>                               StaffTop                               { get { return this.GetTable<StaffTop>(); } }
@@ -1937,6 +1938,14 @@ namespace DataModels
 		[Column("link_button"),          Nullable            ] public string LinkButton         { get; set; } // nvarchar(500)
 	}
 
+	[Table(Schema="calc", Name="send_test_phones")]
+	public partial class SendTestPhones
+	{
+		[Column("id"),           PrimaryKey, Identity] public int    Id          { get; set; } // int
+		[Column("mobile_phone"), Nullable            ] public string MobilePhone { get; set; } // nvarchar(15)
+		[Column("message_id"),   Nullable            ] public long?  MessageId   { get; set; } // bigint
+	}
+
 	[Table(Schema="calc", Name="staff")]
 	public partial class Staff
 	{
@@ -3211,6 +3220,16 @@ namespace DataModels
 		}
 
 		#endregion
+
+		#region PSendTestMessage
+
+		public static int PSendTestMessage(this DataConnection dataConnection, int? @template_id)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_send_test_message]",
+				new DataParameter("@template_id", @template_id, DataType.Int32));
+		}
+
+		#endregion
 	}
 
 	public static partial class SqlFunctions
@@ -3473,6 +3492,12 @@ namespace DataModels
 		}
 
 		public static SendMessagesTemplates Find(this ITable<SendMessagesTemplates> table, int Id)
+		{
+			return table.FirstOrDefault(t =>
+				t.Id == Id);
+		}
+
+		public static SendTestPhones Find(this ITable<SendTestPhones> table, int Id)
 		{
 			return table.FirstOrDefault(t =>
 				t.Id == Id);

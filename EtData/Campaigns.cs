@@ -890,9 +890,9 @@ namespace LoyaltyDB
             }
         }
 
-        public void SetDeliveryGMSStatusByCampaignId(long campaignId, DataTable t, BackgroundWorker bw)
+        public void SetDeliveryGMSStatusByCampaignId(long campaignId, DataTable t, BackgroundWorker bw, Guid partId)
         {
-            Guid partId = Guid.NewGuid();
+            //Guid partId = Guid.NewGuid();
             int m_counter = 1;
             uint m_commitMax = 1000;
             string SqlStart = @"insert into [calc].[campaign_gms_status] (
@@ -918,15 +918,12 @@ namespace LoyaltyDB
 
             var smap = System.Configuration.ConfigurationManager.ConnectionStrings["crm_wizard_connect_string"].ToString();
 
-            //app
-            //var connection = System.Configuration.ConfigurationSettings.AppSettings["crm_wizard_connect_string"].ConnectionString;
             using (SqlConnection connect = new SqlConnection(smap))
-            {
-                
+            {                
                 SqlCommand cmd = connect.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 connect.Open();
-                //connect.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
+
                 for (Int32 i = 0; i < t.Rows.Count; i++)
                 {
                     /* формую строку на tsql */
@@ -950,7 +947,7 @@ namespace LoyaltyDB
                             partId.ToString()
                         );
                         sqlCommandText.AppendLine(pa);
-
+                        m_counter++;
                     }
                     else
                     {
@@ -973,16 +970,34 @@ namespace LoyaltyDB
                         );
                         sqlCommandText.AppendLine(pa);
                         cmd.CommandText = sqlCommandText.ToString();
-                        
-                        cmd.ExecuteNonQuery();                        
+
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            int a = 0;
+                        }
 
                         m_counter = 1;
                         sqlCommandText = new StringBuilder(SqlStart);
-
-                        bw.ReportProgress(i);
+                        bw.ReportProgress(i + 1);
                     }
-
-                    m_counter++;
+                    
+                }
+                if (m_counter > 1)
+                {
+                    cmd.CommandText = sqlCommandText.ToString().Substring(0, sqlCommandText.ToString().Trim().Length - 1).ToString();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        bw.ReportProgress(t.Rows.Count);
+                    }
+                    catch (Exception ex)
+                    {
+                        int a = 1;
+                    }
                 }
                 connect.Close();
             }            
@@ -993,8 +1008,6 @@ namespace LoyaltyDB
             Int32 CurrentPosition = 0;
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
-                
-
                 using (var t = new TransactionScope(TransactionScopeOption.Required, 
                     new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted }))
                 {
@@ -1036,6 +1049,33 @@ namespace LoyaltyDB
             }
         }
 
+        public void SetGmsStatusEnd(int campaignId, Guid partId)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                using (SqlConnection c = new SqlConnection(db.ConnectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = c.CreateCommand();
+                        cmd.CommandTimeout = 100000000;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Connection = c;
+                        cmd.CommandText = "calc.p_update_gms_status_delivery";
+
+                        cmd.Parameters.AddWithValue("@campaign_id", campaignId);
+                        cmd.Parameters.AddWithValue("@part_id", partId);
+
+                        if (c.State != ConnectionState.Open)
+                            c.Open();
+                        cmd.ExecuteNonQuery();
+                    } catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+        }
         public void SetSoftLineStatusEnd(int campaignId)
         {
             using (CrmWizardDB db = new DataModels.CrmWizardDB())

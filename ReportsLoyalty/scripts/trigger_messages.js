@@ -147,8 +147,8 @@ var showTriggerMessageEditorTemplates = function () {
                 edit: function (editor, context, eOpts) {
                     var rc = context.record;
 
-                    rc.set('MViber', editorViber.getValue());
-                    rc.set('MSms', editorSms.getValue());
+                    rc.set('MViber', editorViber.getValue());       // .replace(/<\/?[^>]+>/ig, "")
+                    rc.set('MSms', editorSms.getValue());           // .replace(/<\/?[^>]+>/ig, "")
 
                     rc.set('LinkImage', txtImageLink.getValue());
                     rc.set('LinkButton', txtButtonLink.getValue());
@@ -271,15 +271,20 @@ var showTriggerMessageEditorTemplates = function () {
         height: 100
     });
 
-    var editorViber = Ext.create('Ext.form.HtmlEditor', {
-        enableColors: true,
-        enableAlignments: true,
-        enableSourceEdit: true,
-        enableFont: true,
-        enableFontSize: true,
-        enableFormat: true,
-        //enableLinks: true,
-        enableLists: true,
+    //var editorViber = Ext.create('Ext.form.HtmlEditor', {
+    //    enableColors: true,
+    //    enableAlignments: true,
+    //    enableSourceEdit: true,
+    //    enableFont: true,
+    //    enableFontSize: true,
+    //    enableFormat: true,
+    //    //enableLinks: true,
+    //    enableLists: true,
+    //    readOnly: true,
+    //    height: 350
+    //});
+
+    var editorViber = Ext.create('Ext.form.TextArea', {
         readOnly: true,
         height: 350
     });
@@ -323,6 +328,7 @@ var showTriggerMessageEditorTemplates = function () {
                 },
                 {
                     xtype: 'panel',
+                    border: false,
                     flex: 1,
                     layout: {
                         type: 'vbox',
@@ -331,6 +337,11 @@ var showTriggerMessageEditorTemplates = function () {
                     items: [
                         {
                             xtype: 'panel',
+                            border: false,                           
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch'
+                            },
                             items: [
                                 editorSms,
                                 editorViber,
@@ -338,20 +349,128 @@ var showTriggerMessageEditorTemplates = function () {
                         {
                             xtype: 'panel',
                             height: 100,
+                            margin: 5,
+                            border: false,
                             layout: {
                                 type: 'vbox',
                                 align: 'stretch'
                             },
                             renderTo: Ext.getBody(),
-                            bodyPadding: 5,
+                            //bodyPadding: 1,
                             defaultType: 'textfield',
                             defaults: {
-                                labelWidth: 100
+                                labelWidth: 120
                             },
                             items: [
                                 txtImageLink,
                                 txtButtonLink
-                        ]}
+                            ]
+                        },{
+                            xtype: 'panel',
+                            border: false,
+                            flex: 1,
+                            buttons: [
+                                {
+                                    text: 'Тест',
+                                    handler: function () {
+                                        var select = grid.getSelection();
+
+                                        if (select.length > 0) {
+                                            var storeTestPhones = Ext.create('Ext.data.JsonStore',
+                                                {
+                                                    autoLoad: true,
+                                                    autoDestroy: true,
+                                                    proxy: {
+                                                        type: 'ajax',
+                                                        url: ('api/testphones'),
+                                                        reader: {
+                                                            type: 'json',
+                                                            root: 'data',
+                                                            idProperty: 'Id',
+                                                            totalProperty: 'total'
+                                                        }
+                                                    },
+                                                    remoteSort: false,
+                                                    sorters: [
+                                                        {
+                                                            property: 'Id',
+                                                            direction: 'ASC'
+                                                        }
+                                                    ],
+                                                    pageSize: 50,
+                                                    fields: [
+                                                        { name: 'Id', type: 'int' },
+                                                        { name: 'mobile_phone', type: 'string' }
+                                                    ]
+                                                });
+
+                                            var templateName = select[0].get('MName');
+                                            var winTest = Ext.create('Ext.Window', {
+                                                title: 'Шаблон: ' + templateName,
+                                                width: 300,
+                                                height: 200,
+                                                modal: true,
+                                                closable: true,
+                                                layout: 'fit',
+                                                items: [{
+                                                    xtype: 'gridpanel',
+                                                    store: storeTestPhones,
+                                                    columns:[
+                                                        {
+                                                            dataIndex: 'Id',
+                                                            text: '№',
+                                                            filterable: false,
+                                                            width: 10,
+                                                            menuDisabled: true
+                                                        }, {
+                                                            dataIndex: 'MobilePhone',
+                                                            text: 'Мобільний телефон',
+                                                            filterable: false,
+                                                            width: 200,
+                                                            menuDisabled: true
+                                                        }],
+                                                    bbar: [{
+                                                        xtype: 'button',
+                                                        text: 'Відправити',
+                                                        handler: function () {
+                                                            var select = grid.getSelection();
+                                                            var templateId = select[0].get('Id');
+                                                            var ms = {
+                                                                TemplateId: templateId
+                                                            };
+                                                            $.ajax({
+                                                                url: 'api/testphones',
+                                                                type: 'post',
+                                                                dataType: "json",
+                                                                contentType: "application/json; charset=utf-8",
+                                                                data: JSON.stringify(ms),
+                                                                success: function (id) {
+                                                                    if (id != "") {
+                                                                        rc.set("Id", id);
+                                                                        rc.commit();
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+                                                    }]
+
+                                                }],
+                                                listeners: {
+                                                    'close': function (win) {
+                                                        //console.info('close');
+                                                        //requestState = false;
+                                                    },
+                                                    'hide': function (win) {
+                                                        //console.info('just hidden');
+                                                    }
+                                                }
+                                            });
+                                            winTest.show();
+                                        }
+                                    }
+                                },
+                            ]
+                        }
                     ]
                 }
             ]

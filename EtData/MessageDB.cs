@@ -30,7 +30,7 @@ namespace LoyaltyDB
             {
                 return db.SendMessagesTemplates.Where(w => w.Id == id).FirstOrDefault();
             }
-        }
+        }        
 
         public object AddMessageTemplate(string m_key, string m_name, string m_viber, string m_sms, int m_condition_doc_amount, string m_link_image, string m_link_button)
         {
@@ -95,6 +95,46 @@ namespace LoyaltyDB
             using (var db = new DataModels.CrmWizardDB())
             {
                 db.SendMessagesTemplates.Delete(w => w.Id == id);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SendTestPhones> GetTestPhones()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.SendTestPhones.ToList();
+            }
+        }
+
+        public void SendTest(int templateId)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                using (SqlConnection c = new SqlConnection(db.ConnectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = c.CreateCommand();
+                        cmd.CommandTimeout = 100000000;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Connection = c;
+                        cmd.CommandText = "calc.p_send_test_message";
+                        cmd.Parameters.AddWithValue("@template_id", templateId);
+
+                        if (c.State != ConnectionState.Open)
+                            c.Open();
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        int i = 0;
+                        // TODO Логировать ошибку
+                    }
+                }
             }
         }
     }

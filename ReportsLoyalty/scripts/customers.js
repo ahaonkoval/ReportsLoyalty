@@ -307,6 +307,88 @@ var getBtnCustomersAdd = function (campaign_id, win) {
         })
     });
 };
+/*
+    Вікно 
+*/
+var getWinBetween = function (type_id, campaign_id) {
+    // type_id = 1 --<-- вивантажуємо розширену версію
+    // type_id = 2 --<-- вивантажуємо коротку версію
+    var txtStart = Ext.create('Ext.form.field.Text', {
+        fieldLabel: 'Початок:'
+    });
+
+    var txtEnd = Ext.create('Ext.form.field.Text', {
+        fieldLabel: 'Кінець:',
+    });
+
+    var winBetween = Ext.create('Ext.Window', {
+        title: 'Вкажіть початок і кінець...',
+        width: 300,
+        height: 200,
+        modal: true,
+        closable: true,
+        layout: 'fit',
+        defaultType: 'textfield',
+        fieldDefaults: {
+            labelAlign: 'top',
+            labelWidth: 150
+        },
+        items: [
+            {
+                xtype: 'panel',
+                border: false,
+                layout: 'form',
+                defaultType: 'textfield',
+                fieldDefaults: {
+                    labelAlign: 'top',
+                    labelWidth: 150
+                },
+                items: [
+                    txtStart,
+                    txtEnd
+                ]
+            }
+        ],
+        buttons:[
+            {
+                text: 'Почати',
+                handler: function () {
+
+                    var p_start = txtStart.getValue();
+                    var p_end = txtEnd.getValue();
+
+                    if (type_id == 1) {
+                        var url = 'api/Customer/GetFile/' + campaign_id + '?p_start=' + p_start + '&p_end=' + p_end + '7type_id=1';
+                        window.open(url);
+                        winBetween.close();
+                    }
+                    if (type_id == 2) {
+                        var url = 'api/Customer/GetFile/' + campaign_id + '?p_start=' + p_start + '&p_end=' + p_end + '&type_id=2';
+                        window.open(url);
+                        winBetween.close();
+                    }
+                }
+            },
+            {
+                text: 'Відмінити',
+                handler: function(){
+                    winBetween.close();
+                }
+            }
+        ],
+        listeners: {
+            'close': function (win) {
+                //console.info('close');
+                //requestState = false;
+            },
+            'hide': function (win) {
+                //console.info('just hidden');
+            }
+        }
+    });
+
+    return winBetween;
+}
 
 var getBtnDownloadCustomers = function(campaign_id) {
     return Ext.create('Ext.button.Split', {
@@ -322,8 +404,12 @@ var getBtnDownloadCustomers = function(campaign_id) {
                     //scope: cmp_id,
                     listeners: {
                         'click': function (ctrl) {
-                            var url = 'api/Customer/GetCustomersFileLong/' + campaign_id;
-                            window.open(url);
+
+                            getWinBetween(1, campaign_id).show();
+                            //getWinBetween(1).show();
+
+                            //var url = 'api/Customer/GetCustomersFileLong/' + campaign_id;
+                            //window.open(url);
                         }
                     }
                 },
@@ -333,8 +419,11 @@ var getBtnDownloadCustomers = function(campaign_id) {
                     //scope: cmp_id,
                     listeners: {
                         'click': function (ctrl) {
-                            var url = 'api/Customer/GetCustomersFile/' + campaign_id;
-                            window.open(url);
+                            //getWinBetween(2).show();
+                            //var url = 'api/Customer/GetCustomersFile/' + campaign_id;
+                            //window.open(url);
+
+                            getWinBetween(2, campaign_id).show();
                         }
                     }
                 }

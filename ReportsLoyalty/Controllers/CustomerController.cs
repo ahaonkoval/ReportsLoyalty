@@ -19,6 +19,7 @@ namespace ReportsLoyalty.Controllers
 {
     public class CustomerController : ApiController
     {
+
         public object Get() //HttpResponseMessage
         {
             var queryparams = Request.GetQueryNameValuePairs();
@@ -32,18 +33,11 @@ namespace ReportsLoyalty.Controllers
             {
                 using (GetData data = new GetData())
                 {
-                    var customers = data.Customers.GetCustomersCampaign(Convert.ToInt64(campaign_id.Value), start, limit);//.OrderBy(o => o.number);
+                    var customers = data.Customers.GetCustomersCampaign(Convert.ToInt64(campaign_id.Value), start, limit);
 
                     int cmp = Convert.ToInt32(campaign_id.Value);
 
                     int count = data.Customers.GetCustomersCountById(cmp);
-
-                    //var str = new JavaScriptSerializer().Serialize(customers.ToList());
-                    //str = string.Format("\"total\": \"{0}\", \"data\":{1}", count.ToString(), str);
-                    //str = "{" + str + "}";
-                    //response.Content = new StringContent(str, Encoding.UTF8, "application/json");
-
-                    //return response;
 
                     object om = new
                     {
@@ -56,21 +50,26 @@ namespace ReportsLoyalty.Controllers
             } else { return response; }
 
         }
+
+        #region Get Files
         [HttpGet]
-        public HttpResponseMessage GetCustomersFile(int id)
-        {
+        public HttpResponseMessage GetFile(int id) {
+            var queryparams = Request.GetQueryNameValuePairs();
+            var p_start = Convert.ToInt32(queryparams.Where(w => w.Key == "p_start").FirstOrDefault().Value);
+            var p_end = Convert.ToInt32(queryparams.Where(w => w.Key == "p_end").FirstOrDefault().Value);
+            var type_id = Convert.ToInt32(queryparams.Where(w => w.Key == "type_id").FirstOrDefault().Value);
+
             var result = Request.CreateResponse(HttpStatusCode.OK);
             try
             {
-                MemoryStream reportStream = GenerateExcelReport(id);
+                MemoryStream reportStream = GenerateExcelReportBetween(id,
+                    Convert.ToInt32(p_start), Convert.ToInt32(p_end), Convert.ToInt32(type_id));
                 result.Content = new StreamContent(reportStream);
             }
             catch (Exception ex)
-            {              
+            {
                 result.Content = new StringContent(ex.Message, Encoding.Default); //, Encoding.UTF8, "application/json"
             }
-
-            
 
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             //result.Content.Headers.
@@ -85,8 +84,66 @@ namespace ReportsLoyalty.Controllers
 
                 return result;
             }
-        }
+        } 
 
+        //[HttpGet]
+        //public HttpResponseMessage GetCustomersFile(int id)
+        //{
+        //    var result = Request.CreateResponse(HttpStatusCode.OK);
+        //    try
+        //    {
+        //        MemoryStream reportStream = GenerateExcelReport(id);
+        //        result.Content = new StreamContent(reportStream);
+        //    }
+        //    catch (Exception ex)
+        //    {              
+        //        result.Content = new StringContent(ex.Message, Encoding.Default); //, Encoding.UTF8, "application/json"
+        //    }            
+
+        //    result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+        //    //result.Content.Headers.
+        //    using (GetData gd = new GetData())
+        //    {
+        //        result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+        //        {
+        //            FileName = string.Format(
+        //            "({0}){1}.csv", id.ToString(), string.Empty//gd.Campaigns.GetCampaignNameById(id)
+        //            )
+        //        };
+
+        //        return result;
+        //    }
+        //}
+
+        //public HttpResponseMessage GetCustomersFileLong(int id)
+        //{
+        //    var result = Request.CreateResponse(HttpStatusCode.OK);
+        //    try
+        //    {
+        //        MemoryStream reportStream = GenerateExcelReportLong(id);
+        //        result.Content = new StreamContent(reportStream);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Content = new StringContent(ex.Message, Encoding.Default); //, Encoding.UTF8, "application/json"
+        //    }
+
+        //    result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+        //    //result.Content.Headers.
+        //    using (GetData gd = new GetData())
+        //    {
+        //        result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+        //        {
+        //            FileName = string.Format(
+        //            "({0}).csv", id.ToString()//, gd.Campaigns.GetCampaignNameById(id)
+        //            )
+        //        };
+
+        //        return result;
+        //    }
+        //}
+        #endregion
+        #region
         [HttpGet]
         public string GetSelectedCustomesCount(int id) {
 
@@ -130,7 +187,6 @@ namespace ReportsLoyalty.Controllers
 
             return returned;
         }
-
         [HttpGet]
         public string StartFillCampaignFromSelectedCustomes(int id)
         {
@@ -170,92 +226,17 @@ namespace ReportsLoyalty.Controllers
 
             return string.Empty;
         }        
-
         [HttpGet]
-        public HttpResponseMessage GetCustomersFileLong(int id)
-        {
-            var result = Request.CreateResponse(HttpStatusCode.OK);
-            try
-            {
-                MemoryStream reportStream = GenerateExcelReportLong(id);
-                result.Content = new StreamContent(reportStream);
-            }
-            catch (Exception ex)
-            {
-                result.Content = new StringContent(ex.Message, Encoding.Default); //, Encoding.UTF8, "application/json"
-            }
+        #endregion
 
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-            //result.Content.Headers.
-            using (GetData gd = new GetData())
-            {
-                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-                {
-                    FileName = string.Format(
-                    "({0}).csv", id.ToString()//, gd.Campaigns.GetCampaignNameById(id)
-                    )
-                };
-
-                return result;
-            }
-        }
-
-        private MemoryStream GenerateExcelReport(int campaignId)
+        #region Generate Excel File
+        public MemoryStream GenerateExcelReportBetween(int campaignId, int part_start, int part_end, int type_id)
         {
             using (GetData gd = new GetData())
             {
-                string filename = string.Format("({0}).csv", campaignId.ToString());//, gd.Campaigns.GetCampaignNameById(campaignId));
-                var path = string.Empty;
-                try
-                {
-                   path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
-                }
-                catch
-                {
-                    filename = string.Format("({0}).csv", campaignId.ToString());
-                    path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
-                }
-                if (File.Exists(path))
-                {
-                    File.Delete(path);
-                }
+                string filename = string.Format(
+                    "({0}_{1}_{2}).csv", campaignId.ToString(), part_start.ToString(), part_end.ToString());
 
-                System.Data.DataTable dt = gd.Customers.GetCustomers(campaignId);
-
-                if (dt.Rows.Count > 0)
-                {
-                    StringBuilder sb = new StringBuilder();
-
-                    string[] columnNames = dt.Columns.Cast<DataColumn>().
-                                                      Select(column => column.ColumnName).
-                                                      ToArray(); 
-                    sb.AppendLine(string.Join(";", columnNames));
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        string[] fields = row.ItemArray.Select(field => field.ToString()).
-                                                        ToArray();
-                        sb.AppendLine(string.Join(";", fields));
-                    }
-
-                    File.WriteAllText(path, sb.ToString(), Encoding.GetEncoding("utf-8")); //  Encoding.GetEncoding(1250)
-
-                    var bf = File.ReadAllBytes(path);
-                    var dataStream = new MemoryStream(bf);
-                    return dataStream;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        private MemoryStream GenerateExcelReportLong(int campaignId)
-        {
-            using (GetData gd = new GetData())
-            {
-                string filename = string.Format("({0}).csv", campaignId.ToString());
                 var path = string.Empty;
                 try
                 {
@@ -263,15 +244,22 @@ namespace ReportsLoyalty.Controllers
                 }
                 catch
                 {
-                    filename = string.Format("({0}).csv", campaignId.ToString());
-                    path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
+
                 }
                 if (File.Exists(path))
                 {
                     File.Delete(path);
                 }
-
-                System.Data.DataTable dt = gd.Customers.GetCustomersLong(campaignId);
+                DataTable dt = new DataTable();
+                switch (type_id)
+                {
+                    case 1:
+                        dt = gd.Customers.GetCustomersBetweenLong(campaignId, part_start, part_end);
+                        break;
+                    case 2:
+                        dt = gd.Customers.GetCustomersBetween(campaignId, part_start, part_end);
+                        break;
+                }                    
 
                 if (dt.Rows.Count > 0)
                 {
@@ -301,5 +289,109 @@ namespace ReportsLoyalty.Controllers
                 }
             }
         }
+
+        //private MemoryStream GenerateExcelReport(int campaignId)
+        //{
+        //    using (GetData gd = new GetData())
+        //    {
+        //        string filename = string.Format("({0}).csv", campaignId.ToString());//, gd.Campaigns.GetCampaignNameById(campaignId));
+        //        var path = string.Empty;
+        //        try
+        //        {
+        //           path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
+        //        }
+        //        catch
+        //        {
+        //            filename = string.Format("({0}).csv", campaignId.ToString());
+        //            path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
+        //        }
+        //        if (File.Exists(path))
+        //        {
+        //            File.Delete(path);
+        //        }
+
+        //        System.Data.DataTable dt = gd.Customers.GetCustomers(campaignId);
+        //        //System.Data.DataTable dt = gd.Customers.GetCustomersBetween(campaignId, 1, 500000);
+
+        //        if (dt.Rows.Count > 0)
+        //        {
+        //            StringBuilder sb = new StringBuilder();
+
+        //            string[] columnNames = dt.Columns.Cast<DataColumn>().
+        //                                              Select(column => column.ColumnName).
+        //                                              ToArray(); 
+        //            sb.AppendLine(string.Join(";", columnNames));
+
+        //            foreach (DataRow row in dt.Rows)
+        //            {
+        //                string[] fields = row.ItemArray.Select(field => field.ToString()).
+        //                                                ToArray();
+        //                sb.AppendLine(string.Join(";", fields));
+        //            }
+
+        //            File.WriteAllText(path, sb.ToString(), Encoding.GetEncoding("utf-8")); //  Encoding.GetEncoding(1250)
+
+        //            var bf = File.ReadAllBytes(path);
+        //            var dataStream = new MemoryStream(bf);
+        //            return dataStream;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //}
+
+        //private MemoryStream GenerateExcelReportLong(int campaignId)
+        //{
+        //    using (GetData gd = new GetData())
+        //    {
+        //        string filename = string.Format("({0}).csv", campaignId.ToString());
+        //        var path = string.Empty;
+        //        try
+        //        {
+        //            path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
+        //        }
+        //        catch
+        //        {
+        //            filename = string.Format("({0}).csv", campaignId.ToString());
+        //            path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
+        //        }
+        //        if (File.Exists(path))
+        //        {
+        //            File.Delete(path);
+        //        }
+
+        //        System.Data.DataTable dt = gd.Customers.GetCustomersLong(campaignId);
+
+        //        if (dt.Rows.Count > 0)
+        //        {
+        //            StringBuilder sb = new StringBuilder();
+
+        //            string[] columnNames = dt.Columns.Cast<DataColumn>().
+        //                                              Select(column => column.ColumnName).
+        //                                              ToArray();
+        //            sb.AppendLine(string.Join(";", columnNames));
+
+        //            foreach (DataRow row in dt.Rows)
+        //            {
+        //                string[] fields = row.ItemArray.Select(field => field.ToString()).
+        //                                                ToArray();
+        //                sb.AppendLine(string.Join(";", fields));
+        //            }
+
+        //            File.WriteAllText(path, sb.ToString(), Encoding.GetEncoding("utf-8")); //  Encoding.GetEncoding(1250)
+
+        //            var bf = File.ReadAllBytes(path);
+        //            var dataStream = new MemoryStream(bf);
+        //            return dataStream;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //}
+        #endregion
     }
 }
