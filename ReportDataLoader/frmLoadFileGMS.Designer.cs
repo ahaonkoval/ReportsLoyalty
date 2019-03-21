@@ -46,6 +46,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tsProgress = new System.Windows.Forms.ProgressBar();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cShort = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdExcelStatus)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -127,11 +128,11 @@
             // 
             // bWorkerCSV
             // 
-            this.bWorkerCSV.WorkerReportsProgress = true;
-            this.bWorkerCSV.WorkerSupportsCancellation = true;
-            this.bWorkerCSV.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bWorkerCSV_DoWork);
-            this.bWorkerCSV.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bWorkerCSV_ProgressChanged);
-            this.bWorkerCSV.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bWorkerCSV_RunWorkerCompleted);
+            //this.bWorkerCSV.WorkerReportsProgress = true;
+            //this.bWorkerCSV.WorkerSupportsCancellation = true;
+            //this.bWorkerCSV.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bWorkerCSV_DoWork);
+            //this.bWorkerCSV.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bWorkerCSV_ProgressChanged);
+            //this.bWorkerCSV.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bWorkerCSV_RunWorkerCompleted);
             // 
             // lblFileName
             // 
@@ -181,6 +182,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cShort);
             this.panel2.Controls.Add(this.txtCampaignId);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label1);
@@ -226,6 +228,18 @@
             this.panel4.Size = new System.Drawing.Size(929, 727);
             this.panel4.TabIndex = 23;
             // 
+            // cShort
+            // 
+            this.cShort.AutoSize = true;
+            this.cShort.Checked = true;
+            this.cShort.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cShort.Location = new System.Drawing.Point(35, 47);
+            this.cShort.Name = "cShort";
+            this.cShort.Size = new System.Drawing.Size(125, 19);
+            this.cShort.TabIndex = 21;
+            this.cShort.Text = "Короткий формат";
+            this.cShort.UseVisualStyleBackColor = true;
+            // 
             // frmLoadFileGMS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -264,5 +278,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ProgressBar tsProgress;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.CheckBox cShort;
     }
 }

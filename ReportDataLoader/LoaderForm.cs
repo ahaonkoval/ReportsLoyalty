@@ -98,5 +98,12 @@ namespace WinTest
             fLoadFileGMS.MdiParent = this;
             fLoadFileGMS.Show();
         }
+
+        private void mntSell_Click(object sender, EventArgs e)
+        {
+            frmGetDataFlowers frmDataFlowers = new frmGetDataFlowers(ConnectionString);
+            frmDataFlowers.MdiParent = this;
+            frmDataFlowers.Show();
+        }
     }
 }

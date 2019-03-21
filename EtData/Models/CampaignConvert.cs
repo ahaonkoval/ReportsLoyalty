@@ -15,11 +15,9 @@ namespace LoyaltyDB.Models
         public string group_id_0 { get; set; }
         public string group_id_2 { get; set; }
         public int type_id { get; set; }
-
         public string mailing_id { get; set; }
-
         public DateTime? date_send { get; set; }
-
+        public bool is_global { get; set; }
         public CampaignConvert()
         {
 

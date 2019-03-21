@@ -4,7 +4,8 @@
 Ext.define('campaigns_articuls', {
     extend: 'Ext.data.Model',
     fields: [{
-        name: 'NUMBER',         type: 'int'}, {
+        name: 'NUMBER', type: 'int'
+    }, {
         name: 'cmp_id',         type: 'int'}, {
         name: 'campaign_id',    type: 'int'}, {
         name: 'articul',        type: 'string'},  {
@@ -81,7 +82,7 @@ var getGridArticuls = function(campaign_id) {
 
     var createColumns = function (finish, start) {
         var columns = [
-            { dataIndex: 'NUMBER',          text: '№', width: 50 },
+            { dataIndex: 'NUMBER', text: '№', width: 50 },
             { dataIndex: 'articul',         text: 'Артикул'},
             { dataIndex: 'good_name',       text: 'Назва товару', flex: 1 },
             //{ dataIndex: 'discount_prc',    text: 'Знижка',},

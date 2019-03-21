@@ -43,6 +43,26 @@ namespace ReportsLoyalty.Controllers
             }
         }
 
+        /// <summary>
+        /// Статистика по відправленим тригерним повідомленням
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public object DataGetSentTriggerMessages(int id)
+        {
+            using (GetData db = new GetData())
+            {
+                var dt = db.MessageDb.GetSentTriggerMessages();
+                object o = new
+                {
+                    total = dt.Count(),
+                    data = dt
+                };
+
+                return o;
+            }
+        }
+
         public string Post([FromBody]dynamic o) //Conteiner
         {
             string id = Convert.ToString(o.Id.Value);

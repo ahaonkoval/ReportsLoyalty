@@ -28,7 +28,8 @@ namespace ReportsLoyalty.Controllers
             }
         }
 
-        public string Post([FromBody]dynamic o)
+        [HttpPost]
+        public string Send([FromBody]dynamic o)
         {
             string TemplateId = Convert.ToString(o.TemplateId.Value);
 
@@ -41,6 +42,28 @@ namespace ReportsLoyalty.Controllers
             }
 
             return string.Empty;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public string SetToTest([FromBody]dynamic o)
+        {
+            int Id = Convert.ToInt32(o.Id.Value);
+            bool Checked = Convert.ToBoolean(o.Checked.Value);
+            using (GetData db = new GetData())
+            {
+                db.MessageDb.SetToTest(Id, Checked);
+            }
+            try
+            {
+                return "true";
+            } catch (Exception ex)
+            {
+                return "false";
+            }
         }
     }
 }

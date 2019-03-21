@@ -11,6 +11,38 @@ namespace DataLoader.Helpers
 {
     public static class DataBaseHelpers
     {
+        public static DataTable GetFlowersUsers(SqlConnection Connection)
+        {
+            DataTable ResultTable = new DataTable();
+            try
+            {
+                string commandTxt = File.ReadAllText(Environment.CurrentDirectory + "\\SqlScreept\\GetFlowersUsers.sql");
+                SqlCommand cmd = new SqlCommand(commandTxt, Connection);
+                cmd.CommandTimeout = 12000000;
+
+                if (Connection.State != ConnectionState.Open)
+                {
+                    Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    ResultTable.Load(reader);
+                    Connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO: Логировать....
+            }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return ResultTable;
+        }
+
         /// <summary>
         /// 
         /// </summary>

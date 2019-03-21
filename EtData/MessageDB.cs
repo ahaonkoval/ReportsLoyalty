@@ -137,5 +137,30 @@ namespace LoyaltyDB
                 }
             }
         }
+
+        public void SetToTest(int Id, bool Checked)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                db.SendTestPhones.Where(w => w.Id == Id)
+                    .Set(p => p.Used, Checked).Update();
+            }
+        }
+
+        public IEnumerable<object> GetSentTriggerMessages()
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {                
+                var sent = from sc in db.SendCustomers
+                         group sc by sc.TemplateId into g
+                         select new { TemplateId = g.Key, Count = g.Count() };
+
+                var tm = from mt in db.SendMessagesTemplates
+                         join cm in sent on mt.Id equals cm.TemplateId
+                         select new { TemplateId = mt.Id, Name = mt.MName, cm.Count };
+
+                return tm;
+            }
+        }
     }
 }

@@ -19,6 +19,20 @@ namespace WinTest
 
         private BindingSource bndLoadGrid;
 
+        bool tShort
+        {
+            get
+            {
+                bool a = true;
+                try {
+                    return this.cShort.Checked;
+                } catch (Exception ex)
+                {
+                    return a;
+                }
+            }
+        }
+
         int CampaignId
         {
             get
@@ -159,7 +173,13 @@ namespace WinTest
             {
                 if (this.CampaignId > 0)
                 {
-                    data.Campaigns.SetDeliveryGMSStatusByCampaignId(this.CampaignId, t, bw, this.partId);
+                    if (tShort) {
+                        data.Campaigns.SetShortDeliveryGMSStatusByCampaignId(this.CampaignId, t, bw, this.partId);
+                    }
+                    else
+                    {
+                        data.Campaigns.SetDeliveryGMSStatusByCampaignId(this.CampaignId, t, bw, this.partId);
+                    }
                 }
             }
         }
@@ -176,7 +196,14 @@ namespace WinTest
         {
             using (GetData data = new GetData())
             {
-                data.Campaigns.SetGmsStatusEnd(this.CampaignId, this.partId);
+                if (tShort)
+                {                    
+                    data.Campaigns.SetShortGmsStatusEnd(this.CampaignId, this.partId);
+                }
+                else
+                {
+                    data.Campaigns.SetGmsStatusEnd(this.CampaignId, this.partId);
+                }
             }
 
             WinLoader.Helpers.FormsHelper.SetEnabled(this, true);
@@ -221,72 +248,72 @@ namespace WinTest
             }
         }
 
-        private void ReadCsv(string pathCsv, BackgroundWorker bw)
-        {
-            Int32 CurrentPosition = 0;
+        //private void ReadCsv(string pathCsv, BackgroundWorker bw)
+        //{
+        //    Int32 CurrentPosition = 0;
 
-            if (this.CampaignId > 0)
-            {
-                using (GetData data = new GetData())
-                {
-                    using (var reader = new StreamReader(pathCsv, Encoding.Default))
-                    {
-                        while (!reader.EndOfStream)
-                        {
-                            var line = reader.ReadLine();
-                            var values = line.Split(';');
+        //    if (this.CampaignId > 0)
+        //    {
+        //        using (GetData data = new GetData())
+        //        {
+        //            using (var reader = new StreamReader(pathCsv, Encoding.Default))
+        //            {
+        //                while (!reader.EndOfStream)
+        //                {
+        //                    var line = reader.ReadLine();
+        //                    var values = line.Split(';');
 
-                            string phone = values[1].Replace("\"", "");
-                            string status = values[3];
-                            string chanel = values[4];
+        //                    string phone = values[1].Replace("\"", "");
+        //                    string status = values[3];
+        //                    string chanel = values[4];
 
-                            int status_id = 0;
-                            switch (status.Trim())
-                            {
-                                case "Доставлен":
-                                    status_id = 1;
-                                    break;
-                                case "Прочитан":
-                                    status_id = 3;
-                                    break;
-                                default:
-                                    status_id = 0;
-                                    break;
-                            }
+        //                    int status_id = 0;
+        //                    switch (status.Trim())
+        //                    {
+        //                        case "Доставлен":
+        //                            status_id = 1;
+        //                            break;
+        //                        case "Прочитан":
+        //                            status_id = 3;
+        //                            break;
+        //                        default:
+        //                            status_id = 0;
+        //                            break;
+        //                    }
 
-                            data.Campaigns.SetCampaignSoftlineStatus(this.CampaignId, 0, phone, status_id);
-                            CurrentPosition = CurrentPosition + 1;
-                            bw.ReportProgress(CurrentPosition);
+        //                    data.Campaigns.SetCampaignSoftlineStatus(this.CampaignId, 0, phone, status_id);
+        //                    CurrentPosition = CurrentPosition + 1;
+        //                    bw.ReportProgress(CurrentPosition);
 
-                        }
-                    }
-                }
-            }
+        //                }
+        //            }
+        //        }
+        //    }
             
-        }
+        //}
 
-        private void bWorkerCSV_DoWork(object sender, DoWorkEventArgs e)
-        {
-            BackgroundWorker worker = sender as BackgroundWorker;
-            this.ReadCsv(this.PathCSV, worker);
-        }
+        //private void bWorkerCSV_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    BackgroundWorker worker = sender as BackgroundWorker;
+        //    this.ReadCsv(this.PathCSV, worker);
+        //}
 
-        private void bWorkerCSV_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            //if (e.ProgressPercentage.ToString().LastOrDefault().ToString() == "0")
-            //tsStatus.Text = e.ProgressPercentage.ToString();
-            //this.tsProgress.Value = e.ProgressPercentage;
-        }
+        //private void bWorkerCSV_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    //if (e.ProgressPercentage.ToString().LastOrDefault().ToString() == "0")
+        //    //tsStatus.Text = e.ProgressPercentage.ToString();
+        //    //this.tsProgress.Value = e.ProgressPercentage;
+        //}
 
-        private void bWorkerCSV_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            using (GetData data = new GetData())
-            {
-                data.Campaigns.SetSoftLineStatusEnd(this.CampaignId);
-            }
+        //private void bWorkerCSV_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //    using (GetData data = new GetData())
+        //    {
+        //        data.Campaigns.SetSoftLineStatusEnd(this.CampaignId);
+        //    }
 
-            this.Enabled = true;
-            MessageBox.Show("Закінчено!");
-        }
+        //    this.Enabled = true;
+        //    MessageBox.Show("Закінчено!");
+        //}
     }
 }

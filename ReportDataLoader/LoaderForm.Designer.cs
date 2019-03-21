@@ -45,6 +45,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.mntSell = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -118,7 +119,8 @@
             this.menuGetData,
             this.mcChangeStructure,
             this.mcTestDownload,
-            this.еКСТРАБАЛИПоВідділамToolStripMenuItem});
+            this.еКСТРАБАЛИПоВідділамToolStripMenuItem,
+            this.mntSell});
             this.вигрузкиToolStripMenuItem.Name = "вигрузкиToolStripMenuItem";
             this.вигрузкиToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.вигрузкиToolStripMenuItem.Text = "Вигрузки";
@@ -166,6 +168,13 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(46, 17);
             this.toolStripStatusLabel.Text = "Статус:";
             // 
+            // mntSell
+            // 
+            this.mntSell.Name = "mntSell";
+            this.mntSell.Size = new System.Drawing.Size(221, 22);
+            this.mntSell.Text = "Покупці квітів";
+            this.mntSell.Click += new System.EventHandler(this.mntSell_Click);
+            // 
             // LoaderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,6 +214,7 @@
         private System.Windows.Forms.ToolStripMenuItem mcTestDownload;
         private System.Windows.Forms.ToolStripMenuItem mLoadStatusGms;
         private System.Windows.Forms.ToolStripMenuItem еКСТРАБАЛИПоВідділамToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mntSell;
     }
 }
 

@@ -21,7 +21,7 @@ namespace ReportsLoyalty
         void Application_Start(object sender, EventArgs e)
         {
             SP = new StartProcess();
-
+            
             // Код, выполняемый при запуске приложения
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
@@ -49,9 +49,9 @@ namespace ReportsLoyalty
         /// </summary>
         /// <param name="campaignId"></param>
         /// <param name="dt"></param>
-        public void Start(int campaignId, DateTime dt)
+        public void Start(int campaignId, DateTime dt, bool isDelyvery)
         {
-            var t = Task.Run(() => StartCampaignCalculation(campaignId, dt));
+            var t = Task.Run(() => StartCampaignCalculation(campaignId, dt, isDelyvery));
             t.Wait();
         }
         /// <summary>
@@ -59,11 +59,11 @@ namespace ReportsLoyalty
         /// </summary>
         /// <param name="campaignId"></param>
         /// <param name="dt"></param>
-        void StartCampaignCalculation(int campaignId, DateTime dt)
+        void StartCampaignCalculation(int campaignId, DateTime dt, bool isDelyvery)
         {
             using (GetData data = new GetData())
             {
-                data.Campaigns.SetStartCalculation(campaignId, dt);
+                data.Campaigns.SetStartCalculation(campaignId, dt, isDelyvery);
             }
         }
         /* -------------------------------------------------------------------------------------------------- */

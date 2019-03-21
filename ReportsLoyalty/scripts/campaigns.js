@@ -134,6 +134,9 @@ Ext.define('campaigns_mk', {
     }, {
         name: 'is_start_get_status',
         type: 'int'
+    }, {
+        name: 'is_global',
+        type: 'boolean'
     }]
 });
 
@@ -142,70 +145,6 @@ var getWinCampaigns = function () {
  
     
     var panelConteiner = getPanelCampaigns();
-
-    // var panelConteiner = Ext.create('Ext.panel.Panel', {
-    //     border: false,
-    //     layout: {
-    //         type: 'vbox',
-    //         align: 'stretch',
-    //         pack: 'start'
-    //     },
-    //     items: [{
-    //         xtype: 'panel',
-    //         height: 38,
-    //         //border: false,
-    //         layout: {
-    //             type: 'hbox',
-    //             pack: 'start',
-    //             align: 'stretch'
-    //         },
-    //         items: [
-    //                 {
-    //                     xtype: 'panel', width: 600, border: false,
-    //                     dockedItems: [
-    //                             {
-    //                                 xtype: 'toolbar',
-    //                                 flex: 1,
-    //                                 dock: 'top',
-    //                                 items: [
-    //                                     {
-    //                                         xtype: 'label',
-    //                                         text: 'Тільки активні кампанії:'
-    //                                     },
-    //                                     checkboxIsRun,
-    //                                     comboBox
-    //                                     , {
-    //                                         id: 'hidden_campaign_id',
-    //                                         xtype: 'hiddenfield',
-    //                                         name: 'hidden_campaign_id',
-    //                                         value: ''
-    //                                     }
-    //                                 ]
-    //                             }
-    //                     ]
-    //                 },
-    //                 { xtype: 'panel', flex: 1, border: false },
-    //                 {
-    //                     xtype: 'panel', width: 90, border: false,
-    //                     dockedItems: [
-    //                         {
-    //                             xtype: 'toolbar',
-    //                             flex: 1,
-    //                             dock: 'top',
-    //                             items: [
-
-    //                             ]
-    //                         }
-    //                     ]
-    //                 }
-    //         ]
-    //     }, {
-    //         xtype: 'panel',
-    //         flex: 1,
-    //         layout: 'fit',
-    //         items: [panel]
-    //     }],        
-    // });
 
     var win_campaigns = Ext.create('Ext.Window', {
         title: 'Управління кампаниями',
@@ -531,7 +470,17 @@ var getPanelCampaigns = function () {
                 var status = record.get('is_start_get_status');
 
                 if (status == 0) {
-
+                    /* 
+                        у випадку коли то є глобальна кампанія
+                    */
+                    console.log(record.get('is_global'));
+                    if (record.get('is_global') == true) {
+                        return 'x-grid-row-global';
+                    }
+                    /*
+                        акція в роботі, - потрібно модивікувати то відображення в залежності від налаштувань.
+                        -->-- закінцився період і все...
+                    */
                     if (record.get('is_run') == true) {
                         return 'x-grid-row-run';
                     }
@@ -540,6 +489,7 @@ var getPanelCampaigns = function () {
                         return 'x-grid-row';
 
                 } else {
+                    /* акція в обробці - перерахунок, або завантаження УПЛ */
                     if (record.get('is_start_get_status') == 3) {
                         return 'x-grid-row-block';
                     }

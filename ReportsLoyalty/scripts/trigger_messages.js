@@ -1,4 +1,5 @@
 ﻿
+/* Форма управління шаблоними тригерних повідомлень */
 var showTriggerMessageEditorTemplates = function () {
     var center = Ext.getCmp('pnlCenter');
 
@@ -12,6 +13,7 @@ var showTriggerMessageEditorTemplates = function () {
                 url: ('api/messagetemplate'),
                 reader: {
                     type: 'json',
+                    //method: 'get',
                     root: 'data',
                     idProperty: 'id',
                     totalProperty: 'total'
@@ -258,18 +260,18 @@ var showTriggerMessageEditorTemplates = function () {
         }
     });
 
-    var editorSms = Ext.create('Ext.form.HtmlEditor', {
-        enableColors: true,
-        enableAlignments: true,
-        enableSourceEdit: true,
-        enableFont: true,
-        enableFontSize: true,
-        enableFormat: true,
-        //enableLinks: true,
-        enableLists: true,
-        readOnly: true,
-        height: 100
-    });
+    //var editorSms = Ext.create('Ext.form.HtmlEditor', {
+    //    enableColors: true,
+    //    enableAlignments: true,
+    //    enableSourceEdit: true,
+    //    enableFont: true,
+    //    enableFontSize: true,
+    //    enableFormat: true,
+    //    //enableLinks: true,
+    //    enableLists: true,
+    //    readOnly: true,
+    //    height: 100
+    //});
 
     //var editorViber = Ext.create('Ext.form.HtmlEditor', {
     //    enableColors: true,
@@ -284,9 +286,14 @@ var showTriggerMessageEditorTemplates = function () {
     //    height: 350
     //});
 
+    var editorSms = Ext.create('Ext.form.TextArea', {
+        readOnly: true,
+        height: 100
+    });
+
     var editorViber = Ext.create('Ext.form.TextArea', {
         readOnly: true,
-        height: 350
+        height: 250
     });
 
     var txtImageLink = Ext.create('Ext.form.field.Text', {
@@ -400,14 +407,17 @@ var showTriggerMessageEditorTemplates = function () {
                                                     pageSize: 50,
                                                     fields: [
                                                         { name: 'Id', type: 'int' },
-                                                        { name: 'mobile_phone', type: 'string' }
+                                                        { name: 'MobilePhone', type: 'string' },
+                                                        { name: 'MessageId', type: 'string' },
+                                                        { name: 'Who', type: 'string' },
+                                                        { name: 'Used', type: 'boolean' }
                                                     ]
                                                 });
 
                                             var templateName = select[0].get('MName');
                                             var winTest = Ext.create('Ext.Window', {
                                                 title: 'Шаблон: ' + templateName,
-                                                width: 300,
+                                                width: 500,
                                                 height: 200,
                                                 modal: true,
                                                 closable: true,
@@ -428,6 +438,48 @@ var showTriggerMessageEditorTemplates = function () {
                                                             filterable: false,
                                                             width: 200,
                                                             menuDisabled: true
+                                                        }, {
+                                                            dataIndex: 'Who',
+                                                            text: 'Хто Це',
+                                                            filterable: false,
+                                                            width: 200,
+                                                            menuDisabled: true
+                                                        }, {
+                                                            xtype: 'checkcolumn',
+                                                            dataIndex: 'Used',
+                                                            text: 'Відсилати',
+                                                            filterable: false,
+                                                            width: 70,
+                                                            menuDisabled: true,
+                                                            listeners: {
+                                                                checkchange: function (column, rowIdx, checked, eOpts) {
+                                                                    //console.log(column);
+                                                                    //console.log(rowIdx);
+                                                                    //console.log(checked);
+
+                                                                    var store = storeTestPhones;
+                                                                    var id = store.getAt(rowIdx).data.Id;
+
+                                                                    var testOps = {
+                                                                        Id: id,
+                                                                        Checked: checked
+                                                                    }
+                                                                    $.ajax({
+                                                                        url: 'api/TestPhones/SetToTest/1',
+                                                                        type: 'post',
+                                                                        dataType: "json",
+                                                                        contentType: "application/json; charset=utf-8",
+                                                                        data: JSON.stringify(testOps),
+                                                                        success: function (confirm) {
+                                                                            if (confirm == 'true') {
+                                                                                var store = storeTestPhones;
+                                                                                store.getAt(rowIdx).commit();
+                                                                            }
+
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }
                                                         }],
                                                     bbar: [{
                                                         xtype: 'button',
@@ -439,15 +491,16 @@ var showTriggerMessageEditorTemplates = function () {
                                                                 TemplateId: templateId
                                                             };
                                                             $.ajax({
-                                                                url: 'api/testphones',
+                                                                url: 'api/testphones/send/0',
                                                                 type: 'post',
                                                                 dataType: "json",
                                                                 contentType: "application/json; charset=utf-8",
                                                                 data: JSON.stringify(ms),
                                                                 success: function (id) {
-                                                                    if (id != "") {
-                                                                        rc.set("Id", id);
-                                                                        rc.commit();
+                                                                    if (id == "") {
+                                                                        //rc.set("Id", id);
+                                                                        //rc.commit();
+                                                                        winTest.close();
                                                                     }
                                                                 }
                                                             });
@@ -489,4 +542,227 @@ var showTriggerMessageEditorTemplates = function () {
 
     center.setActiveTab(tab);
 
+}
+
+var showDataSentTriggerMessages = function () {
+    var center = Ext.getCmp('pnlCenter');
+
+    var tab = center.add({
+
+        title: 'Статистика надісланих повідомлень',
+        extend: 'Ext.panel.Panel',
+        closable: true,
+        layout: 'fit',
+        items: {
+            layout: {
+                type: 'hbox',
+                align: 'stretch',
+                pack: 'start'
+            },
+            items: [
+                {
+                    xtype: 'panel',
+                    items: [
+                        ////
+                    ],
+                    layout: 'fit',
+                    width: 450
+                },
+                {
+                    xtype: 'panel',
+                    border: false,
+                    flex: 1,
+                    layout: {
+                        type: 'vbox',
+                        align: 'stretch'
+                    },
+                    items: [
+                        {
+                            xtype: 'panel',
+                            border: false,
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch'
+                            },
+                            items: [
+                                editorSms,
+                                editorViber,
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            height: 100,
+                            margin: 5,
+                            border: false,
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch'
+                            },
+                            renderTo: Ext.getBody(),
+                            //bodyPadding: 1,
+                            defaultType: 'textfield',
+                            defaults: {
+                                labelWidth: 120
+                            },
+                            items: [
+                                txtImageLink,
+                                txtButtonLink
+                            ]
+                        }, {
+                            xtype: 'panel',
+                            border: false,
+                            flex: 1,
+                            buttons: [
+                                {
+                                    text: 'Тест',
+                                    handler: function () {
+                                        var select = grid.getSelection();
+
+                                        if (select.length > 0) {
+                                            var storeTestPhones = Ext.create('Ext.data.JsonStore',
+                                                {
+                                                    autoLoad: true,
+                                                    autoDestroy: true,
+                                                    proxy: {
+                                                        type: 'ajax',
+                                                        url: ('api/testphones'),
+                                                        reader: {
+                                                            type: 'json',
+                                                            root: 'data',
+                                                            idProperty: 'Id',
+                                                            totalProperty: 'total'
+                                                        }
+                                                    },
+                                                    remoteSort: false,
+                                                    sorters: [
+                                                        {
+                                                            property: 'Id',
+                                                            direction: 'ASC'
+                                                        }
+                                                    ],
+                                                    pageSize: 50,
+                                                    fields: [
+                                                        { name: 'Id', type: 'int' },
+                                                        { name: 'MobilePhone', type: 'string' },
+                                                        { name: 'MessageId', type: 'string' },
+                                                        { name: 'Who', type: 'string' },
+                                                        { name: 'Used', type: 'boolean' }
+                                                    ]
+                                                });
+
+                                            var templateName = select[0].get('MName');
+                                            var winTest = Ext.create('Ext.Window', {
+                                                title: 'Шаблон: ' + templateName,
+                                                width: 500,
+                                                height: 200,
+                                                modal: true,
+                                                closable: true,
+                                                layout: 'fit',
+                                                items: [{
+                                                    xtype: 'gridpanel',
+                                                    store: storeTestPhones,
+                                                    columns: [
+                                                        {
+                                                            dataIndex: 'Id',
+                                                            text: '№',
+                                                            filterable: false,
+                                                            width: 10,
+                                                            menuDisabled: true
+                                                        }, {
+                                                            dataIndex: 'MobilePhone',
+                                                            text: 'Мобільний телефон',
+                                                            filterable: false,
+                                                            width: 200,
+                                                            menuDisabled: true
+                                                        }, {
+                                                            dataIndex: 'Who',
+                                                            text: 'Хто Це',
+                                                            filterable: false,
+                                                            width: 200,
+                                                            menuDisabled: true
+                                                        }, {
+                                                            xtype: 'checkcolumn',
+                                                            dataIndex: 'Used',
+                                                            text: 'Відсилати',
+                                                            filterable: false,
+                                                            width: 70,
+                                                            menuDisabled: true,
+                                                            listeners: {
+                                                                checkchange: function (column, rowIdx, checked, eOpts) {
+                                                                    //console.log(column);
+                                                                    //console.log(rowIdx);
+                                                                    //console.log(checked);
+
+                                                                    var store = storeTestPhones;
+                                                                    var id = store.getAt(rowIdx).data.Id;
+
+                                                                    var testOps = {
+                                                                        Id: id,
+                                                                        Checked: checked
+                                                                    }
+                                                                    $.ajax({
+                                                                        url: 'api/TestPhones/SetToTest/1',
+                                                                        type: 'post',
+                                                                        dataType: "json",
+                                                                        contentType: "application/json; charset=utf-8",
+                                                                        data: JSON.stringify(testOps),
+                                                                        success: function (confirm) {
+                                                                            if (confirm == 'true') {
+                                                                                var store = storeTestPhones;
+                                                                                store.getAt(rowIdx).commit();
+                                                                            }
+
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }
+                                                        }],
+                                                    bbar: [{
+                                                        xtype: 'button',
+                                                        text: 'Відправити',
+                                                        handler: function () {
+                                                            var select = grid.getSelection();
+                                                            var templateId = select[0].get('Id');
+                                                            var ms = {
+                                                                TemplateId: templateId
+                                                            };
+                                                            $.ajax({
+                                                                url: 'api/testphones/send/0',
+                                                                type: 'post',
+                                                                dataType: "json",
+                                                                contentType: "application/json; charset=utf-8",
+                                                                data: JSON.stringify(ms),
+                                                                success: function (id) {
+                                                                    if (id == "") {
+                                                                        //rc.set("Id", id);
+                                                                        //rc.commit();
+                                                                        winTest.close();
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+                                                    }]
+
+                                                }],
+                                                listeners: {
+                                                    'close': function (win) {
+                                                        //console.info('close');
+                                                        //requestState = false;
+                                                    },
+                                                    'hide': function (win) {
+                                                        //console.info('just hidden');
+                                                    }
+                                                }
+                                            });
+                                            winTest.show();
+                                        }
+                                    }
+                                },
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    });
 }

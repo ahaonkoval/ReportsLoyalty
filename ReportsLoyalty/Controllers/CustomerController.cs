@@ -50,9 +50,24 @@ namespace ReportsLoyalty.Controllers
             } else { return response; }
 
         }
-
-        #region Get Files
         [HttpGet]
+        public string ClearControlGrpup(int id)
+        {
+            try
+            {
+                using (GetData db = new GetData())
+                {
+                    db.Customers.ClearControlGroup(id);
+                    return string.Empty;
+                }
+            } catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        #region Get Files Customers
+        //[HttpGet]
         public HttpResponseMessage GetFile(int id) {
             var queryparams = Request.GetQueryNameValuePairs();
             var p_start = Convert.ToInt32(queryparams.Where(w => w.Key == "p_start").FirstOrDefault().Value);
@@ -143,6 +158,7 @@ namespace ReportsLoyalty.Controllers
         //    }
         //}
         #endregion
+
         #region
         [HttpGet]
         public string GetSelectedCustomesCount(int id) {
@@ -226,7 +242,7 @@ namespace ReportsLoyalty.Controllers
 
             return string.Empty;
         }        
-        [HttpGet]
+
         #endregion
 
         #region Generate Excel File

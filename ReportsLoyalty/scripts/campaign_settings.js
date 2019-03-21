@@ -270,7 +270,7 @@ function WinCampaignDetails() {
             width: 350,
             readOnly: true,
             padding: 3,
-            border: false,
+            border: true,
             sortableColumns: false,
             //renderTo: Ext.getBody(),
             groupingConfig: {
@@ -358,6 +358,24 @@ function WinCampaignDetails() {
                     editor: {
                         xtype: 'textfield'
                     }
+                },
+                is_global: {
+                    displayName: 'Глобальна акція',
+                    editor: {
+                        xtype: 'combobox',
+                        store: dict.getStoreTrueFalse(),//this.StTrueFalse,
+                        forceSelection: true,
+                        allowBlank: false,
+                        displayField: 'name',
+                        valueField: 'id',
+                        editable: false
+                    },
+                    renderer: function (v) {
+                        if (v)
+                            return Ext.String.format('<span style="color: Green;">{0}</span>', 'Так');
+                        else
+                            return Ext.String.format('<span style="color: Red;">{0}</span>', 'Ні');
+                    }
                 }
 
             }
@@ -405,6 +423,7 @@ function WinCampaignDetails() {
                     source['type_id'] = rec.get('type_id');
                     source['mailing_id'] = rec.get('mailing_id');
                     source['date_send'] = date_send;//new Date(date_send);
+                    source['is_global'] = rec.get('is_global');
 
                     grid.setSource(source);
                     win.show();                                                                  // <-- показываем окно
@@ -505,9 +524,9 @@ function WinCampaignDetails() {
                         listeners: {
                             'click': function (ctrl) {
                                 var rec = winCd.record;
-
+                                /* Перевірка на те щоб не запустити два перерахунка паралельно */
                                 $.ajax({
-                                    url: 'api/start/0',
+                                    url: 'api/start/getstart/0',
                                     type: 'get',
                                     data: {
                                         TypeRequest: 10,
@@ -517,6 +536,7 @@ function WinCampaignDetails() {
                                         var st = Ext.decode(state);
 
                                         if (st.Status == '2') {
+                                            /* Вибір дати на перерахунок */
                                             winStartCalcualted(rec.get('id'));
                                         } else {
                                             Ext.MessageBox.alert('Увага!', 'Перераховується: ' + st.CampaignName + ' (' + st.CampaignId + ')', null);
@@ -526,7 +546,38 @@ function WinCampaignDetails() {
                                 });
                             }
                         }
+                    }, {
+                        text: 'Прибрати тестову групу',
+                        listeners: {
+                            'click': function (ctrl) {
+                                var rec = winCd.record;
+                                $.ajax({
+                                    url: 'api/customer/ClearControlGrpup/' + rec.get('id'),
+                                    type: 'get',
+                                    success: function (message) {
+                                        if (message != '') {
+                                            Ext.MessageBox.alert('Увага! Виникла помилка!', message, null);
+                                        } else {
+                                            Ext.MessageBox.alert('Увага!', 'Трохи зачекати і контрольна група видалиться...', 
+                                                function () {
+                                                    var rec = winCd.record;
+                                                    /*
+                                                        Можливо прийдеться колись навести взагалы красоту
+                                                    */
+                                                    var getRowState = setInterval(function () { getRowClearingDatate(rec) }, 5000);
+                                                    function getRowClearingDatate(rec) {
+                                                        var id = rec.get('id');
+                                                    }
+                                                    /* так щоб очікувався статус по видаленню контпрольної групи*/
+                                                }
+                                            );
+                                        }
+                                    }
+                                });
+                            }
+                        }
                     }
+
                 ]
             })
         }),
@@ -662,7 +713,8 @@ function WinCampaignDetails() {
                             is_run:         data.get('is_run').data.value,
                             type_id:        data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
                             mailing_id:     data.get('mailing_id').data.value.toString(),
-                            date_send:      data.get('date_send').data.value
+                            date_send:      data.get('date_send').data.value,
+                            is_global:      data.get('is_global').data.value,
                         };
                         Ext.Ajax.request({
                             url: 'api/campaign/SetCampaignData/0',
@@ -679,6 +731,7 @@ function WinCampaignDetails() {
                                     record.set('type_id', data.get('type_id').data.value);
                                     record.set('mailing_id', data.get('mailing_id').data.value);
                                     record.set('date_send', data.get('date_send').data.value);
+                                    record.set('is_global', data.get('is_global').data.value);
 
                                     record.commit();
                                     //----<<<<------------------------------------------------
@@ -839,6 +892,23 @@ function winStartCalcualted(campaignId) {
         emptyText: 'Записів більше нема',
     });
 
+    var isDeliveryStatus = Ext.create('Ext.form.Checkbox', {
+        value: false,
+        fieldLabel: 'Враховуючи доставку',
+        boxLabelAlign: 'after',
+        value: true,
+        listeners: {
+            'change': function (cmp, newValue, oldValue, eOpts) {
+                store.loadPage(1, {
+                    params: {
+                        isRun: newValue,
+                        TypeId: comboBox.getValue()
+                    }
+                });
+            }
+        }
+    });
+
     var win = Ext.create('Ext.Window', {
         title: 'Перерахунок кампанії (оберіть дату)',
         width: 400,
@@ -853,6 +923,7 @@ function winStartCalcualted(campaignId) {
             autoScroll: true,
             items: [grid]
         }, buttons: [
+            isDeliveryStatus,
             {
                 xtype: 'button',
                 text: 'Перерахувати',
@@ -862,17 +933,20 @@ function winStartCalcualted(campaignId) {
                         var sell = ctrl.scope.getSelection();
                         if (sell.length > 0) {
                             current_data = ctrl.scope.getSelection()[0].get('Name');
+
                             $.ajax({
-                                url: 'api/Start/' + campaignId,
+                                url: 'api/start/getstart/' + campaignId,
                                 type: 'get',
                                 data: {
                                     TypeRequest: 1,
-                                    cData: current_data
+                                    cData: current_data,
+                                    isDelyvery: isDeliveryStatus.getValue()
                                 },
                                 success: function (a) {
                                     //alert(a);
                                 }
                             });
+
                             win.hide();
                         } else {
                             Ext.MessageBox.alert('Увага!', 'Не вкзана дата!', null);
@@ -886,148 +960,3 @@ function winStartCalcualted(campaignId) {
     win.show();
 };
 
-                    // if (record == null) {
-                    //     if (data.get('name').data.value.length == 0) {
-                    //         Ext.Msg.alert("Увага!", "Назву кампанії не вказано!"); return;
-                    //     }
-                    //     Ext.Msg.confirm("Увага!",
-                    //         Ext.String.format("Створити нову кампанію '{0}'?", data.get('name').data.value), 
-                    //             function (btnText) {
-                    //             if (btnText === "no") {                                
-                    //             }
-                    //             else if (btnText === "yes") {
-                    //             var o = {
-                    //                 campaign_id     : -1,
-                    //                 name            : campaignName.getValue(),//data.get('name').data.value,
-                    //                 date_start      : data.get('date_start').data.value,
-                    //                 date_end        : data.get('date_end').data.value,
-                    //                 is_run          : data.get('is_run').data.value,
-                    //                 // group_id_0      : data.get('group_id_0').data.value,
-                    //                 // group_id_2: data.get('group_id_2').data.value.toString(),
-                    //                 // group_id_3: '',
-                    //                 type_id         : data.get('type_id').data.value == null ? 0 : data.get('type_id').data.value,
-                    //                 mailing_id      : data.get('mailing_id').data.value.toString(),
-                    //                 date_send       : data.get('date_send').data.value
-                    //             };
-
-                    //             Ext.Ajax.request({
-                    //                 url: 'api/campaign/SetCampaignData/',
-                    //                 method: 'POST',
-                    //                 params: { callType: 'SetCampaignData' },
-                    //                 jsonData: o,
-                    //                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
-                    //                 success: function (a) {
-                    //                     if (a.responseText > 0) {
-                    //                         //----<<<<------------------------------------------------
-                    //                         var store_campaign_mk = Ext.getStore('store_campaign_mk');
-                    //                         store_campaign_mk.add({
-
-                    //                             /* --Б--*/
-                    //                             id          : a.responseText,
-                    //                             is_run      : data.get('is_run').data.value,
-                    //                             type_id     : data.get('type_id').data.value,
-                    //                             name        : caption.getValue(),//data.get('name').data.value,
-                    //                             date_start  : data.get('date_start').data.value,
-                    //                             date_end    : data.get('date_end').data.value,
-                    //                             // group_id_0  : data.get('group_id_0').data.value,
-                    //                             // group_id_2: data.get('group_id_2').data.value.toString(),
-                    //                             // group_id_3: '',
-                    //                             mailing_id  : data.get('mailing_id').data.value.toString(),
-                    //                             date_send   : data.get('date_send').data.value
-                    //                         });
-                    //                         //----<<<<------------------------------------------------                                            
-                    //                         var wnd = Ext.getCmp('win_campaign_details');
-                    //                         wnd.hide();
-                    //                     }
-                    //                 },
-                    //                 failure: function (error) {
-
-                    //                 }
-                    //             });
-                    //         }
-                    //     }, this);
-                    // } else {
-
-                    // }
-
-            // {
-            //     xtype: 'button',
-            //     text: 'Сховати кампанію',
-            //     scope: this,
-            //     listeners: {
-            //         'click': function (ctrl) {
-
-            //             var property_grd = Ext.getCmp('property_grd');
-            //             var store = property_grd.getStore();
-            //             var record = ctrl.scope.record;
-
-            //             var storeList = ctrl.scope.storeListCampaigns;
-            //             var campaignName = winCd.campaignName
-
-            //             Ext.Msg.confirm(
-            //                 "Увага!",
-            //                 Ext.String.format("Сховати кампанію '{0}'?",
-            //                 record.get('name')),
-            //                 function (txtGet) {
-            //                     if (txtGet === "yes") {
-            //                         var o = {
-            //                             campaign_id: record.get('id'),
-            //                             name: campaignName.getValue(),
-            //                             date_start: record.get('date_start'),
-            //                             date_end: record.get('date_end'),
-            //                             is_run: record.get('is_run') == true ? 1 : 0,
-            //                             type_id: record.get('type_id') == null ? 0 : record.get('type_id'),
-            //                             mailing_id: record.get('mailing_id'),
-            //                             date_send: record.get('date_send')
-            //                         };
-            //                         Ext.Ajax.request({
-            //                             url: 'api/campaign/SetCampaignData/'+ record.get('id'),
-            //                             method: 'POST',
-            //                             params: { callType: 'SetHide' },
-            //                             jsonData: o,
-            //                             headers: { 'Content-Type': 'application/json; charset=utf-8' },
-            //                             success: function (respons) {
-            //                                 storeList.load(); 
-            //                                 winCd.win.hide();                                           
-            //                             },
-            //                             failure: function (error) {
-
-            //                             }
-            //                         });
-
-            //                     }
-            //                 });
-            //             }
-            //     }
-            // },
-            // {
-            //     xtype: 'button',
-            //     text: 'Перерахувати',
-            //     scope: this,
-            //     listeners: {
-            //         'click': function (ctrl) {
-            //             var rec = ctrl.scope.record;
-
-            //             $.ajax({
-            //                 url: 'api/start/0',
-            //                 type: 'get',
-            //                 data: {
-            //                     TypeRequest: 10,
-            //                     cData: ''
-            //                 },
-            //                 success: function (state) {
-            //                     var st = Ext.decode(state);
-
-            //                     if (st.Status == '2') {
-            //                         winStartCalcualted(rec.get('id'));
-            //                     } else {
-            //                         Ext.MessageBox.alert('Увага!', 'Перераховується: ' + st.CampaignName + ' (' + st.CampaignId + ')', null);
-            //                     }
-
-            //                 }
-            //             });
-
-
-            //         }
-            //     }
-            // },                    

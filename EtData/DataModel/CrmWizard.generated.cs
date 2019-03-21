@@ -30,6 +30,7 @@ namespace DataModels
 		public ITable<CalculationLog>                         CalculationLog                         { get { return this.GetTable<CalculationLog>(); } }
 		public ITable<CampaignArticul>                        CampaignArticul                        { get { return this.GetTable<CampaignArticul>(); } }
 		public ITable<CampaignGmsStatus>                      CampaignGmsStatus                      { get { return this.GetTable<CampaignGmsStatus>(); } }
+		public ITable<CampaignGmsStatusShort>                 CampaignGmsStatusShort                 { get { return this.GetTable<CampaignGmsStatusShort>(); } }
 		public ITable<CampaignGroups>                         CampaignGroups                         { get { return this.GetTable<CampaignGroups>(); } }
 		public ITable<CampaignGroupsType>                     CampaignGroupsType                     { get { return this.GetTable<CampaignGroupsType>(); } }
 		public ITable<CampaignParticipant>                    CampaignParticipant                    { get { return this.GetTable<CampaignParticipant>(); } }
@@ -48,6 +49,7 @@ namespace DataModels
 		public ITable<CustomersAgeMap>                        CustomersAgeMap                        { get { return this.GetTable<CustomersAgeMap>(); } }
 		public ITable<CustomersBonusState>                    CustomersBonusState                    { get { return this.GetTable<CustomersBonusState>(); } }
 		public ITable<CustomersCampaignParticipant>           CustomersCampaignParticipant           { get { return this.GetTable<CustomersCampaignParticipant>(); } }
+		public ITable<CustomersDelivered>                     CustomersDelivered                     { get { return this.GetTable<CustomersDelivered>(); } }
 		public ITable<CustomersIndicators>                    CustomersIndicators                    { get { return this.GetTable<CustomersIndicators>(); } }
 		public ITable<CustomersKidsAgeMap>                    CustomersKidsAgeMap                    { get { return this.GetTable<CustomersKidsAgeMap>(); } }
 		public ITable<CustomersProfile>                       CustomersProfile                       { get { return this.GetTable<CustomersProfile>(); } }
@@ -387,6 +389,7 @@ namespace DataModels
 			public int?      is_start_get_status     { get; set; }
 			public long?     customers_qty_delivered { get; set; }
 			public int?      delivered_qty           { get; set; }
+			public bool?     is_global               { get; set; }
 		}
 
 		#endregion
@@ -404,28 +407,25 @@ namespace DataModels
 
 		public partial class TGetCampaignsArticulsResult
 		{
-			public long?   NUMBER       { get; set; }
-			public int     cmp_id       { get; set; }
-			public long?   campaign_id  { get; set; }
-			public string  articul      { get; set; }
-			public int?    market_id    { get; set; }
-			public decimal discount_prc { get; set; }
-			public int     points       { get; set; }
-			public decimal points_prc   { get; set; }
-			public string  good_name    { get; set; }
-			public long    good_id      { get; set; }
-			public long?   lf0_id       { get; set; }
-			public string  name_0       { get; set; }
-			public long?   lf1_id       { get; set; }
-			public string  name_1       { get; set; }
-			public long?   lf2_id       { get; set; }
-			public string  name_2       { get; set; }
-			public long?   lf3_id       { get; set; }
-			public string  name_3       { get; set; }
-			public long?   lf4_id       { get; set; }
-			public string  name_4       { get; set; }
-			public string  market_name  { get; set; }
-			public string  short_name   { get; set; }
+			public long?    NUMBER      { get; set; }
+			public long?    campaign_id { get; set; }
+			public string   articul     { get; set; }
+			public long?    market_id   { get; set; }
+			public decimal? points      { get; set; }
+			public string   good_name   { get; set; }
+			public long?    good_id     { get; set; }
+			public long?    lf0_id      { get; set; }
+			public string   name_0      { get; set; }
+			public long?    lf1_id      { get; set; }
+			public string   name_1      { get; set; }
+			public long?    lf2_id      { get; set; }
+			public string   name_2      { get; set; }
+			public long?    lf3_id      { get; set; }
+			public string   name_3      { get; set; }
+			public long?    lf4_id      { get; set; }
+			public string   name_4      { get; set; }
+			public string   market_name { get; set; }
+			public string   short_name  { get; set; }
 		}
 
 		#endregion
@@ -1076,6 +1076,19 @@ namespace DataModels
 		[Column("part_id"),                                                NotNull    ] public Guid      PartId         { get; set; } // uniqueidentifier
 	}
 
+	[Table(Schema="calc", Name="campaign_gms_status_short")]
+	public partial class CampaignGmsStatusShort
+	{
+		[Column("campaign_id"),                                            NotNull    ] public long      CampaignId      { get; set; } // bigint
+		[Column("delivery_channel"),                                          Nullable] public string    DeliveryChannel { get; set; } // nvarchar(100)
+		[Column("recipient"),                                                 Nullable] public string    Recipient       { get; set; } // nvarchar(15)
+		[Column("time_send"),                                                 Nullable] public DateTime? TimeSend        { get; set; } // datetime
+		[Column("time_delivery"),                                             Nullable] public DateTime? TimeDelivery    { get; set; } // datetime
+		[Column("message"),                                                   Nullable] public string    Message         { get; set; } // nvarchar(1000)
+		[Column("mp_full",          SkipOnInsert=true, SkipOnUpdate=true),    Nullable] public string    MpFull          { get; set; } // nvarchar(13)
+		[Column("part_id"),                                                NotNull    ] public Guid      PartId          { get; set; } // uniqueidentifier
+	}
+
 	[Table(Schema="calc", Name="campaign_groups")]
 	public partial class CampaignGroups
 	{
@@ -1119,6 +1132,7 @@ namespace DataModels
 		[Column("status_list"),          Nullable          ] public string   StatusList      { get; set; } // nvarchar(50)
 		[Column("campaign_number"),      Nullable          ] public int?     CampaignNumber  { get; set; } // int
 		[Column("mobile_phone_send"),    Nullable          ] public string   MobilePhoneSend { get; set; } // nvarchar(15)
+		[Column("delivery_status_2"),    Nullable          ] public int?     DeliveryStatus2 { get; set; } // int
 	}
 
 	[Table(Schema="calc", Name="campaign_participant_bacup")]
@@ -1170,6 +1184,7 @@ namespace DataModels
 		/// </summary>
 		[Column("is_start_get_status"), NotNull              ] public byte      IsStartGetStatus { get; set; } // tinyint
 		[Column("hide"),                NotNull              ] public bool      Hide             { get; set; } // bit
+		[Column("is_global"),           NotNull              ] public bool      IsGlobal         { get; set; } // bit
 
 		#region Associations
 
@@ -1321,6 +1336,13 @@ namespace DataModels
 		[Column("date_start"),      Nullable] public DateTime? DateStart     { get; set; } // date
 		[Column("date_end"),        Nullable] public DateTime? DateEnd       { get; set; } // date
 		[Column("is_part"),         Nullable] public int?      IsPart        { get; set; } // int
+	}
+
+	[Table(Schema="calc", Name="customers_delivered")]
+	public partial class CustomersDelivered
+	{
+		[Column("crm_customer_id"), Nullable] public long? CrmCustomerId { get; set; } // bigint
+		[Column("qty_delivered"),   Nullable] public int?  QtyDelivered  { get; set; } // int
 	}
 
 	[Table(Schema="calc", Name="customers_indicators")]
@@ -1684,8 +1706,9 @@ namespace DataModels
 	[Table(Schema="calc", Name="dict_clusters")]
 	public partial class DictClusters
 	{
-		[Column(),               Nullable] public string Cluster     { get; set; } // varchar(255)
-		[Column("Cluster_name"), Nullable] public string ClusterName { get; set; } // varchar(255)
+		[Column(),               Nullable] public string    Cluster     { get; set; } // varchar(255)
+		[Column("Cluster_name"), Nullable] public string    ClusterName { get; set; } // varchar(255)
+		[Column("cluster_date"), Nullable] public DateTime? ClusterDate { get; set; } // date
 	}
 
 	[Table(Schema="calc", Name="dict_goods")]
@@ -1917,12 +1940,15 @@ namespace DataModels
 	[Table(Schema="calc", Name="send_customers")]
 	public partial class SendCustomers
 	{
-		[Column("id"),              PrimaryKey, Identity] public long      Id            { get; set; } // bigint
-		[Column("crm_customer_id"), Nullable            ] public long?     CrmCustomerId { get; set; } // bigint
-		[Column("template_id"),     Nullable            ] public int?      TemplateId    { get; set; } // int
-		[Column("date_send"),       Nullable            ] public DateTime? DateSend      { get; set; } // date
-		[Column("status_id"),       Nullable            ] public int?      StatusId      { get; set; } // int
-		[Column("message_id"),      Nullable            ] public long?     MessageId     { get; set; } // bigint
+		[Column("id"),                PrimaryKey,  Identity] public long      Id               { get; set; } // bigint
+		[Column("crm_customer_id"),      Nullable          ] public long?     CrmCustomerId    { get; set; } // bigint
+		[Column("template_id"),          Nullable          ] public int?      TemplateId       { get; set; } // int
+		[Column("date_send"),            Nullable          ] public DateTime? DateSend         { get; set; } // date
+		[Column("status_id"),            Nullable          ] public int?      StatusId         { get; set; } // int
+		[Column("message_id"),           Nullable          ] public long?     MessageId        { get; set; } // bigint
+		[Column("customers_feature"),    Nullable          ] public string    CustomersFeature { get; set; } // nvarchar(1000)
+		[Column("created"),           NotNull              ] public DateTime  Created          { get; set; } // datetime
+		[Column("date_buy"),             Nullable          ] public DateTime? DateBuy          { get; set; } // date
 	}
 
 	[Table(Schema="calc", Name="send_messages_templates")]
@@ -1944,6 +1970,8 @@ namespace DataModels
 		[Column("id"),           PrimaryKey, Identity] public int    Id          { get; set; } // int
 		[Column("mobile_phone"), Nullable            ] public string MobilePhone { get; set; } // nvarchar(15)
 		[Column("message_id"),   Nullable            ] public long?  MessageId   { get; set; } // bigint
+		[Column("who"),          Nullable            ] public string Who         { get; set; } // nvarchar(50)
+		[Column("used"),         Nullable            ] public bool?  Used        { get; set; } // bit
 	}
 
 	[Table(Schema="calc", Name="staff")]
@@ -2668,12 +2696,58 @@ namespace DataModels
 
 		#endregion
 
+		#region PCreateDict
+
+		public static int PCreateDict(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_create_dict]");
+		}
+
+		#endregion
+
+		#region PDailyBuyersKitchensListCreate
+
+		public static int PDailyBuyersKitchensListCreate(this DataConnection dataConnection, DateTime? @search_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_buyers_kitchens_list_create]",
+				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
 		#region PDailyFlowersListCreate
 
 		public static int PDailyFlowersListCreate(this DataConnection dataConnection, DateTime? @search_date)
 		{
 			return dataConnection.ExecuteProc("[calc].[p_daily_flowers_list_create]",
 				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDAILYGrubAndSendSatistic
+
+		public static int PDAILYGrubAndSendSatistic(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_DAILY_GrubAndSend_Satistic]");
+		}
+
+		#endregion
+
+		#region PDAILYMESSAGELISTCreate
+
+		public static int PDAILYMESSAGELISTCreate(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[P_DAILY_MESSAGE_LIST_create]");
+		}
+
+		#endregion
+
+		#region PDailyPersCalculatedPersonalOffers
+
+		public static int PDailyPersCalculatedPersonalOffers(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_pers_calculated_personal_offers]");
 		}
 
 		#endregion
@@ -2718,33 +2792,56 @@ namespace DataModels
 
 		#endregion
 
-		#region PDailyPersTradeRating
+		#region PDailyPersExpectedEffectCreateSellMarket
 
-		public static IEnumerable<PDailyPersTradeRatingResult> PDailyPersTradeRating(this DataConnection dataConnection, int? @campaign_id, int? @lavel, DateTime? @date, bool? @control_group)
+		public static int PDailyPersExpectedEffectCreateSellMarket(this DataConnection dataConnection, int? @campaign_id, DateTime? @date, bool? @control_group, long? @sell_market_id, bool? @is_delivery_status)
 		{
-			return dataConnection.QueryProc<PDailyPersTradeRatingResult>("[calc].[p_daily_pers_trade_rating]",
-				new DataParameter("@campaign_id",   @campaign_id,   DataType.Int32),
-				new DataParameter("@lavel",         @lavel,         DataType.Int32),
-				new DataParameter("@date",          @date,          DataType.Date),
-				new DataParameter("@control_group", @control_group, DataType.Boolean));
-		}
-
-		public partial class PDailyPersTradeRatingResult
-		{
-			public long?    market_id { get; set; }
-			public string   articul   { get; set; }
-			public string   good_name { get; set; }
-			public decimal? qty       { get; set; }
-			public decimal? sm        { get; set; }
+			return dataConnection.ExecuteProc("[calc].[p_daily_pers_expected_effect_create_sell_market]",
+				new DataParameter("@campaign_id",        @campaign_id,        DataType.Int32),
+				new DataParameter("@date",               @date,               DataType.Date),
+				new DataParameter("@control_group",      @control_group,      DataType.Boolean),
+				new DataParameter("@sell_market_id",     @sell_market_id,     DataType.Int64),
+				new DataParameter("@is_delivery_status", @is_delivery_status, DataType.Boolean));
 		}
 
 		#endregion
 
-		#region PDailySendWelcomMessage
+		#region PDailyPersExpectedEffectFill
 
-		public static int PDailySendWelcomMessage(this DataConnection dataConnection)
+		public static int PDailyPersExpectedEffectFill(this DataConnection dataConnection, int? @campaign_id, DateTime? @date_fill, bool? @is_delivery_status)
 		{
-			return dataConnection.ExecuteProc("[calc].[p_daily_send_welcom_message]");
+			return dataConnection.ExecuteProc("[calc].[p_daily_pers_expected_effect_fill]",
+				new DataParameter("@campaign_id",        @campaign_id,        DataType.Int32),
+				new DataParameter("@date_fill",          @date_fill,          DataType.Date),
+				new DataParameter("@is_delivery_status", @is_delivery_status, DataType.Boolean));
+		}
+
+		#endregion
+
+		#region PDailySENDMESSAGES
+
+		public static int PDailySENDMESSAGES(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_SEND_MESSAGES]");
+		}
+
+		#endregion
+
+		#region PDailyThortFootballListCreate
+
+		public static int PDailyThortFootballListCreate(this DataConnection dataConnection, DateTime? @search_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_thort_football_list_create]",
+				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDailyWelcomTriggerListCreate
+
+		public static int PDailyWelcomTriggerListCreate(this DataConnection dataConnection)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_welcom_trigger_list_create]");
 		}
 
 		#endregion
@@ -2867,26 +2964,6 @@ namespace DataModels
 
 		#endregion
 
-		#region PGetCardTradeRating
-
-		public static IEnumerable<PGetCardTradeRatingResult> PGetCardTradeRating(this DataConnection dataConnection, DateTime? @date_start, DateTime? @date_end, long? @market_id)
-		{
-			return dataConnection.QueryProc<PGetCardTradeRatingResult>("[rep].[p_get_card_trade_rating]",
-				new DataParameter("@date_start", @date_start, DataType.Date),
-				new DataParameter("@date_end",   @date_end,   DataType.Date),
-				new DataParameter("@market_id",  @market_id,  DataType.Int64));
-		}
-
-		public partial class PGetCardTradeRatingResult
-		{
-			public long?  days_of_shopping { get; set; }
-			public string market_name      { get; set; }
-			public long?  card_count       { get; set; }
-			public long?  is_fill          { get; set; }
-		}
-
-		#endregion
-
 		#region PGetCountCustomers4campaign
 
 		public static IEnumerable<PGetCountCustomers4campaignResult> PGetCountCustomers4campaign(this DataConnection dataConnection, long? @campaign_id, string @market_lst, string @start_part, string @last_part, string @qty_visits, string @qty_docs, string @obert, string @doc_avg, string @doc_max, string @len_between_visits, string @sum_points, string @card_status_lst, string @obert_intersport, string @obert_moncheri)
@@ -2934,6 +3011,27 @@ namespace DataModels
 			public double?   sm_upl         { get; set; }
 			public int?      doc_count_all  { get; set; }
 			public double?   sm_all         { get; set; }
+		}
+
+		#endregion
+
+		#region PGetCustomersCampaignList
+
+		public static IEnumerable<PGetCustomersCampaignListResult> PGetCustomersCampaignList(this DataConnection dataConnection, long? @campaign_id, int? @start_value, int? @end_value)
+		{
+			return dataConnection.QueryProc<PGetCustomersCampaignListResult>("[calc].[p_get_customers_campaign_list]",
+				new DataParameter("@campaign_id", @campaign_id, DataType.Int64),
+				new DataParameter("@start_value", @start_value, DataType.Int32),
+				new DataParameter("@end_value",   @end_value,   DataType.Int32));
+		}
+
+		public partial class PGetCustomersCampaignListResult
+		{
+			[Column("Phone number")] public string PhoneNumber      { get; set; }
+			                         public string delivery_channel { get; set; }
+			                         public string market_name      { get; set; }
+			                         public long?  crm_customer_id  { get; set; }
+			                         public long?  campaign_number  { get; set; }
 		}
 
 		#endregion

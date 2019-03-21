@@ -33,73 +33,6 @@ namespace LoyaltyDB
                 return db.CampaignParticipant.Where(w => w.CampaignId == campaign_id && w.ControlGroup == false).Count();
             }
         }
-
-        //public DataTable GetCustomers(int campaignId)
-        //{
-        //    using (var db = new DataModels.CrmWizardDB())
-        //    {
-        //        string cmdText = @"
-
-        //            IF object_id('[tempdb]..#tmp_staff_ids') != 0
-	       //             DROP TABLE #tmp_staff_ids
-        //            SELECT distinct m.id into #tmp_staff_ids FROM [calc].[staff_phones] a
-        //            inner join (
-        //                select cp.crm_customer_id, cp.id FROM 
-        //                    calc.campaign_participant cp (nolock) 
-        //                where cp.campaign_id = {0}
-        //                ) m on a.crm_customer_id = m.crm_customer_id
-
-	       //         DELETE from
-		      //          calc.campaign_participant
-	       //         where
-		      //          id in (
-			     //           select
-				    //            id
-			     //           from
-				    //            #tmp_staff_ids
-		      //          ); 
-	       //         DROP TABLE #tmp_staff_ids;
-
-	       //         SELECT
-        //                distinct
-		      //          --crd.barcode,
-		      //          c.mobile_phone,
-		      //          iif(isnull(vb.is_viber, 0)=1,'VIBER', a.delivery_channel) delivery_channel,
-		      //          dm.[market_name],
-		      //          a.crm_customer_id
-	       //         FROM 
-		      //          calc.campaign_participant a with (nolock)
-			     //           inner join dbo.crm_customers c (nolock) on a.crm_customer_id = c.crm_customer_id
-			     //           left join calc.crm_isviber vb with (nolock) on a.crm_customer_id = vb.crm_customer_id
-			     //           inner join dbo.cards crd (nolock) on c.crm_customer_id = crd.crm_customer_id and crd.deleted = 0
-			     //           inner join [dbo].[dict_markets] dm with (nolock) on crd.issued_market_id = dm.id
-	       //         WHERE
-		      //          a.campaign_id = {0} and a.control_group = 0
-        //                and c.is_sms_sent = 1
-        //            UNION ALL
-        //                SELECT 
-        //                '+380674602727' mobile_phone, 
-        //                'VIBER' delivery_channel, 
-        //                'KC' market_name, 
-        //                90000009183 crm_customer_id                                            
-        //        ";
-
-        //        cmdText = string.Format(cmdText, campaignId.ToString());
-        //        var cmd = db.CreateCommand();
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        cmd.CommandText = cmdText;
-        //        cmd.CommandTimeout = 100000000;
-
-        //        if (cmd.Connection.State == ConnectionState.Closed)
-        //            cmd.Connection.Open();
-
-        //        SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
-        //        DataTable tb = new DataTable();
-        //        tb.Load(reader);
-        //        cmd.Connection.Close();
-        //        return tb;
-        //    }
-        //}
         /// <summary>
         /// 
         /// </summary>
@@ -164,86 +97,7 @@ namespace LoyaltyDB
             }
         }
 
-        //public DataTable GetCustomersLong(int campaignId)
-        //{
-        //    using (var db = new DataModels.CrmWizardDB())
-        //    {
-        //        string cmdText = @"
-
-        //            IF object_id('[tempdb]..#tmp_staff_ids') != 0
-	       //             DROP TABLE #tmp_staff_ids
-        //            SELECT distinct m.id into #tmp_staff_ids FROM [calc].[staff_phones] a
-        //            inner join (
-        //                select cp.crm_customer_id, cp.id FROM 
-        //                    calc.campaign_participant cp (nolock) 
-        //                where cp.campaign_id = {0}
-        //                ) m on a.crm_customer_id = m.crm_customer_id
-
-	       //         DELETE from
-		      //          calc.campaign_participant
-	       //         where
-		      //          id in (
-			     //           select
-				    //            id
-			     //           from
-				    //            #tmp_staff_ids
-		      //          ); 
-	       //         DROP TABLE #tmp_staff_ids;
-
-	       //         SELECT
-        //                distinct
-		      //          c.name1,
-		      //          c.name2,
-		      //          c.name3,
-		      //          case 
-			     //           when c.gender = 1 then 'Ч'
-			     //           when c.gender = 2 then 'Ж'
-			     //           else 'н/в' end as gender,
-		      //          c.mobile_phone,
-		      //          iif(isnull(vb.is_viber, 0)=1,'VIBER', a.delivery_channel) delivery_channel,
-		      //          dm.[market_name],
-        //                a.crm_customer_id,
-		      //          isnull(a.free,'') free
-	       //         FROM 
-		      //          calc.campaign_participant a with (nolock)
-			     //           inner join 
-				    //            dbo.crm_customers c (nolock) on a.crm_customer_id = c.crm_customer_id
-
-			     //           left join calc.crm_isviber vb with (nolock) on a.crm_customer_id = vb.crm_customer_id
-			     //           inner join dbo.cards crd (nolock) on c.crm_customer_id = crd.crm_customer_id and crd.deleted = 0
-			     //           inner join [dbo].[dict_markets] dm with (nolock) on crd.issued_market_id = dm.id
-	       //         WHERE
-		      //          a.campaign_id = {0} and a.control_group = 0
-        //                and c.is_sms_sent = 1
-        //            UNION
-        //            SELECT
-    		  //          ''                      name1,
-		      //          'Олександр'             name2,
-		      //          'Володимирович'         name3,
-        //                'Ч'                     gender,
-        //                '+380674602727'         mobile_phone, 
-        //                'VIBER'                 delivery_channel, 
-        //                'KC'                    market_name, 
-        //                90000009183             crm_customer_id,
-        //                ''                      free
-        //        ";
-
-        //        cmdText = string.Format(cmdText, campaignId.ToString());
-        //        var cmd = db.CreateCommand();
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        cmd.CommandText = cmdText;
-        //        cmd.CommandTimeout = 100000000;
-
-        //        if (cmd.Connection.State == ConnectionState.Closed)
-        //            cmd.Connection.Open();
-
-        //        SqlDataReader reader = (SqlDataReader)cmd.ExecuteReader();
-        //        DataTable tb = new DataTable();
-        //        tb.Load(reader);
-        //        cmd.Connection.Close();
-        //        return tb;
-        //    }
-        //}
+       
         /// <summary>
         /// 
         /// </summary>
@@ -314,6 +168,7 @@ namespace LoyaltyDB
                         if (c.State != ConnectionState.Open)
                             c.Open();
                         cmd.ExecuteNonQuery();
+                        c.Close();
 
                     }
                     catch (Exception ex)
@@ -327,10 +182,41 @@ namespace LoyaltyDB
             return string.Empty;
         }
 
-        public void StartFillCampaignFromSelectedCustomes(CustomerSelect oc)
+        public void ClearControlGroup(int id)
         {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                using (SqlConnection connect = new SqlConnection(db.ConnectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = connect.CreateCommand();
+                        cmd.CommandTimeout = 100000000;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Connection = connect;
 
+                        cmd.CommandText = @"update cp set cp.control_group = 0 
+                                    from calc.campaign_participant cp (nolock) where cp.campaign_id = @campaign_id and cp.control_group = 1";
+
+                        cmd.Parameters.AddWithValue("@campaign_id", id);
+                        if (connect.State != ConnectionState.Open)
+                            connect.Open();
+                        cmd.ExecuteNonQuery();
+                        connect.Close();
+
+                    } catch (Exception ex)
+                    {
+
+                    }
+                    finally
+                    {
+                        if (connect.State != ConnectionState.Closed)
+                            connect.Close();
+                    }
+                }
+            }
         }
+
     }
 
     public class CustomerSelect

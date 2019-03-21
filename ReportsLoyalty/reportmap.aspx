@@ -78,43 +78,15 @@
         var getState = setInterval(function () { getST() }, 5000);
         function getST() {
             $.ajax({
-                url: 'api/start/0',
+                url: 'api/start/GetProcessingLastCampaign/0',
                 type: 'get',
-                data: {
-                    TypeRequest: 10,
-                    cData: ''
-                },
                 success: function (state) {
-                    var st = Ext.decode(state);
-
-                    if (st.Status == '2') {
-                        dsField.setValue('Перераховано: ' + st.CampaignName);
-                    }
-                    if (st.Status == '1') {
-                        dsField.setValue('ПЕРЕРАХОВУЄТЬСЯ: ' + st.CampaignName);
-                    }
-
+                    dsField.setValue(state);
                 }
             });
         }
 
         Ext.onReady(function () {
-
-            // Ext.create('Ext.window.Window', {
-            //     title: 'Hello',
-            //     id: 'win_show_pause',
-            //     modal: true,
-            //     height: 200,
-            //     width: 400,
-            //     layout: 'fit',
-            //     items: {  // Let's put an empty grid in just to illustrate fit layout
-            //         xtype: 'grid',
-            //         border: false,
-            //         columns: [{ header: 'World' }],                 // One header just for show. There's no data,
-            //         store: Ext.create('Ext.data.ArrayStore', {}) // A dummy empty data store
-            //     }
-            // });
-
             /* Кнопка управлкеня кампаниями */
             var buttonSplit = Ext.create('Ext.button.Split', {
                 renderTo: Ext.getBody(),
@@ -308,15 +280,32 @@
                         }, {
                             xtype: 'panel',
                             title: 'ТРИГЕРНІ ПОВІДОМЛЕННЯ',
-                            items: [
-                                    {
-                                        xtype: 'panel',
-                                        border: false,
-                                        name: 'name',
-                                        html: '<a href="#" onclick="showTriggerMessageEditorTemplates();" class="menu_is_run">Шаблони повідомлень</a>', //showBasicIndicators();
-                                        margin: '2 2 2 10'
-                                    }
-                            ]
+                            items:
+                                [{
+                                    xtype: 'panel',
+                                    border: false,
+                                    name: 'name',
+                                    html: '<a href="#" onclick="showTriggerMessageEditorTemplates();" class="menu_is_run">Шаблони повідомлень</a>', 
+                                    margin: '2 2 2 10'
+                                }, {
+                                    xtype: 'panel',
+                                    border: false,
+                                    name: 'name',
+                                    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Статистика тригерних повідомлень</a>', 
+                                    margin: '2 2 2 10'
+                                }, {
+                                    xtype: 'panel',
+                                    border: false,
+                                    name: 'name',
+                                    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Вивантаження УПЛ отримувачів повідомлень</a>',
+                                    margin: '2 2 2 10'
+                                }, {
+                                    xtype: 'panel',
+                                    border: false,
+                                    name: 'name',
+                                    html: '<a href="#" onclick="" class="menu_is_run">Перегляд отримання повідомлень</a>',
+                                    margin: '2 2 2 10'
+                                }]
                         }]
                     }
                 },
@@ -337,7 +326,22 @@
                     items: [
                         {
                             xtype: 'panel',
-                            width: '33.3%'
+                            width: '33.3%',
+                            items: [{
+                                xtype: 'label',
+                                forId: 'myFieldId',
+                                text: 'Глобальна кампанія',
+                                padding: '10 10 10 10',
+                                style: 'background-color:#f8f67a',
+                                //xtype: 'displayfield',
+                                //name: 'displayfield1',
+                                //margin: 5,
+                                //fieldLabel: 'Глобальна кампанія',
+                                //style: 'background-color:#f8f67a',
+                                //width: 150,
+                                //labelWidth: 150
+                                //cls: 'x-grid-row-global'
+                            }]
                         },
                         {
                             xtype: 'panel',

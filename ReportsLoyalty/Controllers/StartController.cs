@@ -13,19 +13,21 @@ namespace ReportsLoyalty.Controllers
 {
     public class StartController : ApiController
     {
-        public string Get(int id)
+        [HttpGet]
+        public string GetStart(int id)
         {
             string RT = string.Empty;
 
             var queryparams = Request.GetQueryNameValuePairs();
             var TypeRequest = queryparams.Where(w => w.Key == "TypeRequest").FirstOrDefault().Value;
+            var isDelivery = queryparams.Where(w => w.Key == "isDelyvery").FirstOrDefault().Value;
 
             switch (Convert.ToInt32(TypeRequest))
             {
                 case 1:
                     /* Запуск на перерахунок, тип кампанії визначається вже всередені */
                     var dt = queryparams.Where(w => w.Key == "cData").FirstOrDefault().Value;
-                    Global.SP.Start(id, Convert.ToDateTime(dt));
+                    Global.SP.Start(id, Convert.ToDateTime(dt), Convert.ToBoolean(isDelivery));
                     break;
                 case 10:
                     /* */
@@ -39,14 +41,16 @@ namespace ReportsLoyalty.Controllers
                             CampaignInfo ci = new Models.CampaignInfo
                             {
                                 CampaignId = m.CampaignId.Value.ToString(),
-                                CampaignName = od.Campaigns.GetCalculationCampaignName(),
+                                CampaignName = od.Campaigns.GetCalculationCampaignName(Convert.ToInt32(m.CampaignId.Value)),
                                 Created = m.Created.Value.ToString("dd.MM.yyyy"),
                                 Status = m.Status.Value.ToString()
                             };
+
                             RT = Newtonsoft.Json.JsonConvert.SerializeObject(ci);
 
                         } else
                         {
+                            //RT = string.Format("Невідомо...");
                             CampaignInfo ci = new Models.CampaignInfo
                             {
                                 CampaignId = "0",
@@ -70,6 +74,42 @@ namespace ReportsLoyalty.Controllers
 
             return RT;
         }
+        /// <summary>
+        /// Інформація по останній перерахованій кампанії
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public string GetProcessingLastCampaign(int id) {
+            string returned = string.Empty;
+
+            var queryparams = Request.GetQueryNameValuePairs();
+            var TypeRequest = queryparams.Where(w => w.Key == "TypeRequest").FirstOrDefault().Value;
+            var isDelivery = queryparams.Where(w => w.Key == "isDelyvery").FirstOrDefault().Value;
+
+            using (GetData od = new GetData()) {
+                var m = od.Campaigns.GetCalculationLogLast();
+                CampaignInfo ci = new Models.CampaignInfo
+                {
+                    CampaignId = m.CampaignId.Value.ToString(),
+                    CampaignName = od.Campaigns.GetCalculationCampaignName(Convert.ToInt32(m.CampaignId.Value)),
+                    Created = m.Created.Value.ToString("dd.MM.yyyy"),
+                    Status = m.Status.Value.ToString()
+                };
+                switch (m.Status)
+                {
+                    case 1:
+                        returned = returned + "Процес перерахунку: ";
+                        break;
+                    case 2:
+                        returned = returned + "Перераховано: ";
+                        break;
+                }
+                returned = string.Format("{0}({1}) {2}", returned, ci.CampaignId, ci.CampaignName);
+            }
+
+            return returned;
+        }
 
         [HttpGet]
         public string GetFilledCampaignId()
@@ -80,6 +120,11 @@ namespace ReportsLoyalty.Controllers
                 returned = data.Dict.GetFillingCampaignId().ToString();
             }
             return returned;
+        }
+        [HttpGet]
+        public string CleanControlGroup(int id)
+        {
+            return string.Empty;
         }
     }
 }

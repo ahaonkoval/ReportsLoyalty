@@ -108,6 +108,12 @@
     <Compile Include="FrmChangingStructure.Designer.cs">
       <DependentUpon>FrmChangingStructure.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGetDataFlowers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGetDataFlowers.Designer.cs">
+      <DependentUpon>frmGetDataFlowers.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGetData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,8 +165,14 @@
     <Content Include="SqlScreept\ChangingStructure.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SqlScreept\GetFlowersUsers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="FrmChangingStructure.resx">
       <DependentUpon>FrmChangingStructure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGetDataFlowers.resx">
+      <DependentUpon>frmGetDataFlowers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGetData.resx">
       <DependentUpon>frmGetData.cs</DependentUpon>

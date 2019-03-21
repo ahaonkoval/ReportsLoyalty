@@ -316,11 +316,11 @@ var getWinBetween = function (type_id, campaign_id) {
     var txtStart = Ext.create('Ext.form.field.Text', {
         fieldLabel: 'Початок:'
     });
-
+    txtStart.setValue(1);
     var txtEnd = Ext.create('Ext.form.field.Text', {
         fieldLabel: 'Кінець:',
     });
-
+    txtEnd.setValue(500000);
     var winBetween = Ext.create('Ext.Window', {
         title: 'Вкажіть початок і кінець...',
         width: 300,
@@ -711,7 +711,7 @@ var StartFillCampaign = function (record, campaignId, todelete) {
     var name = record.get('name');
 
     $.ajax({
-        url: 'api/start/0',
+        url: 'api/start/getstart/0',
         type: 'get',
         data: {
             TypeRequest: 20,

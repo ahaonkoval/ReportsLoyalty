@@ -29,6 +29,7 @@ namespace LoyaltyDB
             
         }
 
+        // TODO: Пеервірити потрібність...
         public void CreateCampaignParticipantCache(long _campaignId)
         {
             using (var db = new DataModels.CrmWizardDB())
@@ -39,17 +40,6 @@ namespace LoyaltyDB
                 }))
                 {
                     var сamp = db.CampaignParticipant.Where(w => w.CampaignId == _campaignId);
-
-                    //сampaignParticipantCache = db.CrmCustomers.Join(сamp,
-                    //    a => a.CrmCustomerId,
-                    //    b => b.CrmCustomerId,
-                    //    (a, b) => new Participant
-                    //    {
-                    //        MobilePhone = a.MobilePhone,
-                    //        CrmCustomerId = b.CrmCustomerId,
-                    //        PartId = b.Id,
-                    //        CampaignId = b.CampaignId
-                    //    }).ToList();
                 }
             }
         }
@@ -57,14 +47,15 @@ namespace LoyaltyDB
         #region Управління перерахунком кампаній
         /* GET  -------------------------------------------------------------------------------------- */
         /// <summary>
-        /// Повертає останній статус
+        /// Повертає останню дію з кампаніями (перерахунок, завантаюення данних..)
         /// </summary>
         /// <returns></returns>
         public CalculationLog GetCalculationLogLast()
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                return db.CalculationLog.ToList().Where(w => GetTrueCalculatedType(w.TypeOp)).OrderByDescending(o => o.Id).FirstOrDefault();
+                //return db.CalculationLog.ToList().Where(w => GetTrueCalculatedType(w.TypeOp)).OrderByDescending(o => o.Id).FirstOrDefault();
+                return db.CalculationLog.ToList().Where(w => GetTrueType(w.TypeOp)).OrderByDescending(o => o.Id).Take(5).FirstOrDefault();
             }
         }
         /// <summary>
@@ -72,37 +63,38 @@ namespace LoyaltyDB
         /// </summary>
         /// <param name="_type"></param>
         /// <returns></returns>
-        bool GetTrueCalculatedType(int? _type)
+        bool GetTrueType(int? _type)
         {
-            if (_type == null)
-                return false;
-            if (_type.Value == 20)
-                return true;
-            if (_type.Value == 40)
-                return true;
-
+            switch (_type)
+            {
+                case null: return false;
+                case 20: return true;
+                case 30: return true;
+                case 40: return true;
+            }
             return false;
         }
-
-        public string GetCalculationCampaignName()
+        /// <summary>
+        /// Повертає назву кампані по ИД
+        /// </summary>
+        /// <param name="campaign_id"></param>
+        /// <returns></returns>
+        public string GetCalculationCampaignName(int campaign_id)
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                var lg = db.CalculationLog.Where(w => w.TypeOp == 20).OrderByDescending(o => o.Id).First();
-                var cp = db.CampaignsMk.Where(w => w.Id == lg.CampaignId);
-                if (cp.Count() > 0)
-                {
-                    return db.CampaignsMk.Where(w => w.Id == lg.CampaignId).First().Name;
-                } else
-                {
-                    return string.Empty;
-                }
+                return db.CampaignsMk.Where(w => w.Id == campaign_id).FirstOrDefault().Name;
             }
         }
 
-        
         /* SET  -------------------------------------------------------------------------------------- */
-        public void SetStartCalculation(int campaignId, DateTime currentDate)
+        /// <summary>
+        /// Запускає на перерахунок кампанію...
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <param name="currentDate"></param>
+        /// <param name="isDelyvery"></param>
+        public void SetStartCalculation(int campaignId, DateTime currentDate, bool isDelyvery)
         {
             using (var db = new DataModels.CrmWizardDB())
             {
@@ -118,22 +110,22 @@ namespace LoyaltyDB
                 {
                     if (l.Status != 1)
                     {
-                        StartCalculation(campaignId, currentDate, db.ConnectionString, campaign.TypeId);
+                        StartCalculation(campaignId, currentDate, db.ConnectionString, campaign.TypeId, isDelyvery);
                     }
                 } else
                 {
-                    StartCalculation(campaignId, currentDate, db.ConnectionString, campaign.TypeId);
+                    StartCalculation(campaignId, currentDate, db.ConnectionString, campaign.TypeId, isDelyvery);
                 }
             }
         }
         /// <summary>
-        /// 
+        /// Розв'язка запуску на перерахунок в залежності від типу кампанії
         /// </summary>
         /// <param name="campaignId"></param>
         /// <param name="currentDate"></param>
         /// <param name="ConnectionString"></param>
         /// <param name="TypeId"></param>
-        void StartCalculation(int campaignId, DateTime currentDate, string ConnectionString, long TypeId)
+        void StartCalculation(int campaignId, DateTime currentDate, string ConnectionString, long TypeId, bool isDelyvery)
         {
             switch (TypeId)
             {
@@ -143,12 +135,12 @@ namespace LoyaltyDB
                     } break;
                 case 2: {
                         /* Запуск перерахунку по персональним пропозиціям */
-                        StartCalculationPersonalOffer(campaignId, currentDate, ConnectionString);
+                        StartCalculationPersonalOffer(campaignId, currentDate, ConnectionString, isDelyvery);
                     } break;
             }
         }
         /// <summary>
-        /// Завантаження УПЛ з попередньо створеної вибірки
+        /// Завантаження УПЛ з попередньо створеної вибірки (з таблиці в БД)
         /// </summary>
         /// <param name="campaignId"></param>
         /// <param name="table"></param>
@@ -220,7 +212,7 @@ namespace LoyaltyDB
         /// <param name="campaignId"></param>
         /// <param name="currentDate"></param>
         /// <param name="connectString"></param>
-        void StartCalculationPersonalOffer(int campaignId, DateTime currentDate, string connectString)
+        void StartCalculationPersonalOffer(int campaignId, DateTime currentDate, string connectString, bool isDelyvery)
         {
             using (SqlConnection c = new SqlConnection(connectString))
             {
@@ -233,6 +225,7 @@ namespace LoyaltyDB
                     cmd.CommandText = "calc.p_daily_pers_expected_effect_fill";
                     cmd.Parameters.AddWithValue("@campaign_id", campaignId);
                     cmd.Parameters.AddWithValue("@date_fill", currentDate);
+                    cmd.Parameters.AddWithValue("@is_delivery_status", isDelyvery);
 
                     if (c.State != ConnectionState.Open)
                         c.Open();
@@ -249,6 +242,11 @@ namespace LoyaltyDB
         #endregion
 
         #region GET
+        /// <summary>
+        /// Всі основні налаштування кампанії
+        /// </summary>
+        /// <param name="campaignId"></param>
+        /// <returns></returns>
         public CampaignsMk GetCampaignById(int campaignId)
         {
             using (var db = new DataModels.CrmWizardDB())
@@ -257,7 +255,7 @@ namespace LoyaltyDB
             }
         }
         /// <summary>
-        /// 
+        /// Повертає тільки запущені кампанії
         /// </summary>
         /// <returns></returns>
         public IEnumerable<CampaignsMk> GetCampaignsRuns()
@@ -338,7 +336,7 @@ namespace LoyaltyDB
             }
         }
         /// <summary>
-        /// 
+        /// Видає перелік кампаній
         /// </summary>
         /// <param name="isRun"></param>
         /// <returns></returns>
@@ -663,23 +661,6 @@ namespace LoyaltyDB
             {
                 if (cmp.campaign_id > -1)
                 {
-                    //string[] f_groups = cmp.group_id_2.Split(',');
-                    //var cmp_grp = db.CampaignGroups.Where(w => w.CampaignId == cmp.campaign_id);
-
-                    //db.CampaignGroups.Delete(wd => wd.CampaignId == cmp.campaign_id);
-
-                    //if (f_groups[0].Length > 0)
-                    //{
-                    //    foreach (string f in f_groups)
-                    //    {
-                    //        db.CampaignGroups.Insert(() => new DataModels.CampaignGroups
-                    //        {
-                    //            CampaignId = cmp.campaign_id,
-                    //            GroupId = Convert.ToInt64(f)
-                    //        });
-                    //    }
-                    //}
-
                     db.CampaignsMk.Where(wc => wc.Id == cmp.campaign_id)
                         .Set(p => p.Name, cmp.name)
                         .Set(p => p.TypeId, cmp.type_id > 0 ? cmp.type_id : 6)
@@ -689,6 +670,7 @@ namespace LoyaltyDB
                         //.Set(p => p.GroupId0, Convert.ToInt64(cmp.group_id_0))
                         .Set(p => p.MailingId, cmp.mailing_id)
                         .Set(p => p.DateSend, cmp.date_send)
+                        .Set(p => p.IsGlobal, cmp.is_global)
                         .Update();
 
                 }
@@ -1001,6 +983,123 @@ namespace LoyaltyDB
                 }
                 connect.Close();
             }            
+        }
+
+        public void SetShortDeliveryGMSStatusByCampaignId(long campaignId, DataTable t, BackgroundWorker bw, Guid partId)
+        {
+            int m_counter = 1;
+            uint m_commitMax = 1000;
+            string SqlStart = @"insert into calc.campaign_gms_status_short (
+	                [campaign_id],
+                    [delivery_channel],
+                    [recipient],
+                    [time_send],
+                    [time_delivery],
+                    [message],
+                    [part_id]) values";
+
+            StringBuilder sqlCommandText = new StringBuilder(SqlStart);
+
+            string sqlBody1 = "({0},'{1}','{2}',convert(datetime, '{3}', 104),convert(datetime, '{4}', 104),'{5}','{6}'),";
+            string sqlBodyEnd = "({0},'{1}','{2}',convert(datetime, '{3}', 104),convert(datetime, '{4}', 104),'{5}','{6}')";
+
+            var smap = System.Configuration.ConfigurationManager.ConnectionStrings["crm_wizard_connect_string"].ToString();
+
+            using (SqlConnection connect = new SqlConnection(smap))
+            {
+                SqlCommand cmd = connect.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                connect.Open();                
+
+                for (Int32 i = 0; i < t.Rows.Count; i++)
+                {
+                    /* формую строку на tsql */
+                    if (m_counter < m_commitMax)
+                    {
+                        string pa = string.Format(sqlBody1,
+                            campaignId.ToString(),
+                            t.Rows[i]["Delivery channel"].ToString(),
+                            t.Rows[i]["Recipient"].ToString(),
+                            t.Rows[i]["Time of dispatch"].ToString(),
+                            t.Rows[i]["Delivery time"].ToString(),
+                            t.Rows[i]["Text of the Viber message"].ToString(),
+                            partId.ToString()
+                        );
+                        sqlCommandText.AppendLine(pa);
+                        m_counter++;
+                    }
+                    else
+                    {
+                        string pa = string.Format(sqlBodyEnd,
+                            campaignId.ToString(),
+                            t.Rows[i]["Delivery channel"].ToString(),
+                            t.Rows[i]["Recipient"].ToString(),
+                            t.Rows[i]["Time of dispatch"].ToString(),
+                            t.Rows[i]["Delivery time"].ToString(),
+                            t.Rows[i]["Text of the Viber message"].ToString(),
+                            partId.ToString()
+                        );
+                        sqlCommandText.AppendLine(pa);
+                        cmd.CommandText = sqlCommandText.ToString();
+
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            int a = 0;
+                        }
+
+                        m_counter = 1;
+                        sqlCommandText = new StringBuilder(SqlStart);
+                        bw.ReportProgress(i + 1);
+                    }
+                }
+                if (m_counter > 1)
+                {
+                    cmd.CommandText = sqlCommandText.ToString().Substring(0, sqlCommandText.ToString().Trim().Length - 1).ToString();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        bw.ReportProgress(t.Rows.Count);
+                    }
+                    catch (Exception ex)
+                    {
+                        int a = 1;
+                    }
+                }
+                connect.Close();
+            }
+        }
+
+        public void SetShortGmsStatusEnd(int campaignId, Guid partId)
+        {
+            using (CrmWizardDB db = new DataModels.CrmWizardDB())
+            {
+                using (SqlConnection c = new SqlConnection(db.ConnectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = c.CreateCommand();
+                        cmd.CommandTimeout = 100000000;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Connection = c;
+                        cmd.CommandText = "calc.p_update_gms_status_delivery_short";
+
+                        cmd.Parameters.AddWithValue("@campaign_id", campaignId);
+                        cmd.Parameters.AddWithValue("@part_id", partId);
+
+                        if (c.State != ConnectionState.Open)
+                            c.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
         }
 
         public void SetCampaignSoftlineStatusFromTable(long campaignId, DataTable tb, BackgroundWorker bw)
