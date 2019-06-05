@@ -658,11 +658,11 @@ var getWinCmpSettWizard = function (campaign_id, Controls) {
                                 url: 'api/Campaign/SetCampainStructureData/' + campaign_id,
                                 method: 'POST',
                                 params: { 
-                                    SectionId: section_id,
-                                    DepartmentIds: selectedIds,
-                                    GroupLavel3Ids: selectedIdsGroup3
+                                    SectionId: section_id
+                                    //DepartmentIds: selectedIds,
+                                    //GroupLavel3Ids: selectedIdsGroup3
                                 },
-                                jsonData: { field1: "hello", field2 : "hello2"},
+                                jsonData: { DepartmentIds: selectedIds, GroupLavel3Ids: selectedIdsGroup3 },
                                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                                 success: function (respons) {
 

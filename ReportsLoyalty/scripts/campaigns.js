@@ -473,7 +473,7 @@ var getPanelCampaigns = function () {
                     /* 
                         у випадку коли то є глобальна кампанія
                     */
-                    console.log(record.get('is_global'));
+                    //console.log(record.get('is_global'));
                     if (record.get('is_global') == true) {
                         return 'x-grid-row-global';
                     }
@@ -598,6 +598,7 @@ var getPanelCampaigns = function () {
                 xtype: 'panel',
                 flex: 1,
                 height: '100%',
+                border: false,
                 layout: 'fit',
                 items: [
                     {

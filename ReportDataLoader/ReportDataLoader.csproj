@@ -126,6 +126,12 @@
     <Compile Include="frmLoadFileGMS.Designer.cs">
       <DependentUpon>frmLoadFileGMS.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLoadFileSoftLineOtherFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoadFileSoftLineOtherFormat.Designer.cs">
+      <DependentUpon>frmLoadFileSoftLineOtherFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLoadFileSoftLine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLoadFileGMS.resx">
       <DependentUpon>frmLoadFileGMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoadFileSoftLineOtherFormat.resx">
+      <DependentUpon>frmLoadFileSoftLineOtherFormat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLoadFileSoftLine.resx">
       <DependentUpon>frmLoadFileSoftLine.cs</DependentUpon>

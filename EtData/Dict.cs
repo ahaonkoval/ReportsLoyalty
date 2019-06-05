@@ -186,7 +186,10 @@ namespace LoyaltyDB
             using (var db = new DataModels.CrmWizardDB())
             {
                 var data = db.PGetFillingCampaignId().ToList().FirstOrDefault();
-                return data.campaign_id;
+                if (data.campaign_id == null)
+                    return 0;
+                else
+                    return data.campaign_id.Value;
             }
         }
 

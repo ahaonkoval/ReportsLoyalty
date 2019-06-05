@@ -105,5 +105,12 @@ namespace WinTest
             frmDataFlowers.MdiParent = this;
             frmDataFlowers.Show();
         }
+
+        private void mLoadStatusSoftlineNew_Click(object sender, EventArgs e)
+        {
+            frmLoadFileSoftLineOtherFormat frm = new frmLoadFileSoftLineOtherFormat();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

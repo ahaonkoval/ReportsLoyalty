@@ -1020,8 +1020,8 @@ namespace LoyaltyDB
                             campaignId.ToString(),
                             t.Rows[i]["Delivery channel"].ToString(),
                             t.Rows[i]["Recipient"].ToString(),
-                            t.Rows[i]["Time of dispatch"].ToString(),
-                            t.Rows[i]["Delivery time"].ToString(),
+                            DateTime.Now.ToString(),//t.Rows[i]["Time of dispatch"].ToString(),
+                            DateTime.Now.ToString(),//t.Rows[i]["Delivery time"].ToString(),
                             t.Rows[i]["Text of the Viber message"].ToString(),
                             partId.ToString()
                         );
@@ -1034,8 +1034,8 @@ namespace LoyaltyDB
                             campaignId.ToString(),
                             t.Rows[i]["Delivery channel"].ToString(),
                             t.Rows[i]["Recipient"].ToString(),
-                            t.Rows[i]["Time of dispatch"].ToString(),
-                            t.Rows[i]["Delivery time"].ToString(),
+                            DateTime.Now.ToString(),//t.Rows[i]["Time of dispatch"].ToString(),
+                            DateTime.Now.ToString(),//t.Rows[i]["Delivery time"].ToString(),
                             t.Rows[i]["Text of the Viber message"].ToString(),
                             partId.ToString()
                         );

@@ -53,7 +53,7 @@ namespace ReportsLoyalty.pages
             }
             catch (Exception error)
             {
-                int i = 0;
+                //int i = 0;
             }
         }
     }

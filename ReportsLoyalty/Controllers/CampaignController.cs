@@ -189,8 +189,12 @@ namespace ReportsLoyalty.Controllers
         {
             var queryparams = Request.GetQueryNameValuePairs();
             string SectionId = queryparams.Where(w => w.Key == "SectionId").FirstOrDefault().Value;
-            string DepartmentIds = queryparams.Where(w => w.Key == "DepartmentIds").FirstOrDefault().Value;
-            string GroupLavel3Ids = queryparams.Where(w => w.Key == "GroupLavel3Ids").FirstOrDefault().Value;
+
+            //string DepartmentIds = queryparams.Where(w => w.Key == "DepartmentIds").FirstOrDefault().Value;
+            //string GroupLavel3Ids = queryparams.Where(w => w.Key == "GroupLavel3Ids").FirstOrDefault().Value;
+
+            string DepartmentIds = value.DepartmentIds.ToString();
+            string GroupLavel3Ids = value.GroupLavel3Ids.ToString();
 
             try
             {

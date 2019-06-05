@@ -42,10 +42,11 @@
             this.mcChangeStructure = new System.Windows.Forms.ToolStripMenuItem();
             this.mcTestDownload = new System.Windows.Forms.ToolStripMenuItem();
             this.еКСТРАБАЛИПоВідділамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mntSell = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.mntSell = new System.Windows.Forms.ToolStripMenuItem();
+            this.mLoadStatusSoftlineNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +69,7 @@
             this.завантажитиСтатусиЗAPIToolStripMenuItem,
             this.mLoadStatusGms,
             this.завантажитиСтатусиЗФайлаToolStripMenuItem,
+            this.mLoadStatusSoftlineNew,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
@@ -152,6 +154,13 @@
             this.еКСТРАБАЛИПоВідділамToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.еКСТРАБАЛИПоВідділамToolStripMenuItem.Text = "ЕКСТРА БАЛИ по відділам";
             // 
+            // mntSell
+            // 
+            this.mntSell.Name = "mntSell";
+            this.mntSell.Size = new System.Drawing.Size(221, 22);
+            this.mntSell.Text = "Покупці квітів";
+            this.mntSell.Click += new System.EventHandler(this.mntSell_Click);
+            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -168,12 +177,12 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(46, 17);
             this.toolStripStatusLabel.Text = "Статус:";
             // 
-            // mntSell
+            // mLoadStatusSoftlineNew
             // 
-            this.mntSell.Name = "mntSell";
-            this.mntSell.Size = new System.Drawing.Size(221, 22);
-            this.mntSell.Text = "Покупці квітів";
-            this.mntSell.Click += new System.EventHandler(this.mntSell_Click);
+            this.mLoadStatusSoftlineNew.Name = "mLoadStatusSoftlineNew";
+            this.mLoadStatusSoftlineNew.Size = new System.Drawing.Size(332, 22);
+            this.mLoadStatusSoftlineNew.Text = "Софтлайн - новий формат";
+            this.mLoadStatusSoftlineNew.Click += new System.EventHandler(this.mLoadStatusSoftlineNew_Click);
             // 
             // LoaderForm
             // 
@@ -215,6 +224,7 @@
         private System.Windows.Forms.ToolStripMenuItem mLoadStatusGms;
         private System.Windows.Forms.ToolStripMenuItem еКСТРАБАЛИПоВідділамToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mntSell;
+        private System.Windows.Forms.ToolStripMenuItem mLoadStatusSoftlineNew;
     }
 }
 

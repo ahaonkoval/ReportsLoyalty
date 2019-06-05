@@ -131,6 +131,7 @@
     <Compile Include="tf_campaign_customers.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Transform.cs" />
     <Compile Include="TransformerData.cs" />
     <Compile Include="t_get_departs_by_otdid_Result.cs">
       <DependentUpon>LoyaltyEdm.tt</DependentUpon>

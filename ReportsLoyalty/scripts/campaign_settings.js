@@ -581,7 +581,8 @@ function WinCampaignDetails() {
                 ]
             })
         }),
-
+        /*
+        */
         this.showActualityButton = function (pageId) {
             // winCd -<-- зацикливание
             winCd.panelBtnDownloadCustomers.setVisible(false);
@@ -908,7 +909,9 @@ function winStartCalcualted(campaignId) {
             }
         }
     });
-
+    /*
+        Вікно перерахунку кампанії
+    */
     var win = Ext.create('Ext.Window', {
         title: 'Перерахунок кампанії (оберіть дату)',
         width: 400,

@@ -2,9 +2,14 @@
 using LoyaltyDB;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Reflection;
+using System.Text;
 using System.Web.Http;
 
 namespace ReportsLoyalty.Controllers
@@ -60,6 +65,148 @@ namespace ReportsLoyalty.Controllers
                 };
 
                 return o;
+            }
+        }
+        [HttpGet]
+        public object GetRecipientsTriggerMessage(int id)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+
+            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+            var date = Convert.ToDateTime(queryparams.Where(w => w.Key == "DateSent").FirstOrDefault().Value);
+
+            using (GetData db = new GetData())
+            {
+                try
+                {
+                    var recipients = db.MessageDb.GetRecipientsTriggerMessage(id, date, start+1, start + limit);
+                    int count = db.MessageDb.GetRecipientsCountbyTemplateId(id, date);
+                    object o = new
+                    {
+                        total = count,
+                        data = recipients
+                    };
+
+                    return o;
+                } catch (Exception ex) {
+                    return null;
+                }
+            }
+        }
+        [HttpGet]
+        public object GetSentTriggerMessageByDate(int id)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+
+            var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
+            var start = Convert.ToInt32(queryparams.Where(w => w.Key == "start").FirstOrDefault().Value);
+            var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
+
+            using (GetData db = new GetData())
+            {
+                var data = db.MessageDb.GetSentTriggerMessageByDate(id);
+                int count = data.Count();
+                object o = new
+                {
+                    total = count,
+                    data = data
+                };
+                return o;
+            }
+        }
+        [HttpGet]
+        public HttpResponseMessage GetCustomersSendTemplatesById(int id)
+        {
+            var queryparams = Request.GetQueryNameValuePairs();
+            //var p_start = Convert.ToInt32(queryparams.Where(w => w.Key == "p_start").FirstOrDefault().Value);
+            //var p_end = Convert.ToInt32(queryparams.Where(w => w.Key == "p_end").FirstOrDefault().Value);
+            //var type_id = Convert.ToInt32(queryparams.Where(w => w.Key == "type_id").FirstOrDefault().Value);
+
+            var result = Request.CreateResponse(HttpStatusCode.OK);
+            try
+            {
+                MemoryStream reportStream = CreateExcelFile(id);
+                result.Content = new StreamContent(reportStream);
+            }
+            catch (Exception ex)
+            {
+                result.Content = new StringContent(ex.Message, Encoding.Default); //, Encoding.UTF8, "application/json"
+            }
+
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            //result.Content.Headers.
+            using (GetData gd = new GetData())
+            {
+                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                {
+                    FileName = string.Format(
+                    "({0}){1}.csv", id.ToString(), string.Empty//gd.Campaigns.GetCampaignNameById(id)
+                    )
+                };
+
+                return result;
+            }
+        }
+        public MemoryStream CreateExcelFile(int campaignId)
+        {
+            using (GetData gd = new GetData())
+            {
+                string filename = string.Format(
+                    "({0})TemplateSent.csv", campaignId.ToString());
+
+                var path = string.Empty;
+                try
+                {
+                    path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
+                }
+                catch {
+
+                }
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+                //DataTable dt = new DataTable();
+
+                DataTable dt = gd.MessageDb.GetAllRecipientsTriggerMessage(campaignId);
+
+
+                //switch (type_id)
+                //{
+                //    case 1:
+                //        dt = gd.Customers.GetCustomersBetweenLong(campaignId, part_start, part_end);
+                //        break;
+                //    case 2:
+                //        dt = gd.Customers.GetCustomersBetween(campaignId, part_start, part_end);
+                //        break;
+                //}
+
+                if (dt.Rows.Count > 0)
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    string[] columnNames = dt.Columns.Cast<DataColumn>().Select(column => column.ColumnName).ToArray();
+                    sb.AppendLine(string.Join(";", columnNames));
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string[] fields = row.ItemArray.Select(field => field.ToString()).
+                                                        ToArray();
+                        sb.AppendLine(string.Join(";", fields));
+                    }
+
+                    File.WriteAllText(path, sb.ToString(), Encoding.GetEncoding("utf-8")); //  Encoding.GetEncoding(1250)
+
+                    var bf = File.ReadAllBytes(path);
+                    var dataStream = new MemoryStream(bf);
+                    return dataStream;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 

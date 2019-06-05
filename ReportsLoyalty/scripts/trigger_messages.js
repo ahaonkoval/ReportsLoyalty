@@ -50,15 +50,6 @@ var showTriggerMessageEditorTemplates = function () {
                 width: 35,
                 menuDisabled: true
             },
-            //{
-            //    text: 'Ключ',
-            //    dataIndex: 'MKey',
-            //    menuDisabled: true,
-            //    width: 100,
-            //    editor: {
-            //        allowBlank: false
-            //    }
-            //},
             {
                 text: 'Назва шаблону',
                 flex: 1,
@@ -74,35 +65,6 @@ var showTriggerMessageEditorTemplates = function () {
                     allowBlank: false
                 }
             },
-            //{
-            //    text: 'SMS текст (до 70 символів)',
-            //    flex: 2,
-            //    dataIndex: 'MSms',
-            //    editor: {
-            //        allowBlank: false,
-            //        /*  */
-            //        validator: function (value) {
-            //            if (value.length > 70) {
-            //                return false;
-            //            }
-            //            return true;
-            //        },
-            //    }
-            //},
-            //{
-            //    text: 'VIBER текст (до 1000 символів)',
-            //    flex: 3,
-            //    dataIndex: 'MViber',
-            //    editor: {
-            //        allowBlank: false,
-            //        validator: function (value) {
-            //            if (value.length > 1000) {
-            //                return false;
-            //            }
-            //            return true;
-            //        },
-            //    }
-            //}
         ];
 
         return columns.slice(start || 0, finish);
@@ -543,15 +505,353 @@ var showTriggerMessageEditorTemplates = function () {
     center.setActiveTab(tab);
 
 }
-
+/*
+    ==========================================================================================================
+*/
 var showDataSentTriggerMessages = function () {
+
     var center = Ext.getCmp('pnlCenter');
+
+    var storeReport = Ext.create('Ext.data.JsonStore',
+        {
+            autoLoad: true,
+            autoDestroy: true,
+            proxy: {
+                type: 'ajax',
+                url: ('api/MessageTemplate/DataGetSentTriggerMessages/0'),
+                reader: {
+                    type: 'json',
+                    root: 'data',
+                    idProperty: 'Id',
+                    totalProperty: 'total'
+                }
+            },
+            remoteSort: false,
+            sorters: [
+                {
+                    property: 'TemplateId',
+                    direction: 'ASC'
+                }
+            ],
+            pageSize: 50,
+            fields: [
+                { name: 'TemplateId', type: 'int' },
+                { name: 'Name', type: 'string' },
+                { name: 'Count', type: 'int' }
+            ]
+        });
+
+    var createColumns = function (finish, start) {
+
+        var columns = [
+            {
+                dataIndex: 'TemplateId',
+                text: '№',
+                filterable: false,
+                width: 35,
+                menuDisabled: true
+            },
+            {
+                text: 'Назва шаблону',
+                flex: 1,
+                dataIndex: 'Name',
+                editor: {
+                    allowBlank: false
+                }
+            }, {
+                text: 'Надіслано',
+                dataIndex: 'Count',
+                width: 80,
+                editor: {
+                    allowBlank: false
+                }
+            },
+        ];
+
+        return columns.slice(start || 0, finish);
+    };
+
+    var gridTemplates = Ext.create('Ext.grid.Panel', {
+        stateful: true,
+        stateId: 'stateful-filter-grid',
+        //border: false,
+        store: storeReport,
+        padding: '2 2 2 2',
+        columns: createColumns(5),
+        loadMask: true,
+        bbar: [{
+            xtype: 'pagingtoolbar',
+            displayInfo: false,
+            dock: 'bottom',
+            displayMsg: '',//'Рядок: {0} - {1} of {2}',
+            emptyMsg: "Нема записів...",
+            store: storeReport
+        }],
+        emptyText: 'Записів більше нема',
+        listeners: {
+            'rowdblclick': function (grid, record, e) {
+                /* открываєм окно редактирования */
+                //winCd.Show(record, this.getStore());
+            },
+            'selectionchange': function (ctrl, selected, eOpts) {
+
+                var storeDataSent = getStoreTemplateDataSent(selected[0].get('TemplateId'))
+                dataview.setStore(storeDataSent);
+                storeDataSent.load();
+
+                var grid = gridTemplates;
+                grid.setStore(null);
+            }
+        },
+        viewConfig: {
+            stripeRows: false,
+            getRowClass: function (record) {
+                /* В залежності від  */
+            }
+        }
+    });
+
+    var getStoreRecipients = function (id, date) {
+
+        if (id == null) return null;
+        if (date == null) return null;
+
+        var storeRecipients = Ext.create('Ext.data.JsonStore',
+            {
+                autoLoad: true,
+                autoDestroy: true,
+                proxy: {
+                    type: 'ajax',
+                    url: ('api/MessageTemplate/GetRecipientsTriggerMessage/' + id),
+                    reader: {
+                        type: 'json',
+                        root: 'data',
+                        idProperty: 'Id',
+                        totalProperty: 'total'
+                    },
+                    extraParams: {
+                        DateSent: date
+                    }
+                },
+                remoteSort: false,
+                sorters: [
+                    {
+                        property: 'RowNumber',
+                        direction: 'ASC'
+                    }
+                ],
+                pageSize: 50,
+                fields: [
+                    { name: 'RowNumber', type: 'int' },
+                    { name: 'CrmCustomerId', type: 'int' },
+                    { name: 'DateSend', type: 'date' },
+                    { name: 'StatusId', type: 'int' },
+                    { name: 'CustomerName', type: 'string' },
+                    { name: 'MobilePhone', type: 'string' }
+                ]
+            });
+        return storeRecipients;
+    };
+
+    var createColumnsRecipients = function (finish, start) {
+
+        var columns = [
+            {
+                dataIndex: 'RowNumber',
+                text: '№',
+                filterable: false,
+                width: 55,
+                menuDisabled: true
+            },
+            //{
+            //    text: 'Дата',
+            //    dataIndex: 'DateSend',
+            //    width: 80,
+            //    xtype: 'datecolumn',
+            //    format: 'd.m.Y',//'Y-m-d', // H:i:s
+            //    editor: {
+            //        allowBlank: false
+            //    }
+            //},
+            //{
+            //    text: 'Статус',
+            //    dataIndex: 'StatusId',
+            //    width: 80,
+            //    editor: {
+            //        allowBlank: false
+            //    }
+            //},
+            {
+                text: 'П.І.Б',
+                flex: 1,
+                dataIndex: 'CustomerName',
+                width: 180,
+                editor: {
+                    allowBlank: false
+                }
+            }, {
+                text: 'Телефон',
+                dataIndex: 'MobilePhone',
+                width: 110,
+                editor: {
+                    allowBlank: false
+                }
+            },
+        ];
+
+        return columns.slice(start || 0, finish);
+    };
+
+    var bbarRecipients = Ext.create('Ext.PagingToolbar', {
+        displayInfo: false,
+        dock: 'bottom',
+        displayMsg: '',//'Рядок: {0} - {1} of {2}',
+        emptyMsg: "Нема записів...",
+        store: getStoreRecipients(0)
+    })
+
+    var gridRecipients = Ext.create('Ext.grid.Panel', {
+        stateful: true,
+        stateId: 'stateful-filter-grid',
+        //border: false,
+        store: getStoreRecipients(0),
+        columns: createColumnsRecipients(5),
+        padding: '2 2 2 2',
+        loadMask: true,
+        bbar: [
+            bbarRecipients,
+        {
+            xtype: 'button',
+            text: 'Вивантажити всіх УПЛ',
+            handler: function () {
+                var grid = gridTemplates;
+                var st = grid.getSelection();
+                if (st.length > 0) {
+                    var templateId = st[0].data.TemplateId;
+                    var url = 'api/MessageTemplate/GetCustomersSendTemplatesById/' + templateId;
+                    window.open(url);
+                }
+            }
+        },
+        //{
+        //    xtype: 'button',
+        //    text: 'Вивантажити',
+        //    handler: function () {
+
+        //    }
+        //}
+        ],
+        emptyText: 'Записів більше нема',
+        listeners: {
+            'rowdblclick': function (grid, record, e) {
+
+            },
+            'selectionchange': function (ctrl, selected, eOpts) {
+
+            }
+        },
+        viewConfig: {
+            stripeRows: false,
+            getRowClass: function (record) {
+                /* В залежності від  */
+            }
+        }
+    });
+
+    var getStoreTemplateDataSent = function (id) {
+
+        if (id == null) return null;
+
+        var store = Ext.create('Ext.data.JsonStore',
+            {
+                autoLoad: true,
+                autoDestroy: true,
+                proxy: {
+                    type: 'ajax',
+                    url: ('api/MessageTemplate/GetSentTriggerMessageByDate/' + id),
+                    reader: {
+                        type: 'json',
+                        root: 'data',
+                        idProperty: 'DateSend',
+                        totalProperty: 'total'
+                    }
+                },
+                remoteSort: false,
+                sorters: [
+                    {
+                        property: 'DateSend',
+                        direction: 'ASC'
+                    }
+                ],
+                //pageSize: 50,
+                fields: [
+                    {
+                        name: 'DateSend', type: 'string',
+                        convert: function (v, record) {
+                            return v.substring(0,10)
+                        }
+                        //dateFormat: 'Y-m-d',
+                        //convert: function (v, record) {
+                        //    if (v != null) {
+                        //        if (v.toString().indexOf('/') > -1) {
+                        //            return new Date(parseInt(v.substr(6)));
+                        //        } else {
+                        //            return v;
+                        //        }
+
+                        //    } else {
+                        //        return '';
+                        //    }
+                        //}
+                    }, //, dateFormat: 'Y-m-d'
+                    { name: 'CustomersQty', type: 'int' }
+                ]
+            });
+        store.load();
+        return store;
+    };
+
+    var dataview = Ext.create({
+        xtype: 'dataview',
+        padding: '2 2 2 2',
+        fullscreen: true,
+        singleSelect: true,
+        store: getStoreTemplateDataSent(null),
+        tpl: [
+            '<tpl for=".">',
+                '<div class="dataview-cell-datetemplate">{DateSend} ({CustomersQty})</div>',
+            '</tpl>'
+        ],
+        itemSelector: 'div',
+        overItemCls: 'x-item-over',
+        autoScroll: true,
+        trackOver: true,
+        listeners: {
+            selectionchange: function (record, item, index, e) {
+
+                var grid = gridTemplates;
+                var st = grid.getSelection();
+                if (st.length > 0) {
+                    var templateId = st[0].data.TemplateId;
+                    if (item.length > 0) {
+                        var store = getStoreRecipients(templateId, item[0].data.DateSend);
+                        gridRecipients.setStore(store);
+                        bbarRecipients.setStore(store);
+                        store.load();
+                    }
+                }
+
+            }
+        }
+    });
+
 
     var tab = center.add({
 
         title: 'Статистика надісланих повідомлень',
         extend: 'Ext.panel.Panel',
         closable: true,
+        border: false,
         layout: 'fit',
         items: {
             layout: {
@@ -562,8 +862,9 @@ var showDataSentTriggerMessages = function () {
             items: [
                 {
                     xtype: 'panel',
+                    border: false,
                     items: [
-                        ////
+                        gridTemplates
                     ],
                     layout: 'fit',
                     width: 450
@@ -574,195 +875,117 @@ var showDataSentTriggerMessages = function () {
                     flex: 1,
                     layout: {
                         type: 'vbox',
-                        align: 'stretch'
+                        align: 'stretch',
+                        //pack: 'start'
                     },
                     items: [
                         {
                             xtype: 'panel',
-                            border: false,
-                            layout: {
-                                type: 'vbox',
-                                align: 'stretch'
-                            },
-                            items: [
-                                editorSms,
-                                editorViber,
-                            ]
+                            border: true,
+                            height: 200,
+                            padding: '2 2 2 2',
+                            autoScroll: true,
+                            items: [dataview]
                         },
                         {
                             xtype: 'panel',
-                            height: 100,
-                            margin: 5,
-                            border: false,
-                            layout: {
-                                type: 'vbox',
-                                align: 'stretch'
-                            },
-                            renderTo: Ext.getBody(),
-                            //bodyPadding: 1,
-                            defaultType: 'textfield',
-                            defaults: {
-                                labelWidth: 120
-                            },
-                            items: [
-                                txtImageLink,
-                                txtButtonLink
-                            ]
-                        }, {
-                            xtype: 'panel',
+                            layout: 'fit',
                             border: false,
                             flex: 1,
-                            buttons: [
-                                {
-                                    text: 'Тест',
-                                    handler: function () {
-                                        var select = grid.getSelection();
-
-                                        if (select.length > 0) {
-                                            var storeTestPhones = Ext.create('Ext.data.JsonStore',
-                                                {
-                                                    autoLoad: true,
-                                                    autoDestroy: true,
-                                                    proxy: {
-                                                        type: 'ajax',
-                                                        url: ('api/testphones'),
-                                                        reader: {
-                                                            type: 'json',
-                                                            root: 'data',
-                                                            idProperty: 'Id',
-                                                            totalProperty: 'total'
-                                                        }
-                                                    },
-                                                    remoteSort: false,
-                                                    sorters: [
-                                                        {
-                                                            property: 'Id',
-                                                            direction: 'ASC'
-                                                        }
-                                                    ],
-                                                    pageSize: 50,
-                                                    fields: [
-                                                        { name: 'Id', type: 'int' },
-                                                        { name: 'MobilePhone', type: 'string' },
-                                                        { name: 'MessageId', type: 'string' },
-                                                        { name: 'Who', type: 'string' },
-                                                        { name: 'Used', type: 'boolean' }
-                                                    ]
-                                                });
-
-                                            var templateName = select[0].get('MName');
-                                            var winTest = Ext.create('Ext.Window', {
-                                                title: 'Шаблон: ' + templateName,
-                                                width: 500,
-                                                height: 200,
-                                                modal: true,
-                                                closable: true,
-                                                layout: 'fit',
-                                                items: [{
-                                                    xtype: 'gridpanel',
-                                                    store: storeTestPhones,
-                                                    columns: [
-                                                        {
-                                                            dataIndex: 'Id',
-                                                            text: '№',
-                                                            filterable: false,
-                                                            width: 10,
-                                                            menuDisabled: true
-                                                        }, {
-                                                            dataIndex: 'MobilePhone',
-                                                            text: 'Мобільний телефон',
-                                                            filterable: false,
-                                                            width: 200,
-                                                            menuDisabled: true
-                                                        }, {
-                                                            dataIndex: 'Who',
-                                                            text: 'Хто Це',
-                                                            filterable: false,
-                                                            width: 200,
-                                                            menuDisabled: true
-                                                        }, {
-                                                            xtype: 'checkcolumn',
-                                                            dataIndex: 'Used',
-                                                            text: 'Відсилати',
-                                                            filterable: false,
-                                                            width: 70,
-                                                            menuDisabled: true,
-                                                            listeners: {
-                                                                checkchange: function (column, rowIdx, checked, eOpts) {
-                                                                    //console.log(column);
-                                                                    //console.log(rowIdx);
-                                                                    //console.log(checked);
-
-                                                                    var store = storeTestPhones;
-                                                                    var id = store.getAt(rowIdx).data.Id;
-
-                                                                    var testOps = {
-                                                                        Id: id,
-                                                                        Checked: checked
-                                                                    }
-                                                                    $.ajax({
-                                                                        url: 'api/TestPhones/SetToTest/1',
-                                                                        type: 'post',
-                                                                        dataType: "json",
-                                                                        contentType: "application/json; charset=utf-8",
-                                                                        data: JSON.stringify(testOps),
-                                                                        success: function (confirm) {
-                                                                            if (confirm == 'true') {
-                                                                                var store = storeTestPhones;
-                                                                                store.getAt(rowIdx).commit();
-                                                                            }
-
-                                                                        }
-                                                                    });
-                                                                }
-                                                            }
-                                                        }],
-                                                    bbar: [{
-                                                        xtype: 'button',
-                                                        text: 'Відправити',
-                                                        handler: function () {
-                                                            var select = grid.getSelection();
-                                                            var templateId = select[0].get('Id');
-                                                            var ms = {
-                                                                TemplateId: templateId
-                                                            };
-                                                            $.ajax({
-                                                                url: 'api/testphones/send/0',
-                                                                type: 'post',
-                                                                dataType: "json",
-                                                                contentType: "application/json; charset=utf-8",
-                                                                data: JSON.stringify(ms),
-                                                                success: function (id) {
-                                                                    if (id == "") {
-                                                                        //rc.set("Id", id);
-                                                                        //rc.commit();
-                                                                        winTest.close();
-                                                                    }
-                                                                }
-                                                            });
-                                                        }
-                                                    }]
-
-                                                }],
-                                                listeners: {
-                                                    'close': function (win) {
-                                                        //console.info('close');
-                                                        //requestState = false;
-                                                    },
-                                                    'hide': function (win) {
-                                                        //console.info('just hidden');
-                                                    }
-                                                }
-                                            });
-                                            winTest.show();
-                                        }
-                                    }
-                                },
+                            items: [
+                                gridRecipients
                             ]
-                        }
+                        }                        
                     ]
                 }
             ]
         }
     });
+
+    center.setActiveTab(tab);
 }
+/*
+    
+*/
+//var getWinUploadFile = function () {
+
+//    var tpl = new Ext.XTemplate(
+//        'File processed on the server.<br />',
+//        'Name: {fileName}<br />',
+//        'Size: {fileSize:fileSize}'
+//    );
+//    var panel = Ext.create('Ext.form.Panel', {
+//        renderTo: 'fi-form',
+//        width: 500,
+//        frame: true,
+//        title: 'File Upload Form',
+//        bodyPadding: '10 10 0',
+
+//        defaults: {
+//            anchor: '100%',
+//            allowBlank: false,
+//            msgTarget: 'side',
+//            labelWidth: 50
+//        },
+
+//        items: [{
+//            xtype: 'textfield',
+//            fieldLabel: 'Name'
+//        }, {
+//            xtype: 'filefield',
+//            id: 'form-file',
+//            emptyText: 'Select an image',
+//            fieldLabel: 'Photo',
+//            name: 'photo-path',
+//            buttonText: '',
+//            buttonConfig: {
+//                iconCls: 'upload-icon'
+//            }
+//        }],
+
+//        buttons: [{
+//            text: 'Save',
+//            handler: function () {
+//                var form = this.up('form').getForm();
+//                if (form.isValid()) {
+//                    form.submit({
+//                        url: 'file-upload.php',
+//                        waitMsg: 'Uploading your photo...',
+//                        success: function (fp, o) {
+//                            msg('Success', tpl.apply(o.result));
+//                        }
+//                    });
+//                }
+//            }
+//        }, {
+//            text: 'Reset',
+//            handler: function () {
+//                this.up('form').getForm().reset();
+//            }
+//        }]
+//    });
+
+//    var win = Ext.create('Ext.Window', {
+//        title: 'Управління кампаниями',
+//        width: '90%',
+//        height: '80%',
+//        modal: true,
+//        closable: true,
+//        //constrain: true,
+//        layout: 'fit',
+//        items: [
+//            panelConteiner
+//        ],
+//        listeners: {
+//            'close': function (win) {
+//                //console.info('close');
+//                requestState = false;
+//            },
+//            'hide': function (win) {
+//                //console.info('just hidden');
+//            }
+//        }
+//    });
+
+//    return win;
+//}

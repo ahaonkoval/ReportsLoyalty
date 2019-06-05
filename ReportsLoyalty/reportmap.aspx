@@ -188,6 +188,7 @@
                     }
                 }, {
                     region: 'west',
+                    border: false,
                     collapsible: true,
                     collapsed: false,
                     title: 'НАВІГАЦІЯ ПО ЗВІТАМ',
@@ -195,6 +196,7 @@
                     items: {
                         extend: 'Ext.panel.Panel',
                         layout: 'accordion',
+                        border: false,
                         items: [{
                             xtype: 'panel',
                             title: 'Маркетингові кампанії',
@@ -293,19 +295,21 @@
                                     name: 'name',
                                     html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Статистика тригерних повідомлень</a>', 
                                     margin: '2 2 2 10'
-                                }, {
-                                    xtype: 'panel',
-                                    border: false,
-                                    name: 'name',
-                                    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Вивантаження УПЛ отримувачів повідомлень</a>',
-                                    margin: '2 2 2 10'
-                                }, {
-                                    xtype: 'panel',
-                                    border: false,
-                                    name: 'name',
-                                    html: '<a href="#" onclick="" class="menu_is_run">Перегляд отримання повідомлень</a>',
-                                    margin: '2 2 2 10'
-                                }]
+                                },
+                                //{
+                                //    xtype: 'panel',
+                                //    border: false,
+                                //    name: 'name',
+                                //    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Вивантаження УПЛ отримувачів повідомлень</a>',
+                                //    margin: '2 2 2 10'
+                                //}, {
+                                //    xtype: 'panel',
+                                //    border: false,
+                                //    name: 'name',
+                                //    html: '<a href="#" onclick="" class="menu_is_run">Перегляд отримання повідомлень</a>',
+                                //    margin: '2 2 2 10'
+                                //}
+                                ]
                         }]
                     }
                 },
@@ -391,7 +395,7 @@
                             items: [
                                 {
                                     xtype: 'panel',
-                                    //border:false,
+                                    border:false,
                                     layout: 'fit',
                                     width: '100%',
                                     items: [
