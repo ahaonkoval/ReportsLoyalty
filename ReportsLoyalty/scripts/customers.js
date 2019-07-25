@@ -358,7 +358,7 @@ var getWinBetween = function (type_id, campaign_id) {
                     var p_end = txtEnd.getValue();
 
                     if (type_id == 1) {
-                        var url = 'api/Customer/GetFile/' + campaign_id + '?p_start=' + p_start + '&p_end=' + p_end + '7type_id=1';
+                        var url = 'api/Customer/GetFile/' + campaign_id + '?p_start=' + p_start + '&p_end=' + p_end + '&type_id=1';
                         window.open(url);
                         winBetween.close();
                     }

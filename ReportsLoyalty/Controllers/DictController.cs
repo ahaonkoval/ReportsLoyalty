@@ -126,12 +126,13 @@ namespace ReportsLoyalty.Controllers
                 return o_data;
             }
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         ///[HttpGet]
-        public object GetGroupsForDeparts()
+        public object GetGroupsForDeparts(int i)
         {
             var queryparams = Request.GetQueryNameValuePairs();
             string ids = queryparams.Where(w => w.Key == "Ids").FirstOrDefault().Value.ToString();
@@ -259,30 +260,7 @@ namespace ReportsLoyalty.Controllers
 
             return g;
         }
-        /// <summary>
-        /// Отримання переліку груп рівня 2 (name2)
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        //public IEnumerable<FGroup> GetGroupsByOtdId(long id)
-        //{
-        //    List<FGroup> g = new List<FGroup>();
-
-        //    using (GetData gt = new GetData())
-        //    {
-        //        var fgroups = gt.Dict.GetGroupsByOtdId(id);
-        //        foreach (v_fgroups f in fgroups)
-        //        {
-        //            g.Add(new FGroup
-        //            {
-        //                fgroup_id = f.fgroup_id,
-        //                name = f.name
-        //            });
-        //        }
-        //    }
-
-        //    return g;
-        //}
+        
         /// <summary>
         /// Отримання переліку департаментів в відділі (name 1)
         /// </summary>
@@ -307,26 +285,6 @@ namespace ReportsLoyalty.Controllers
 
             return g;
         }
-
-        //public IEnumerable<FGroup> GetGroupsByParentId(int id)
-        //{
-        //    List<FGroup> g = new List<FGroup>();
-
-        //    using (GetData gt = new GetData())
-        //    {
-        //        var fgroups = gt.Dict.GetGroupsByParentId(id);
-        //        foreach (VFgroups f in fgroups)
-        //        {
-        //            g.Add(new FGroup
-        //            {
-        //                fgroup_id = f.FgroupId,
-        //                name = f.Name
-        //            });
-        //        }
-        //    }
-
-        //    return g;
-        //}
 
         public IEnumerable<CampaignType> GetCampaignTypes(int id)
         {

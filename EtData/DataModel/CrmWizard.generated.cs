@@ -22,7 +22,7 @@ namespace DataModels
 {
 	/// <summary>
 	/// Database       : crm_wizard
-	/// Data Source    : 10.7.131.218
+	/// Data Source    : main-data-crm
 	/// Server Version : 13.00.5081
 	/// </summary>
 	public partial class CrmWizardDB : LinqToDB.Data.DataConnection
@@ -51,6 +51,8 @@ namespace DataModels
 		public ITable<CustomerClusters>                       CustomerClusters                       { get { return this.GetTable<CustomerClusters>(); } }
 		public ITable<CustomersAgeMap>                        CustomersAgeMap                        { get { return this.GetTable<CustomersAgeMap>(); } }
 		public ITable<CustomersBonusState>                    CustomersBonusState                    { get { return this.GetTable<CustomersBonusState>(); } }
+		public ITable<CustomersBonusState20171231>            CustomersBonusState20171231            { get { return this.GetTable<CustomersBonusState20171231>(); } }
+		public ITable<CustomersBonusState20181231>            CustomersBonusState20181231            { get { return this.GetTable<CustomersBonusState20181231>(); } }
 		public ITable<CustomersCampaignParticipant>           CustomersCampaignParticipant           { get { return this.GetTable<CustomersCampaignParticipant>(); } }
 		public ITable<CustomersDelivered>                     CustomersDelivered                     { get { return this.GetTable<CustomersDelivered>(); } }
 		public ITable<CustomersIndicators>                    CustomersIndicators                    { get { return this.GetTable<CustomersIndicators>(); } }
@@ -111,6 +113,7 @@ namespace DataModels
 		public ITable<VCampaignParticipantMarketDelivered>    VCampaignParticipantMarketDelivered    { get { return this.GetTable<VCampaignParticipantMarketDelivered>(); } }
 		public ITable<VCardCountByGroup>                      VCardCountByGroup                      { get { return this.GetTable<VCardCountByGroup>(); } }
 		public ITable<VCardCustomersTrue>                     VCardCustomersTrue                     { get { return this.GetTable<VCardCustomersTrue>(); } }
+		public ITable<VCards>                                 VCards                                 { get { return this.GetTable<VCards>(); } }
 		public ITable<VCardusing>                             VCardusing                             { get { return this.GetTable<VCardusing>(); } }
 		public ITable<VCustomersCard>                         VCustomersCard                         { get { return this.GetTable<VCustomersCard>(); } }
 		public ITable<VCustomersCardAll>                      VCustomersCardAll                      { get { return this.GetTable<VCustomersCardAll>(); } }
@@ -1411,6 +1414,32 @@ namespace DataModels
 		[Column("cashflow"),               Nullable] public decimal? Cashflow            { get; set; } // decimal(18, 2)
 	}
 
+	[Table(Schema="calc", Name="customers_bonus_state_20171231")]
+	public partial class CustomersBonusState20171231
+	{
+		[Column("card_id"),                Nullable] public long?    CardId              { get; set; } // bigint
+		[Column("crm_customer_id"),        Nullable] public long?    CrmCustomerId       { get; set; } // bigint
+		[Column("barcode"),                Nullable] public string   Barcode             { get; set; } // nvarchar(50)
+		[Column("bonus_obtained"),         Nullable] public decimal? BonusObtained       { get; set; } // decimal(18, 2)
+		[Column("bonus_used"),             Nullable] public decimal? BonusUsed           { get; set; } // decimal(18, 2)
+		[Column("bonus_after"),            Nullable] public decimal? BonusAfter          { get; set; } // decimal(18, 2)
+		[Column("bonus_obtained_to_date"), Nullable] public decimal? BonusObtainedToDate { get; set; } // decimal(18, 2)
+		[Column("cashflow"),               Nullable] public decimal? Cashflow            { get; set; } // decimal(18, 2)
+	}
+
+	[Table(Schema="calc", Name="customers_bonus_state_20181231")]
+	public partial class CustomersBonusState20181231
+	{
+		[Column("card_id"),                Nullable] public long?    CardId              { get; set; } // bigint
+		[Column("crm_customer_id"),        Nullable] public long?    CrmCustomerId       { get; set; } // bigint
+		[Column("barcode"),                Nullable] public string   Barcode             { get; set; } // nvarchar(50)
+		[Column("bonus_obtained"),         Nullable] public decimal? BonusObtained       { get; set; } // decimal(18, 2)
+		[Column("bonus_used"),             Nullable] public decimal? BonusUsed           { get; set; } // decimal(18, 2)
+		[Column("bonus_after"),            Nullable] public decimal? BonusAfter          { get; set; } // decimal(18, 2)
+		[Column("bonus_obtained_to_date"), Nullable] public decimal? BonusObtainedToDate { get; set; } // decimal(18, 2)
+		[Column("cashflow"),               Nullable] public decimal? Cashflow            { get; set; } // decimal(18, 2)
+	}
+
 	[Table(Schema="calc", Name="customers_campaign_participant")]
 	public partial class CustomersCampaignParticipant
 	{
@@ -2391,6 +2420,38 @@ namespace DataModels
 		[Column("market_name"),              Nullable] public string    MarketName         { get; set; } // nvarchar(4000)
 	}
 
+	[Table(Schema="calc", Name="v_cards", IsView=true)]
+	public partial class VCards
+	{
+		[Column("card_id"),             NotNull    ] public long      CardId            { get; set; } // bigint
+		[Column("barcode"),             NotNull    ] public string    Barcode           { get; set; } // varchar(13)
+		[Column("name"),                   Nullable] public string    Name              { get; set; } // varchar(150)
+		[Column("author_id"),              Nullable] public long?     AuthorId          { get; set; } // bigint
+		[Column("created"),                Nullable] public DateTime? Created           { get; set; } // datetime
+		[Column("expired"),                Nullable] public DateTime? Expired           { get; set; } // datetime
+		[Column("used"),                   Nullable] public long?     Used              { get; set; } // bigint
+		[Column("deleted"),                Nullable] public long?     Deleted           { get; set; } // bigint
+		[Column("amount_nds"),             Nullable] public decimal?  AmountNds         { get; set; } // decimal(12, 2)
+		[Column("buy_amount_nds"),         Nullable] public decimal?  BuyAmountNds      { get; set; } // decimal(12, 2)
+		[Column("discount_amount_nds"),    Nullable] public decimal?  DiscountAmountNds { get; set; } // decimal(12, 2)
+		[Column("card_percent"),           Nullable] public decimal?  CardPercent       { get; set; } // decimal(6, 4)
+		[Column("card_type"),           NotNull    ] public long      CardType          { get; set; } // bigint
+		[Column("number"),              NotNull    ] public long      Number            { get; set; } // bigint
+		[Column("issued_market_id"),       Nullable] public long?     IssuedMarketId    { get; set; } // bigint
+		[Column("notes"),                  Nullable] public string    Notes             { get; set; } // varchar(255)
+		[Column("start"),                  Nullable] public DateTime? Start             { get; set; } // datetime
+		[Column("dep_code"),            NotNull    ] public long      DepCode           { get; set; } // bigint
+		[Column("emission_id"),         NotNull    ] public long      EmissionId        { get; set; } // bigint
+		[Column("parent_id"),           NotNull    ] public long      ParentId          { get; set; } // bigint
+		[Column("ds_type_id"),          NotNull    ] public long      DsTypeId          { get; set; } // bigint
+		[Column("owner_agent_id"),         Nullable] public long?     OwnerAgentId      { get; set; } // bigint
+		[Column("id1c"),                   Nullable] public Guid?     Id1c              { get; set; } // uniqueidentifier
+		[Column("percent_changed"),        Nullable] public DateTime? PercentChanged    { get; set; } // smalldatetime
+		[Column("crm_customer_id"),        Nullable] public long?     CrmCustomerId     { get; set; } // bigint
+		[Column("card_status"),            Nullable] public int?      CardStatus        { get; set; } // int
+		[Column("issued_type"),            Nullable] public int?      IssuedType        { get; set; } // int
+	}
+
 	[Table(Schema="calc", Name="v_cardusing", IsView=true)]
 	public partial class VCardusing
 	{
@@ -2938,9 +2999,9 @@ namespace DataModels
 
 		#region PDailyAutoProductsSellStep2
 
-		public static IEnumerable<EmployeesCalculated> PDailyAutoProductsSellStep2(this DataConnection dataConnection, DateTime? @search_date)
+		public static int PDailyAutoProductsSellStep2(this DataConnection dataConnection, DateTime? @search_date)
 		{
-			return dataConnection.QueryProc<EmployeesCalculated>("[calc].[p_daily_auto_products_sell_step_2]",
+			return dataConnection.ExecuteProc("[calc].[p_daily_auto_products_sell_step_2]",
 				new DataParameter("@search_date", @search_date, DataType.Date));
 		}
 
@@ -2951,6 +3012,16 @@ namespace DataModels
 		public static int PDailyBuyersKitchensGreid20000(this DataConnection dataConnection, DateTime? @search_date)
 		{
 			return dataConnection.ExecuteProc("[calc].[p_daily_buyers_kitchens_greid_20000]",
+				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDailyBuyersKitchensKramatorskStart
+
+		public static int PDailyBuyersKitchensKramatorskStart(this DataConnection dataConnection, DateTime? @search_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_buyers_kitchens_kramatorsk_start]",
 				new DataParameter("@search_date", @search_date, DataType.Date));
 		}
 
@@ -3069,6 +3140,56 @@ namespace DataModels
 		public static int PDailyThortFootballListCreate(this DataConnection dataConnection, DateTime? @search_date)
 		{
 			return dataConnection.ExecuteProc("[calc].[p_daily_thort_football_list_create]",
+				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDailyTriggerElectroluxProposal
+
+		public static int PDailyTriggerElectroluxProposal(this DataConnection dataConnection, DateTime? @search_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_trigger_electrolux_proposal]",
+				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDailyTriggerFurnitureSelenaLottery
+
+		public static int PDailyTriggerFurnitureSelenaLottery(this DataConnection dataConnection, DateTime? @search_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_trigger_furniture_selena_lottery]",
+				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDailyTriggerFurnitureTaxoLottery
+
+		public static int PDailyTriggerFurnitureTaxoLottery(this DataConnection dataConnection, DateTime? @search_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_trigger_furniture_taxo_lottery]",
+				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDailyTriggerMixsersRubinettaLottery
+
+		public static int PDailyTriggerMixsersRubinettaLottery(this DataConnection dataConnection, DateTime? @search_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_trigger_mixsers_rubinetta_lottery]",
+				new DataParameter("@search_date", @search_date, DataType.Date));
+		}
+
+		#endregion
+
+		#region PDailyTriggerSmoothingIronBraun
+
+		public static int PDailyTriggerSmoothingIronBraun(this DataConnection dataConnection, DateTime? @search_date)
+		{
+			return dataConnection.ExecuteProc("[calc].[p_daily_trigger_smoothing_iron_braun]",
 				new DataParameter("@search_date", @search_date, DataType.Date));
 		}
 

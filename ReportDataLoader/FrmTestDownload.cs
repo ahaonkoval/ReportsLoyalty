@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLoader.Helpers;
 using System.Data.SqlClient;
+using LoyaltyDB;
 
 namespace WinLoader
 {
@@ -90,7 +91,11 @@ namespace WinLoader
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            DataBaseHelpers.FillParticipantDocs(ref tb, Connection);
+            //DataBaseHelpers.FillParticipantDocs(ref tb, Connection);
+            using (GetData gt = new GetData())
+            {
+                gt.Campaigns.GetCountsCustomersForGroups(891, DateTime.Parse("2019-05-31"), false);
+            }
         }
     }
 }

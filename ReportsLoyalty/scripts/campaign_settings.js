@@ -800,7 +800,7 @@ function WinCampaignDetails() {
         this.panelBtnCustomersAdd.items.clear();
         this.panelBtnCustomersAdd.items.add(getBtnCustomersAdd(record.get('id'), this.win))
         /**
-         * Завантаження артикулів капнанії
+         * Завантаження артикулів кампанії
          */
         this.panelArticuls.items.clear();
         var gridArticuls = getGridArticuls(record.get('id'));

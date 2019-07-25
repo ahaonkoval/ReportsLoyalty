@@ -1,4 +1,5 @@
 var getGridDownloadStatus = function () {
+
     var gridDownloadStatus = Ext.create('Ext.grid.Panel', {
         stateful: true,
         stateId: 'stateful-filter-grid',
@@ -122,7 +123,7 @@ var getWinDownloadStatus = function () {
             //     xtype: 'button',
             //     text: 'Завантажити',
             //     //scope: cmp_id,
-            //     listeners: {
+            //     listeners:  
             //         'click': function (ctrl) {
             //             var selection = grid.selModel.getSelection();
             //             if (selection.length > 0) {

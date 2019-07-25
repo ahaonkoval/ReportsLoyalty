@@ -64,6 +64,17 @@ namespace ReportsLoyalty.pages.personal_offers_details
 
                 using (GetData gdt = new GetData())
                 {
+                    List<string> m = gdt.Campaigns.GetCountsCustomersForGroups(
+                        Convert.ToInt32(campaign_id),
+                        DateTime.Parse(date_st),
+                        Convert.ToBoolean(ctrl));
+
+                    ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("CustomersCountArticul", m[0]));
+                    ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("CustomersCountGroups3lavel", m[1]));
+                    ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("CustomersCountGroups", m[2]));
+                    ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("СustomersCountDepart", m[3]));
+                    ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("CustomersCountMarket", m[4]));
+
                     ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("CampaignName",
                         gdt.Campaigns.GetCampaignNameById(Convert.ToInt32(campaign_id))
                     ));

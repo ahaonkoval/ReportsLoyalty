@@ -238,9 +238,7 @@ var getFiller = function () {
             direction: 'ASC'
         }],
         pageSize: 10000
-    });
-
-    
+    });  
 
     var grid = Ext.create('Ext.grid.Panel', {
         stateful: true,
@@ -407,38 +405,5 @@ var getFiller = function () {
 /**
  * 
  */
-window.addEventListener('paste', function (event) {
-
-    if (Filler != null) {
-        if (Filler != undefined) {
-            if (Filler.isShow) {
-
-                event.preventDefault();
-                var data = event.clipboardData.getData('text');
-
-                var lst = data.split(/\r/);
-                if (lst != null) {
-                    if (lst.length > 0) {                        
-                        for (var item in lst) {
-                            var it = lst[item];
-
-                            var art = Filler.Store.findRecord('articul', it);
-                            if (art == null) {
-                                if (it.trim() != '') {
-                                    var ob = Ext.create('ModelArticul', {
-                                        articul: it.replace(/\r|\n/g, ''),
-                                        status: 'Новий'
-                                    });
-                                    Filler.Store.add(ob);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-});
 
 var Filler = getFiller();

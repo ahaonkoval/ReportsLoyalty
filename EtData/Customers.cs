@@ -216,7 +216,42 @@ namespace LoyaltyDB
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Barcode"></param>
+        /// <returns></returns>
+        public string GetCrmCustomerIdByBarcode(string Barcode)
+        {
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                var customer = db.VCards.Where(w => w.Barcode == Barcode).FirstOrDefault();
+                if (customer != null)
+                {
+                    return customer.CrmCustomerId.ToString();
+                } else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="MobilePhone"></param>
+        /// <returns></returns>
+        public string GetCrmCustomerIdByMobilePhone(string MobilePhone)
+        {
+            if (!MobilePhone.Contains("+"))
+            {
+                MobilePhone = string.Format("+{0}", MobilePhone);
+            }
 
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                return db.CrmCustomers.Where(w => w.MobilePhone == MobilePhone).FirstOrDefault().CrmCustomerId.ToString();
+            }
+        }
     }
 
     public class CustomerSelect

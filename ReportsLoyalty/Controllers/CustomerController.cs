@@ -65,6 +65,11 @@ namespace ReportsLoyalty.Controllers
                 return ex.Message;
             }
         }
+       
+        //public string GetCrmCustomerId()
+        //{
+
+        //}
 
         #region Get Files Customers
         //[HttpGet]

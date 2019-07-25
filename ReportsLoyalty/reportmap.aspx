@@ -25,6 +25,7 @@
     <script type="text/javascript" src="scripts/pl_indicators.js"></script>
     <script type="text/javascript" src="scripts/p50points_reports.js"></script>
     <script type="text/javascript" src="scripts/campaign_wizard.js"></script>
+    <script type="text/javascript" src="scripts/getCustomerFeatures.js"></script>
 
     <script type="text/javascript" src="scripts/PersonalInteractiv.js"></script>
     <script type="text/javascript" src="scripts/downloadDataSetting.js"></script>
@@ -98,7 +99,7 @@
                             formBind: true,
                             listeners: {
                                 click: function (ctrl) {
-                                      getWinStopList().show();
+                                    getWinStopList().show();
                                 }
                             }
                         },
@@ -110,6 +111,15 @@
                                     getWinDownloadStatus().show();
                                     //var wCampaigns = getWinCampaigns();
                                     //getWinCampaigns().show();
+                                }
+                            }
+                        }, {
+                            text: 'Отримати crm_customer_id',
+                            formBind: true,
+                            listeners: {
+                                click: function () {
+                                    //var win = getWinCrmCustomerId().show();
+                                    fWinCrmCustomerId.show();
                                 }
                             }
                         }
@@ -287,28 +297,28 @@
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
-                                    html: '<a href="#" onclick="showTriggerMessageEditorTemplates();" class="menu_is_run">Шаблони повідомлень</a>', 
+                                    html: '<a href="#" onclick="showTriggerMessageEditorTemplates();" class="menu_is_run">Шаблони повідомлень</a>',
                                     margin: '2 2 2 10'
                                 }, {
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
-                                    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Статистика тригерних повідомлень</a>', 
+                                    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Статистика тригерних повідомлень</a>',
                                     margin: '2 2 2 10'
                                 },
-                                //{
-                                //    xtype: 'panel',
-                                //    border: false,
-                                //    name: 'name',
-                                //    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Вивантаження УПЛ отримувачів повідомлень</a>',
-                                //    margin: '2 2 2 10'
-                                //}, {
-                                //    xtype: 'panel',
-                                //    border: false,
-                                //    name: 'name',
-                                //    html: '<a href="#" onclick="" class="menu_is_run">Перегляд отримання повідомлень</a>',
-                                //    margin: '2 2 2 10'
-                                //}
+                                    //{
+                                    //    xtype: 'panel',
+                                    //    border: false,
+                                    //    name: 'name',
+                                    //    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Вивантаження УПЛ отримувачів повідомлень</a>',
+                                    //    margin: '2 2 2 10'
+                                    //}, {
+                                    //    xtype: 'panel',
+                                    //    border: false,
+                                    //    name: 'name',
+                                    //    html: '<a href="#" onclick="" class="menu_is_run">Перегляд отримання повідомлень</a>',
+                                    //    margin: '2 2 2 10'
+                                    //}
                                 ]
                         }]
                     }
@@ -395,7 +405,7 @@
                             items: [
                                 {
                                     xtype: 'panel',
-                                    border:false,
+                                    border: false,
                                     layout: 'fit',
                                     width: '100%',
                                     items: [
@@ -415,7 +425,74 @@
                 }]
 
             });
+
         });
+
+        ///
+        window.addEventListener('paste', function (event) {
+
+            if (Filler != null) {
+                if (Filler != undefined) {
+                    if (Filler.isShow) {
+
+                        event.preventDefault();
+                        var data = event.clipboardData.getData('text');
+
+                        var lst = data.split(/\r/);
+                        if (lst != null) {
+                            if (lst.length > 0) {
+                                for (var item in lst) {
+                                    var it = lst[item];
+
+                                    var art = Filler.Store.findRecord('articul', it);
+                                    if (art == null) {
+                                        if (it.trim() != '') {
+                                            var ob = Ext.create('ModelArticul', {
+                                                articul: it.replace(/\r|\n/g, ''),
+                                                status: 'Новий'
+                                            });
+                                            Filler.Store.add(ob);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (fWinCrmCustomerId != null) {
+                if (fWinCrmCustomerId != undefined) {
+                    if (fWinCrmCustomerId.isShow) {
+                        event.preventDefault();
+                        var data = event.clipboardData.getData('text');
+
+                        var lst = data.split(/\r/);
+                        if (lst != null) {
+                            if (lst.length > 0) {
+                                for (var item in lst) {
+                                    var it = lst[item];
+
+                                    var art = fWinCrmCustomerId.Store.findRecord('findvalue', it);
+                                    if (art == null) {
+                                        if (it.trim() != '') {
+                                            var ob = Ext.create('ModelFindCrmCustomers', {
+                                                findvalue: it.replace(/\r|\n/g, ''),
+                                                crm_customer_id: ''
+                                            });
+                                            fWinCrmCustomerId.Store.add(ob);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        });
+
+
     </script>
     <%--    <form id="form1" runat="server">
     <div>

@@ -1270,5 +1270,28 @@ namespace LoyaltyDB
             }
         }
         #endregion
+
+        #region REPORTS
+        public List<string> GetCountsCustomersForGroups(int CampaignId, DateTime dt, Boolean ctrl)
+        {
+            List<string> returned = new List<string>();
+
+            using (var db = new DataModels.CrmWizardDB())
+            {
+                var dm = db.DailyMap.Where(w => w.CampaignId == CampaignId && w.CalculationDate == dt).FirstOrDefault();
+
+                var m = db.DailyReportBasicIndicators.Where(
+                    w => w.DailyMapId == dm.Id && w.AllocationTypeId == 10 && w.ControlGroup == ctrl).FirstOrDefault();
+
+                returned.Add(m.Value1);
+                returned.Add(m.Value2);
+                returned.Add(m.Value3);
+                returned.Add(m.Value4);
+                returned.Add(m.Value5);
+            }
+
+            return returned;
+        }
+        #endregion
     }
 }
