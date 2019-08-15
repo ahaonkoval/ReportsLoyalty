@@ -1,11 +1,7 @@
 ﻿using LoyaltyDB;
 using Microsoft.Reporting.WebForms;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages
@@ -52,7 +48,7 @@ namespace ReportsLoyalty.pages
                 }
                 //this.sds_report.SelectParameters.Add("market_id", market_id);
 
-    
+
 
 
                 //this.sds_trade_list.SelectCommand = "[rep].[p_get_trade_with_extra_points]";
@@ -87,7 +83,7 @@ namespace ReportsLoyalty.pages
                 ReportViewerExtraPoints.LocalReport.SetParameters(new ReportParameter("RP_EndDate", ed_date));
 
                 //this.ReportViewerExtraPoints.ReportRefresh += ReportViewerExtraPoints_ReportRefresh;
-                
+
             }
             catch (Exception error)
             {
@@ -99,7 +95,7 @@ namespace ReportsLoyalty.pages
         {
             /* Загружаемо дані в субрепорти*/
             try
-            {                
+            {
                 //e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_diff_day_with_extra_points", this.sds_day_diff));
                 //e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_diff_distance_with_extra_points", this.sds_distance));
                 //e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_get_trade_with_extra_points", this.sds_trade_list));

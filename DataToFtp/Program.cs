@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using DataToFtp;
-using WinSCP;
+﻿using WinSCP;
 
 namespace DataToFtp
 {
@@ -14,7 +6,7 @@ namespace DataToFtp
     {
         static void Main(string[] args)
         {
-            
+
             SessionOptions sessionOptions = new SessionOptions
             {
                 Protocol = Protocol.Ftp,
@@ -48,7 +40,7 @@ namespace DataToFtp
                 //    Console.ReadLine();
                 //}
             }
-            
+
             //WinSCP.
             //ClientFtp client = new ClientFtp("ftp://10.27.1.12/", "Epik", "Epicentrk2019");
             //string[] list = client.ListDirectory();

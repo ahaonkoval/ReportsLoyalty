@@ -1,13 +1,10 @@
-﻿using Microsoft.Reporting.WebForms;
+﻿using LoyaltyDB;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using LoyaltyDB;
 using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages.personal_offers
 {
@@ -65,7 +62,7 @@ namespace ReportsLoyalty.pages.personal_offers
                 using (GetData gdt = new GetData())
                 {
                     List<string> m = gdt.Campaigns.GetCountsCustomersForGroups(
-                        Convert.ToInt32(campaign_id), 
+                        Convert.ToInt32(campaign_id),
                         DateTime.Parse(date_st),
                         Convert.ToBoolean(ctrl));
 
@@ -77,9 +74,9 @@ namespace ReportsLoyalty.pages.personal_offers
 
 
                     ReportViewerPersonalOffers.LocalReport.SetParameters(new ReportParameter("CampaignName",
-                        
-                        string.Format(" {0}, Дата початку: {1}, Дата кінця: {2}", 
-                            gdt.Campaigns.GetCampaignNameById(Convert.ToInt32(campaign_id)), 
+
+                        string.Format(" {0}, Дата початку: {1}, Дата кінця: {2}",
+                            gdt.Campaigns.GetCampaignNameById(Convert.ToInt32(campaign_id)),
                             gdt.Campaigns.GetStartDateById(Convert.ToInt32(campaign_id)).Value.ToString("dd.MM.yyyy"),
                             gdt.Campaigns.GetEndDateById(Convert.ToInt32(campaign_id)).Value.ToString("dd.MM.yyyy")
                             )
@@ -113,7 +110,7 @@ namespace ReportsLoyalty.pages.personal_offers
         {
             /* Загружаемо дані в субрепорти*/
             e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_market_details", this.sds_market_details));
-            
+
         }
     }
 }

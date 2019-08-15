@@ -1,12 +1,6 @@
 ﻿using LoyaltyDB;
 using Microsoft.Reporting.WebForms;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages
@@ -15,7 +9,7 @@ namespace ReportsLoyalty.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var campaign_id = Request.QueryString["campaign_id"].ToString();           
+            var campaign_id = Request.QueryString["campaign_id"].ToString();
             //var im = Request.QueryString["im"].ToString();
             var market_id = Request.QueryString["market_id"].ToString();
             var ctrl = Request.QueryString["ctrl"].ToString();
@@ -42,7 +36,8 @@ namespace ReportsLoyalty.pages
 
                     ReportViewer.LocalReport.SetParameters(new ReportParameter("is_all", "1"));
 
-                } else
+                }
+                else
                 {
                     ReportViewer.LocalReport.SetParameters(new ReportParameter("Name",
                                  gd.Campaigns.GetCampaignNameById(Convert.ToInt32(campaign_id))));

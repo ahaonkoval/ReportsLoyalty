@@ -1,16 +1,12 @@
 ﻿using Excel;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MicrosoftExcel = Microsoft.Office.Interop.Excel;
 
 namespace ExcelLibrary
 {
-    public class ExcelConverter: IDisposable
+    public class ExcelConverter : IDisposable
     {
         public FileInfo ExcelFile { get; set; }
 
@@ -23,7 +19,7 @@ namespace ExcelLibrary
 
         public DataSet ExcelDataSet { get; set; }
 
-        public bool IsTrueLoad {get; set; }
+        public bool IsTrueLoad { get; set; }
 
         //public DataTable REESTR { get { return this.ExcelDataSet.Tables["РЕЕСТР"]; } }
 
@@ -59,7 +55,7 @@ namespace ExcelLibrary
                         stream = File.Open(ExcelFile.FullName, FileMode.Open, FileAccess.Read);
                         IExcelDataReader excelReaderBinary = ExcelReaderFactory.CreateBinaryReader(stream);
                         excelReaderBinary.IsFirstRowAsColumnNames = true;
-                        this.ExcelDataSet = excelReaderBinary.AsDataSet();                        
+                        this.ExcelDataSet = excelReaderBinary.AsDataSet();
                     }
                     return true;
                 }

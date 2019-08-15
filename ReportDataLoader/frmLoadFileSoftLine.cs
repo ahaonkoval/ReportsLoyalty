@@ -1,15 +1,12 @@
 ﻿using ExcelLibrary;
+using LoyaltyDB;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using LoyaltyDB;
-using System.IO;
 
 namespace WinTest
 {
@@ -27,12 +24,13 @@ namespace WinTest
                 try
                 {
                     i = Convert.ToInt32(this.txtCampaignId.Text.Trim());
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     i = -1;
                 }
 
-                return i; 
+                return i;
             }
         }
 
@@ -41,9 +39,11 @@ namespace WinTest
         {
             get
             {
-                if (_pathCSV != string.Empty) {
+                if (_pathCSV != string.Empty)
+                {
                     return _pathCSV;
-                } else
+                }
+                else
                 {
                     return string.Empty;
                 }
@@ -78,7 +78,7 @@ namespace WinTest
                 if (!converter.IsTrueLoad)
                 {
                     return false;
-                }                
+                }
 
                 try
                 {
@@ -200,7 +200,8 @@ namespace WinTest
 
                 WinLoader.Helpers.FormsHelper.SetEnabled(this, false);
                 //this.Enabled = false;
-            } else
+            }
+            else
             {
                 MessageBox.Show("Вкажіть ID кампанії!");
             }
@@ -268,7 +269,7 @@ namespace WinTest
                     }
                 }
             }
-            
+
         }
 
         private void bWorkerCSV_DoWork(object sender, DoWorkEventArgs e)
@@ -280,7 +281,7 @@ namespace WinTest
         private void bWorkerCSV_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (e.ProgressPercentage.ToString().LastOrDefault().ToString() == "0")
-               tsStatus.Text = e.ProgressPercentage.ToString();
+                tsStatus.Text = e.ProgressPercentage.ToString();
             //this.tsProgress.Value = e.ProgressPercentage;
         }
 

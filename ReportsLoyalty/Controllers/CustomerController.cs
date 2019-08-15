@@ -1,17 +1,15 @@
-﻿using System;
+﻿using LoyaltyDB;
+using ReportsLoyalty.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
-using LoyaltyDB;
-using System.Web.Script.Serialization;
-using System.Text;
-using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using System.IO;
-using System.Data;
-using ReportsLoyalty.Helpers;
+using System.Text;
+using System.Web.Http;
 //using Microsoft.Office.Interop.Excel;
 //using System.Runtime.InteropServices;
 
@@ -47,7 +45,8 @@ namespace ReportsLoyalty.Controllers
 
                     return om;
                 }
-            } else { return response; }
+            }
+            else { return response; }
 
         }
         [HttpGet]
@@ -60,12 +59,13 @@ namespace ReportsLoyalty.Controllers
                     db.Customers.ClearControlGroup(id);
                     return string.Empty;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return ex.Message;
             }
         }
-       
+
         //public string GetCrmCustomerId()
         //{
 
@@ -73,7 +73,8 @@ namespace ReportsLoyalty.Controllers
 
         #region Get Files Customers
         //[HttpGet]
-        public HttpResponseMessage GetFile(int id) {
+        public HttpResponseMessage GetFile(int id)
+        {
             var queryparams = Request.GetQueryNameValuePairs();
             var p_start = Convert.ToInt32(queryparams.Where(w => w.Key == "p_start").FirstOrDefault().Value);
             var p_end = Convert.ToInt32(queryparams.Where(w => w.Key == "p_end").FirstOrDefault().Value);
@@ -104,7 +105,7 @@ namespace ReportsLoyalty.Controllers
 
                 return result;
             }
-        } 
+        }
 
         //[HttpGet]
         //public HttpResponseMessage GetCustomersFile(int id)
@@ -166,7 +167,8 @@ namespace ReportsLoyalty.Controllers
 
         #region
         [HttpGet]
-        public string GetSelectedCustomesCount(int id) {
+        public string GetSelectedCustomesCount(int id)
+        {
 
             var queryparams = Request.GetQueryNameValuePairs();
             var page = Convert.ToInt32(queryparams.Where(w => w.Key == "page").FirstOrDefault().Value);
@@ -246,7 +248,7 @@ namespace ReportsLoyalty.Controllers
             Global.SP.StartCreateCampaignFromSelect(cs);
 
             return string.Empty;
-        }        
+        }
 
         #endregion
 
@@ -280,7 +282,7 @@ namespace ReportsLoyalty.Controllers
                     case 2:
                         dt = gd.Customers.GetCustomersBetween(campaignId, part_start, part_end);
                         break;
-                }                    
+                }
 
                 if (dt.Rows.Count > 0)
                 {

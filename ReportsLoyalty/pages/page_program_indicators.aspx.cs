@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages.program_indicators
@@ -37,7 +33,7 @@ namespace ReportsLoyalty.pages.program_indicators
             this.sds_program_indicators.SelectParameters.Add("market_id", market_id);
             this.sds_program_indicators.SelectParameters.Add("date_start", dt_start.ToString("yyyy-MM-dd"));
             this.sds_program_indicators.SelectParameters.Add("date_end", dt_end.ToString("yyyy-MM-dd"));
-            
+
         }
     }
 }

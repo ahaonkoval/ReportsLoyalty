@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using DataModels;
 using LoyaltyDB;
 using LoyaltyDB.Models;
 using ReportsLoyalty.Models;
-using System.Web.Script.Serialization;
-using System.Text;
-using Newtonsoft.Json;
-using DataModels;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using ReportsLoyalty.Helpers;
+using System.Linq;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace ReportsLoyalty.Controllers
 {
     public class DictController : ApiController
-    {        
+    {
         // GET: api/Dict
         public IEnumerable<string> Get()
         {
@@ -131,16 +126,17 @@ namespace ReportsLoyalty.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        ///[HttpGet]
-        public object GetGroupsForDeparts(int i)
+        public object GetGroupsForDeparts(int id)
         {
             var queryparams = Request.GetQueryNameValuePairs();
             string ids = queryparams.Where(w => w.Key == "Ids").FirstOrDefault().Value.ToString();
-            using (GetData gt = new GetData()) {
+            using (GetData gt = new GetData())
+            {
 
                 var dict = gt.Dict.GetGroupsForDeparts(ids);
 
-                object o = new {
+                object o = new
+                {
                     total = dict.Count(),
                     data = dict
                 };
@@ -175,7 +171,7 @@ namespace ReportsLoyalty.Controllers
                     {
                         Id = 0,
                         ShortName = "all",
-                        MarketName = "ВСІ"                        
+                        MarketName = "ВСІ"
                     }
                 );
 
@@ -188,7 +184,8 @@ namespace ReportsLoyalty.Controllers
         /// <returns></returns>
         public IEnumerable<string> GetDisabledDates(int id)
         {
-            using (GetData gt = new GetData()) {
+            using (GetData gt = new GetData())
+            {
                 List<string> lst = new List<string>();
                 DateTime? StartDate = gt.Campaigns.GetStartDateById(id);
                 DateTime? EndDate = gt.Campaigns.GetEndDateById(id);
@@ -220,12 +217,13 @@ namespace ReportsLoyalty.Controllers
                 while (StartDate <= EndDate)
                 {
 
-                    lst.Add(new Models.Dates {
+                    lst.Add(new Models.Dates
+                    {
                         Name = StartDate.Value.ToString("dd.MM.yyyy"),
                         IsCalculated = gt.Campaigns.GetIsCalculated(id, StartDate.Value),
                         Value = StartDate.Value
                     });
-                    StartDate = StartDate.Value.AddDays(1);                    
+                    StartDate = StartDate.Value.AddDays(1);
                 }
 
                 object o_data = new
@@ -251,16 +249,17 @@ namespace ReportsLoyalty.Controllers
                 var fgroups = gt.Dict.GetGroups(id).OrderBy(o => o.Name).ToList();
                 foreach (VFgroups f in fgroups)
                 {
-                    g.Add(new FGroup {
-                       fgroup_id = f.FgroupId,
-                       name = f.Name
+                    g.Add(new FGroup
+                    {
+                        fgroup_id = f.FgroupId,
+                        name = f.Name
                     });
                 }
             }
 
             return g;
         }
-        
+
         /// <summary>
         /// Отримання переліку департаментів в відділі (name 1)
         /// </summary>
@@ -332,7 +331,8 @@ namespace ReportsLoyalty.Controllers
             return g;
         }
 
-        public IEnumerable<UPLControl> GetUploadControlData(int id) {
+        public IEnumerable<UPLControl> GetUploadControlData(int id)
+        {
             using (GetData gt = new GetData())
             {
                 return gt.Dict.GetUploadingControlData();
@@ -349,7 +349,8 @@ namespace ReportsLoyalty.Controllers
                     gt.Dict.SetPhoneToStopList(Conteiner.Phone.Value.ToString());
                 }
                 return 0;
-            } catch
+            }
+            catch
             {
                 return 1;
             }

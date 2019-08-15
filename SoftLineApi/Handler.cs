@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SoftLineApi.Models;
-using System.Configuration;
-using System.Net;
-using System.IO;
-using Newtonsoft.Json;
-using LoyaltyDB;
+﻿using LoyaltyDB;
 using Microsoft.Win32.SafeHandles;
+using SoftLineApi.Models;
+using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace SoftLineApi
@@ -35,7 +28,8 @@ namespace SoftLineApi
 
         GetData ldb { get; set; }
 
-        public Handler(int _campaignId) {           
+        public Handler(int _campaignId)
+        {
             this.ldb = new GetData();
             this.dk = new DataKeeper(this.ldb);
 
@@ -84,7 +78,7 @@ namespace SoftLineApi
                         onEndDownloadStatus();
                     }
                 }
-            }                   
+            }
         }
 
         #endregion
@@ -97,7 +91,8 @@ namespace SoftLineApi
                 onEndDownloadStatus();
                 this.LastId = 0;
                 // Кінець
-            } else
+            }
+            else
             {
                 this.GetReplayByMailingId();
             }

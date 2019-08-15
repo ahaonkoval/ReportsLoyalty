@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LoyaltyDB.Models;
 using Microsoft.Win32.SafeHandles;
+using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using DataModels;
-using LoyaltyDB.Models;
-using System.Collections;
-using LinqToDB;
+using System.Threading.Tasks;
 
 namespace LoyaltyDB
 {
-    public class TransformerData: IDisposable
+    public class TransformerData : IDisposable
     {
         bool disposed = false;
         SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);

@@ -4,10 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftLineApi
 {
@@ -15,11 +13,12 @@ namespace SoftLineApi
     {
         public int PackageSize = 1000;
 
-        Identification ident;        
+        Identification ident;
 
         string Uri { get; set; }
 
-        public SoftLine() {
+        public SoftLine()
+        {
             ident = new Identification();
             this.Uri = ConfigurationManager.AppSettings["Uri"];
         }

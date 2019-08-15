@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LoyaltyDB;
+using System;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using DataModels;
-using LoyaltyDB;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -60,7 +56,8 @@ namespace ReportsLoyalty.Controllers
             try
             {
                 return "true";
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return "false";
             }

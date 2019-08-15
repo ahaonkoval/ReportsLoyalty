@@ -1,14 +1,10 @@
-﻿using System;
+﻿using DataModels;
+using LoyaltyDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
-using LoyaltyDB;
-using LoyaltyDB.Models;
-using ReportsLoyalty.Models;
-using DataModels;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -60,11 +56,11 @@ namespace ReportsLoyalty.Controllers
                 cmps.Add(new CampaignsMk
                 {
                     Id = 0,
-                    Name = "Всі",                    
+                    Name = "Всі",
                 });
 
                 object o = new
-                {                    
+                {
                     total = cmps.Count(),
                     data = cmps.OrderBy(m => m.Id)
                 };

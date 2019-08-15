@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace ReportsLoyalty.Helpers
 {
@@ -15,10 +12,14 @@ namespace ReportsLoyalty.Helpers
         public static string GetStrigFormated(KeyValuePair<string, string>[] ms)
         {
             string current = string.Empty;
-            foreach (var a in ms) {
-                if (current == string.Empty) {
+            foreach (var a in ms)
+            {
+                if (current == string.Empty)
+                {
                     current = a.Value;
-                } else {
+                }
+                else
+                {
                     current = current + string.Format("|{0}", a.Value);
                 }
             }

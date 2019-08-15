@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LoyaltyDB.Models;
 using ServiceDebuggerHelper;
-using System.Configuration;
-using System.Threading;
-using LoyaltyDB.Models;
+using System;
+using System.ServiceProcess;
 
 namespace DataTransformer
 {
@@ -31,16 +22,18 @@ namespace DataTransformer
         private void Tm_onCreatePack(PackDocs pd)
         {
             marker = 1000;
-            Program.Debugger.BeginInvoke(new Action(delegate () {
-            Program.Debugger.SetLog(
-                string.Format("На обробці {0} документів, завантажено {1}", pd.Count.ToString(), pd.Created.ToString("s") )
-                    );
+            Program.Debugger.BeginInvoke(new Action(delegate ()
+            {
+                Program.Debugger.SetLog(
+                    string.Format("На обробці {0} документів, завантажено {1}", pd.Count.ToString(), pd.Created.ToString("s"))
+                        );
             }));
         }
 
         private void Tm_onCreateDoc(TDoc e)
         {
-            Program.Debugger.BeginInvoke(new Action(delegate () {
+            Program.Debugger.BeginInvoke(new Action(delegate ()
+            {
                 Program.Debugger.SetLog(
                     string.Format("Документ {0}({1}) завантажено {2}", e.Name, e.DocId.ToString(), e.Transformered.ToString("s"))
                     );
@@ -57,7 +50,7 @@ namespace DataTransformer
                 Interval = Convert.ToInt32(1000)
             };
             TimerEpicentrK.Elapsed += TimerEpicentrK_Elapsed;
-            TimerEpicentrK.Start();         
+            TimerEpicentrK.Start();
         }
 
         private void TimerEpicentrK_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

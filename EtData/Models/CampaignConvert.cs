@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LoyaltyDB.Models
 {
@@ -9,7 +6,7 @@ namespace LoyaltyDB.Models
     {
         public long campaign_id { get; set; }
         public string name { get; set; }
-        public DateTime date_start { get; set; } 
+        public DateTime date_start { get; set; }
         public DateTime date_end { get; set; }
         public int is_run { get; set; }
         public string group_id_0 { get; set; }

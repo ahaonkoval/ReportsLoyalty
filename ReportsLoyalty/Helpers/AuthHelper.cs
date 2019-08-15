@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -17,7 +16,7 @@ namespace ReportsLoyalty.Helpers
 
             DataSet.ReadXml(path, System.Data.XmlReadMode.InferSchema);
         }
-        
+
         public bool Auth(string user, string password, out UserMasterGift umuser)
         {
             DataRow[] rows = DataSet.Users.Select(
@@ -25,14 +24,16 @@ namespace ReportsLoyalty.Helpers
             if (rows.Count() > 0)
             {
                 umuser = new UserMasterGift(
-                    Convert.ToInt32(rows[0]["id"]), 
-                    rows[0]["UserName"].ToString(), 
+                    Convert.ToInt32(rows[0]["id"]),
+                    rows[0]["UserName"].ToString(),
                     rows[0]["Role"].ToString());
 
-                return true; 
-            } else {
+                return true;
+            }
+            else
+            {
                 umuser = null;
-                return false; 
+                return false;
             }
         }
 
@@ -59,10 +60,12 @@ namespace ReportsLoyalty.Helpers
         public int Id { get; set; }
         public string UserName { get; set; }
         public MasterGiftRoles Role { get; set; }
-        public string CreatedBy { 
-                get {
-                    return string.Format("{0}:{1}", this.Role.ToString(), this.UserName);
-                } 
+        public string CreatedBy
+        {
+            get
+            {
+                return string.Format("{0}:{1}", this.Role.ToString(), this.UserName);
+            }
         }
 
         public UserMasterGift()

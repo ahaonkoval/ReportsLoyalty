@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages
@@ -37,16 +33,20 @@ namespace ReportsLoyalty.pages
                 this.sds_report.SelectParameters.Clear();
                 this.sds_report.SelectParameters.Add("campaign_id", campaign_id);
                 this.sds_report.SelectParameters.Add("date", DbType.Date, dt.ToString("yyyy-MM-dd"));
-                if (is_numeric_market_id) {
+                if (is_numeric_market_id)
+                {
                     if (n == 0)
                         this.sds_report.SelectParameters.Add("market_id", market_id);
-                } else {
+                }
+                else
+                {
                     this.sds_report.SelectParameters.Add("market_lst", market_id);
                 }
-            } catch
+            }
+            catch
             {
 
             }
-         }
+        }
     }
 }

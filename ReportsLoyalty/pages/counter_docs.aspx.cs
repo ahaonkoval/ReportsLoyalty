@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages
@@ -15,7 +11,7 @@ namespace ReportsLoyalty.pages
             var date_start = Request.QueryString["date_start"].ToString();
             var date_end = Request.QueryString["date_end"].ToString();
             var market_id = Request.QueryString["market_id"].ToString();
-            
+
             DateTime dt_start;
             if (date_start == "null")
                 dt_start = DateTime.Now;
@@ -40,12 +36,15 @@ namespace ReportsLoyalty.pages
 
             //this.sds_counters_docs_bydate.SelectParameters.Add("market_id", market_id);
 
-            if (is_numeric_market_id) {
+            if (is_numeric_market_id)
+            {
                 if (n != 0)
                     this.sds_counters_docs_bydate.SelectParameters.Add("market_id", market_id);
                 //else
                 //    this.sds_counters_docs_bydate.SelectParameters.Add("market_lst", market_id);
-            } else {
+            }
+            else
+            {
                 this.sds_counters_docs_bydate.SelectParameters.Add("market_lst", market_id);
             }
         }

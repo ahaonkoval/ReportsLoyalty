@@ -1,15 +1,9 @@
 ﻿using ExcelLibrary;
+using LoyaltyDB;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using LoyaltyDB;
-using System.IO;
 
 namespace WinTest
 {
@@ -24,9 +18,11 @@ namespace WinTest
             get
             {
                 bool a = true;
-                try {
+                try
+                {
                     return this.cShort.Checked;
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     return a;
                 }
@@ -41,18 +37,20 @@ namespace WinTest
                 try
                 {
                     i = Convert.ToInt32(this.txtCampaignId.Text.Trim());
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     i = -1;
                 }
 
-                return i; 
+                return i;
             }
         }
 
         long RecCount
         {
-            get {
+            get
+            {
                 int i = 0;
                 try
                 {
@@ -73,9 +71,11 @@ namespace WinTest
         {
             get
             {
-                if (_pathCSV != string.Empty) {
+                if (_pathCSV != string.Empty)
+                {
                     return _pathCSV;
-                } else
+                }
+                else
                 {
                     return string.Empty;
                 }
@@ -110,7 +110,7 @@ namespace WinTest
                 if (!converter.IsTrueLoad)
                 {
                     return false;
-                }                
+                }
 
                 try
                 {
@@ -173,7 +173,8 @@ namespace WinTest
             {
                 if (this.CampaignId > 0)
                 {
-                    if (tShort) {
+                    if (tShort)
+                    {
                         data.Campaigns.SetShortDeliveryGMSStatusByCampaignId(this.CampaignId, t, bw, this.partId);
                     }
                     else
@@ -197,7 +198,7 @@ namespace WinTest
             using (GetData data = new GetData())
             {
                 if (tShort)
-                {                    
+                {
                     data.Campaigns.SetShortGmsStatusEnd(this.CampaignId, this.partId);
                 }
                 else
@@ -221,7 +222,8 @@ namespace WinTest
 
                 WinLoader.Helpers.FormsHelper.SetEnabled(this, false);
 
-            } else
+            }
+            else
             {
                 MessageBox.Show("Вкажіть ID кампанії!");
             }
@@ -289,7 +291,7 @@ namespace WinTest
         //            }
         //        }
         //    }
-            
+
         //}
 
         //private void bWorkerCSV_DoWork(object sender, DoWorkEventArgs e)

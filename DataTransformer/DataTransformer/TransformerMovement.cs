@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LoyaltyDB;
+﻿using LoyaltyDB;
 using LoyaltyDB.Models;
 
 namespace DataTransformer
@@ -18,7 +13,8 @@ namespace DataTransformer
         public delegate void CreateDoc(TDoc e);
         public event CreateDoc onCreateDoc;
 
-        public TransformerMovement() {
+        public TransformerMovement()
+        {
             Td = new TransformerData();
             Td.onCreateDoc += Td_onCreateDoc;
             Td.onCreatePack += Td_onCreatePack;

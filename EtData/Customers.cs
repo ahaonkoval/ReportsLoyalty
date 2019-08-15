@@ -1,12 +1,10 @@
-﻿using System;
+﻿using LinqToDB.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static DataModels.CrmWizardDB;
-using LinqToDB.Data;
 
 namespace LoyaltyDB
 {
@@ -40,7 +38,8 @@ namespace LoyaltyDB
         /// <param name="start_value"></param>
         /// <param name="end_value"></param>
         /// <returns></returns>
-        public DataTable GetCustomersBetween(int campaignId, int start_value, int end_value) {
+        public DataTable GetCustomersBetween(int campaignId, int start_value, int end_value)
+        {
 
             using (var db = new DataModels.CrmWizardDB())
             {
@@ -97,7 +96,7 @@ namespace LoyaltyDB
             }
         }
 
-       
+
         /// <summary>
         /// 
         /// </summary>
@@ -204,7 +203,8 @@ namespace LoyaltyDB
                         cmd.ExecuteNonQuery();
                         connect.Close();
 
-                    } catch (Exception ex)
+                    }
+                    catch (Exception ex)
                     {
 
                     }
@@ -229,7 +229,8 @@ namespace LoyaltyDB
                 if (customer != null)
                 {
                     return customer.CrmCustomerId.ToString();
-                } else
+                }
+                else
                 {
                     return string.Empty;
                 }

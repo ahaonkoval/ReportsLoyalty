@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinTest
@@ -14,8 +7,13 @@ namespace WinTest
     {
         private int childFormNumber = 0;
 
-        private string ConnectionString { get {
-                return "data source=10.7.131.218;initial catalog=crm_wizard;persist security info=True;user id=crm_wizard;password=andre2013;multipleactiveresultsets=True;connect timeout=1200000000"; } }
+        private string ConnectionString
+        {
+            get
+            {
+                return "data source=10.7.131.218;initial catalog=crm_wizard;persist security info=True;user id=crm_wizard;password=andre2013;multipleactiveresultsets=True;connect timeout=1200000000";
+            }
+        }
 
         public LoaderForm()
         {

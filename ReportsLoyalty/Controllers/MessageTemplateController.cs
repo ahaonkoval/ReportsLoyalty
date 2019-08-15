@@ -1,14 +1,12 @@
 ﻿using DataModels;
 using LoyaltyDB;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Text;
 using System.Web.Http;
 
@@ -81,7 +79,7 @@ namespace ReportsLoyalty.Controllers
             {
                 try
                 {
-                    var recipients = db.MessageDb.GetRecipientsTriggerMessage(id, date, start+1, start + limit);
+                    var recipients = db.MessageDb.GetRecipientsTriggerMessage(id, date, start + 1, start + limit);
                     int count = db.MessageDb.GetRecipientsCountbyTemplateId(id, date);
                     object o = new
                     {
@@ -90,7 +88,9 @@ namespace ReportsLoyalty.Controllers
                     };
 
                     return o;
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     return null;
                 }
             }
@@ -161,7 +161,8 @@ namespace ReportsLoyalty.Controllers
                 {
                     path = System.Web.Hosting.HostingEnvironment.MapPath(string.Format("~/CmpFiles/{0}", filename));
                 }
-                catch {
+                catch
+                {
 
                 }
                 if (File.Exists(path))

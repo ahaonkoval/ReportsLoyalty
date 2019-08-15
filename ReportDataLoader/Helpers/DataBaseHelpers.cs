@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLoader.Helpers
 {
@@ -157,7 +153,7 @@ namespace DataLoader.Helpers
             else
             {
                 return 0;
-            }            
+            }
         }
 
         public static DataTable GetCustomersChangingStructureData(SqlConnection Connection,
@@ -235,7 +231,7 @@ namespace DataLoader.Helpers
             }
             return returned;
         }
-        
+
         public static void FillParticipantDocs(ref DataTable t, SqlConnection Connection)
         {
             try
@@ -254,7 +250,7 @@ namespace DataLoader.Helpers
                     {
                         DataRow row = t.NewRow();
                         row["crm_customer_id"] = reader.GetInt64(0);
-                        
+
                         //ReadSingleRow((IDataRecord)reader);
                     }
 

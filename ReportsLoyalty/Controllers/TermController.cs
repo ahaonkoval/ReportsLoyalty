@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using LoyaltyDB;
+﻿using LoyaltyDB;
 using LoyaltyDB.Models;
-using System.Web.Script.Serialization;
-using System.Text;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -35,7 +29,7 @@ namespace ReportsLoyalty.Controllers
             using (GetData data = new GetData())
             {
                 data.Campaigns.CreateTerm(term);
-            }                
+            }
             //return 123;            
         }
 

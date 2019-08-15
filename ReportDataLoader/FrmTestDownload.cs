@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using LoyaltyDB;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DataLoader.Helpers;
 using System.Data.SqlClient;
-using LoyaltyDB;
+using System.Windows.Forms;
 
 namespace WinLoader
 {

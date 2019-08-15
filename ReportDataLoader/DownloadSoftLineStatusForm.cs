@@ -1,10 +1,6 @@
-﻿using System;
+﻿using SoftLineApi;
+using System;
 using System.Windows.Forms;
-using SoftLineApi;
-using SoftLineApi.Models;
-using LoyaltyDB;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace WinTest
 {

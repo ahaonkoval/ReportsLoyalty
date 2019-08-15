@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-//using System.Threading.Tasks;
-using static DataModels.CrmWizardDB;
-using DataModels;
+﻿using DataModels;
 using LinqToDB;
-using System.Transactions;
 using LoyaltyDB.Models.ShortObjects;
-using System.Data;
-using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 //using System.Net.Http;
 using System.ComponentModel;
-using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Transactions;
+//using System.Threading.Tasks;
+using static DataModels.CrmWizardDB;
 
 namespace LoyaltyDB
 {
@@ -20,13 +19,13 @@ namespace LoyaltyDB
     {
         //LoyaltyDB.LoyaltyEntities Le;
 
-        private List<Participant> сampaignParticipantCache;        
+        private List<Participant> сampaignParticipantCache;
 
         //public uint CommitMax { get { return m_commitMax; } set { m_commitMax = value; } }
 
         public Campaigns(LoyaltyDB.LoyaltyEntities le)
         {
-            
+
         }
 
         // TODO: Пеервірити потрібність...
@@ -102,7 +101,7 @@ namespace LoyaltyDB
 
                 CalculationLog l = null;
                 if (ml.Count() > 0)
-                    { l = ml.OrderByDescending(o => o.Id).First(); }
+                { l = ml.OrderByDescending(o => o.Id).First(); }
 
                 var campaign = db.CampaignsMk.Where(w => w.Id == campaignId).First();
 
@@ -112,7 +111,8 @@ namespace LoyaltyDB
                     {
                         StartCalculation(campaignId, currentDate, db.ConnectionString, campaign.TypeId, isDelyvery);
                     }
-                } else
+                }
+                else
                 {
                     StartCalculation(campaignId, currentDate, db.ConnectionString, campaign.TypeId, isDelyvery);
                 }
@@ -129,14 +129,18 @@ namespace LoyaltyDB
         {
             switch (TypeId)
             {
-                case 1: {
+                case 1:
+                    {
                         /* Запуск перерахунку по екстра балам */
                         StartCalculationExtraPoints(campaignId, currentDate, ConnectionString);
-                    } break;
-                case 2: {
+                    }
+                    break;
+                case 2:
+                    {
                         /* Запуск перерахунку по персональним пропозиціям */
                         StartCalculationPersonalOffer(campaignId, currentDate, ConnectionString, isDelyvery);
-                    } break;
+                    }
+                    break;
             }
         }
         /// <summary>
@@ -181,7 +185,8 @@ namespace LoyaltyDB
         /// <param name="campaignId"></param>
         /// <param name="currentDate"></param>
         /// <param name="connectString"></param>
-        void StartCalculationExtraPoints(int campaignId, DateTime currentDate, string connectString) {
+        void StartCalculationExtraPoints(int campaignId, DateTime currentDate, string connectString)
+        {
             using (SqlConnection c = new SqlConnection(connectString))
             {
                 try
@@ -231,7 +236,8 @@ namespace LoyaltyDB
                         c.Open();
                     cmd.ExecuteNonQuery();
 
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     int i = 0;
                     // TODO Логировать ошибку
@@ -251,7 +257,7 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                return db.CampaignsMk.Where(w => w.Id == campaignId).FirstOrDefault();                
+                return db.CampaignsMk.Where(w => w.Id == campaignId).FirstOrDefault();
             }
         }
         /// <summary>
@@ -373,8 +379,8 @@ namespace LoyaltyDB
             using (var db = new DataModels.CrmWizardDB())
             {
                 return db.CampaignsMk.Where(
-                    w => 
-                    w.IsRun == (isRun == true ? isRun : w.IsRun) 
+                    w =>
+                    w.IsRun == (isRun == true ? isRun : w.IsRun)
                     && w.TypeId == (type_id == 0 ? w.TypeId : type_id)
                     && w.Hide == false
                     ).Count();
@@ -546,12 +552,15 @@ namespace LoyaltyDB
                               c.GroupId0,
                               p.Name
                           };
-                if (cmp.Count() > 0) {
+                if (cmp.Count() > 0)
+                {
                     return cmp.FirstOrDefault().Name;
-                } else {
+                }
+                else
+                {
                     return string.Empty;
-                }                
-            }            
+                }
+            }
         }
         /// <summary>
         /// 
@@ -570,7 +579,7 @@ namespace LoyaltyDB
                               p.Name
                           };
                 return cmp.ToList();
-            }       
+            }
         }
 
         public IEnumerable<object> GetCampaignGroupLaval3(int campaignId)
@@ -778,7 +787,8 @@ namespace LoyaltyDB
                             .Set(p => p.IsStartGetStatus, 1)
                             .Update();
                         returned = true;
-                    } else
+                    }
+                    else
                     {
                         returned = false;
                     }
@@ -893,7 +903,7 @@ namespace LoyaltyDB
                     [date_delivery],
                     [part_id]) values";
 
-            StringBuilder sqlCommandText = new StringBuilder(SqlStart);        
+            StringBuilder sqlCommandText = new StringBuilder(SqlStart);
 
             string sqlBody1 = "({0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',convert(datetime, '{11}', 104),{12},'{13}'),";
             string sqlBodyEnd = "({0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',convert(datetime, '{11}', 104),{12},'{13}')";
@@ -901,7 +911,7 @@ namespace LoyaltyDB
             var smap = System.Configuration.ConfigurationManager.ConnectionStrings["crm_wizard_connect_string"].ToString();
 
             using (SqlConnection connect = new SqlConnection(smap))
-            {                
+            {
                 SqlCommand cmd = connect.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 connect.Open();
@@ -966,7 +976,7 @@ namespace LoyaltyDB
                         sqlCommandText = new StringBuilder(SqlStart);
                         bw.ReportProgress(i + 1);
                     }
-                    
+
                 }
                 if (m_counter > 1)
                 {
@@ -982,7 +992,7 @@ namespace LoyaltyDB
                     }
                 }
                 connect.Close();
-            }            
+            }
         }
 
         public void SetShortDeliveryGMSStatusByCampaignId(long campaignId, DataTable t, BackgroundWorker bw, Guid partId)
@@ -1009,7 +1019,7 @@ namespace LoyaltyDB
             {
                 SqlCommand cmd = connect.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                connect.Open();                
+                connect.Open();
 
                 for (Int32 i = 0; i < t.Rows.Count; i++)
                 {
@@ -1107,7 +1117,7 @@ namespace LoyaltyDB
             Int32 CurrentPosition = 0;
             using (CrmWizardDB db = new DataModels.CrmWizardDB())
             {
-                using (var t = new TransactionScope(TransactionScopeOption.Required, 
+                using (var t = new TransactionScope(TransactionScopeOption.Required,
                     new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted }))
                 {
                     db.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
@@ -1143,7 +1153,7 @@ namespace LoyaltyDB
                         bw.ReportProgress(CurrentPosition);
                     }
 
-                    
+
                 }
             }
         }
@@ -1168,7 +1178,8 @@ namespace LoyaltyDB
                         if (c.State != ConnectionState.Open)
                             c.Open();
                         cmd.ExecuteNonQuery();
-                    } catch (Exception ex)
+                    }
+                    catch (Exception ex)
                     {
 
                     }
@@ -1257,7 +1268,7 @@ namespace LoyaltyDB
                 if (cmd.Connection.State == ConnectionState.Closed)
                     cmd.Connection.Open();
             }
-           
+
         }
 
         public void CampaignDeleteStatuses(int campaignId)

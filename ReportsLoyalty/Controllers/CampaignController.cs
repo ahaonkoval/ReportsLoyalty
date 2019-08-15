@@ -1,13 +1,12 @@
-﻿using System;
+﻿using LoyaltyDB;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Web.Http;
-using LoyaltyDB;
-using System.Web.Script.Serialization;
 using System.Text;
-using Newtonsoft.Json;
+using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -33,7 +32,8 @@ namespace ReportsLoyalty.Controllers
             if (TypeId.Value == string.Empty)
             {
                 type_id = 0;
-            } else
+            }
+            else
             {
                 type_id = Convert.ToInt32(TypeId.Value);
             }
@@ -41,7 +41,7 @@ namespace ReportsLoyalty.Controllers
             using (GetData data = new GetData())
             {
                 var campaigns = data.Campaigns.GetCampaigns(Convert.ToBoolean(isRun.Value), start, limit, type_id);
-                    //.Where(w => w.number >= start && w.number <= (start + limit));//.OrderByDescending(o => o.id);
+                //.Where(w => w.number >= start && w.number <= (start + limit));//.OrderByDescending(o => o.id);
                 int campaigns_count = data.Campaigns.GetCampaignsCount(Convert.ToBoolean(isRun.Value), type_id);
 
                 object om = new
@@ -98,14 +98,16 @@ namespace ReportsLoyalty.Controllers
         [HttpGet]
         public IEnumerable<object> GetCampaignDepartments(int id)
         {
-            using (GetData gt = new GetData()) {
+            using (GetData gt = new GetData())
+            {
                 return gt.Campaigns.GetCampaignDepartments(id);
             }
         }
         [HttpGet]
         public IEnumerable<object> GetCampaignGroupLaval3(int id)
         {
-            using (GetData gt = new GetData()) {
+            using (GetData gt = new GetData())
+            {
                 return gt.Campaigns.GetCampaignGroupLaval3(id);
             }
         }
@@ -145,13 +147,13 @@ namespace ReportsLoyalty.Controllers
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPost]
-        public long SetCampaignData(int id,[FromBody] dynamic value)
+        public long SetCampaignData(int id, [FromBody] dynamic value)
         {
             long returned = 0;
 
             var queryparams = Request.GetQueryNameValuePairs();
-            string typeRequest = queryparams.Where(w => w.Key == "callType").FirstOrDefault().Value;       
-            string json = value.ToString();            
+            string typeRequest = queryparams.Where(w => w.Key == "callType").FirstOrDefault().Value;
+            string json = value.ToString();
 
             if (typeRequest == "SetCampaignData")
             {
@@ -161,15 +163,17 @@ namespace ReportsLoyalty.Controllers
                     cmp = gt.Campaigns.SetCampaign(cmp);
                     return cmp.campaign_id;
                 }
-            } else if (typeRequest == "SetHide")
+            }
+            else if (typeRequest == "SetHide")
             {
-               //LoyaltyDB.Models.CampaignConvert cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.CampaignConvert>(json);
-               using (GetData gt = new GetData())
-               {
+                //LoyaltyDB.Models.CampaignConvert cmp = JsonConvert.DeserializeObject<LoyaltyDB.Models.CampaignConvert>(json);
+                using (GetData gt = new GetData())
+                {
                     gt.Campaigns.SetHideCampaign(id);
-               }
+                }
                 return returned;
-            } else if (typeRequest == "SetStartRequesStatus")
+            }
+            else if (typeRequest == "SetStartRequesStatus")
             {
                 using (GetData gt = new GetData())
                 {
@@ -182,7 +186,7 @@ namespace ReportsLoyalty.Controllers
                 return returned;
             }
 
-            return returned; 
+            return returned;
         }
         [HttpPost]
         public string SetCampainStructureData(int id, [FromBody] dynamic value)
@@ -203,11 +207,12 @@ namespace ReportsLoyalty.Controllers
                     gt.Campaigns.SetCampainStructureData(id, DepartmentIds, GroupLavel3Ids, SectionId);
                     return string.Empty;
                 }
-            } catch (Exception except)
+            }
+            catch (Exception except)
             {
                 return except.Message;
             }
-                        
+
         }
         #endregion
     }

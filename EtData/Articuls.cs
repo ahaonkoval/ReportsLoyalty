@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DataModels;
+using LinqToDB;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataModels;
-using LinqToDB;
 using static DataModels.CrmWizardDB;
 
 namespace LoyaltyDB
@@ -39,14 +36,16 @@ namespace LoyaltyDB
                 var count = db.CampaignArticul.Where(w => w.CampaignId == CampaignId && w.Articul == Articul).Count();
                 if (count == 0)
                 {
-                    db.CampaignArticul.Insert(() => new DataModels.CampaignArticul {
+                    db.CampaignArticul.Insert(() => new DataModels.CampaignArticul
+                    {
                         Articul = Articul,
                         CampaignId = CampaignId
-                    });                    
-                } else
+                    });
+                }
+                else
                 {
                     status = 1;
-                }                
+                }
             }
             return status;
         }

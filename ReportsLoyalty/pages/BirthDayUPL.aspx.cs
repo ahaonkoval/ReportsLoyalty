@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using Microsoft.Reporting.WebForms;
+using System;
 using System.Data;
-using Microsoft.Reporting.WebForms;
+using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages
 {
@@ -39,10 +35,13 @@ namespace ReportsLoyalty.pages
             this.sds_BirthDayUPL.SelectParameters.Clear();
             this.sds_BirthDayUPL.SelectParameters.Add("date_start", DbType.Date, dt_start.ToString("yyyy-MM-dd"));
             this.sds_BirthDayUPL.SelectParameters.Add("date_end", DbType.Date, dt_end.ToString("yyyy-MM-dd"));
-            if (is_numeric_market_id) {
+            if (is_numeric_market_id)
+            {
                 if (n != 0)
                     this.sds_BirthDayUPL.SelectParameters.Add("market_id", market_id);
-            } else {
+            }
+            else
+            {
                 this.sds_BirthDayUPL.SelectParameters.Add("market_lst", market_id);
             }
             //this.sds_BirthDayUPL.SelectParameters.Add("market_id", market_id);
@@ -54,10 +53,13 @@ namespace ReportsLoyalty.pages
             this.sds_Rating.SelectParameters.Clear();
             this.sds_Rating.SelectParameters.Add("date_start", DbType.Date, dt_start.ToString("yyyy-MM-dd"));
             this.sds_Rating.SelectParameters.Add("date_end", DbType.Date, dt_end.ToString("yyyy-MM-dd"));
-            if (is_numeric_market_id) {
+            if (is_numeric_market_id)
+            {
                 if (n != 0)
                     this.sds_Rating.SelectParameters.Add("market_id", market_id);
-            } else {
+            }
+            else
+            {
                 this.sds_Rating.SelectParameters.Add("market_lst", market_id);
             }
             //this.sds_Rating.SelectParameters.Add("market_id", market_id);
@@ -69,10 +71,13 @@ namespace ReportsLoyalty.pages
             this.sds_discount.SelectParameters.Clear();
             this.sds_discount.SelectParameters.Add("date_start", DbType.Date, dt_start.ToString("yyyy-MM-dd"));
             this.sds_discount.SelectParameters.Add("date_end", DbType.Date, dt_end.ToString("yyyy-MM-dd"));
-            if (is_numeric_market_id) {
+            if (is_numeric_market_id)
+            {
                 if (n != 0)
                     this.sds_discount.SelectParameters.Add("market_id", market_id);
-            } else {
+            }
+            else
+            {
                 this.sds_discount.SelectParameters.Add("market_lst", market_id);
             }
             //this.sds_discount.SelectParameters.Add("market_id", market_id);
@@ -83,10 +88,13 @@ namespace ReportsLoyalty.pages
             this.sds_distanse.SelectParameters.Clear();
             this.sds_distanse.SelectParameters.Add("date_start", DbType.Date, dt_start.ToString("yyyy-MM-dd"));
             this.sds_distanse.SelectParameters.Add("date_end", DbType.Date, dt_end.ToString("yyyy-MM-dd"));
-            if (is_numeric_market_id) {
+            if (is_numeric_market_id)
+            {
                 if (n != 0)
                     this.sds_distanse.SelectParameters.Add("market_id", market_id);
-            } else {
+            }
+            else
+            {
                 this.sds_distanse.SelectParameters.Add("market_lst", market_id);
             }
 

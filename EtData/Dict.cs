@@ -1,15 +1,13 @@
-﻿using LoyaltyDB.Models;
+﻿using DataModels;
+using LinqToDB;
+using LoyaltyDB.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LinqToDB;
-using DataModels;
-using static DataModels.CrmWizardDBStoredProcedures;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 using static DataModels.CrmWizardDB;
+using static DataModels.CrmWizardDBStoredProcedures;
 
 namespace LoyaltyDB
 {
@@ -51,7 +49,7 @@ namespace LoyaltyDB
         public IEnumerable<VFgroups> GetGroups(int level_id)
         {
             using (var db = new DataModels.CrmWizardDB())
-            {   
+            {
                 return db.VFgroups.Where(w => w.LevelId == level_id).OrderBy(o => o.FgroupId).ToList();
             }
 
@@ -140,7 +138,7 @@ namespace LoyaltyDB
                     MPhone = x.MPhone
                 }).ToList();
 
-                return lt.Where(w => w.StopListId >= start+1 && w.StopListId <= (start + limit)).OrderBy(om => om.StopListId);
+                return lt.Where(w => w.StopListId >= start + 1 && w.StopListId <= (start + limit)).OrderBy(om => om.StopListId);
             }
         }
 
@@ -156,7 +154,8 @@ namespace LoyaltyDB
         {
             using (var db = new DataModels.CrmWizardDB())
             {
-                db.StopList.Insert(() => new DataModels.StopList {
+                db.StopList.Insert(() => new DataModels.StopList
+                {
                     Created = DateTime.Now,
                     MobilePhone = Phone
                 });

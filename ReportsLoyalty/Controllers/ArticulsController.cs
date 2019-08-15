@@ -1,13 +1,8 @@
 ﻿using LoyaltyDB;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Script.Serialization;
-using static DataModels.CrmWizardDB;
-using Newtonsoft;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -23,7 +18,8 @@ namespace ReportsLoyalty.Controllers
             var limit = Convert.ToInt32(queryparams.Where(w => w.Key == "limit").FirstOrDefault().Value);
             var campaign_id = Convert.ToInt32(queryparams.Where(w => w.Key == "cmp_id").FirstOrDefault().Value);
 
-            using (GetData db = new GetData()) {
+            using (GetData db = new GetData())
+            {
 
                 var articuls = db.Art.GetCampaignsArticuls(campaign_id, start, limit);
                 var count = db.Art.GetCountByCampaignId(campaign_id);

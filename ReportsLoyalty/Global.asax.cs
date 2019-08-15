@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
-using System.Web.Http;
-using System.Web.Mvc;
-
-using System.Threading;
+﻿using LoyaltyDB;
+using System;
 using System.Threading.Tasks;
-using LoyaltyDB;
+using System.Web;
+using System.Web.Http;
+using System.Web.Routing;
 
 namespace ReportsLoyalty
 {
@@ -21,7 +14,7 @@ namespace ReportsLoyalty
         void Application_Start(object sender, EventArgs e)
         {
             SP = new StartProcess();
-            
+
             // Код, выполняемый при запуске приложения
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
@@ -67,7 +60,8 @@ namespace ReportsLoyalty
             }
         }
         /* -------------------------------------------------------------------------------------------------- */
-        public void StartFillCampaignFromTableList(int campaignId, string table, bool toDelete) {
+        public void StartFillCampaignFromTableList(int campaignId, string table, bool toDelete)
+        {
             var t = Task.Run(() => StartFillCampaignFromTableListData(campaignId, table, toDelete));
             t.Wait();
         }

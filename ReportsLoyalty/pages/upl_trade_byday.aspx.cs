@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages.upl_byday
@@ -28,7 +24,7 @@ namespace ReportsLoyalty.pages.upl_byday
                 dt_end = Convert.ToDateTime(date_end);
 
             /*----------------------------------------------------------------------------------------------------------*/
-            
+
             this.sds_load.SelectCommand =
                 @"SELECT * FROM rep.t_get_card_trade_rating(@date_start, @date_end, @market_id) a
                     ORDER BY a.market_name, a.days_of_shopping";

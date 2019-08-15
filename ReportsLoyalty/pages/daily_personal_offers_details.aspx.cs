@@ -1,13 +1,10 @@
-﻿using Microsoft.Reporting.WebForms;
+﻿using LoyaltyDB;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using LoyaltyDB;
 using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 
 namespace ReportsLoyalty.pages.personal_offers_details
 {
@@ -103,7 +100,7 @@ namespace ReportsLoyalty.pages.personal_offers_details
         {
             /* Загружаемо дані в субрепорти*/
             e.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ds_market_details", this.sds_market_details));
-            
+
         }
     }
 }

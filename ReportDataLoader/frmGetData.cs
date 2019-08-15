@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataLoader.Helpers;
+using LoyaltyDB;
+using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using LoyaltyDB;
-using System.IO;
-using System.Collections;
-using DataLoader.Helpers;
 
 namespace WinTest
 {
@@ -29,26 +26,31 @@ namespace WinTest
 
         int CustomersQty { get; set; }
 
-        GetData  Gdata { get; set; }
+        GetData Gdata { get; set; }
 
         #region Параметри....
 
-        int CampaignId { get {
+        int CampaignId
+        {
+            get
+            {
                 if (txtCampaignId.Text.Trim() != string.Empty)
                 {
                     return Convert.ToInt32(txtCampaignId.Text.Trim());
-                } else
+                }
+                else
                 {
                     return -1;
                 }
-            } 
+            }
         }
 
         decimal BorderAmount
         {
             get
             {
-                if (this.txtBorderAmount.Text.Trim() != string.Empty) {
+                if (this.txtBorderAmount.Text.Trim() != string.Empty)
+                {
                     return Convert.ToDecimal(this.txtBorderAmount.Text.Trim());
                 }
                 else
@@ -70,14 +72,16 @@ namespace WinTest
 
         int MarketId
         {
-            get {
+            get
+            {
                 if (this.cmbMarketId.SelectedItem != null)
                 {
                     return ((DataModels.DictMarkets)this.cmbMarketId.SelectedItem).Id;
-                } else
+                }
+                else
                 {
                     return 0;
-                }                
+                }
             }
         }
         #endregion
@@ -107,7 +111,7 @@ namespace WinTest
 
             var lMarkets = Gdata.Dict.GetDictMarkets().ToList();
 
-            lMarkets.Add(new DataModels.DictMarkets { Id = 0, MarketName = "ВСІ"});
+            lMarkets.Add(new DataModels.DictMarkets { Id = 0, MarketName = "ВСІ" });
             bsMarkets.DataSource = lMarkets.OrderBy(o => o.Id);
 
             cmbMarketId.DataSource = bsMarkets;
@@ -159,9 +163,9 @@ namespace WinTest
             TextBox txtCampaignId = (TextBox)sender;
             if (txtCampaignId.Text.Trim() != string.Empty)
             {
-                    DataModels.CampaignsMk cp = Gdata.Campaigns.GetCampaignById(Convert.ToInt32(txtCampaignId.Text.Trim()));
-                    dtStart.Value = cp.DateStart.Value;
-                    dtEnd.Value = cp.DateEnd.Value;
+                DataModels.CampaignsMk cp = Gdata.Campaigns.GetCampaignById(Convert.ToInt32(txtCampaignId.Text.Trim()));
+                dtStart.Value = cp.DateStart.Value;
+                dtEnd.Value = cp.DateEnd.Value;
 
             }
         }

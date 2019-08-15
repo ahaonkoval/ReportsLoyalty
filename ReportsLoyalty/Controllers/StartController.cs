@@ -1,13 +1,9 @@
 ﻿using LoyaltyDB;
 using ReportsLoyalty.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
-using Newtonsoft;
 
 namespace ReportsLoyalty.Controllers
 {
@@ -48,7 +44,8 @@ namespace ReportsLoyalty.Controllers
 
                             RT = Newtonsoft.Json.JsonConvert.SerializeObject(ci);
 
-                        } else
+                        }
+                        else
                         {
                             //RT = string.Format("Невідомо...");
                             CampaignInfo ci = new Models.CampaignInfo
@@ -60,7 +57,7 @@ namespace ReportsLoyalty.Controllers
                             };
                             RT = Newtonsoft.Json.JsonConvert.SerializeObject(ci);
                         }
-                       
+
                     }
                     break;
                 case 20:
@@ -80,14 +77,16 @@ namespace ReportsLoyalty.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public string GetProcessingLastCampaign(int id) {
+        public string GetProcessingLastCampaign(int id)
+        {
             string returned = string.Empty;
 
             var queryparams = Request.GetQueryNameValuePairs();
             var TypeRequest = queryparams.Where(w => w.Key == "TypeRequest").FirstOrDefault().Value;
             var isDelivery = queryparams.Where(w => w.Key == "isDelyvery").FirstOrDefault().Value;
 
-            using (GetData od = new GetData()) {
+            using (GetData od = new GetData())
+            {
                 var m = od.Campaigns.GetCalculationLogLast();
                 CampaignInfo ci = new Models.CampaignInfo
                 {

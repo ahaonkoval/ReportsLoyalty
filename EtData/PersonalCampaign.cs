@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static DataModels.CrmWizardDB;
-using DataModels;
-using LinqToDB;
-using System.Transactions;
-using LoyaltyDB.Models.ShortObjects;
 using System.Data;
+using System.Linq;
+using static DataModels.CrmWizardDB;
 
 namespace LoyaltyDB
 {

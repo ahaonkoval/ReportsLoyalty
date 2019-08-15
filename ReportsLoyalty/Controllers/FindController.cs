@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LoyaltyDB;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ReportsLoyalty.Helpers;
-using LoyaltyDB;
 
 namespace ReportsLoyalty.Controllers
 {

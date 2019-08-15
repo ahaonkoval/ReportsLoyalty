@@ -1,14 +1,10 @@
-﻿using System;
+﻿using DataModels;
+using LinqToDB;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using LinqToDB;
-using LinqToDB.Data;
-using static DataModels.CrmWizardDB;
-using DataModels;
+using System.Linq;
 
 namespace LoyaltyDB
 {
@@ -37,7 +33,7 @@ namespace LoyaltyDB
             {
                 return db.SendMessagesTemplates.Where(w => w.Id == id).FirstOrDefault();
             }
-        }        
+        }
         /// <summary>
         /// Додавання шаблону
         /// </summary>
@@ -105,7 +101,7 @@ namespace LoyaltyDB
         /// <param name="m_link_image"></param>
         /// <param name="m_link_button"></param>
         /// <returns></returns>
-        public object UpdateOrInsert(int id, string m_key, string m_name, 
+        public object UpdateOrInsert(int id, string m_key, string m_name,
             string m_viber, string m_sms, int m_condition_doc_amount, string m_link_image, string m_link_button)
         {
             object n_id = null;
@@ -122,7 +118,8 @@ namespace LoyaltyDB
                         UpdateMessageTemplate(id, m_key, m_name, m_viber, m_sms, m_condition_doc_amount, m_link_image, m_link_button);
                     };
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 int i = 90;
             }
@@ -199,10 +196,10 @@ namespace LoyaltyDB
         public IEnumerable<object> GetSentTriggerMessages()
         {
             using (var db = new DataModels.CrmWizardDB())
-            {                
+            {
                 var sent = from sc in db.SendCustomers
-                         group sc by sc.TemplateId into g
-                         select new { TemplateId = g.Key, Count = g.Count() };
+                           group sc by sc.TemplateId into g
+                           select new { TemplateId = g.Key, Count = g.Count() };
 
                 var tm = from mt in db.SendMessagesTemplates
                          join cm in sent on mt.Id equals cm.TemplateId
@@ -226,17 +223,17 @@ namespace LoyaltyDB
                          join c in db.CrmCustomers on sc.CrmCustomerId equals c.CrmCustomerId
                          where sc.TemplateId == id && sc.DateSend == date
                          select new
-                                {
-                                    RowNumber = Sql.Ext.RowNumber()
+                         {
+                             RowNumber = Sql.Ext.RowNumber()
                                     .Over()
                                     .OrderBy(sc.Id)
                                     .ToValue(),
-                                    CrmCustomerId = sc.CrmCustomerId,
-                                    sc.DateSend,
-                                    sc.StatusId,
-                                    CustomerName = string.Format("{0} {1} {2}", c.Name1, c.Name2, c.Name3),
-                                    c.MobilePhone
-                                };
+                             CrmCustomerId = sc.CrmCustomerId,
+                             sc.DateSend,
+                             sc.StatusId,
+                             CustomerName = string.Format("{0} {1} {2}", c.Name1, c.Name2, c.Name3),
+                             c.MobilePhone
+                         };
 
                 var c_part = c1.ToList().Where(w => w.RowNumber.Between(start, end)).ToList().OrderBy(o => o.RowNumber);
 
@@ -253,8 +250,8 @@ namespace LoyaltyDB
             using (var db = new DataModels.CrmWizardDB())
             {
                 var c1 = from sc in db.SendCustomers
-                         join c in db.CrmCustomers on sc.CrmCustomerId equals c.CrmCustomerId                         
-                         where sc.TemplateId == id 
+                         join c in db.CrmCustomers on sc.CrmCustomerId equals c.CrmCustomerId
+                         where sc.TemplateId == id
                          select new
                          {
                              RowNumber = Sql.Ext.RowNumber()
@@ -304,8 +301,11 @@ namespace LoyaltyDB
                          group sc by sc.DateSend into t
                          select new { DateSend = t.Key, CustomersQty = t.Count() };
                 return c1.ToList().Select(
-                        (m, index) => new {
-                            index, m.CustomersQty, DateSend = Convert.ToString(m.DateSend.Value)
+                        (m, index) => new
+                        {
+                            index,
+                            m.CustomersQty,
+                            DateSend = Convert.ToString(m.DateSend.Value)
                         }
                     );
             }
