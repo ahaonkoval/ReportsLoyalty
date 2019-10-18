@@ -25,8 +25,12 @@ namespace ReportsLoyalty.Controllers
 
             using (GetData db = new GetData())
             {
-                var templates = db.MessageDb.GetMessageTemplates();
-                var count = templates.Count();
+
+                var templates = db.MessageDb.GetMessageTemplates(page - 1);//.Where(w => w.Id >= start && w.Id <= (start + limit));
+                //var templates = db.MessageDb.GetMessageTemplates(page-1);//.Where(w => w.Id >= start && w.Id <= (start + limit));
+                var count = db.MessageDb.GetMessageTemplatesCount();
+
+
 
                 object o = new
                 {
@@ -95,6 +99,11 @@ namespace ReportsLoyalty.Controllers
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public object GetSentTriggerMessageByDate(int id)
         {
@@ -213,20 +222,22 @@ namespace ReportsLoyalty.Controllers
 
         public string Post([FromBody]dynamic o) //Conteiner
         {
-            string id = Convert.ToString(o.Id.Value);
-            string m_key = Convert.ToString(o.MKey.Value);
-            string m_name = Convert.ToString(o.MName.Value);
-            string m_sms = Convert.ToString(o.MSms.Value);
-            string m_viber = Convert.ToString(o.MViber.Value);
-            int m_condition_doc_amount = Convert.ToInt32(o.ConditionDocAmount.Value);
-            string m_link_image = Convert.ToString(o.LinkImage.Value);
-            string m_link_button = Convert.ToString(o.LinkButton.Value);
-
+            string id                   = Convert.ToString(o.Id.Value);
+            string m_key                = Convert.ToString(o.MKey.Value);
+            string m_name               = Convert.ToString(o.MName.Value);
+            string m_sms                = Convert.ToString(o.MSms.Value);
+            string m_viber              = Convert.ToString(o.MViber.Value);
+            int m_condition_doc_amount  = Convert.ToInt32(o.ConditionDocAmount.Value);
+            string m_link_image         = Convert.ToString(o.LinkImage.Value);
+            string m_link_button        = Convert.ToString(o.LinkButton.Value);
+            DateTime date_start         = Convert.ToDateTime(o.DateStart);
+            DateTime date_end           = Convert.ToDateTime(o.DateEnd);
 
             object n_id = null;
             using (GetData db = new GetData())
             {
-                n_id = db.MessageDb.UpdateOrInsert(Convert.ToInt32(id), m_key, m_name, m_viber, m_sms, m_condition_doc_amount, m_link_image, m_link_button);
+                n_id = db.MessageDb.UpdateOrInsert(Convert.ToInt32(id), m_key, m_name, m_viber, m_sms, 
+                    m_condition_doc_amount, m_link_image, m_link_button, date_start, date_end);
             }
             return n_id == null ? string.Empty : n_id.ToString();
         }

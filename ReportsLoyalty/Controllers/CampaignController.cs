@@ -41,7 +41,6 @@ namespace ReportsLoyalty.Controllers
             using (GetData data = new GetData())
             {
                 var campaigns = data.Campaigns.GetCampaigns(Convert.ToBoolean(isRun.Value), start, limit, type_id);
-                //.Where(w => w.number >= start && w.number <= (start + limit));//.OrderByDescending(o => o.id);
                 int campaigns_count = data.Campaigns.GetCampaignsCount(Convert.ToBoolean(isRun.Value), type_id);
 
                 object om = new

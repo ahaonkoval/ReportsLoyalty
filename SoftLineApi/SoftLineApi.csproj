@@ -65,8 +65,8 @@
     <Content Include="Data.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtData\LoyaltyDB.csproj">
-      <Project>{44D625BA-1514-4114-8A6B-A832150449CF}</Project>
+    <ProjectReference Include="..\..\library\LoyaltyDB\LoyaltyDB.csproj">
+      <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
       <Name>LoyaltyDB</Name>
     </ProjectReference>
   </ItemGroup>

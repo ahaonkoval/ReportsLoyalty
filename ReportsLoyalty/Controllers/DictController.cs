@@ -265,25 +265,25 @@ namespace ReportsLoyalty.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<FGroup> GetDepartmentsByOtdId(long id)
-        {
-            List<FGroup> g = new List<FGroup>();
+        //public IEnumerable<FGroup> GetDepartmentsByOtdId(long id)
+        //{
+        //    List<FGroup> g = new List<FGroup>();
 
-            using (GetData gt = new GetData())
-            {
-                var fgroups = gt.Dict.GetDepartmentsByOtdId(id);
-                foreach (v_fgroups f in fgroups)
-                {
-                    g.Add(new FGroup
-                    {
-                        fgroup_id = f.fgroup_id,
-                        name = f.name
-                    });
-                }
-            }
+        //    using (GetData gt = new GetData())
+        //    {
+        //        var fgroups = gt.Dict.GetDepartmentsByOtdId(id);
+        //        foreach (v_fgroups f in fgroups)
+        //        {
+        //            g.Add(new FGroup
+        //            {
+        //                fgroup_id = f.fgroup_id,
+        //                name = f.name
+        //            });
+        //        }
+        //    }
 
-            return g;
-        }
+        //    return g;
+        //}
 
         public IEnumerable<CampaignType> GetCampaignTypes(int id)
         {

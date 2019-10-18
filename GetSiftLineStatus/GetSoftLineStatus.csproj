@@ -64,7 +64,7 @@
       <Project>{e058864c-20a7-43c0-8eff-0e4eb9d02855}</Project>
       <Name>ServiceDebuggerHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtData\LoyaltyDB.csproj">
+    <ProjectReference Include="..\..\library\LoyaltyDB\LoyaltyDB.csproj">
       <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
       <Name>LoyaltyDB</Name>
     </ProjectReference>

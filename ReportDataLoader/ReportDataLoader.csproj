@@ -227,13 +227,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtData\LoyaltyDB.csproj">
-      <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
-      <Name>LoyaltyDB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExcelLibrary\ExcelLibrary.csproj">
+    <ProjectReference Include="..\..\library\ExcelLibrary\ExcelLibrary.csproj">
       <Project>{b9fa1851-cefd-4eb9-8c1b-550abfe44d75}</Project>
       <Name>ExcelLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\library\LoyaltyDB\LoyaltyDB.csproj">
+      <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
+      <Name>LoyaltyDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReportsLoyalty\ReportsLoyalty.csproj">
       <Project>{1677BB6D-DEE7-4A69-89C1-4DD5A215F6B2}</Project>

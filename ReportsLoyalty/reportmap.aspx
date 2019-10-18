@@ -31,6 +31,7 @@
     <script type="text/javascript" src="scripts/downloadDataSetting.js"></script>
 
     <script type="text/javascript" src="scripts/trigger_messages.js"></script>
+<%--    <script type="text/javascript" src="scripts/manage_dicts.js"></script>--%>
 
     <%--<script type="text/javascript" src="scripts/CmpSettWzd.js"></script>--%>
 
@@ -201,7 +202,7 @@
                     border: false,
                     collapsible: true,
                     collapsed: false,
-                    title: 'НАВІГАЦІЯ ПО ЗВІТАМ',
+                    title: 'НАВІГАЦІЯ ПО ПОРТАЛУ',
                     width: 300,
                     items: {
                         extend: 'Ext.panel.Panel',
@@ -293,7 +294,7 @@
                             xtype: 'panel',
                             title: 'ТРИГЕРНІ ПОВІДОМЛЕННЯ',
                             items:
-                                [{
+                             [  {
                                     xtype: 'panel',
                                     border: false,
                                     name: 'name',
@@ -306,20 +307,19 @@
                                     html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Статистика тригерних повідомлень</a>',
                                     margin: '2 2 2 10'
                                 },
-                                    //{
-                                    //    xtype: 'panel',
-                                    //    border: false,
-                                    //    name: 'name',
-                                    //    html: '<a href="#" onclick="showDataSentTriggerMessages();" class="menu_is_run">Вивантаження УПЛ отримувачів повідомлень</a>',
-                                    //    margin: '2 2 2 10'
-                                    //}, {
-                                    //    xtype: 'panel',
-                                    //    border: false,
-                                    //    name: 'name',
-                                    //    html: '<a href="#" onclick="" class="menu_is_run">Перегляд отримання повідомлень</a>',
-                                    //    margin: '2 2 2 10'
-                                    //}
-                                ]
+                             ]
+                        }, {
+                            xtype: 'panel',
+                            title: 'Управління Довідниками',
+                            items: [
+                                {
+                                    xtype: 'panel',
+                                    border: false,
+                                    name: 'name',
+                                    html: '<a href="#" onclick="showTriggerMessageEditorTemplates();" class="menu_is_run">Довідник структури PotamusTo27ua</a>',
+                                    margin: '2 2 2 10'
+                                }
+                            ]
                         }]
                     }
                 },

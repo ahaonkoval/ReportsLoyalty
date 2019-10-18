@@ -274,9 +274,9 @@ function Dict() {
         var m = Ext.define('CampaignType', {
             extend: 'Ext.data.Model',
             fields: [
-                { name: 'Number', type: 'int' },
-                { name: 'title', type: 'string' },
-                { name: 'DownloadStatus', type: 'string' },
+                { name: 'Number', type: 'int', sortable: true },
+                { name: 'title', type: 'string', sortable: true },
+                { name: 'DownloadStatus', type: 'string', sortable: true },
                 {
                     name: 'Created', type: 'date',
                     convert: function (v, record) {
@@ -300,13 +300,27 @@ function Dict() {
                     type: 'json',
                     root: 'data'
                 }
-            }
+            },
+            //remoteSort: true
+            //sorters: [{
+            //    field: 'Number',
+            //    direction: 'DESC'
+            //}],
+
         });
         var store = Ext.create('Ext.data.Store', {
             model: m,
+            sorters:
+            {
+                //field: 'Number',
+
+                field: 'Number',
+                direction: 'DESC'
+            },
             autoLoad: true
         });
-
+        //store.setDefaultSort('Number', 'desc');
+        //store.sort('Number', 'desc');
         return store;
     }
 }

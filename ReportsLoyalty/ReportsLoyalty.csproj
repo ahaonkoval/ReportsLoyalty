@@ -205,6 +205,7 @@
     <Content Include="scripts\jslib\jquery-3.3.1.min.js" />
     <Content Include="scripts\jslib\jquery-3.3.1.slim.js" />
     <Content Include="scripts\jslib\jquery-3.3.1.slim.min.js" />
+    <Content Include="scripts\manage_dicts.js" />
     <Content Include="scripts\modernizr-2.8.3.js" />
     <Content Include="scripts\p50points_reports.js" />
     <Content Include="scripts\PersonalInteractiv.js" />
@@ -3416,6 +3417,7 @@
     <Compile Include="Controllers\DictCampaignController.cs" />
     <Compile Include="Controllers\DictController.cs" />
     <Compile Include="Controllers\FindController.cs" />
+    <Compile Include="Controllers\GoodtStructDictController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MessageTemplateController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -3652,6 +3654,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\web.config" />
+    <Content Include="ViewPage1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3700,18 +3703,17 @@
     <EmbeddedResource Include="reports\upl_visits\upl_visit.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtData\LoyaltyDB.csproj">
-      <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
-      <Name>LoyaltyDB</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\library\LoyaltyDB\LoyaltyDB.csproj">
+      <Project>{44d625ba-1514-4114-8a6b-a832150449cf}</Project>
+      <Name>LoyaltyDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

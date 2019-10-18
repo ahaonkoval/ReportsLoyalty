@@ -2,7 +2,7 @@ var getGridDownloadStatus = function () {
 
     var gridDownloadStatus = Ext.create('Ext.grid.Panel', {
         stateful: true,
-        stateId: 'stateful-filter-grid',
+        //stateId: 'stateful-filter-grid',
         border: false,
         store: dict.getStoreDownloadStatusTables(),
         columns: [
@@ -24,7 +24,6 @@ var getGridDownloadStatus = function () {
                 dataIndex: 'Created',
                 text: 'Дата завантаження',
                 xtype: 'datecolumn',
-                //format: 'd.m.Y'
                 format: 'Y-m-d H:i:s.u',
                 width: 150
             }
