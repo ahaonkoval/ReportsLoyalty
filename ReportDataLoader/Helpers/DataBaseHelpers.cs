@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 
 namespace DataLoader.Helpers
@@ -10,27 +11,32 @@ namespace DataLoader.Helpers
         public static DataTable GetFlowersUsers(SqlConnection Connection)
         {
             DataTable ResultTable = new DataTable();
+            bool wasOpen = Connection.State == ConnectionState.Open;
             try
             {
                 string commandTxt = File.ReadAllText(Environment.CurrentDirectory + "\\SqlScreept\\GetFlowersUsers.sql");
-                SqlCommand cmd = new SqlCommand(commandTxt, Connection);
-                cmd.CommandTimeout = 12000000;
-
-                if (Connection.State != ConnectionState.Open)
+                using (SqlCommand cmd = new SqlCommand(commandTxt, Connection))
                 {
-                    Connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    ResultTable.Load(reader);
-                    Connection.Close();
+                    cmd.CommandTimeout = 12000000;
+
+                    if (!wasOpen)
+                    {
+                        Connection.Open();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        ResultTable.Load(reader);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // TODO: Логировать....
+                Trace.WriteLine($"Error in GetFlowersUsers: {ex.Message}");
             }
             finally
             {
-                if (Connection.State == ConnectionState.Open)
+                if (!wasOpen && Connection.State == ConnectionState.Open)
                 {
                     Connection.Close();
                 }
@@ -59,33 +65,38 @@ namespace DataLoader.Helpers
             )
         {
             DataTable ResultTable = new DataTable();
+            bool wasOpen = Connection.State == ConnectionState.Open;
             try
             {
                 string commandTxt = File.ReadAllText(Environment.CurrentDirectory + "\\SqlScreept\\CampaignBuyer.sql");
-                SqlCommand cmd = new SqlCommand(commandTxt, Connection);
-                cmd.CommandTimeout = 12000000;
-
-                cmd.Parameters.AddWithValue("@market_id", MarketId);
-                cmd.Parameters.AddWithValue("@campaign_id", CampaignId);
-                cmd.Parameters.AddWithValue("@border_amount", BorderAmount);
-                cmd.Parameters.AddWithValue("@date_start", DateStart);
-                cmd.Parameters.AddWithValue("@date_end", DateEnd);
-
-                if (Connection.State != ConnectionState.Open)
+                using (SqlCommand cmd = new SqlCommand(commandTxt, Connection))
                 {
-                    Connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    ResultTable.Load(reader);
-                    Connection.Close();
+                    cmd.CommandTimeout = 12000000;
+
+                    cmd.Parameters.AddWithValue("@market_id", MarketId);
+                    cmd.Parameters.AddWithValue("@campaign_id", CampaignId);
+                    cmd.Parameters.AddWithValue("@border_amount", BorderAmount);
+                    cmd.Parameters.AddWithValue("@date_start", DateStart);
+                    cmd.Parameters.AddWithValue("@date_end", DateEnd);
+
+                    if (!wasOpen)
+                    {
+                        Connection.Open();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        ResultTable.Load(reader);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // TODO: Логировать....
+                Trace.WriteLine($"Error in GetCampaignBuyers: {ex.Message}");
             }
             finally
             {
-                if (Connection.State == ConnectionState.Open)
+                if (!wasOpen && Connection.State == ConnectionState.Open)
                 {
                     Connection.Close();
                 }
@@ -93,6 +104,7 @@ namespace DataLoader.Helpers
 
             return ResultTable;
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -112,35 +124,39 @@ namespace DataLoader.Helpers
                 DateTime DateEnd
             )
         {
-
             DataTable ResultTable = new DataTable();
+            bool wasOpen = Connection.State == ConnectionState.Open;
             try
             {
                 string commandTxt = File.ReadAllText(Environment.CurrentDirectory + "\\SqlScreept\\CampaignBuyerCount.sql");
-                SqlCommand cmd = new SqlCommand(commandTxt, Connection);
-                cmd.CommandTimeout = 12000000;
-
-                cmd.Parameters.AddWithValue("@market_id", MarketId);
-                cmd.Parameters.AddWithValue("@campaign_id", CampaignId);
-                cmd.Parameters.AddWithValue("@border_amount", BorderAmount);
-                cmd.Parameters.AddWithValue("@date_start", DateStart);
-                cmd.Parameters.AddWithValue("@date_end", DateEnd);
-
-                if (Connection.State != ConnectionState.Open)
+                using (SqlCommand cmd = new SqlCommand(commandTxt, Connection))
                 {
-                    Connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    ResultTable.Load(reader);
-                    Connection.Close();
+                    cmd.CommandTimeout = 12000000;
+
+                    cmd.Parameters.AddWithValue("@market_id", MarketId);
+                    cmd.Parameters.AddWithValue("@campaign_id", CampaignId);
+                    cmd.Parameters.AddWithValue("@border_amount", BorderAmount);
+                    cmd.Parameters.AddWithValue("@date_start", DateStart);
+                    cmd.Parameters.AddWithValue("@date_end", DateEnd);
+
+                    if (!wasOpen)
+                    {
+                        Connection.Open();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        ResultTable.Load(reader);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // TODO: Логировать....
+                Trace.WriteLine($"Error in GetCampaignBuyersCount: {ex.Message}");
             }
             finally
             {
-                if (Connection.State == ConnectionState.Open)
+                if (!wasOpen && Connection.State == ConnectionState.Open)
                 {
                     Connection.Close();
                 }
@@ -162,33 +178,38 @@ namespace DataLoader.Helpers
                 string Campaigns)
         {
             DataTable ResultTable = new DataTable();
+            bool wasOpen = Connection.State == ConnectionState.Open;
             try
             {
                 string commandTxt = File.ReadAllText(Environment.CurrentDirectory + "\\SqlScreept\\ChangingStructure.sql");
 
                 commandTxt = commandTxt.Replace("%CMP%", Campaigns);
 
-                SqlCommand cmd = new SqlCommand(commandTxt, Connection);
-                cmd.CommandTimeout = 12000000;
-
-                cmd.Parameters.AddWithValue("@date_start", DateStart);
-                cmd.Parameters.AddWithValue("@date_end", DateEnd);
-
-                if (Connection.State != ConnectionState.Open)
+                using (SqlCommand cmd = new SqlCommand(commandTxt, Connection))
                 {
-                    Connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    ResultTable.Load(reader);
-                    Connection.Close();
+                    cmd.CommandTimeout = 12000000;
+
+                    cmd.Parameters.AddWithValue("@date_start", DateStart);
+                    cmd.Parameters.AddWithValue("@date_end", DateEnd);
+
+                    if (!wasOpen)
+                    {
+                        Connection.Open();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        ResultTable.Load(reader);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // TODO: Логировать....
+                Trace.WriteLine($"Error in GetCustomersChangingStructureData: {ex.Message}");
             }
             finally
             {
-                if (Connection.State == ConnectionState.Open)
+                if (!wasOpen && Connection.State == ConnectionState.Open)
                 {
                     Connection.Close();
                 }
@@ -200,31 +221,38 @@ namespace DataLoader.Helpers
         public static long GetCountParticipantDocs(SqlConnection Connection)
         {
             long returned = 0;
+            bool wasOpen = Connection.State == ConnectionState.Open;
             try
             {
                 string commandTxt = "select count(*) participant_docs_qty from calc.v_cardusing (nolock)";
 
-                SqlCommand cmd = new SqlCommand(commandTxt, Connection);
-                cmd.CommandTimeout = 12000000;
-
-
-                if (Connection.State != ConnectionState.Open)
+                using (SqlCommand cmd = new SqlCommand(commandTxt, Connection))
                 {
-                    Connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    DataTable t = new DataTable();
-                    t.Load(reader);
-                    returned = Convert.ToInt64(t.Rows[0]["participant_docs_qty"]);
-                    Connection.Close();
+                    cmd.CommandTimeout = 12000000;
+
+                    if (!wasOpen)
+                    {
+                        Connection.Open();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        DataTable t = new DataTable();
+                        t.Load(reader);
+                        if (t.Rows.Count > 0)
+                        {
+                            returned = Convert.ToInt64(t.Rows[0]["participant_docs_qty"]);
+                        }
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                Trace.WriteLine($"Error in GetCountParticipantDocs: {ex.Message}");
             }
             finally
             {
-                if (Connection.State == ConnectionState.Open)
+                if (!wasOpen && Connection.State == ConnectionState.Open)
                 {
                     Connection.Close();
                 }
@@ -234,36 +262,45 @@ namespace DataLoader.Helpers
 
         public static void FillParticipantDocs(ref DataTable t, SqlConnection Connection)
         {
+            bool wasOpen = Connection.State == ConnectionState.Open;
             try
             {
                 string commandTxt = "SELECT * FROM calc.v_cardusing (nolock)";
 
-                SqlCommand cmd = new SqlCommand(commandTxt, Connection);
-                cmd.CommandTimeout = 12000000;
-
-                if (Connection.State != ConnectionState.Open)
+                using (SqlCommand cmd = new SqlCommand(commandTxt, Connection))
                 {
-                    Connection.Open();
+                    cmd.CommandTimeout = 12000000;
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    if (!wasOpen)
                     {
-                        DataRow row = t.NewRow();
-                        row["crm_customer_id"] = reader.GetInt64(0);
-
-                        //ReadSingleRow((IDataRecord)reader);
+                        Connection.Open();
                     }
 
-                    Connection.Close();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.FieldCount != t.Columns.Count)
+                        {
+                            Trace.WriteLine($"FillParticipantDocs: schema mismatch - reader has {reader.FieldCount} fields, table has {t.Columns.Count} columns.");
+                        }
+                        while (reader.Read())
+                        {
+                            DataRow row = t.NewRow();
+                            for (int i = 0; i < reader.FieldCount && i < t.Columns.Count; i++)
+                            {
+                                row[i] = reader.IsDBNull(i) ? DBNull.Value : reader.GetValue(i);
+                            }
+                            t.Rows.Add(row);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-
+                Trace.WriteLine($"Error in FillParticipantDocs: {ex.Message}");
             }
             finally
             {
-                if (Connection.State == ConnectionState.Open)
+                if (!wasOpen && Connection.State == ConnectionState.Open)
                 {
                     Connection.Close();
                 }
